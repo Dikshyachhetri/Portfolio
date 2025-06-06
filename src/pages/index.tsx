@@ -5,8 +5,8 @@ import Navigation from '../components/Navigation';
 import Home from '../components/Home';
 import Projects from '../components/Projects';
 import ProjectDetail from '../components/ProjectDetail';
-import About from '../components/About';
-import Contact from '../components/Contact';
+import About from '@/components/about';
+import Contact from '@/components/contact';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);

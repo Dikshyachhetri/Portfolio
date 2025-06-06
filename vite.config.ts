@@ -14,6 +14,7 @@ export default defineConfig(({ mode }) => ({
     mode === 'development' &&
     componentTagger(),
   ].filter(Boolean),
+    base: '/Portfolio/', // Replace 'Portfolio' with your actual repository name
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Navigation from '@/components/Navigation';
-import Projects from '@/components/Projects';
-import ProjectDetail from '@/components/ProjectDetail';
-import About from '@/components/About';
-import Contact from '@/components/Contact';
-import Home from '@/components/Home';
-import LoadingScreen from '@/components/LoadingScreen';
+import React, { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import { Navigation } from "@/components/Navigation";
+import { Projects } from "@/components/Projects";
+import { ProjectDetail } from "@/components/ProjectDetail";
+import { About } from "@/components/About";
+import { Contact } from "@/components/Contact";
+import { Home } from "@/components/Home";
+import { LoadingScreen } from "@/components/LoadingScreen";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);

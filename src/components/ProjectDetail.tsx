@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 
-const ProjectDetail = () => {
+export const ProjectDetail = () => {
   const { id } = useParams();
 
   // Mock project data - replace with actual data
@@ -120,5 +120,3 @@ const ProjectDetail = () => {
     </div>
   );
 };
-
-export default ProjectDetail;

@@ -1,8 +1,8 @@
 
 import React from 'react';
-import ProjectCard from './ProjectCard';
+import { ProjectCard } from './ProjectCard';
 
-const Projects = () => {
+export const Projects = () => {
   const allProjects = [
     {
       id: 1,
@@ -72,5 +72,3 @@ const Projects = () => {
     </div>
   );
 };
-
-export default Projects;

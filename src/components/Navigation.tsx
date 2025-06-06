@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { X, Menu } from 'lucide-react';
 
-const Navigation = () => {
+export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
@@ -73,5 +73,3 @@ const Navigation = () => {
     </>
   );
 };
-
-export default Navigation;

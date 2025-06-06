@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import ProjectCard from './ProjectCard';
+import { ProjectCard } from './ProjectCard';
 
-const Home = () => {
+export const Home = () => {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
@@ -171,5 +171,3 @@ const Home = () => {
     </div>
   );
 };
-
-export default Home;

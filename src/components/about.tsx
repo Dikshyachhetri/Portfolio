@@ -1,6 +1,6 @@
 import React from 'react';
 
-const About = () => {
+export const About = () => {
   const experience = [
     {
       year: '2020-Present',
@@ -129,4 +129,3 @@ const About = () => {
   );
 };
 
-export default About;

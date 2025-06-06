@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const LoadingScreen = () => {
+export const LoadingScreen = () => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -54,4 +54,3 @@ const LoadingScreen = () => {
   );
 };
 
-export default LoadingScreen;

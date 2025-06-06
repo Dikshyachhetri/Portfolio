@@ -15,7 +15,7 @@ interface ProjectCardProps {
   index: number;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
+export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
   return (
     <Link 
       to={`/project/${project.id}`}
@@ -57,5 +57,3 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
     </Link>
   );
 };
-
-export default ProjectCard;

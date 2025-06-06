@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import LoadingScreen from '../components/LoadingScreen';
-import Navigation from '../components/Navigation';
-import Projects from '../components/Projects';
-import ProjectDetail from '../components/ProjectDetail';
+import LoadingScreen from '@/components/LoadingScreen';
+import Navigation from '@/components/Navigation';
+import Projects from '@/components/Projects';
+import ProjectDetail from '@/components/ProjectDetail';
 import About from '@/components/About';
 import Contact from '@/components/Contact';
 import Home from '@/components/Home';

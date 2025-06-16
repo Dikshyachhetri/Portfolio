@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { ProjectCard } from "./ProjectCard";
+import { LoopingWords } from "../components/LoopingWords";
 
 export const Home = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -36,6 +37,14 @@ export const Home = () => {
         "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800",
       description: "Mobile learning platform with gamification elements",
     },
+    {
+      id: 4,
+      title: "Educational App",
+      category: "Education",
+      image:
+        "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800",
+      description: "Mobile learning platform with gamification elements",
+    },
   ];
 
   return (
@@ -56,16 +65,14 @@ export const Home = () => {
 
         {/* Content */}
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-          <h1 className="text-7xl md:text-9xl font-thin mb-6 animate-fade-in">
-            <span className="block">UI/UX</span>
-            <span className="block text-gray-400">Designer</span>
-          </h1>
+          <LoopingWords />
+
           <p
-            className="text-xl md:text-2xl text-gray-300 mb-8 animate-fade-in max-w-2xl mx-auto"
+            className="text-xl md:text-xl text-gray-300 mb-6 animate-fade-in max-w-2xl mx-auto"
             style={{ animationDelay: "0.5s" }}
           >
-            Crafting intuitive digital experiences with 4 years of expertise in
-            user-centered design
+            Crafting intuitive digital experiences with 4 years of <br></br>
+            expertise in user-centered design
           </p>
           <div className="animate-fade-in" style={{ animationDelay: "1s" }}>
             <span className="text-gray-400">Based in Kathmandu, Nepal</span>

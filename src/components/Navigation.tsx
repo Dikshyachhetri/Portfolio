@@ -53,7 +53,7 @@ export const Navigation = () => {
                 <Link
                   to={item.path}
                   onClick={() => setIsOpen(false)}
-                  className={`block text-6xl md:text-8xl font-thin mb-6 transition-all duration-300 hover:text-gray-400 ${
+                  className={`block text-6xl md:text-8xl font-thin mb-6 transition-all duration-300 hover:text-gray-400  ${
                     location.pathname === item.path
                       ? "text-gray-400"
                       : "text-white"

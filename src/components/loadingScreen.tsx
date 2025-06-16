@@ -24,12 +24,12 @@ export const LoadingScreen = () => {
           <h1 className="text-6xl font-thin text-white mb-4 animate-fade-in">
             Portfolio
           </h1>
-          <p
+          {/* <p
             className="text-gray-400 text-lg animate-fade-in"
             style={{ animationDelay: "0.5s" }}
           >
             UI/UX Designer
-          </p>
+          </p> */}
         </div>
 
         <div

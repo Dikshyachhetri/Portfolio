@@ -17,11 +17,8 @@ export const Navigation = () => {
     <>
       <nav className="fixed top-0 left-0 right-0 z-40 p-6">
         <div className="flex justify-between items-center">
-          <Link
-            to="/"
-            className="text-2xl font-light text-white hover:text-gray-300 transition-colors"
-          >
-            Portfolio
+          <Link to="/">
+            <img src="/logo.png" alt="Logo" className="h-10 w-auto" />
           </Link>
           <button
             onClick={() => setIsOpen(true)}

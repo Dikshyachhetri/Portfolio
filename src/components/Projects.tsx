@@ -1,12 +1,13 @@
-import { ProjectCard } from "./ProjectCard";
+import React from "react";
+import ProjectCard from "./ProjectCard";
 
-export const Projects = () => {
+const Projects = () => {
   const allProjects = [
     {
       id: 1,
-      title: "AI Healthcare Platform",
-      category: "Healthcare",
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800",
+      title: "Employee Management System",
+      category: "Web Application, PWA",
+      image: "http://localhost:8080/raraspace.png",
       description:
         "End-to-end design for AI-powered healthcare diagnostics platform",
     },
@@ -53,12 +54,14 @@ export const Projects = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-24 pb-16 px-6 bg-black">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-16 text-center">
-          <h1 className="text-6xl font-thin mb-6 animate-fade-in">Projects</h1>
+    <div className="min-h-screen pt-32 pb-20 px-6 bg-black">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-20 text-center">
+          <h1 className="text-5xl md:text-7xl font-light mb-8 animate-fade-in tracking-tight text-white">
+            Projects
+          </h1>
           <p
-            className="text-xl text-gray-400 max-w-2xl mx-auto animate-fade-in"
+            className="text-xl text-gray-400 max-w-3xl mx-auto animate-fade-in font-light leading-relaxed"
             style={{ animationDelay: "0.3s" }}
           >
             A collection of projects spanning across AI, Healthcare, Education,
@@ -66,7 +69,7 @@ export const Projects = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
           {allProjects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
@@ -75,3 +78,5 @@ export const Projects = () => {
     </div>
   );
 };
+
+export default Projects;

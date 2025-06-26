@@ -9,12 +9,12 @@ export const LoopingWords = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % words.length);
-    }, 1800); // every 2 seconds
+    }, 1600); // every 2 seconds
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <h1 className="text-7xl md:text-9xl font-medium mb-10 animate-fade-in">
+    <h1 className="text-7xl md:text-[120px] tracking-tight font-medium mb-10 animate-fade-in">
       {words.map((word, index) => (
         <span
           key={word}

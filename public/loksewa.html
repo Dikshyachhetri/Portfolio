@@ -41,11 +41,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--orange);transition:width var(--dur-mid) var(--ease)}
 .nav-links a:hover{color:var(--white)}
 .nav-links a:hover::after{width:100%}
-.nav-cta{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);border:1px solid var(--orange);padding:8px 20px;border-radius:2px;text-decoration:none;transition:background var(--dur-fast),color var(--dur-fast)}
-.nav-cta:hover{background:var(--orange);color:#fff}
+.nav-cta{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);border:1px solid var(--orange);padding:8px 22px;border-radius:2px;text-decoration:none;transition:background var(--dur-fast),color var(--dur-fast),box-shadow var(--dur-fast)}
+.nav-cta:hover{background:var(--orange);color:#fff;box-shadow:0 0 20px rgba(232,82,26,.25)}
 .nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:8px}
 .nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:transform var(--dur-mid) var(--ease),opacity var(--dur-fast)}
-.nav-drawer{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(14,14,14,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:48px;flex-direction:column;gap:24px;z-index:99}
+.nav-drawer{display:none;position:fixed;top:60px;left:0;right:0;height:400px;background:var(--bg);border-bottom:1px solid var(--border);padding:48px;flex-direction:column;gap:24px;z-index:99;overflow-y:auto}
 .nav-drawer a{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:3px;color:var(--gray);text-decoration:none;transition:color var(--dur-fast)}
 .nav-drawer a:hover{color:var(--orange)}
 .nav-drawer.open{display:flex}
@@ -351,25 +351,25 @@ footer p{font-size:12px;color:var(--gray2)}
 <div id="cursor" aria-hidden="true"></div>
 <div id="cursor-ring" aria-hidden="true"></div>
 <div id="progress" aria-hidden="true"></div>
-<div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-dot"></span>Email copied!</div>
+<div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-dot"></span>Opening Gmail...</div>
 
 <nav role="navigation" aria-label="Main navigation">
-  <a class="nav-logo" href="index.html" aria-label="Dikshya ,  Home"><span class="nav-logo-dot" aria-hidden="true"></span>DIKSHYA</a>
+  <a class="nav-logo" href="/Portfolio/home" aria-label="Dikshya ,  Home"><span class="nav-logo-dot" aria-hidden="true"></span>DIKSHYA</a>
   <ul class="nav-links" role="list">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="projects.html">Work</a></li>
-    <li><a href="about.html">About</a></li>
+    <li><a href="/Portfolio/home">Home</a></li>
+    <li><a href="/Portfolio/work">Work</a></li>
+    <li><a href="/Portfolio/about">About</a></li>
   </ul>
-  <a class="nav-cta" href="mailto:dikshya@email.com" onclick="showToast(event)">Hire Me</a>
+  <a class="nav-cta" href="#" onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=dikshyabc01@gmail.com','_blank');return false;">Hire Me</a>
   <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
     <span></span><span></span><span></span>
   </button>
 </nav>
 <nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
-  <a href="index.html" onclick="closeDrawer()">Home</a>
-  <a href="projects.html" onclick="closeDrawer()">Work</a>
-  <a href="about.html" onclick="closeDrawer()">About</a>
-  <a href="mailto:dikshya@email.com" onclick="closeDrawer();showToast(event)">Hire Me →</a>
+  <a href="/Portfolio/home" onclick="closeDrawer()">Home</a>
+  <a href="/Portfolio/work" onclick="closeDrawer()">Work</a>
+  <a href="/Portfolio/about" onclick="closeDrawer()">About</a>
+  <a href="#" onclick="closeDrawer();window.open('https://mail.google.com/mail/?view=cm&fs=1&to=dikshyabc01@gmail.com','_blank');return false;">Hire Me →</a>
 </nav>
 
 <main id="main">
@@ -381,8 +381,8 @@ footer p{font-size:12px;color:var(--gray2)}
   <div class="cs-hero-glow" aria-hidden="true"></div>
   <div class="cs-hero-content">
     <div class="cs-breadcrumb">
-      <a href="index.html">Home</a><span class="sep">·</span>
-      <a href="projects.html">Work</a><span class="sep">·</span>
+      <a href="/Portfolio/home">Home</a><span class="sep">·</span>
+      <a href="/Portfolio/work">Work</a><span class="sep">·</span>
       <span>Loksewa Pro</span>
     </div>
     <div class="cs-hero-meta">
@@ -829,15 +829,15 @@ footer p{font-size:12px;color:var(--gray2)}
   <p>Let's talk about what we can build together.</p>
   <div class="cta-buttons">
     <a href="mailto:dikshya@email.com" class="btn-primary" onclick="showToast(event)">Get In Touch</a>
-    <a href="projects.html" class="btn-outline">View All Work</a>
+    <a href="/Portfolio/work" class="btn-outline">View All Work</a>
   </div>
 </section>
 </main>
 
 <footer role="contentinfo">
-  <a class="footer-logo" href="index.html">DIKSHYA</a>
+  <a class="footer-logo" href="/Portfolio/home">DIKSHYA</a>
   <p>© 2026 · UI/UX Designer · Kathmandu, Nepal</p>
-  <a href="projects.html" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
+  <a href="/Portfolio/work" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
 </footer>
 
 <script>

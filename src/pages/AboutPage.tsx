@@ -42,18 +42,12 @@ export default function AboutPage() {
           </div>
           <div className="about-right">
             <div className="photo-frame" style={{
-              fontSize:0,
-              background:'linear-gradient(135deg, var(--bg3), var(--bg2))',
+              backgroundImage:'url(/profile-photo.png)',
+              backgroundSize:'cover',
+              backgroundPosition:'center top',
+              backgroundRepeat:'no-repeat',
               border:'1px solid var(--border)'
-            }}>
-              <div className="photo-placeholder">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" style={{color:'var(--gray2)'}}>
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                  <circle cx="12" cy="7" r="4"/>
-                </svg>
-                <span>Add photo</span>
-              </div>
-            </div>
+            }}></div>
           </div>
         </div>
       </header>
@@ -61,7 +55,7 @@ export default function AboutPage() {
       {/* QUOTE */}
       <section className="about-quote" aria-label="Personal quote">
         <blockquote>
-          &ldquo;I believe great design is invisible &mdash; it removes friction,
+          &ldquo;I believe great design is invisible; it removes friction,
           respects the user&rsquo;s time, and makes complex systems feel simple.&rdquo;
         </blockquote>
       </section>
@@ -73,10 +67,10 @@ export default function AboutPage() {
           <h2 className="section-title" id="exp-title">EXPERIENCE</h2>
           <div className="exp-list" role="list" aria-label="Work experience">
             {[
-              { role:'Senior UI/UX Designer', company:'Invicta PTE LTD', period:'2025–Present', desc:'Maritime voyage intelligence platform. NDA — no public screenshots.', link:null, url:'https://invicta.global/' },
-              { role:'UI/UX Designer', company:'Freelancing', period:'2024–2025', desc:'Multiple clients &mdash; AI fintech (AI-driven financial assistant), Zero Trust security (enterprise cybersecurity), and Loksewa Pro app (10,000+ downloads, 4.4★ on Play Store). No public screenshots.', link:null, url:null },
+              { role:'Senior UI/UX Designer', company:'Invicta PTE LTD', period:'2025–Present', desc:'Maritime voyage intelligence platform. NDA, no public screenshots.', link:null, url:'https://invicta.global/' },
+              { role:'UI/UX Designer', company:'Freelancing', period:'2024–2025', desc:'Multiple clients including AI fintech (AI-driven financial assistant), Zero Trust security (enterprise cybersecurity), and Loksewa Pro app (10,000+ downloads, 4.4★ on Play Store). No public screenshots.', link:null, url:null },
               { role:'UI/UX Designer', company:'Life Management Science Labs', period:'2024–2025', desc:'Wellness app and EdTech platform. No dedicated case study built.', link:null, url:'https://lifemanagementsciencelabs.com/' },
-              { role:'UI/UX Designer', company:'Rara Digital Lab Pvt. Ltd.', period:'2022–2024', desc:'RaraSpace EMS + Intellix Healthcare KPI &mdash; both have full case studies.', link:'/work/raraspace', url:'https://raralabs.com/' },
+              { role:'UI/UX Designer', company:'Rara Digital Lab Pvt. Ltd.', period:'2022–2024', desc:'RaraSpace EMS + Intellix Healthcare KPI, both have full case studies.', link:'/work/raraspace', url:'https://raralabs.com/' },
               { role:'Designer & Marketing Analyst', company:'Smart Acre Media Solutions', period:'2021–2022', desc:'Email design and marketing analytics.', link:null, url:'https://smartacremediasolutions.com/' },
               { role:'Frontend Developer (Internship)', company:'Featherwebs', period:'2021', desc:'HRIS platform internship.', link:null, url:'https://featherwebs.com/' },
             ].map((exp, i) => (
@@ -141,16 +135,9 @@ export default function AboutPage() {
           <h2 className="section-title" id="edu-title">EDUCATION</h2>
           <div className="edu-list">
             <div className="edu-item">
-              <span className="exp-period">2019 &ndash; 2023</span>
               <h3>Bachelor's in Computer Science</h3>
               <p className="edu-school">Tribhuvan University, Kathmandu</p>
               <p>Relevant coursework: Human-Computer Interaction, Design Thinking, Software Engineering, Database Management, AI Fundamentals</p>
-            </div>
-            <div className="edu-item">
-              <span className="exp-period">2017 &ndash; 2019</span>
-              <h3>Higher Secondary Education (Science)</h3>
-              <p className="edu-school">National College, Kathmandu</p>
-              <p>Major in Science with Computer Science focus</p>
             </div>
           </div>
         </div>
@@ -163,21 +150,25 @@ export default function AboutPage() {
           <h2 className="section-title" id="add-title">ADDITIONAL &amp; COURSES</h2>
           <div className="edu-list">
             <div className="edu-item">
-              <h3>Google UX Design Professional Certificate</h3>
-              <p>Coursera &mdash; Completed 2023. Covered UX research, wireframing, prototyping, and usability testing across the full design lifecycle.</p>
+              <h3>Academic Project &middot; Major &middot; IVY EARTH</h3>
+              <p>Plant Recommendation System, a smart system that recommends plants based on environmental conditions and user preferences.</p>
             </div>
             <div className="edu-item">
-              <h3>AI for Designers</h3>
-              <p>Self-paced &mdash; Exploring AI tools integration in UX workflow, prompt engineering for design, and AI-assisted research methods.</p>
+              <h3>Academic Project &middot; Minor &middot; HRIS</h3>
+              <p>Human Resource Information System, a web-based HR management platform for employee data, attendance, and payroll tracking.</p>
             </div>
             <div className="edu-item">
-              <h3>Design Thinking &amp; Innovation</h3>
-              <p>Workshop &mdash; Stanford d.school methodology applied to product design challenges.</p>
+              <h3>Google &middot; User Experience Course</h3>
+              <p>Google UX Design Certificate covering UX research, wireframing, prototyping, and usability testing across the full design lifecycle.</p>
+            </div>
+            <div className="edu-item">
+              <h3>Udemy &middot; Mobile and Web Design</h3>
+              <p>User Interface + User Experience (UI/UX Design), HTML &amp; CSS. Comprehensive courses covering responsive design, visual hierarchy, and front-end development fundamentals.</p>
             </div>
           </div>
           <p className="about-extra" style={{marginTop:32}}>
             Available for full-time, contract, and freelance roles. Open to remote and
-            hybrid arrangements. Based in Kathmandu, Nepal &mdash; working with clients globally.
+            hybrid arrangements. Based in Kathmandu, Nepal, working with clients globally.
           </p>
         </div>
       </section>

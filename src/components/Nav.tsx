@@ -17,7 +17,7 @@ export default function Nav() {
   return (
     <>
       <nav role="navigation" aria-label="Main navigation">
-        <Link className="nav-logo" to="/home" aria-label="Dikshya — Home">
+        <Link className="nav-logo" to="/home" aria-label="Dikshya Home">
           <span className="nav-logo-dot" aria-hidden="true"></span>DIKSHYA
         </Link>
         <ul className="nav-links" role="list">

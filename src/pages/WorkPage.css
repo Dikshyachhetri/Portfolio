@@ -24,201 +24,179 @@
 }
 
 /* =====================================================
-   PROJECTS GRID - 2 columns
+   PROJECTS GRID
    ===================================================== */
 .projects-grid {
   max-width:1240px; margin:0 auto;
-  padding:64px 48px 40px;
+  padding:64px 48px 80px;
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:40px;
+  gap:32px;
 }
 
 /* =====================================================
-   PROJECT CARD - Spotlight Design
+   PROJECT CARD
    ===================================================== */
 .project-card-overview {
   position:relative;
-  border-radius:16px;
+  border-radius:14px;
   overflow:hidden;
   cursor:pointer;
-  padding:56px;
-  min-height:500px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
   background:#141414;
   border:1px solid rgba(255,255,255,.06);
-  transition: transform 450ms cubic-bezier(.16,1,.3,1),
-              box-shadow 450ms cubic-bezier(.16,1,.3,1);
-  opacity:0; transform:translateY(36px);
-  box-shadow: 0 4px 20px rgba(0,0,0,.1);
+  transition: transform 400ms cubic-bezier(.16,1,.3,1),
+              box-shadow 400ms cubic-bezier(.16,1,.3,1),
+              border-color 400ms ease,
+              background 400ms ease;
+  opacity:0; transform:translateY(30px);
+  box-shadow: 0 2px 8px rgba(0,0,0,.1);
 }
 .project-card-overview.revealed {
   opacity:1; transform:translateY(0);
   transition: transform 600ms cubic-bezier(.16,1,.3,1),
-              box-shadow 450ms cubic-bezier(.16,1,.3,1),
+              box-shadow 400ms cubic-bezier(.16,1,.3,1),
+              border-color 400ms ease,
+              background 400ms ease,
               opacity 600ms cubic-bezier(.16,1,.3,1);
 }
 .project-card-overview:nth-child(1){transition-delay:0ms}
 .project-card-overview:nth-child(2){transition-delay:80ms}
 .project-card-overview:nth-child(3){transition-delay:160ms}
 .project-card-overview:hover {
-  transform:translateY(-6px);
-  box-shadow: 0 24px 60px rgba(0,0,0,.4);
+  transform:translateY(-4px);
+  box-shadow: 0 20px 48px rgba(0,0,0,.35);
+  border-color:rgba(255,255,255,.1);
+  background:#181818;
 }
 .project-card-overview:focus-visible {
   outline:2px solid var(--orange);
   outline-offset:2px;
+  border-radius:14px;
 }
 
-/* --- Spotlight gradient overlay --- */
-.card-spotlight {
-  position:absolute;
-  top:0; left:0; right:0; bottom:0;
-  z-index:0;
-  opacity:0;
-  transition: opacity 500ms cubic-bezier(.16,1,.3,1);
-  pointer-events:none;
-}
-.project-card-overview:hover .card-spotlight {
-  opacity:1;
-}
+/* Per-card hover border colors */
+.card-raraspace:hover { border-color:rgba(232,82,26,.15) }
+.card-intellix:hover { border-color:rgba(120,121,249,.15) }
+.card-loksewa:hover { border-color:rgba(228,135,0,.15) }
 
-/* Rara - warm amber spotlight */
-.card-raraspace .card-spotlight {
-  background: radial-gradient(ellipse 100% 80% at 0% 100%, rgba(232,82,26,.12) 0%, transparent 70%);
-}
-
-/* Intellix - cool purple spotlight */
-.card-intellix .card-spotlight {
-  background: radial-gradient(ellipse 100% 80% at 100% 0%, rgba(120,121,249,.12) 0%, transparent 70%);
-}
-
-/* Loksewa - golden spotlight */
-.card-loksewa .card-spotlight {
-  background: radial-gradient(ellipse 100% 80% at 50% 100%, rgba(228,135,0,.12) 0%, transparent 70%);
-}
-
-/* --- Accent bar - bottom edge --- */
-.card-accent-bar {
-  position:absolute;
-  bottom:0; left:0; right:0;
-  height:3px;
-  z-index:1;
-  transform:scaleX(0);
-  transform-origin:left center;
-  transition: transform 500ms cubic-bezier(.16,1,.3,1);
-}
-.card-raraspace .card-accent-bar { background:#e8521a }
-.card-intellix .card-accent-bar { background:#7879F9 }
-.card-loksewa .card-accent-bar { background:#E48700 }
-.project-card-overview:hover .card-accent-bar {
-  transform:scaleX(1);
+/* =====================================================
+   CARD FRAME — vertical flex layout
+   ===================================================== */
+.proj-frame {
+  display:flex;
+  flex-direction:column;
+  height:100%;
 }
 
 /* =====================================================
-   TOP-LEFT LOGO
+   PREVIEW — logo area
    ===================================================== */
-.card-logo-top {
-  position:relative;
-  z-index:2;
+.proj-preview {
+  padding:44px 44px 0;
   display:flex;
   align-items:center;
-  gap:12px;
+  min-height:100px;
 }
-.card-logo {
-  height:34px;
+.proj-logo-img {
+  height:36px;
   width:auto;
   display:block;
-  filter:brightness(.9);
-  transition: filter 350ms ease;
+  opacity:.8;
+  transition: opacity 350ms ease, transform 400ms cubic-bezier(.16,1,.3,1);
 }
-.project-card-overview:hover .card-logo {
-  filter:brightness(1.1);
-}
-
-/* Industry badge */
-.card-badge {
-  font-size:10px;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-  color:rgba(255,255,255,.3);
-  font-family:'DM Mono',monospace;
-  padding:3px 10px;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:3px;
-  transition: border-color 350ms ease, color 350ms ease;
-  margin-left:auto;
-}
-.project-card-overview:hover .card-badge {
-  border-color:rgba(255,255,255,.2);
-  color:rgba(255,255,255,.5);
+.project-card-overview:hover .proj-logo-img {
+  opacity:1;
+  transform:translateX(3px);
 }
 
 /* =====================================================
-   BOTTOM-LEFT INFO
+   BODY — title + info
    ===================================================== */
-.card-info-bottom {
-  position:relative;
-  z-index:2;
+.proj-body {
+  padding:20px 44px 0;
+  flex:1;
 }
-.card-title {
+.proj-title-text {
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(30px,3.2vw,42px);
-  letter-spacing:1px;
+  font-size:clamp(28px,3vw,38px);
+  letter-spacing:.3px;
   color:#ffffff;
-  line-height:1.05;
+  line-height:1.08;
   margin-bottom:6px;
-  transition: color 350ms ease;
 }
-.card-subtitle {
-  font-size:13px;
-  color:rgba(255,255,255,.4);
+.proj-meta-text {
+  font-size:12px;
+  color:rgba(255,255,255,.35);
   font-weight:300;
-  margin-bottom:20px;
-  max-width:40ch;
   line-height:1.5;
+  letter-spacing:.3px;
   transition: color 350ms ease;
 }
-.card-cta {
+.project-card-overview:hover .proj-meta-text {
+  color:rgba(255,255,255,.55);
+}
+
+/* =====================================================
+   TAIL — CTA
+   ===================================================== */
+.proj-tail {
+  padding:20px 44px 36px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.proj-cta-link {
   display:inline-flex;
   align-items:center;
   gap:8px;
   font-size:10px;
   letter-spacing:2.5px;
   text-transform:uppercase;
-  color:rgba(255,255,255,.5);
+  color:rgba(255,255,255,.35);
   font-weight:400;
-  border-bottom:1px solid transparent;
-  padding-bottom:2px;
   transition: gap 400ms cubic-bezier(.16,1,.3,1),
-              color 350ms ease,
-              border-color 350ms ease;
+              color 350ms ease;
+  position:relative;
 }
-.card-raraspace:hover .card-cta { color:#e8521a; border-color:#e8521a33 }
-.card-intellix:hover .card-cta { color:#7879F9; border-color:#7879F933 }
-.card-loksewa:hover .card-cta { color:#E48700; border-color:#E4870033 }
-.project-card-overview:hover .card-cta { gap:12px }
-.card-cta svg { 
-  transition:transform 400ms cubic-bezier(.16,1,.3,1);
-  width:12px;
-  height:12px;
+.proj-cta-link::after {
+  content:'';
+  position:absolute;
+  bottom:-4px;
+  left:0;
+  width:0;
+  height:1px;
+  background:var(--accent, var(--orange));
+  transition:width 400ms cubic-bezier(.16,1,.3,1);
+}
+.project-card-overview:hover .proj-cta-link { gap:12px }
+.project-card-overview:hover .proj-cta-link::after { width:100% }
+.card-raraspace:hover .proj-cta-link { color:#e8521a }
+.card-intellix:hover .proj-cta-link { color:#7879F9 }
+.card-loksewa:hover .proj-cta-link { color:#E48700 }
+.proj-cta-link svg {
+  width:13px; height:13px;
   stroke-width:2.5;
+  transition:transform 400ms cubic-bezier(.16,1,.3,1);
 }
-.project-card-overview:hover .card-cta svg { transform:translateX(4px) }
+.project-card-overview:hover .proj-cta-link svg {
+  transform:translateX(4px);
+}
 
 /* =====================================================
    RESPONSIVE
    ===================================================== */
 @media(max-width:1100px){
-  .project-card-overview { padding:40px; min-height:400px }
+  .proj-preview { padding:36px 36px 0; min-height:80px }
+  .proj-body { padding:16px 36px 0 }
+  .proj-tail { padding:16px 36px 28px }
 }
 
 @media(max-width:900px){
   .page-header{ padding:120px 24px 48px }
-  .projects-grid{ padding:40px 24px 24px; grid-template-columns:1fr }
-  .project-card-overview { padding:36px; min-height:340px }
-  .card-logo { height:28px }
-  .card-title { font-size:28px }
+  .projects-grid{ padding:40px 24px 32px; grid-template-columns:1fr }
+  .proj-preview { padding:32px 32px 0; min-height:70px }
+  .proj-body { padding:14px 32px 0 }
+  .proj-tail { padding:14px 32px 24px }
+  .proj-title-text { font-size:28px }
+  .proj-logo-img { height:30px }
 }

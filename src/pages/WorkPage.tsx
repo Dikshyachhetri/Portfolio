@@ -3,6 +3,8 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './WorkPage.css'
 
+const BASE = import.meta.env.BASE_URL || '/'
+
 const projects = [
   {
     id: 'raraspace',
@@ -17,7 +19,7 @@ const projects = [
     tags: ['Enterprise', 'Web App', 'Design System', 'Accessibility'],
     url: 'raraspace.html',
     visual: 'enterprise',
-    image: '/rara-hero.png',
+    image: BASE + 'rara-hero.png',
     color: 'var(--orange)',
   },
   {

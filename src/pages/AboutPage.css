@@ -13,18 +13,42 @@
 .about-actions { display:flex; gap:var(--sp-sm); align-items:center }
 
 .photo-frame {
-  aspect-ratio:3/4; border-radius:4px; overflow:hidden;
-  display:flex; align-items:center; justify-content:center;
+  aspect-ratio:4/5; border-radius:6px; overflow:hidden;
+  position:relative;
+}
+.photo-frame::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:6px;
+  pointer-events:none;
+  z-index:1;
 }
 .photo-placeholder { text-align:center; font-size:13px; color:var(--gray2); display:flex; flex-direction:column; align-items:center; gap:8px }
 
 /* QUOTE */
 .about-quote {
-  padding:80px 48px; border-bottom:1px solid var(--border); text-align:center;
+  padding:100px 48px; border-bottom:1px solid var(--border); text-align:center;
+  background:var(--bg2);
   opacity:0; transition:opacity var(--dur-slow) var(--ease), transform var(--dur-slow) var(--ease);
 }
 .about-quote.revealed { opacity:1 }
-.about-quote blockquote { font-size:clamp(20px,2vw,28px); color:var(--gray); font-weight:300; max-width:720px; margin:0 auto; line-height:1.7; font-style:italic }
+.about-quote blockquote { 
+  font-size:clamp(22px,2vw,28px); color:var(--gray); font-weight:300; 
+  max-width:640px; margin:0 auto; line-height:1.6; font-style:italic;
+  position:relative;
+}
+.about-quote blockquote::before {
+  content:'\201C';
+  position:absolute;
+  top:-40px; left:-20px;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:120px;
+  color:var(--orange);
+  opacity:.12;
+  line-height:1;
+}
 
 /* SECTIONS */
 .about-section { padding:80px 48px }

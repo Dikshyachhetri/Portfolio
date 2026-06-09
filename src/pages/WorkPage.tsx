@@ -1,7 +1,6 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { showToast } from '../components/Toast'
 import './WorkPage.css'
 
 export default function WorkPage() {
@@ -242,74 +241,6 @@ export default function WorkPage() {
         </article>
       </div>
 
-      {/* ========== PROJECT ROWS (moved from homepage) ========== */}
-      <section className="project-rows-section" aria-labelledby="quick-links-title">
-        <div className="section-inner" style={{padding:'80px 48px 48px'}}>
-          <div className="projects-header">
-            <div>
-              <span className="section-kicker">Quick Links</span>
-              <h2 className="section-title" id="quick-links-title">ALL PROJECTS</h2>
-            </div>
-          </div>
-          <nav aria-label="Project quick links">
-            <a href="raraspace.html" className="project-row" aria-label="RaraSpace Employee Management System">
-              <div className="proj-left">
-                <span className="proj-num" aria-hidden="true">01</span>
-                <span className="proj-name">RaraSpace — Employee Management System</span>
-              </div>
-              <div className="proj-right">
-                <div className="proj-tags" aria-label="Categories">
-                  <span className="proj-tag">Enterprise</span>
-                  <span className="proj-tag">Web App</span>
-                  <span className="proj-tag">100% Efficiency &uarr;</span>
-                </div>
-                <div className="proj-arrow" aria-hidden="true">
-                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </div>
-              </div>
-            </a>
-            <a href="intellix.html" className="project-row" aria-label="Intellix Healthcare KPI Dashboard">
-              <div className="proj-left">
-                <span className="proj-num" aria-hidden="true">02</span>
-                <span className="proj-name">Intellix — Healthcare KPI Dashboard</span>
-              </div>
-              <div className="proj-right">
-                <div className="proj-tags" aria-label="Categories">
-                  <span className="proj-tag">Healthcare</span>
-                  <span className="proj-tag">Web + Mobile</span>
-                  <span className="proj-tag">Clinical UX</span>
-                </div>
-                <div className="proj-arrow" aria-hidden="true">
-                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </div>
-              </div>
-            </a>
-            <a href="loksewa.html" className="project-row" aria-label="Loksewa Pro Exam App">
-              <div className="proj-left">
-                <span className="proj-num" aria-hidden="true">03</span>
-                <span className="proj-name">Loksewa Pro — Public Service Exam App</span>
-              </div>
-              <div className="proj-right">
-                <div className="proj-tags" aria-label="Categories">
-                  <span className="proj-tag">EdTech</span>
-                  <span className="proj-tag">Mobile</span>
-                  <span className="proj-tag">10K+ Downloads</span>
-                </div>
-                <div className="proj-arrow" aria-hidden="true">
-                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </div>
-              </div>
-            </a>
-          </nav>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <div className="more-cta">
-        <h2>WANT TO SEE MORE?</h2>
-        <p>Additional case studies and work samples available on request.</p>
-        <button className="btn-primary" onClick={showToast}>Get In Touch</button>
-      </div>
     </main>
   )
 }

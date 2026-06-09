@@ -191,46 +191,6 @@
 .proj-cta:hover svg{ transform:translateX(4px) }
 
 /* =====================================================
-   PROJECT ROWS (moved from index.html homepage)
-   ===================================================== */
-.project-rows-section { background:var(--bg2) }
-.projects-header {
-  display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:48px;
-}
-.project-row {
-  display:flex; align-items:center; justify-content:space-between;
-  padding:28px 40px; border-bottom:1px solid var(--border);
-  text-decoration:none; transition:background var(--dur-fast), padding var(--dur-mid) var(--ease);
-  opacity:0; transform:translateX(-20px);
-  transition:opacity var(--dur-slow) var(--ease), transform var(--dur-slow) var(--ease),
-             background var(--dur-fast), padding var(--dur-mid) var(--ease);
-}
-.project-row.revealed { opacity:1; transform:translateX(0) }
-.project-row:nth-child(1){ transition-delay:0ms }
-.project-row:nth-child(2){ transition-delay:80ms }
-.project-row:nth-child(3){ transition-delay:160ms }
-.project-row:hover { background:var(--bg3); padding-left:60px }
-.proj-left { display:flex; align-items:center; gap:24px }
-.project-row .proj-num {
-  font-family:'DM Mono',monospace; font-size:13px; color:var(--gray2); letter-spacing:2px; min-width:32px;
-}
-.proj-name { font-size:var(--text-lg); color:var(--white); font-weight:400; transition:color var(--dur-fast) }
-.project-row:hover .proj-name { color:var(--orange) }
-.proj-right { display:flex; align-items:center; gap:20px }
-.project-row .proj-tags { display:flex; gap:6px; margin-bottom:0 }
-.project-row .proj-tag {
-  font-size:10px; color:var(--gray2); border:1px solid var(--border);
-  padding:3px 10px; border-radius:2px;
-}
-.proj-arrow { color:var(--gray2); transition:transform var(--dur-mid) var(--ease), color var(--dur-fast) }
-.project-row:hover .proj-arrow { transform:translateX(8px); color:var(--orange) }
-
-/* More CTA */
-.more-cta{ padding:64px 48px; text-align:center; border-top:1px solid var(--border) }
-.more-cta h2{ font-family:'Bebas Neue',sans-serif; font-size:clamp(36px,6vw,72px); letter-spacing:3px; color:var(--white); margin-bottom:12px }
-.more-cta p{ color:var(--gray); font-weight:300; margin-bottom:32px }
-
-/* =====================================================
    RESPONSIVE
    ===================================================== */
 @media(max-width:900px){
@@ -240,9 +200,4 @@
   .project-card.flip>*{ direction:ltr }
   .proj-visual{ min-height:240px }
   .proj-info{ padding:32px 24px }
-  .section-inner{ padding:40px 24px!important }
-  .project-row{ flex-direction:column; align-items:flex-start; gap:12px; padding:20px 24px }
-  .proj-left{ width:100% }
-  .proj-right{ width:100%; justify-content:space-between }
-  .more-cta{ padding:48px 24px }
 }

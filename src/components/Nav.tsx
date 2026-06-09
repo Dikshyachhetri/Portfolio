@@ -12,7 +12,7 @@ export default function Nav() {
   // Close drawer on route change
   useEffect(() => { setDrawerOpen(false) }, [location.pathname])
 
-  const isActive = (path: string) => location.pathname === path
+  const isActive = (path: string) => location.pathname === path || location.pathname.endsWith(path)
 
   return (
     <>

@@ -1,0 +1,191 @@
+import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { showToast } from '../components/Toast'
+import './HomePage.css'
+
+export default function HomePage() {
+  useEffect(() => {
+    // Scroll reveal
+    const obs = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed') }),
+      { threshold: 0.07 }
+    )
+    document.querySelectorAll('.scroll-reveal, .ai-card, .stat-item, .marquee-track').forEach(el => obs.observe(el))
+
+    // Scramble hero text
+    const words = ['RESEARCH.', 'DESIGN.', 'EXPERIENCE.']
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%?&'
+    words.forEach((w, wi) => {
+      const el = document.getElementById(`scramble-${wi}`)
+      if (!el) return
+      const delay = 1100 + wi * 220
+      setTimeout(() => {
+        el.innerHTML = ''
+        const letters = w.split('')
+        letters.forEach((l, li) => {
+          const span = document.createElement('span')
+          span.className = 'char'
+          el.appendChild(span)
+          const interval = setInterval(() => {
+            span.textContent = chars[Math.floor(Math.random() * chars.length)]
+            span.style.color = '#e8521a'
+          }, 40)
+          setTimeout(() => {
+            clearInterval(interval)
+            span.textContent = l
+            span.style.color = ''
+          }, 300 + li * 60)
+        })
+      }, delay)
+    })
+
+    // Nav border on scroll
+    const nav = document.querySelector('nav')
+    const onScroll = () => {
+      if (!nav) return
+      nav.style.borderBottom = window.scrollY > 20
+        ? '1px solid rgba(255,255,255,.14)'
+        : '1px solid rgba(255,255,255,.08)'
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+
+    return () => {
+      obs.disconnect()
+      window.removeEventListener('scroll', onScroll)
+    }
+  }, [])
+
+  return (
+    <main id="main">
+      {/* ========== HERO ========== */}
+      <section className="hero" aria-label="Introduction">
+        <div className="hero-bg-word" aria-hidden="true">DESIGN</div>
+        <div className="hero-status">
+          <span className="status-dot"></span>
+          <span>Available for hire</span>
+        </div>
+        <div className="hero-headline">
+          <span className="line" style={{color:'rgba(240,236,228,.22)'}}>UI/UX</span>
+          <span className="line" style={{color:'rgba(240,236,228,.55)'}}>DESIGNER</span>
+          <span className="line" style={{color:'var(--white)'}}>
+            <span id="scramble-0"></span> <em style={{fontStyle:'normal',color:'var(--orange)'}}>.</em>{' '}
+            <span id="scramble-1"></span> <em style={{fontStyle:'normal',color:'var(--orange)'}}>.</em>{' '}
+            <span id="scramble-2"></span>
+          </span>
+        </div>
+        <div className="hero-bottom">
+          <p className="hero-sub">
+            Based in <strong>Kathmandu, Nepal</strong> &mdash; building digital products
+            that are <strong>simple</strong>, <strong>inclusive</strong>, and <strong>impactful</strong>.
+          </p>
+          <div className="hero-actions">
+            <Link to="/work" className="btn-primary">View Work</Link>
+            <button className="btn-ghost" onClick={showToast}>
+              Get in touch
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== MARQUEE ========== */}
+      <div className="marquee-wrap" aria-hidden="true">
+        <div className="marquee-track">
+          <span>UI/UX DESIGN</span><span className="marquee-dot">✦</span>
+          <span>INTERACTION DESIGN</span><span className="marquee-dot">✦</span>
+          <span>DESIGN SYSTEMS</span><span className="marquee-dot">✦</span>
+          <span>PRODUCT DESIGN</span><span className="marquee-dot">✦</span>
+          <span>USER RESEARCH</span><span className="marquee-dot">✦</span>
+          <span>UI/UX DESIGN</span><span className="marquee-dot">✦</span>
+          <span>INTERACTION DESIGN</span><span className="marquee-dot">✦</span>
+          <span>DESIGN SYSTEMS</span><span className="marquee-dot">✦</span>
+          <span>PRODUCT DESIGN</span><span className="marquee-dot">✦</span>
+          <span>USER RESEARCH</span>
+        </div>
+      </div>
+
+      {/* ========== AI WORKFLOW ========== */}
+      <section className="ai-section" aria-labelledby="ai-title">
+        <div className="section-inner">
+          <div className="ai-header">
+            <div>
+              <span className="section-kicker">How I work</span>
+              <h2 className="section-title" id="ai-title">AI-ASSISTED<br/>WORKFLOW</h2>
+            </div>
+            <p className="ai-sub">
+              I combine traditional UX process with AI tools to design faster, test smarter,
+              and ship with confidence.
+            </p>
+          </div>
+          <div className="ai-cards" role="list" aria-label="AI workflow steps">
+            {[
+              { num: '01', title: 'Research & synthesis', desc: 'AI mines app store reviews, support tickets, and user interviews to surface patterns — I frame the problem.', tools: ['Claude', 'ChatGPT'] },
+              { num: '02', title: 'Rapid exploration', desc: 'Generate 20+ interface directions from prompts in minutes. I curate, combine, and refine.', tools: ['Lovable', 'Uizard'] },
+              { num: '03', title: 'Smart prototyping', desc: 'AI generates variants, micro-copy, and states. I focus on flows, behaviour, and user goals.', tools: ['Figma AI', 'Claude'] },
+              { num: '04', title: 'QA & handoff', desc: 'Accessibility checks, UX copy consistency, component naming — AI catches what human fatigue misses.', tools: ['Claude', 'Figma AI'] },
+            ].map(card => (
+              <article className="ai-card scroll-reveal" role="listitem" key={card.num}>
+                <p className="ai-card-num" aria-hidden="true">{card.num}</p>
+                <h3>{card.title}</h3>
+                <p>{card.desc}</p>
+                <div className="ai-tools" aria-label="AI tools used">
+                  {card.tools.map(t => <span className="ai-tool-tag" key={t}>{t}</span>)}
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="tools-master-row" aria-label="Full toolset">
+            {['Claude','ChatGPT','Lovable','Uizard','Figma AI','Stitch'].map(t => (
+              <div className="tool-pill" key={t}>
+                <span className="tool-pip" aria-hidden="true"></span>{t}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========== STATS ========== */}
+      <section className="stats-section" aria-label="Key statistics">
+        <div className="stats-grid">
+          {[
+            { num: '5', suffix: '+', label: 'Years Experience' },
+            { num: '10', suffix: 'K+', label: 'App Downloads' },
+            { num: '30', suffix: '%', label: 'Avg Engagement Lift' },
+            { num: '6', suffix: '+', label: 'Industries Served' },
+          ].map(s => (
+            <div className="stat-item" key={s.label}>
+              <span className="stat-num">{s.num}<span>{s.suffix}</span></span>
+              <span className="stat-label">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ========== CTA ========== */}
+      <section className="cta-section" aria-labelledby="cta-title">
+        <div className="cta-inner">
+          <h2 className="cta-title" id="cta-title">
+            LET&rsquo;S BUILD<br/>
+            SOMETHING<br/>
+            <em style={{fontStyle:'normal',color:'var(--orange)'}}>MEANINGFUL</em>
+          </h2>
+          <p className="cta-sub">
+            Currently open to full-time, contract, and freelance opportunities.
+            Based in Kathmandu &mdash; working globally.
+          </p>
+          <div className="cta-actions">
+            <button className="btn-primary" onClick={showToast}>Hire Me</button>
+            <Link to="/about" className="btn-ghost">
+              More about me
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+    </main>
+  )
+}

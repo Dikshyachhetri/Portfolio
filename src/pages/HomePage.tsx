@@ -89,7 +89,7 @@ export default function HomePage() {
 
         <div className="hero-bottom">
           <p className="hero-sub">
-            <strong>UI/UX Designer &nbsp;&middot;&nbsp; 5 years</strong> building products that are simple, inclusive, and impactful — across enterprise, mobile, fintech, and beyond. Now AI-augmented and shipping faster than ever.
+            <strong>UI/UX Designer &nbsp;&middot;&nbsp; 4+ years</strong> building products that are simple, inclusive, and impactful across enterprise, mobile, fintech, and beyond. Now AI augmented and shipping faster than ever.
           </p>
           <div className="hero-actions">
             <Link to="/work" className="btn-primary">View Work</Link>
@@ -161,10 +161,8 @@ export default function HomePage() {
       <section className="stats-section" aria-label="Key statistics">
         <div className="stats-grid">
           {[
-            { num: '5', suffix: '+', label: 'Years Experience' },
-            { num: '10', suffix: 'K+', label: 'App Downloads' },
-            { num: '30', suffix: '%', label: 'Avg Engagement Lift' },
-            { num: '6', suffix: '+', label: 'Industries Served' },
+            { num: '4', suffix: '+', label: 'Years Experience' },
+            { num: '12', suffix: '+', label: 'Industries Served' },
           ].map(s => (
             <div className="stat-item" key={s.label}>
               <span className="stat-num">{s.num}<span>{s.suffix}</span></span>

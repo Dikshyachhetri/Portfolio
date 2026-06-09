@@ -139,7 +139,7 @@
   background: linear-gradient(135deg, var(--bg3), var(--bg));
   border-bottom: 1px solid var(--border);
 }
-.stats-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:1px }
+.stats-grid { max-width:800px; margin:0 auto; display:grid; grid-template-columns:repeat(2,1fr); gap:1px }
 .stat-item {
   text-align:center; padding:var(--sp-lg) var(--sp-md);
   opacity:0; transform:translateY(20px);
@@ -149,7 +149,6 @@
 .stat-item:nth-child(1){transition-delay:0ms}
 .stat-item:nth-child(2){transition-delay:80ms}
 .stat-item:nth-child(3){transition-delay:160ms}
-.stat-item:nth-child(4){transition-delay:240ms}
 .stat-num { font-family:'Bebas Neue',sans-serif; font-size:clamp(56px,7vw,100px); letter-spacing:3px; color:var(--white); display:block; line-height:1 }
 .stat-num span { color:var(--orange); font-size:.5em; vertical-align:super }
 .stat-label { font-size:var(--text-sm); color:var(--gray); display:block; margin-top:6px }

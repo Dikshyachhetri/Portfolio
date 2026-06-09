@@ -48,6 +48,15 @@
 .exp-period { font-family:'DM Mono',monospace; font-size:var(--text-xs); color:var(--gray2); letter-spacing:1px; margin-top:3px }
 .exp-right h3 { font-size:var(--text-lg); color:var(--white); font-weight:500; margin-bottom:2px }
 .exp-company { font-size:var(--text-sm); color:var(--orange); margin-bottom:8px }
+.exp-company-link {
+  color:var(--orange);
+  text-decoration:none;
+  transition: color var(--dur-fast);
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+}
+.exp-company-link:hover { color:var(--orange2); text-decoration:underline }
 .exp-desc { font-size:var(--text-sm); color:var(--gray); line-height:1.7; font-weight:300 }
 .exp-link { font-size:var(--text-xs); letter-spacing:2px; text-transform:uppercase; color:var(--orange); text-decoration:none; display:inline-block; margin-top:10px; transition:color var(--dur-fast) }
 .exp-link:hover { color:var(--orange2) }
@@ -72,7 +81,9 @@
 .edu-item { padding:24px 0; border-bottom:1px solid var(--border); opacity:0; transform:translateY(16px); transition:opacity var(--dur-slow) var(--ease), transform var(--dur-slow) var(--ease) }
 .edu-item.revealed { opacity:1; transform:translateY(0) }
 .edu-item h3 { font-size:var(--text-lg); color:var(--white); font-weight:500; margin-bottom:4px }
-.edu-item p { font-size:var(--text-sm); color:var(--gray); font-weight:300 }
+.edu-item .exp-period { font-family:'DM Mono',monospace; font-size:var(--text-xs); color:var(--gray2); letter-spacing:1px; display:block; margin-bottom:4px }
+.edu-school { font-size:var(--text-sm); color:var(--orange); margin-bottom:6px }
+.edu-item p { font-size:var(--text-sm); color:var(--gray); font-weight:300; line-height:1.7 }
 
 .about-extra { font-size:17px; color:var(--gray); font-weight:300; line-height:1.8; max-width:600px }
 

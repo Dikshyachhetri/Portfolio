@@ -2,12 +2,8 @@ import React from 'react'
 
 export function showToast(e: React.MouseEvent) {
   e.preventDefault()
-  navigator.clipboard.writeText('dikshya@email.com').catch(() => {})
-  const t = document.getElementById('toast')
-  if (t) {
-    t.classList.add('show')
-    setTimeout(() => t.classList.remove('show'), 3000)
-  }
+  // Open Gmail compose with pre-filled email
+  window.open('https://mail.google.com/mail/?view=cm&fs=1&to=dikshyabc01@gmail.com', '_blank')
 }
 
 export default function Toast() {

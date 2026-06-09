@@ -34,10 +34,8 @@
   gap:40px;
 }
 
-
-
 /* =====================================================
-   OVERVIEW CARD
+   OVERVIEW CARD - clean minimal
    ===================================================== */
 .project-card-overview {
   background:var(--bg2);
@@ -71,19 +69,18 @@
 .proj-overview-visual {
   position:relative;
   overflow:hidden;
-  min-height:200px;
+  min-height:180px;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:28px;
 }
 .proj-overview-glow {
   position:absolute;
   inset:0;
-  opacity:.6;
+  opacity:.4;
   transition:opacity var(--dur-mid);
 }
-.project-card-overview:hover .proj-overview-glow { opacity:1 }
+.project-card-overview:hover .proj-overview-glow { opacity:.8 }
 
 .ov-real-image {
   width:100%;
@@ -92,152 +89,64 @@
   position:absolute;
   inset:0;
   z-index:1;
-  border-radius:0;
 }
 
-.ov-num {
+/* Logo overlay - subtle */
+.ov-logo-wrap {
   position:absolute;
-  bottom:12px; right:16px;
-  font-family:'DM Mono',monospace;
-  font-size:11px; letter-spacing:2px;
-  color:var(--gray2);
-  z-index:2;
-}
-
-/* Screen mock */
-.ov-screen-mock {
-  width:72%; max-width:220px;
-  background:var(--bg3);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:8px;
-  overflow:hidden;
-  position:relative; z-index:1;
-  box-shadow:16px 16px 40px rgba(0,0,0,.35);
-  transform:perspective(600px) rotateY(-6deg) rotateX(3deg);
-  transition:transform var(--dur-mid) var(--ease);
-}
-.project-card-overview:hover .ov-screen-mock {
-  transform:perspective(600px) rotateY(-2deg) rotateX(1deg);
-}
-.ov-chrome {
-  height:22px;
-  background:rgba(255,255,255,.04);
-  border-bottom:1px solid rgba(255,255,255,.06);
-  display:flex;
-  align-items:center;
-  padding:0 10px;
-  gap:4px;
-}
-.ov-dot {
-  width:7px; height:7px;
-  border-radius:50%;
-  background:rgba(255,255,255,.12);
-}
-.ov-screen-body { padding:12px }
-.ov-row {
-  height:6px;
-  border-radius:2px;
-  background:rgba(255,255,255,.06);
-  margin-bottom:6px;
-}
-.ov-row-hi { background:color-mix(in srgb, var(--accent, var(--orange)) 30%, transparent) }
-.ov-grid-2 {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:5px;
-  margin-top:6px;
-}
-.ov-cell {
-  height:32px;
-  border-radius:3px;
-  background:rgba(255,255,255,.04);
-}
-.ov-cell-hi { background:color-mix(in srgb, var(--accent, var(--orange)) 20%, transparent) }
-
-/* Phone mock */
-.ov-phone-mock {
-  width:36%; max-width:120px;
-  background:var(--bg3);
-  border-radius:16px;
-  overflow:hidden;
-  position:relative; z-index:1;
-  box-shadow:16px 16px 40px rgba(0,0,0,.35);
-  transform:perspective(600px) rotateY(-6deg) rotateX(3deg);
-  transition:transform var(--dur-mid) var(--ease);
-}
-.project-card-overview:hover .ov-phone-mock {
-  transform:perspective(600px) rotateY(-2deg) rotateX(1deg);
-}
-.ov-phone-notch {
-  height:14px;
-  background:rgba(255,255,255,.04);
+  top:14px;
+  left:14px;
+  z-index:3;
+  width:36px;
+  height:36px;
   display:flex;
   align-items:center;
   justify-content:center;
 }
-.ov-phone-body { padding:8px }
-.ov-phone-bar {
-  height:5px;
-  border-radius:2px;
-  background:rgba(255,255,255,.06);
-  margin-bottom:6px;
-}
-.ov-phone-bar-lg { width:75% }
-.ov-phone-bar-md { width:55% }
-.ov-phone-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:3px;
-  margin-top:6px;
-}
-.ov-phone-cell {
-  aspect-ratio:1;
-  border-radius:4px;
-  background:rgba(255,255,255,.04);
+.ov-logo {
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  opacity:0.7;
 }
 
-/* --- Info area --- */
+.ov-num {
+  position:absolute;
+  bottom:12px; right:14px;
+  font-family:'DM Mono',monospace;
+  font-size:11px; letter-spacing:2px;
+  color:rgba(255,255,255,.3);
+  z-index:2;
+}
+
+/* --- Info area - clean --- */
 .proj-overview-info {
-  padding:24px 22px 22px;
+  padding:20px 22px 18px;
   display:flex;
   flex-direction:column;
   flex:1;
 }
-.ov-header { margin-bottom:8px }
 .ov-title {
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(22px,2.8vw,36px);
+  font-size:clamp(24px,3vw,38px);
   letter-spacing:1px;
   color:var(--white);
   line-height:1;
   margin-bottom:2px;
 }
 .ov-subtitle {
-  font-size:13px;
+  font-size:12px;
   color:var(--orange);
   font-weight:400;
-}
-.ov-meta {
-  font-size:11px;
-  color:var(--gray2);
-  margin-bottom:12px;
-  line-height:1.5;
+  margin-bottom:10px;
 }
 .ov-desc {
   font-size:13px;
   color:rgba(240,236,228,.55);
-  line-height:1.7;
+  line-height:1.65;
   font-weight:300;
-  margin-bottom:14px;
+  margin-bottom:16px;
   flex:1;
-}
-.ov-tags { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:16px }
-.ov-tags .proj-tag {
-  font-size:10px;
-  color:var(--gray2);
-  border:1px solid var(--border);
-  padding:3px 10px;
-  border-radius:2px;
 }
 .ov-bottom {
   display:flex;
@@ -284,5 +193,5 @@
 @media(max-width:900px){
   .page-header{ padding:120px 24px 48px }
   .projects-grid{ padding:40px 24px 24px; grid-template-columns:1fr }
-  .proj-overview-visual{ min-height:160px }
+  .proj-overview-visual{ min-height:140px }
 }

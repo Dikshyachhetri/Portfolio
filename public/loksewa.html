@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Loksewa Pro — Case Study · Dikshya</title>
+<title>Loksewa Pro | Case Study · Dikshya</title>
 <meta name="description" content="Case study: Loksewa Pro — Nepal Public Service Commission exam prep mobile app. 10K+ downloads, 4.4 stars. UI/UX by Dikshya."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -245,7 +245,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .decision-after p{color:rgba(240,236,228,.75)}
 
 /* SHOWCASE */
-.showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px}
+/* showcase-grid replaced by final-design-grid */
+.final-design-grid{display:grid;grid-template-columns:1fr;gap:20px;margin-top:40px}
+.final-design-item{border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.final-design-img{width:100%;display:block}
 .showcase-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;overflow:hidden;opacity:0;transform:translateY(20px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease),border-color var(--dur-mid)}
 .showcase-card:hover{border-color:rgba(245,158,11,.35)}
 .showcase-card.revealed{opacity:1;transform:translateY(0)}
@@ -325,7 +328,7 @@ footer p{font-size:12px;color:var(--gray2)}
   .cs-quick-stats{flex-direction:column;width:100%}
   .cs-stat{border-right:none;border-bottom:1px solid var(--border)}
   .cs-stat:last-child{border-bottom:none}
-  .showcase-grid,.reflection-grid,.persona-grid{grid-template-columns:1fr}
+  .final-design-grid{grid-template-columns:1fr}
   .reviews-grid{grid-template-columns:1fr}
   .decision-item{grid-template-columns:1fr}
   .decision-arrow-col{display:none}
@@ -436,152 +439,10 @@ footer p{font-size:12px;color:var(--gray2)}
   </div>
 </div>
 
-<!-- PHONE MOCKUPS -->
-<div class="cs-hero-image" aria-label="Loksewa Pro app screens">
-  <!-- Home Screen -->
+<!-- HERO LOKSEWA IMAGE -->
+<div class="cs-hero-image" aria-label="Loksewa Pro app preview">
   <div class="phone-wrap">
-    <div class="phone-frame">
-      <div class="phone-notch"><div class="phone-notch-pill"></div></div>
-      <div class="phone-status"><span>9:41</span><span>◼◼◼◼ 100%</span></div>
-      <div class="app-home">
-        <div class="app-topbar">
-          <div class="app-logo-text">Loksewa<span>Pro</span></div>
-          <div class="app-notif">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-          </div>
-        </div>
-        <div class="app-banner">
-          <div class="app-banner-label">DAILY QUIZ</div>
-          <div class="app-banner-title">Challenge yourself<br/>today!</div>
-          <div class="app-banner-start">Start →</div>
-        </div>
-        <div class="app-section-title">Quick access <span>View more</span></div>
-        <div class="app-quick-grid">
-          <div class="app-quick-item"><div class="app-quick-icon">⚡</div><div class="app-quick-label">Quick Practice</div></div>
-          <div class="app-quick-item"><div class="app-quick-icon">📝</div><div class="app-quick-label">Exercise Set</div></div>
-          <div class="app-quick-item"><div class="app-quick-icon">🎯</div><div class="app-quick-label">Practice Set</div></div>
-          <div class="app-quick-item"><div class="app-quick-icon">📚</div><div class="app-quick-label">Course Study</div></div>
-        </div>
-        <div class="app-section-title">Practice set <span>View more</span></div>
-        <div class="app-practice-list">
-          <div class="app-practice-card">
-            <div class="app-practice-info">
-              <div class="app-practice-name">Set 1 — Not started</div>
-              <div class="app-practice-meta">100 questions · 1hr 30mins</div>
-            </div>
-            <div class="app-practice-btn">Start set</div>
-          </div>
-          <div class="app-practice-card">
-            <div class="app-practice-info">
-              <div class="app-practice-name">Set 2 — In Progress</div>
-              <div class="app-practice-meta">50/100 questions · 1hr left</div>
-            </div>
-            <div class="app-practice-btn" style="background:#f59e0b">Resume</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Quiz Screen -->
-  <div class="phone-wrap">
-    <div class="phone-frame">
-      <div class="phone-notch"><div class="phone-notch-pill"></div></div>
-      <div class="phone-status"><span>9:41</span><span>◼◼◼◼ 100%</span></div>
-      <div class="app-quiz">
-        <div class="quiz-header">
-          <div class="quiz-back">← Back</div>
-          <div class="quiz-title">Daily Quiz</div>
-          <div class="quiz-num">NO. 22</div>
-        </div>
-        <div class="quiz-progress-bar"><div class="quiz-progress-fill"></div></div>
-        <div class="quiz-question">
-          <div class="quiz-q-label">QUESTION 14 / 30</div>
-          <div class="quiz-q-text">नेपालको पहिलो विधान सभाको निर्वाचन कुन सालमा भयो?</div>
-        </div>
-        <div class="quiz-options">
-          <div class="quiz-option">
-            <div class="quiz-opt-num">A</div>
-            <span>२०१५ साल</span>
-          </div>
-          <div class="quiz-option correct">
-            <div class="quiz-opt-num" style="background:rgba(34,197,94,.3)">B</div>
-            <span>२०१७ साल ✓</span>
-          </div>
-          <div class="quiz-option selected">
-            <div class="quiz-opt-num" style="background:rgba(245,158,11,.3)">C</div>
-            <span>२०१९ साल</span>
-          </div>
-          <div class="quiz-option">
-            <div class="quiz-opt-num">D</div>
-            <span>२०२१ साल</span>
-          </div>
-        </div>
-        <div class="quiz-footer">
-          <div class="quiz-btn ghost">← Prev</div>
-          <div class="quiz-btn primary">Next →</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Progress Screen -->
-  <div class="phone-wrap secondary">
-    <div class="phone-frame">
-      <div class="phone-notch"><div class="phone-notch-pill"></div></div>
-      <div class="phone-status"><span>9:41</span><span>◼◼◼◼ 100%</span></div>
-      <div class="app-progress">
-        <div class="prog-header">
-          <div class="prog-title">This Week</div>
-          <div class="prog-sub">Performance overview</div>
-        </div>
-        <div class="prog-week">
-          <div class="prog-week-label">Subject scores <span>All · High · Low</span></div>
-          <div class="prog-subject-list">
-            <div class="prog-subject">
-              <span class="prog-subject-name">History</span>
-              <div class="prog-subject-score">
-                <div class="prog-bar"><div class="prog-bar-fill" style="width:80%;background:#22c55e"></div></div>
-                <span class="prog-score">80%</span>
-                <span class="prog-remarks">View remarks</span>
-              </div>
-            </div>
-            <div class="prog-subject">
-              <span class="prog-subject-name">Geography</span>
-              <div class="prog-subject-score">
-                <div class="prog-bar"><div class="prog-bar-fill" style="width:65%;background:#f59e0b"></div></div>
-                <span class="prog-score">65%</span>
-                <span class="prog-remarks">View remarks</span>
-              </div>
-            </div>
-            <div class="prog-subject">
-              <span class="prog-subject-name">Statistics</span>
-              <div class="prog-subject-score">
-                <div class="prog-bar"><div class="prog-bar-fill" style="width:45%;background:#ef4444"></div></div>
-                <span class="prog-score">45%</span>
-                <span class="prog-remarks">View remarks</span>
-              </div>
-            </div>
-            <div class="prog-subject">
-              <span class="prog-subject-name">Marketing</span>
-              <div class="prog-subject-score">
-                <div class="prog-bar"><div class="prog-bar-fill" style="width:72%;background:#22c55e"></div></div>
-                <span class="prog-score">72%</span>
-                <span class="prog-remarks">View remarks</span>
-              </div>
-            </div>
-            <div class="prog-subject">
-              <span class="prog-subject-name">Finance</span>
-              <div class="prog-subject-score">
-                <div class="prog-bar"><div class="prog-bar-fill" style="width:55%;background:#f59e0b"></div></div>
-                <span class="prog-score">55%</span>
-                <span class="prog-remarks">View remarks</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <img src="loksewa-hero.png" alt="Loksewa Pro App" style="width:60%;max-width:280px;display:block;margin:0 auto;border-radius:24px;border:1px solid rgba(255,255,255,.12);box-shadow:0 32px 80px rgba(0,0,0,.5);" />
   </div>
 </div>
 
@@ -779,6 +640,9 @@ footer p{font-size:12px;color:var(--gray2)}
       </div>
     </div>
   </div>
+  <div style="margin-top:40px">
+    <img src="loksewa-wireframes.png" alt="Loksewa Pro wireframes" style="width:100%;display:block;border-radius:8px;border:1px solid rgba(255,255,255,.1);box-shadow:0 16px 48px rgba(0,0,0,.4);" />
+  </div>
 </section>
 
 <!-- 06 KEY DESIGN DECISIONS -->
@@ -848,165 +712,12 @@ footer p{font-size:12px;color:var(--gray2)}
 <section class="cs-section" id="final">
   <div class="cs-inner">
     <span class="section-num">3.0</span>
-    <span class="section-kicker">Validating · Final Iteration</span>
+    <span class="section-kicker">Validating Final Iteration</span>
     <h2 class="cs-h2">THE FINAL<br/>DESIGN</h2>
-    <p class="cs-body">Validated through regular stakeholder collaboration, iterative feedback sessions with the client and internal team, and post-launch Play Store analytics. The final design reflects multiple rounds of focused iteration on usability, clarity, and module completeness.</p>
-    <div class="showcase-grid" role="list">
-      <div class="showcase-card" role="listitem">
-        <div class="showcase-visual" style="background:linear-gradient(135deg,#1a1506,#111)">
-          <div style="display:flex;gap:12px;align-items:flex-end">
-            <div style="width:130px;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)">
-              <div style="height:16px;background:#f9fafb;display:flex;align-items:center;justify-content:center"><div style="width:40px;height:4px;background:#e5e7eb;border-radius:2px"></div></div>
-              <div style="padding:10px 12px">
-                <div style="display:flex;justify-content:space-between;margin-bottom:8px">
-                  <span style="font-size:11px;font-weight:700;color:#1a1a1a">Loksewa<span style="color:#f59e0b">Pro</span></span>
-                  <div style="width:18px;height:18px;background:#f3f4f6;border-radius:50%"></div>
-                </div>
-                <div style="background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:10px;padding:10px;margin-bottom:8px">
-                  <div style="font-size:8px;color:#f59e0b;margin-bottom:3px">DAILY QUIZ</div>
-                  <div style="font-size:10px;color:#fff;font-weight:600;margin-bottom:5px">Challenge yourself today!</div>
-                  <div style="background:#f59e0b;color:#fff;font-size:7px;padding:3px 8px;border-radius:4px;display:inline-block">Start →</div>
-                </div>
-                <div style="font-size:8px;color:#374151;font-weight:600;margin-bottom:5px">Quick access</div>
-                <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:3px;margin-bottom:6px">
-                  <div style="background:#f9fafb;border-radius:5px;padding:4px;text-align:center"><div style="font-size:10px">⚡</div><div style="font-size:6px;color:#6b7280">Quick</div></div>
-                  <div style="background:#f9fafb;border-radius:5px;padding:4px;text-align:center"><div style="font-size:10px">📝</div><div style="font-size:6px;color:#6b7280">Exercise</div></div>
-                  <div style="background:#f9fafb;border-radius:5px;padding:4px;text-align:center"><div style="font-size:10px">🎯</div><div style="font-size:6px;color:#6b7280">Practice</div></div>
-                  <div style="background:#f9fafb;border-radius:5px;padding:4px;text-align:center"><div style="font-size:10px">📚</div><div style="font-size:6px;color:#6b7280">Course</div></div>
-                </div>
-              </div>
-            </div>
-            <!-- Dark mode version -->
-            <div style="width:110px;background:#1a1a2e;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.5);opacity:.85">
-              <div style="height:14px;background:#111827;display:flex;align-items:center;justify-content:center"><div style="width:36px;height:3px;background:#374151;border-radius:2px"></div></div>
-              <div style="padding:8px 10px">
-                <div style="display:flex;justify-content:space-between;margin-bottom:7px">
-                  <span style="font-size:10px;font-weight:700;color:#fff">Loksewa<span style="color:#f59e0b">Pro</span></span>
-                  <div style="width:16px;height:16px;background:#374151;border-radius:50%"></div>
-                </div>
-                <div style="background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);border-radius:8px;padding:8px;margin-bottom:7px">
-                  <div style="font-size:7px;color:#f59e0b;margin-bottom:2px">DAILY QUIZ</div>
-                  <div style="font-size:9px;color:#fff;font-weight:500">Challenge daily!</div>
-                </div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px">
-                  <div style="background:rgba(255,255,255,.05);border-radius:5px;padding:5px;text-align:center"><div style="font-size:9px">⚡</div></div>
-                  <div style="background:rgba(255,255,255,.05);border-radius:5px;padding:5px;text-align:center"><div style="font-size:9px">📝</div></div>
-                  <div style="background:rgba(255,255,255,.05);border-radius:5px;padding:5px;text-align:center"><div style="font-size:9px">🎯</div></div>
-                  <div style="background:rgba(255,255,255,.05);border-radius:5px;padding:5px;text-align:center"><div style="font-size:9px">📚</div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="showcase-info">
-          <h4>Home Screen — Light &amp; Dark</h4>
-          <p>Both themes fully designed. Daily Quiz anchors the home screen as a habit-forming entry point. Quick access grid reduces navigation depth to one tap for any study mode.</p>
-        </div>
-      </div>
-      <div class="showcase-card" role="listitem">
-        <div class="showcase-visual" style="background:linear-gradient(135deg,#0a0a12,#111)">
-          <div style="width:130px;background:#1a1a2e;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)">
-            <div style="height:16px;background:#111827;display:flex;align-items:center;justify-content:center"><div style="width:40px;height:4px;background:#374151;border-radius:2px"></div></div>
-            <div style="padding:10px 12px">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-                <span style="font-size:9px;color:#f59e0b">← Back</span>
-                <span style="font-size:9px;font-weight:600;color:#fff">Daily Quiz</span>
-                <span style="font-size:8px;color:#6b7280">NO. 22</span>
-              </div>
-              <div style="height:2px;background:rgba(255,255,255,.1);border-radius:1px;margin-bottom:8px">
-                <div style="height:100%;width:45%;background:#f59e0b;border-radius:1px"></div>
-              </div>
-              <div style="font-size:8px;color:#f59e0b;margin-bottom:4px;letter-spacing:1px">QUESTION 14/30</div>
-              <div style="font-size:9px;color:#fff;line-height:1.4;margin-bottom:8px">नेपालको पहिलो विधान सभाको निर्वाचन कुन सालमा भयो?</div>
-              <div style="display:flex;flex-direction:column;gap:4px">
-                <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:6px 8px;font-size:8px;color:#e0e0e0;display:flex;gap:5px"><span style="width:12px;height:12px;background:rgba(255,255,255,.1);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:6px">A</span>२०१५ साल</div>
-                <div style="background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35);border-radius:6px;padding:6px 8px;font-size:8px;color:#4ade80;display:flex;gap:5px"><span style="width:12px;height:12px;background:rgba(34,197,94,.2);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:6px">B</span>२०१७ साल ✓</div>
-                <div style="background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.35);border-radius:6px;padding:6px 8px;font-size:8px;color:#fbbf24;display:flex;gap:5px"><span style="width:12px;height:12px;background:rgba(245,158,11,.2);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:6px">C</span>२०१९ साल</div>
-              </div>
-              <div style="display:flex;justify-content:space-between;margin-top:8px">
-                <div style="font-size:8px;background:rgba(255,255,255,.07);color:#9ca3af;padding:4px 10px;border-radius:5px">← Prev</div>
-                <div style="font-size:8px;background:#f59e0b;color:#fff;padding:4px 10px;border-radius:5px">Next →</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="showcase-info">
-          <h4>Quiz Screen — Answer Feedback</h4>
-          <p>Immediate colour-coded feedback (green = correct, amber = selected). Questions in Nepali script. Progress bar and question counter always visible. Optimised for one-thumb use.</p>
-        </div>
-      </div>
-      <div class="showcase-card" role="listitem">
-        <div class="showcase-visual" style="background:linear-gradient(135deg,#050f05,#111)">
-          <div style="width:130px;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)">
-            <div style="height:16px;background:#f9fafb;display:flex;align-items:center;justify-content:center"><div style="width:40px;height:4px;background:#e5e7eb;border-radius:2px"></div></div>
-            <div style="padding:10px 12px">
-              <div style="border-bottom:1px solid #f3f4f6;padding-bottom:8px;margin-bottom:8px">
-                <div style="font-size:10px;font-weight:700;color:#1a1a1a">This Week</div>
-                <div style="font-size:8px;color:#9ca3af">Performance overview</div>
-              </div>
-              <div style="font-size:8px;color:#374151;font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between"><span>Subject scores</span><span style="color:#6b7280;font-weight:400">All</span></div>
-              <div style="display:flex;flex-direction:column;gap:5px">
-                <div style="display:flex;align-items:center;justify-content:space-between">
-                  <span style="font-size:8px;color:#374151">History</span>
-                  <div style="display:flex;align-items:center;gap:4px">
-                    <div style="width:44px;height:3px;background:#f3f4f6;border-radius:2px"><div style="height:100%;width:80%;background:#22c55e;border-radius:2px"></div></div>
-                    <span style="font-size:7px;color:#6b7280">80%</span>
-                  </div>
-                </div>
-                <div style="display:flex;align-items:center;justify-content:space-between">
-                  <span style="font-size:8px;color:#374151">Geography</span>
-                  <div style="display:flex;align-items:center;gap:4px">
-                    <div style="width:44px;height:3px;background:#f3f4f6;border-radius:2px"><div style="height:100%;width:65%;background:#f59e0b;border-radius:2px"></div></div>
-                    <span style="font-size:7px;color:#6b7280">65%</span>
-                  </div>
-                </div>
-                <div style="display:flex;align-items:center;justify-content:space-between">
-                  <span style="font-size:8px;color:#374151">Statistics</span>
-                  <div style="display:flex;align-items:center;gap:4px">
-                    <div style="width:44px;height:3px;background:#f3f4f6;border-radius:2px"><div style="height:100%;width:45%;background:#ef4444;border-radius:2px"></div></div>
-                    <span style="font-size:7px;color:#6b7280">45%</span>
-                  </div>
-                </div>
-                <div style="display:flex;align-items:center;justify-content:space-between">
-                  <span style="font-size:8px;color:#374151">Marketing</span>
-                  <div style="display:flex;align-items:center;gap:4px">
-                    <div style="width:44px;height:3px;background:#f3f4f6;border-radius:2px"><div style="height:100%;width:72%;background:#22c55e;border-radius:2px"></div></div>
-                    <span style="font-size:7px;color:#6b7280">72%</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="showcase-info">
-          <h4>Progress &amp; Performance Tracking</h4>
-          <p>Weekly subject-level performance reports with colour-coded scores. Green/amber/red system gives users an instant sense of where to focus next — turning raw data into a study plan.</p>
-        </div>
-      </div>
-      <div class="showcase-card" role="listitem">
-        <div class="showcase-visual" style="background:linear-gradient(135deg,#0a0808,#111)">
-          <div style="width:130px;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)">
-            <div style="height:16px;background:#f9fafb;display:flex;align-items:center;justify-content:center"><div style="width:40px;height:4px;background:#e5e7eb;border-radius:2px"></div></div>
-            <div style="padding:10px 12px">
-              <div style="font-size:10px;font-weight:700;color:#1a1a1a;margin-bottom:8px">← This week</div>
-              <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px">
-                <div style="font-size:7px;background:#f59e0b;color:#fff;padding:2px 6px;border-radius:3px">All</div>
-                <div style="font-size:7px;background:#f3f4f6;color:#6b7280;padding:2px 6px;border-radius:3px">High score</div>
-                <div style="font-size:7px;background:#f3f4f6;color:#6b7280;padding:2px 6px;border-radius:3px">Low score</div>
-              </div>
-              <div style="display:flex;flex-direction:column;gap:5px">
-                <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 6px;background:#f9fafb;border-radius:4px"><span style="font-size:8px;color:#374151">History</span><span style="font-size:7px;color:#1d4ed8;border:1px solid #dbeafe;padding:1px 5px;border-radius:3px">View remarks</span></div>
-                <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 6px;background:#f9fafb;border-radius:4px"><span style="font-size:8px;color:#374151">Geography</span><span style="font-size:7px;color:#1d4ed8;border:1px solid #dbeafe;padding:1px 5px;border-radius:3px">View remarks</span></div>
-                <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 6px;background:#fef2f2;border-radius:4px;border-left:2px solid #ef4444"><span style="font-size:8px;color:#374151">Statistics</span><span style="font-size:7px;color:#1d4ed8;border:1px solid #dbeafe;padding:1px 5px;border-radius:3px">View remarks</span></div>
-                <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 6px;background:#f9fafb;border-radius:4px"><span style="font-size:8px;color:#374151">Finance</span><span style="font-size:7px;color:#1d4ed8;border:1px solid #dbeafe;padding:1px 5px;border-radius:3px">View remarks</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="showcase-info">
-          <h4>Mistake Review &amp; Subject Breakdown</h4>
-          <p>Filterable subject list with "View remarks" for every session. Weak subjects are surfaced with a red indicator — closing the learning loop that all competitor apps left open.</p>
-        </div>
+    <p class="cs-body">Validated through regular stakeholder collaboration, iterative feedback sessions with the client and internal team, and post-launch Play Store analytics.</p>
+    <div class="final-design-grid">
+      <div class="final-design-item">
+        <img src="loksewa-final.png" alt="Loksewa Pro final design" class="final-design-img" />
       </div>
     </div>
   </div>

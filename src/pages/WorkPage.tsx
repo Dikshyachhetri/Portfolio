@@ -8,39 +8,33 @@ const BASE = import.meta.env.BASE_URL || '/'
 const projects = [
   {
     id: 'raraspace',
-    num: '01',
     title: 'RARASPACE',
-    subtitle: 'Employee Management System',
-    desc: 'Unified employee management, task tracking, payroll, and inventory into one seamless platform.',
-    metric: { value: '100%', label: 'Efficiency gain' },
+    info: 'Enterprise · Web App · Design System',
     url: 'raraspace.html',
-    image: BASE + 'rara-hero.png',
     logo: BASE + 'rara-logo.png',
-    color: 'var(--orange)',
+    bgColor: '#fef0e6',
+    hoverBg: '#f5d6c2',
+    accent: '#e8521a',
   },
   {
     id: 'intellix',
-    num: '02',
     title: 'INTELLIX',
-    subtitle: 'Healthcare KPI Dashboard',
-    desc: 'Transformed fragmented clinical data into clear, actionable performance insights for doctors and nurses.',
-    metric: { value: '30%', label: 'Satisfaction lift' },
+    info: 'Healthcare · Data Dashboard · Web + Mobile',
     url: 'intellix.html',
-    image: BASE + 'intellix-hero.png',
     logo: BASE + 'intellix-logo.png',
-    color: '#0d6b5e',
+    bgColor: '#e6f4f1',
+    hoverBg: '#c2e8e0',
+    accent: '#0d6b5e',
   },
   {
     id: 'loksewa',
-    num: '03',
     title: 'LOKSEWA PRO',
-    subtitle: 'Exam Prep Mobile App',
-    desc: 'Top civil service exam prep app with 10,000+ downloads and 4.4★ rating.',
-    metric: { value: '10K+', label: 'Downloads' },
+    info: 'EdTech · Mobile App · iOS & Android',
     url: 'loksewa.html',
-    image: BASE + 'loksewa-hero.png',
     logo: BASE + 'loksewa-logo.png',
-    color: '#f59e0b',
+    bgColor: '#fef7e6',
+    hoverBg: '#f5e6c2',
+    accent: '#f59e0b',
   },
 ]
 
@@ -77,30 +71,62 @@ export default function WorkPage() {
             onClick={() => window.open(p.url, '_self')}
             tabIndex={0}
             onKeyDown={(e) => { if (e.key === 'Enter') window.open(p.url, '_self') }}
+            style={{
+              '--card-bg': p.bgColor,
+              '--card-hover': p.hoverBg,
+              '--card-accent': p.accent,
+            } as React.CSSProperties}
           >
-            <div className="proj-overview-visual" style={{'--accent': p.color} as React.CSSProperties}>
-              <div className="proj-overview-glow" style={{background: `radial-gradient(circle at 50% 30%, ${p.color}15 0%, transparent 70%)`}}></div>
-              <div className="ov-logo-wrap">
-                <img src={p.logo} alt={`${p.title} logo`} className="ov-logo" />
+            <div className="proj-visual-area">
+              {/* Abstract illustration */}
+              <div className="proj-abstract" aria-hidden="true">
+                {p.id === 'raraspace' && (
+                  <>
+                    <div className="abs-circle abs-c1"></div>
+                    <div className="abs-diamond abs-d1"></div>
+                    <div className="abs-dots">
+                      <span></span><span></span><span></span><span></span>
+                    </div>
+                  </>
+                )}
+                {p.id === 'intellix' && (
+                  <>
+                    <div className="abs-wave">
+                      <svg viewBox="0 0 200 60" preserveAspectRatio="none">
+                        <path d="M0,30 C30,10 60,50 100,30 C140,10 170,50 200,30 L200,60 L0,60 Z" fill="rgba(13,107,94,.06)"/>
+                      </svg>
+                    </div>
+                    <div className="abs-line abs-l1"></div>
+                    <div className="abs-line abs-l2"></div>
+                    <div className="abs-dots abs-dots-right">
+                      <span></span><span></span><span></span>
+                    </div>
+                  </>
+                )}
+                {p.id === 'loksewa' && (
+                  <>
+                    <div className="abs-star abs-s1">&#9733;</div>
+                    <div className="abs-circle abs-c2"></div>
+                    <div className="abs-circle abs-c3"></div>
+                    <div className="abs-dots">
+                      <span></span><span></span><span></span>
+                    </div>
+                  </>
+                )}
               </div>
-              <img src={p.image} alt={`${p.title} preview`} className="ov-real-image" />
-              <span className="ov-num" aria-hidden="true">{p.num}</span>
+              {/* Logo */}
+              <div className="proj-logo-wrap">
+                <img src={p.logo} alt={`${p.title} logo`} className="proj-logo" />
+              </div>
             </div>
-            <div className="proj-overview-info">
-              <h2 className="ov-title">{p.title}</h2>
-              <p className="ov-subtitle">{p.subtitle}</p>
-              <p className="ov-desc">{p.desc}</p>
-              <div className="ov-bottom">
-                <div className="ov-key-metric">
-                  <span className="ov-metric-num">{p.metric.value}</span>
-                  <span className="ov-metric-label">{p.metric.label}</span>
-                </div>
-                <span className="ov-link">
-                  View Case Study
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                  </svg>
-                </span>
+            <div className="proj-info-area">
+              <h2 className="proj-name">{p.title}</h2>
+              <p className="proj-info-text">{p.info}</p>
+              <div className="proj-view-link">
+                <span>View Case Study</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
               </div>
             </div>
           </article>

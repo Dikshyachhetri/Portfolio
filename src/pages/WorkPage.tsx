@@ -10,7 +10,7 @@ const projects = [
     id: 'raraspace',
     title: 'Employee Management System',
     info: 'ERP · Web App · PWA',
-    url: 'raraspace.html',
+    path: '/case/raraspace',
     logo: BASE + 'rara-logo.png',
     accent: '#e8521a',
   },
@@ -18,7 +18,7 @@ const projects = [
     id: 'intellix',
     title: 'Improving patient diagnostics and treatment',
     info: 'Healthcare · KPI Dashboard · Clinical UX',
-    url: 'intellix.html',
+    path: '/case/intellix',
     logo: BASE + 'intellix-logo.png',
     accent: '#7879F9',
   },
@@ -26,7 +26,7 @@ const projects = [
     id: 'loksewa',
     title: 'Loksewa Pro',
     info: 'EdTech · Mobile App · iOS & Android',
-    url: 'loksewa.html',
+    path: '/case/loksewa',
     logo: BASE + 'loksewa-logo.png',
     accent: '#E48700',
   },
@@ -56,14 +56,12 @@ export default function WorkPage() {
 
       <div className="projects-grid" role="list" aria-label="Project case studies">
         {projects.map(p => (
-          <article
+          <Link
+            to={p.path}
             className={`project-card-overview card-${p.id}`}
             id={p.id}
             role="listitem"
             key={p.id}
-            onClick={() => window.open(p.url, '_self')}
-            tabIndex={0}
-            onKeyDown={(e) => { if (e.key === 'Enter') window.open(p.url, '_self') }}
             style={{ '--accent': p.accent } as React.CSSProperties}
           >
             <div className="proj-frame">
@@ -86,7 +84,7 @@ export default function WorkPage() {
                 </span>
               </div>
             </div>
-          </article>
+          </Link>
         ))}
       </div>
 

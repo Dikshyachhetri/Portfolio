@@ -7,6 +7,7 @@ import Toast from './components/Toast'
 import HomePage from './pages/HomePage'
 import WorkPage from './pages/WorkPage'
 import AboutPage from './pages/AboutPage'
+import CaseStudy from './pages/CaseStudy'
 
 export default function App() {
   return (
@@ -18,6 +19,9 @@ export default function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/work" element={<WorkPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/case/raraspace" element={<CaseStudy htmlFile="raraspace.html" />} />
+        <Route path="/case/intellix" element={<CaseStudy htmlFile="intellix.html" />} />
+        <Route path="/case/loksewa" element={<CaseStudy htmlFile="loksewa.html" />} />
       </Routes>
       <Footer />
       <Toast />

@@ -36,10 +36,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-logo-dot{width:9px;height:9px;background:var(--orange);border-radius:50%;animation:navpulse 3s ease-in-out infinite}
 @keyframes navpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
 .nav-links{display:flex;align-items:center;gap:36px;list-style:none}
-.nav-links a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color var(--dur-fast);position:relative;padding-bottom:3px}
-.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--orange);transition:width var(--dur-mid) var(--ease)}
+.nav-links a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color var(--dur-fast);position:relative;padding-bottom:4px}.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--orange);transition:width var(--dur-mid) var(--ease);border-radius:1px}
+
 .nav-links a:hover{color:var(--white)}
-.nav-links a:hover::after{width:100%}
+.nav-links a:hover{color:var(--white)}.nav-links a:hover::after{width:100%}.nav-links a.active{color:var(--white)}.nav-links a.active::after{width:100%}
 .nav-cta{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);border:1px solid var(--orange);padding:8px 22px;border-radius:2px;text-decoration:none;transition:background var(--dur-fast),color var(--dur-fast),box-shadow var(--dur-fast)}
 .nav-cta:hover{background:var(--orange);color:#fff;box-shadow:0 0 20px rgba(232,82,26,.25)}
 .nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:8px}
@@ -493,6 +493,8 @@ footer p{font-size:12px;color:var(--gray2)}
   .next-project{padding:60px 24px}
   .cs-hero-image{padding:40px 24px}
 }
+
+@media(pointer:coarse){body{cursor:auto}#cursor,#cursor-ring{display:none}}
 @media(max-width:600px){
   .pain-grid{grid-template-columns:1fr}
   .metrics-grid{grid-template-columns:1fr 1fr}
@@ -513,7 +515,7 @@ footer p{font-size:12px;color:var(--gray2)}
   <a class="nav-logo" href="/Portfolio/home" aria-label="Dikshya Home"><span class="nav-logo-dot" aria-hidden="true"></span>DIKSHYA</a>
   <ul class="nav-links" role="list">
     <li><a href="/Portfolio/home">Home</a></li>
-    <li><a href="/Portfolio/work">Work</a></li>
+    <li><a href="/Portfolio/work" class="active">Work</a></li>
     <li><a href="/Portfolio/about">About</a></li>
   </ul>
   <a class="nav-cta" href="#" onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=dikshyabc01@gmail.com','_blank');return false;">Hire Me</a>

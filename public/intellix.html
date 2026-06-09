@@ -326,6 +326,20 @@ footer p{font-size:12px;color:var(--gray2)}
 @media(pointer:coarse){body{cursor:auto}#cursor,#cursor-ring{display:none}}
 @media(max-width:600px){.pain-grid,.research-grid{grid-template-columns:1fr}.metrics-grid{grid-template-columns:1fr 1fr}.proto-flows{grid-template-columns:1fr 1fr}}
 </style>
+<style>
+/* Hide nav, cursor, footer when embedded in portfolio */
+.embed-view nav[role="navigation"],
+.embed-view .nav-drawer,
+.embed-view #cursor,
+.embed-view #cursor-ring,
+.embed-view #progress,
+.embed-view footer { display: none !important }
+.embed-view main { padding-top: 0 !important }
+.embed-view .cs-hero { padding-top: 40px !important }
+.embed-view .cs-hero-image { border-top: none !important }
+.embed-view body { cursor: auto !important }
+</style>
+
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -850,6 +864,13 @@ const hamburger=document.getElementById('hamburger'),drawer=document.getElementB
 hamburger.addEventListener('click',()=>{const open=drawer.classList.toggle('open');hamburger.setAttribute('aria-expanded',open);const spans=hamburger.querySelectorAll('span');if(open){spans[0].style.transform='translateY(6.5px) rotate(45deg)';spans[1].style.opacity='0';spans[2].style.transform='translateY(-6.5px) rotate(-45deg)'}else{spans.forEach(s=>{s.style.transform='';s.style.opacity=''})}});
 function closeDrawer(){drawer.classList.remove('open');hamburger.setAttribute('aria-expanded','false');hamburger.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity=''})}
 function showToast(e){e.preventDefault();navigator.clipboard.writeText('dikshya@email.com').catch(()=>{});const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
+</script>
+<script>
+(function(){
+  if(window.location.search.indexOf('embed=1')!==-1){
+    document.documentElement.classList.add('embed-view');
+  }
+})();
 </script>
 </body>
 </html>

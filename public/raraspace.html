@@ -502,6 +502,20 @@ footer p{font-size:12px;color:var(--gray2)}
   .research-grid{grid-template-columns:1fr}
 }
 </style>
+<style>
+/* Hide nav, cursor, footer when embedded in portfolio */
+.embed-view nav[role="navigation"],
+.embed-view .nav-drawer,
+.embed-view #cursor,
+.embed-view #cursor-ring,
+.embed-view #progress,
+.embed-view footer { display: none !important }
+.embed-view main { padding-top: 0 !important }
+.embed-view .cs-hero { padding-top: 40px !important }
+.embed-view .cs-hero-image { border-top: none !important }
+.embed-view body { cursor: auto !important }
+</style>
+
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -1023,6 +1037,13 @@ function closeDrawer(){drawer.classList.remove('open');hamburger.setAttribute('a
 
 // TOAST
 function showToast(e){e.preventDefault();navigator.clipboard.writeText('dikshya@email.com').catch(()=>{});const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
+</script>
+<script>
+(function(){
+  if(window.location.search.indexOf('embed=1')!==-1){
+    document.documentElement.classList.add('embed-view');
+  }
+})();
 </script>
 </body>
 </html>

@@ -66,10 +66,10 @@ export default function HomePage() {
           <span>Available for hire</span>
         </div>
         <div className="hero-headline">
-          <span className="line" style={{color:'var(--white)'}}>
-            <span id="scramble-0"></span> <em style={{fontStyle:'normal',color:'var(--orange)'}}>.</em>{' '}
-            <span id="scramble-1"></span> <em style={{fontStyle:'normal',color:'var(--orange)'}}>.</em>{' '}
-            <span id="scramble-2"></span>
+          <span className="line">UI/UX</span>
+          <span className="line">DESIGNER</span>
+          <span className="line">
+            <span id="scramble-0"></span> <em>.</em> <span id="scramble-1"></span> <em>.</em> <span id="scramble-2"></span>
           </span>
         </div>
         <div className="hero-bottom">

@@ -24,208 +24,224 @@
 }
 
 /* =====================================================
-   PROJECTS GRID - 2 columns
+   PROJECTS GRID
    ===================================================== */
 .projects-grid {
   max-width:1240px; margin:0 auto;
-  padding:64px 48px 40px;
+  padding:64px 48px 80px;
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:40px;
+  gap:32px;
 }
 
 /* =====================================================
-   PROJECT CARD - Spotlight Design
+   GALLERY CARD
    ===================================================== */
 .project-card-overview {
   position:relative;
-  border-radius:16px;
+  border-radius:20px;
   overflow:hidden;
   cursor:pointer;
-  padding:56px;
-  min-height:500px;
+  padding:72px 56px 48px;
+  min-height:520px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
-  background:#141414;
-  border:1px solid rgba(255,255,255,.06);
-  transition: transform 450ms cubic-bezier(.16,1,.3,1),
-              box-shadow 450ms cubic-bezier(.16,1,.3,1),
-              border-color 400ms ease;
-  opacity:0; transform:translateY(36px);
-  box-shadow: 0 4px 20px rgba(0,0,0,.1);
+  background:#131313;
+  border:1px solid rgba(255,255,255,.05);
+  transition: transform 500ms cubic-bezier(.22,1,.36,1),
+              box-shadow 500ms cubic-bezier(.22,1,.36,1),
+              background 500ms cubic-bezier(.22,1,.36,1);
+  opacity:0; transform:translateY(40px);
+  box-shadow: 0 2px 12px rgba(0,0,0,.15);
 }
 .project-card-overview.revealed {
   opacity:1; transform:translateY(0);
-  transition: transform 600ms cubic-bezier(.16,1,.3,1),
-              box-shadow 450ms cubic-bezier(.16,1,.3,1),
-              border-color 400ms ease,
-              opacity 600ms cubic-bezier(.16,1,.3,1);
+  transition: transform 700ms cubic-bezier(.22,1,.36,1),
+              box-shadow 500ms cubic-bezier(.22,1,.36,1),
+              background 500ms cubic-bezier(.22,1,.36,1),
+              opacity 700ms cubic-bezier(.22,1,.36,1);
 }
 .project-card-overview:nth-child(1){transition-delay:0ms}
-.project-card-overview:nth-child(2){transition-delay:80ms}
-.project-card-overview:nth-child(3){transition-delay:160ms}
+.project-card-overview:nth-child(2){transition-delay:100ms}
+.project-card-overview:nth-child(3){transition-delay:200ms}
 .project-card-overview:hover {
-  transform:translateY(-6px);
-  box-shadow: 0 24px 60px rgba(0,0,0,.4);
-  border-color:rgba(255,255,255,.12);
+  transform:translateY(-8px);
+  box-shadow: 0 28px 64px rgba(0,0,0,.45);
+  background:#0d0d0d;
 }
-.card-raraspace:hover { border-color:rgba(232,82,26,.2) }
-.card-intellix:hover { border-color:rgba(120,121,249,.2) }
-.card-loksewa:hover { border-color:rgba(228,135,0,.2) }
 .project-card-overview:focus-visible {
   outline:2px solid var(--orange);
-  outline-offset:2px;
+  outline-offset:3px;
+  border-radius:20px;
 }
 
-/* --- Spotlight gradient overlay --- */
-.card-spotlight {
+/* =====================================================
+   GALLERY NUMBER WATERMARK
+   ===================================================== */
+.gallery-num {
   position:absolute;
-  top:0; left:0; right:0; bottom:0;
-  z-index:0;
-  opacity:0;
-  transition: opacity 500ms cubic-bezier(.16,1,.3,1);
+  top:24px;
+  right:32px;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(110px,12vw,160px);
+  color:rgba(255,255,255,.02);
+  line-height:1;
   pointer-events:none;
+  z-index:0;
+  transition: color 500ms cubic-bezier(.22,1,.36,1);
 }
-.project-card-overview:hover .card-spotlight {
+.project-card-overview:hover .gallery-num {
+  color:rgba(255,255,255,.04);
+}
+
+/* =====================================================
+   GRADIENT BACKGROUND OVERLAY
+   ===================================================== */
+.card-gradient-bg {
+  position:absolute;
+  inset:-1px;
+  z-index:0;
+  pointer-events:none;
+  opacity:0;
+  transition: opacity 600ms cubic-bezier(.22,1,.36,1);
+}
+.project-card-overview:hover .card-gradient-bg {
   opacity:1;
 }
-
-/* Rara - warm amber spotlight */
-.card-raraspace .card-spotlight {
-  background: radial-gradient(ellipse 100% 80% at 0% 100%, rgba(232,82,26,.12) 0%, transparent 70%);
+.card-raraspace .card-gradient-bg {
+  background: radial-gradient(ellipse 60% 50% at 30% 60%, rgba(232,82,26,.08) 0%, transparent 70%);
 }
-
-/* Intellix - cool purple spotlight */
-.card-intellix .card-spotlight {
-  background: radial-gradient(ellipse 100% 80% at 100% 0%, rgba(120,121,249,.12) 0%, transparent 70%);
+.card-intellix .card-gradient-bg {
+  background: radial-gradient(ellipse 60% 50% at 70% 40%, rgba(120,121,249,.08) 0%, transparent 70%);
 }
-
-/* Loksewa - golden spotlight */
-.card-loksewa .card-spotlight {
-  background: radial-gradient(ellipse 100% 80% at 50% 100%, rgba(228,135,0,.12) 0%, transparent 70%);
-}
-
-/* --- Accent bar - bottom edge --- */
-.card-accent-bar {
-  position:absolute;
-  bottom:0; left:0; right:0;
-  height:3px;
-  z-index:1;
-  transform:scaleX(0);
-  transform-origin:left center;
-  transition: transform 500ms cubic-bezier(.16,1,.3,1);
-}
-.card-raraspace .card-accent-bar { background:#e8521a }
-.card-intellix .card-accent-bar { background:#7879F9 }
-.card-loksewa .card-accent-bar { background:#E48700 }
-.project-card-overview:hover .card-accent-bar {
-  transform:scaleX(1);
+.card-loksewa .card-gradient-bg {
+  background: radial-gradient(ellipse 60% 50% at 50% 60%, rgba(228,135,0,.08) 0%, transparent 70%);
 }
 
 /* =====================================================
-   TOP-LEFT LOGO
+   LOGO AREA - centered
    ===================================================== */
-.card-logo-top {
+.card-logo-area {
   position:relative;
-  z-index:2;
+  z-index:1;
   display:flex;
   align-items:center;
-  gap:12px;
+  justify-content:center;
+  flex:1;
 }
-.card-logo {
-  height:34px;
+.card-logo-frame {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition: transform 500ms cubic-bezier(.22,1,.36,1);
+}
+.project-card-overview:hover .card-logo-frame {
+  transform:scale(1.04);
+}
+.card-logo-img {
+  height:40px;
   width:auto;
   display:block;
-  filter:brightness(.9);
-  transition: filter 350ms ease;
+  opacity:.85;
+  transition: opacity 400ms ease;
+  filter:grayscale(.3);
 }
-.project-card-overview:hover .card-logo {
-  filter:brightness(1.1);
-}
-
-/* Industry badge */
-.card-badge {
-  font-size:10px;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-  color:rgba(255,255,255,.3);
-  font-family:'DM Mono',monospace;
-  padding:4px 10px;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:3px;
-  transition: border-color 350ms ease, color 350ms ease, background 350ms ease;
-  margin-left:auto;
-}
-.project-card-overview:hover .card-badge {
-  border-color:rgba(255,255,255,.15);
-  color:rgba(255,255,255,.6);
-  background:rgba(255,255,255,.03);
+.project-card-overview:hover .card-logo-img {
+  opacity:1;
+  filter:grayscale(0);
 }
 
 /* =====================================================
-   BOTTOM-LEFT INFO
+   DIVIDER
    ===================================================== */
-.card-info-bottom {
+.card-divider {
   position:relative;
-  z-index:2;
+  z-index:1;
+  height:1px;
+  background:rgba(255,255,255,.06);
+  margin-bottom:28px;
+  transform:scaleX(.3);
+  transform-origin:left center;
+  transition: transform 500ms cubic-bezier(.22,1,.36,1),
+              background 500ms cubic-bezier(.22,1,.36,1);
 }
-.card-title {
+.project-card-overview:hover .card-divider {
+  transform:scaleX(1);
+}
+.card-raraspace:hover .card-divider { background:rgba(232,82,26,.2) }
+.card-intellix:hover .card-divider { background:rgba(120,121,249,.2) }
+.card-loksewa:hover .card-divider { background:rgba(228,135,0,.2) }
+
+/* =====================================================
+   INFO AREA
+   ===================================================== */
+.card-info-area {
+  position:relative;
+  z-index:1;
+}
+.card-heading {
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(30px,3.2vw,42px);
-  letter-spacing:1px;
+  font-size:clamp(34px,3.5vw,44px);
+  letter-spacing:.5px;
   color:#ffffff;
-  line-height:1.05;
+  line-height:1.08;
   margin-bottom:6px;
-  transition: color 350ms ease;
+  transition: color 400ms ease;
 }
-.card-subtitle {
-  font-size:13px;
-  color:rgba(255,255,255,.4);
+.card-caption {
+  font-size:12px;
+  color:rgba(255,255,255,.35);
   font-weight:300;
-  margin-bottom:20px;
-  max-width:40ch;
+  margin-bottom:22px;
   line-height:1.5;
-  transition: color 350ms ease;
+  letter-spacing:.2px;
+  transition: color 400ms ease;
 }
-.card-cta {
+.project-card-overview:hover .card-caption {
+  color:rgba(255,255,255,.5);
+}
+
+.card-action {
   display:inline-flex;
   align-items:center;
   gap:8px;
   font-size:10px;
-  letter-spacing:2.5px;
+  letter-spacing:3px;
   text-transform:uppercase;
-  color:rgba(255,255,255,.5);
+  color:rgba(255,255,255,.4);
   font-weight:400;
-  border-bottom:1px solid transparent;
-  padding-bottom:2px;
-  transition: gap 400ms cubic-bezier(.16,1,.3,1),
-              color 350ms ease,
-              border-color 350ms ease;
+  transition: gap 400ms cubic-bezier(.22,1,.36,1),
+              color 400ms ease;
 }
-.card-raraspace:hover .card-cta { color:#e8521a; border-color:#e8521a33 }
-.card-intellix:hover .card-cta { color:#7879F9; border-color:#7879F933 }
-.card-loksewa:hover .card-cta { color:#E48700; border-color:#E4870033 }
-.project-card-overview:hover .card-cta { gap:12px }
-.card-cta svg { 
-  transition:transform 400ms cubic-bezier(.16,1,.3,1);
-  width:12px;
-  height:12px;
+.card-raraspace:hover .card-action { color:#e8521a }
+.card-intellix:hover .card-action { color:#7879F9 }
+.card-loksewa:hover .card-action { color:#E48700 }
+.project-card-overview:hover .card-action { gap:14px }
+.card-action svg {
+  width:13px; height:13px;
   stroke-width:2.5;
+  transition: transform 400ms cubic-bezier(.22,1,.36,1);
 }
-.project-card-overview:hover .card-cta svg { transform:translateX(4px) }
+.project-card-overview:hover .card-action svg {
+  transform:translateX(5px);
+}
 
 /* =====================================================
    RESPONSIVE
    ===================================================== */
 @media(max-width:1100px){
-  .project-card-overview { padding:40px; min-height:400px }
+  .project-card-overview { padding:56px 40px 36px; min-height:400px }
+  .gallery-num { font-size:100px; top:20px; right:20px }
+  .card-logo-img { height:34px }
+  .card-heading { font-size:28px }
 }
 
 @media(max-width:900px){
   .page-header{ padding:120px 24px 48px }
-  .projects-grid{ padding:40px 24px 24px; grid-template-columns:1fr }
-  .project-card-overview { padding:36px; min-height:340px }
-  .card-logo { height:28px }
-  .card-title { font-size:28px }
+  .projects-grid{ padding:40px 24px 32px; grid-template-columns:1fr }
+  .project-card-overview { padding:48px 32px 32px; min-height:320px }
+  .gallery-num { font-size:80px; top:16px; right:16px }
+  .card-logo-img { height:30px }
+  .card-heading { font-size:26px }
 }

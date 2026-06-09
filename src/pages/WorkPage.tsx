@@ -8,27 +8,30 @@ const BASE = import.meta.env.BASE_URL || '/'
 const projects = [
   {
     id: 'raraspace',
-    title: 'EMPLOYEE MANAGEMENT SYSTEM',
+    num: '01',
+    title: 'Employee Management System',
     subtitle: 'ERP · Web App · PWA · Designed from scratch',
-    badge: 'Enterprise',
     url: 'raraspace.html',
     logo: BASE + 'rara-logo.png',
+    accent: '#e8521a',
   },
   {
     id: 'intellix',
+    num: '02',
     title: 'Improving patient diagnostics and treatment',
-    subtitle: 'Healthcare · KPI Dashboard · Web + Mobile',
-    badge: 'Healthcare',
+    subtitle: 'Healthcare · KPI Dashboard · Clinical UX',
     url: 'intellix.html',
     logo: BASE + 'intellix-logo.png',
+    accent: '#7879F9',
   },
   {
     id: 'loksewa',
-    title: 'LOKSEWA PRO',
+    num: '03',
+    title: 'Loksewa Pro',
     subtitle: 'EdTech · Mobile App · iOS & Android',
-    badge: 'Mobile',
     url: 'loksewa.html',
     logo: BASE + 'loksewa-logo.png',
+    accent: '#E48700',
   },
 ]
 
@@ -65,24 +68,29 @@ export default function WorkPage() {
             onClick={() => window.open(p.url, '_self')}
             tabIndex={0}
             onKeyDown={(e) => { if (e.key === 'Enter') window.open(p.url, '_self') }}
+            style={{ '--card-accent': p.accent } as React.CSSProperties}
           >
-            {/* Spotlight gradient overlay */}
-            <div className="card-spotlight" aria-hidden="true"></div>
+            {/* Large gallery number watermark */}
+            <span className="gallery-num" aria-hidden="true">{p.num}</span>
 
-            {/* Accent bar - bottom edge */}
-            <div className="card-accent-bar" aria-hidden="true"></div>
+            {/* Gradient overlay that shifts on hover */}
+            <div className="card-gradient-bg" aria-hidden="true"></div>
 
-            {/* Top: Logo + badge */}
-            <div className="card-logo-top">
-              <img src={p.logo} alt={`${p.title} logo`} className="card-logo" />
-              <span className="card-badge">{p.badge}</span>
+            {/* Logo area - centered */}
+            <div className="card-logo-area">
+              <div className="card-logo-frame">
+                <img src={p.logo} alt="" className="card-logo-img" />
+              </div>
             </div>
 
-            {/* Bottom: Title + subtitle + CTA */}
-            <div className="card-info-bottom">
-              <h2 className="card-title">{p.title}</h2>
-              <p className="card-subtitle">{p.subtitle}</p>
-              <span className="card-cta">
+            {/* Divider */}
+            <div className="card-divider" aria-hidden="true"></div>
+
+            {/* Info area */}
+            <div className="card-info-area">
+              <h2 className="card-heading">{p.title}</h2>
+              <p className="card-caption">{p.subtitle}</p>
+              <span className="card-action">
                 View Case Study
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <path d="M5 12h14M12 5l7 7-7 7"/>

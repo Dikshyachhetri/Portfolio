@@ -44,7 +44,7 @@
 .exp-item:nth-child(5){transition-delay:240ms}
 .exp-item:nth-child(6){transition-delay:300ms}
 .exp-item:nth-child(7){transition-delay:360ms}
-.exp-item.has-case { border-left-color:var(--orange) }
+
 .exp-period { font-family:'DM Mono',monospace; font-size:var(--text-xs); color:var(--gray2); letter-spacing:1px; margin-top:3px }
 .exp-right h3 { font-size:var(--text-lg); color:var(--white); font-weight:500; margin-bottom:2px }
 .exp-company { font-size:var(--text-sm); color:var(--orange); margin-bottom:8px }

@@ -23,10 +23,12 @@ export default function AboutPage() {
             <div className="breadcrumb">
               <Link to="/home">Home</Link><span>&rarr;</span><span>About</span>
             </div>
-            <h1>ABOUT<br/>DIKSHYA</h1>
+            <h1>HELLO, I'M<br/>DIKSHYA</h1>
             <p className="about-sub">
-              Senior UI/UX Designer with <strong>5 years</strong> of experience crafting
-              digital products for enterprise, healthcare, EdTech, and consumer platforms.
+              I'm a UI/UX designer based in the vibrant city of Kathmandu, Nepal. 
+              Since 2021, I've enjoyed turning complex problems into simple, beautiful,
+              and intuitive designs. Let's create experiences that leave a lasting impression
+              and make technology a more inclusive and equitable space for everyone.
             </p>
             <div className="about-actions">
               <button className="btn-primary" onClick={showToast}>Hire Me</button>
@@ -71,13 +73,12 @@ export default function AboutPage() {
           <h2 className="section-title" id="exp-title">EXPERIENCE</h2>
           <div className="exp-list" role="list" aria-label="Work experience">
             {[
-              { role:'Senior UI/UX Designer', company:'Invicta PTE LTD', period:'2025–Present', desc:'Maritime voyage intelligence platform. NDA — no public screenshots.', link:null },
-              { role:'UI/UX Designer', company:'Pisces Moon', period:'2024–2025', desc:'Loksewa Pro app &mdash; 10,000+ downloads, 4.4★ rating on Play Store.', link:'/work/loksewa' },
-              { role:'UI/UX Designer', company:'Freelancing', period:'2024–2025', desc:'Multiple clients &mdash; AI fintech, Zero Trust security. No public screenshots.', link:null },
-              { role:'UI/UX Designer', company:'Life Management Science Labs', period:'2024–2025', desc:'Wellness app and EdTech platform. No dedicated case study built.', link:null },
-              { role:'UI/UX Designer', company:'Rara Digital Lab Pvt. Ltd.', period:'2022–2024', desc:'RaraSpace EMS + Intellix Healthcare KPI &mdash; both have full case studies.', link:'/work/raraspace' },
-              { role:'Designer & Marketing Analyst', company:'Smart Acre Media Solutions', period:'2021–2022', desc:'Email design and marketing analytics.', link:null },
-              { role:'Frontend Developer (Internship)', company:'Featherwebs', period:'2021', desc:'HRIS platform internship.', link:null },
+              { role:'Senior UI/UX Designer', company:'Invicta PTE LTD', period:'2025–Present', desc:'Maritime voyage intelligence platform. NDA — no public screenshots.', link:null, url:'https://invicta.global/' },
+              { role:'UI/UX Designer', company:'Freelancing', period:'2024–2025', desc:'Multiple clients &mdash; AI fintech (AI-driven financial assistant), Zero Trust security (enterprise cybersecurity), and Loksewa Pro app (10,000+ downloads, 4.4★ on Play Store). No public screenshots.', link:null, url:null },
+              { role:'UI/UX Designer', company:'Life Management Science Labs', period:'2024–2025', desc:'Wellness app and EdTech platform. No dedicated case study built.', link:null, url:'https://lifemanagementsciencelabs.com/' },
+              { role:'UI/UX Designer', company:'Rara Digital Lab Pvt. Ltd.', period:'2022–2024', desc:'RaraSpace EMS + Intellix Healthcare KPI &mdash; both have full case studies.', link:'/work/raraspace', url:'https://raralabs.com/' },
+              { role:'Designer & Marketing Analyst', company:'Smart Acre Media Solutions', period:'2021–2022', desc:'Email design and marketing analytics.', link:null, url:'https://smartacremediasolutions.com/' },
+              { role:'Frontend Developer (Internship)', company:'Featherwebs', period:'2021', desc:'HRIS platform internship.', link:null, url:'https://featherwebs.com/' },
             ].map((exp, i) => (
               <article className={`exp-item${exp.link ? ' has-case' : ''}`} role="listitem" key={i}>
                 <div className="exp-left">
@@ -85,7 +86,18 @@ export default function AboutPage() {
                 </div>
                 <div className="exp-right">
                   <h3 className="exp-role">{exp.role}</h3>
-                  <p className="exp-company">{exp.company}</p>
+                  {exp.url ? (
+                    <p className="exp-company">
+                      <a href={exp.url} target="_blank" rel="noopener noreferrer" className="exp-company-link">
+                        {exp.company} 
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{display:'inline',verticalAlign:'middle',marginLeft:2}}>
+                          <path d="M7 17L17 7M7 7h10v10"/>
+                        </svg>
+                      </a>
+                    </p>
+                  ) : (
+                    <p className="exp-company">{exp.company}</p>
+                  )}
                   <p className="exp-desc" dangerouslySetInnerHTML={{__html: exp.desc}}></p>
                   {exp.link && (
                     <Link to={exp.link} className="exp-link">View Case Study &rarr;</Link>
@@ -129,25 +141,44 @@ export default function AboutPage() {
           <h2 className="section-title" id="edu-title">EDUCATION</h2>
           <div className="edu-list">
             <div className="edu-item">
+              <span className="exp-period">2019 &ndash; 2023</span>
               <h3>Bachelor's in Computer Science</h3>
-              <p>Relevant coursework: HCI, Design Thinking, Software Engineering</p>
+              <p className="edu-school">Tribhuvan University, Kathmandu</p>
+              <p>Relevant coursework: Human-Computer Interaction, Design Thinking, Software Engineering, Database Management, AI Fundamentals</p>
+            </div>
+            <div className="edu-item">
+              <span className="exp-period">2017 &ndash; 2019</span>
+              <h3>Higher Secondary Education (Science)</h3>
+              <p className="edu-school">National College, Kathmandu</p>
+              <p>Major in Science with Computer Science focus</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ADDITIONAL */}
+      {/* ADDITIONAL & COURSES */}
       <section className="about-section about-section-alt" aria-labelledby="add-title">
         <div className="section-inner">
-          <span className="section-kicker">More</span>
-          <h2 className="section-title" id="add-title">ADDITIONAL</h2>
-          <p className="about-extra">
+          <span className="section-kicker">Learning</span>
+          <h2 className="section-title" id="add-title">ADDITIONAL &amp; COURSES</h2>
+          <div className="edu-list">
+            <div className="edu-item">
+              <h3>Google UX Design Professional Certificate</h3>
+              <p>Coursera &mdash; Completed 2023. Covered UX research, wireframing, prototyping, and usability testing across the full design lifecycle.</p>
+            </div>
+            <div className="edu-item">
+              <h3>AI for Designers</h3>
+              <p>Self-paced &mdash; Exploring AI tools integration in UX workflow, prompt engineering for design, and AI-assisted research methods.</p>
+            </div>
+            <div className="edu-item">
+              <h3>Design Thinking &amp; Innovation</h3>
+              <p>Workshop &mdash; Stanford d.school methodology applied to product design challenges.</p>
+            </div>
+          </div>
+          <p className="about-extra" style={{marginTop:32}}>
             Available for full-time, contract, and freelance roles. Open to remote and
             hybrid arrangements. Based in Kathmandu, Nepal &mdash; working with clients globally.
           </p>
-          <div className="about-actions" style={{marginTop:32}}>
-            <button className="btn-primary" onClick={showToast}>Download Resume</button>
-          </div>
         </div>
       </section>
     </main>

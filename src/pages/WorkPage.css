@@ -35,15 +35,15 @@
 }
 
 /* =====================================================
-   PROJECT CARD - Rara Space design spec
+   PROJECT CARD - base
    ===================================================== */
 .project-card-overview {
   position:relative;
   border-radius:16px;
   overflow:hidden;
   cursor:pointer;
-  padding:120px 60px;
-  min-height:680px;
+  padding:60px;
+  min-height:540px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
@@ -65,7 +65,6 @@
 .project-card-overview:nth-child(2){transition-delay:80ms}
 .project-card-overview:nth-child(3){transition-delay:160ms}
 .project-card-overview:hover {
-  background:#000000;
   transform:translateY(-4px);
   box-shadow: 0 16px 48px rgba(0,0,0,.3);
 }
@@ -75,31 +74,112 @@
 }
 
 /* =====================================================
-   WATERMARK LOGO
+   RARA SPACE CARD
    ===================================================== */
-.card-watermark {
+.card-raraspace {
+  background:#181818;
+}
+.card-raraspace:hover {
+  background:#000000;
+}
+
+/* Watermark - 30% visible (70% cropped on right) */
+.card-raraspace .card-watermark {
   position:absolute;
   top:50%;
-  right:0;
+  right:-40%;
   transform:translateY(-50%);
   width:auto;
   height:225px;
   z-index:0;
   pointer-events:none;
-  opacity:0.05;
-  transition: opacity var(--dur-mid) var(--ease),
-              right var(--dur-mid) var(--ease),
-              transform var(--dur-mid) var(--ease);
+  opacity:1;
+  transition: right var(--dur-mid) var(--ease),
+              opacity var(--dur-mid) var(--ease);
 }
-.card-watermark .watermark-img {
+.card-raraspace .card-watermark .watermark-img {
   height:100%;
   width:auto;
   display:block;
 }
-.project-card-overview:hover .card-watermark {
-  opacity:0.25;
+.card-raraspace:hover .card-watermark {
   right:10%;
-  transform:translateY(-50%) translateX(0);
+}
+
+/* =====================================================
+   INTELLIX CARD
+   ===================================================== */
+.card-intellix {
+  background:#7879F9;
+}
+.card-intellix:hover {
+  background:#17186C;
+}
+
+/* Intellix icon background - rotates 90° on hover */
+.card-intellix .intellix-icon-bg {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  width:120px;
+  height:120px;
+  z-index:0;
+  pointer-events:none;
+  opacity:.15;
+  overflow:hidden;
+  transition: transform var(--dur-mid) var(--ease),
+              opacity var(--dur-mid) var(--ease);
+}
+.card-intellix .intellix-icon-bg .intellix-icon-img {
+  width:auto;
+  height:100%;
+  display:block;
+  /* Crop text - show only left icon portion */
+  object-fit:cover;
+  object-position:left center;
+}
+.card-intellix:hover .intellix-icon-bg {
+  transform:translate(-50%, -50%) rotate(90deg);
+  opacity:.3;
+}
+
+/* =====================================================
+   LOKSEWA CARD
+   ===================================================== */
+.card-loksewa {
+  background:linear-gradient(180deg, #FFFFFF 0%, #E48700 100%);
+  border-color:rgba(0,0,0,.08);
+}
+.card-loksewa:hover {
+  background:#B86F06;
+}
+
+/* Check sign - center-left, slides right on hover */
+.card-loksewa .loksewa-check-bg {
+  position:absolute;
+  top:50%;
+  left:10%;
+  transform:translateY(-50%);
+  width:120px;
+  height:120px;
+  z-index:0;
+  pointer-events:none;
+  opacity:.2;
+  transition: left var(--dur-mid) var(--ease),
+              opacity var(--dur-mid) var(--ease),
+              transform var(--dur-mid) var(--ease);
+  color:#B86F06;
+}
+.card-loksewa .loksewa-check-bg .check-svg {
+  width:100%;
+  height:100%;
+  display:block;
+}
+.card-loksewa:hover .loksewa-check-bg {
+  left:60%;
+  opacity:1;
+  transform:translateY(-50%) translateX(-50%);
 }
 
 /* =====================================================
@@ -110,7 +190,7 @@
   z-index:1;
 }
 .card-logo {
-  height:40px;
+  height:32px;
   width:auto;
   display:block;
 }
@@ -124,17 +204,29 @@
 }
 .card-title {
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(36px,4vw,52px);
+  font-size:clamp(28px,3vw,40px);
   letter-spacing:1px;
   color:#ffffff;
-  line-height:1;
-  margin-bottom:4px;
+  line-height:1.05;
+  margin-bottom:6px;
+}
+.card-loksewa .card-title {
+  color:#1a1a1a;
+}
+.card-loksewa:hover .card-title {
+  color:#ffffff;
 }
 .card-subtitle {
-  font-size:14px;
+  font-size:13px;
   color:rgba(255,255,255,.5);
   font-weight:300;
-  margin-bottom:18px;
+  margin-bottom:16px;
+}
+.card-loksewa .card-subtitle {
+  color:rgba(0,0,0,.5);
+}
+.card-loksewa:hover .card-subtitle {
+  color:rgba(255,255,255,.5);
 }
 .card-cta {
   display:inline-flex;
@@ -151,23 +243,29 @@
 .card-cta svg { transition:transform var(--dur-mid) var(--ease) }
 .project-card-overview:hover .card-cta svg { transform:translateX(4px) }
 
+.card-loksewa .card-cta {
+  color:#B86F06;
+}
+
 /* =====================================================
    RESPONSIVE
    ===================================================== */
 @media(max-width:1100px){
   .project-card-overview {
-    padding:80px 40px;
-    min-height:520px;
+    padding:40px;
+    min-height:420px;
   }
-  .card-watermark { height:170px }
+  .card-raraspace .card-watermark { height:170px }
 }
 
 @media(max-width:900px){
   .page-header{ padding:120px 24px 48px }
   .projects-grid{ padding:40px 24px 24px; grid-template-columns:1fr }
   .project-card-overview {
-    padding:60px 32px;
-    min-height:440px;
+    padding:36px;
+    min-height:360px;
   }
-  .card-watermark { height:130px }
+  .card-raraspace .card-watermark { height:130px }
+  .card-intellix .intellix-icon-bg { width:80px; height:80px }
+  .card-loksewa .loksewa-check-bg { width:80px; height:80px }
 }

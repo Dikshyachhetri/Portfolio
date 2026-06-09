@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { showToast } from '../components/Toast'
 import './AboutPage.css'
 
+const BASE = import.meta.env.BASE_URL || '/'
+
 export default function AboutPage() {
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -42,7 +44,7 @@ export default function AboutPage() {
           </div>
           <div className="about-right">
             <div className="photo-frame" style={{
-              backgroundImage:'url(/profile-photo.png)',
+              backgroundImage:'url(' + BASE + 'profile-photo.png)',
               backgroundSize:'cover',
               backgroundPosition:'center top',
               backgroundRepeat:'no-repeat',

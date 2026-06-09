@@ -7,38 +7,54 @@ import './HomePage.css'
 export default function HomePage() {
   useEffect(() => {
     // Scroll reveal
-    const obs = new IntersectionObserver(
-      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed') }),
-      { threshold: 0.07 }
-    )
-    document.querySelectorAll('.scroll-reveal, .ai-card, .stat-item, .marquee-track').forEach(el => obs.observe(el))
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed') })
+    }, { threshold: 0.08 })
+    document.querySelectorAll('.ai-card, .stat-item').forEach(el => revealObs.observe(el))
 
-    // Scramble hero text
-    const words = ['RESEARCH.', 'DESIGN.', 'EXPERIENCE.']
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%?&'
-    words.forEach((w, wi) => {
-      const el = document.getElementById(`scramble-${wi}`)
-      if (!el) return
-      const delay = 1100 + wi * 220
-      setTimeout(() => {
-        el.innerHTML = ''
-        const letters = w.split('')
-        letters.forEach((l, li) => {
-          const span = document.createElement('span')
-          span.className = 'char'
-          el.appendChild(span)
-          const interval = setInterval(() => {
-            span.textContent = chars[Math.floor(Math.random() * chars.length)]
-            span.style.color = '#e8521a'
-          }, 40)
-          setTimeout(() => {
-            clearInterval(interval)
-            span.textContent = l
+    // Scramble hero text — match original exactly
+    const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%?&'
+
+    function runScramble(chars: NodeListOf<HTMLElement>) {
+      chars.forEach((span, idx) => {
+        const target = span.dataset.char!
+        let iterations = 0
+        const maxIter = 5 + idx * 1.2
+        const iv = setInterval(() => {
+          if (iterations >= maxIter) {
+            span.textContent = target
             span.style.color = ''
-          }, 300 + li * 60)
-        })
-      }, delay)
-    })
+            clearInterval(iv)
+            return
+          }
+          span.textContent = CHARS[Math.floor(Math.random() * CHARS.length)]
+          span.style.color = 'var(--orange)'
+          iterations++
+        }, 40)
+      })
+    }
+
+    function scrambleLine(el: HTMLElement) {
+      const em = el.querySelector('em')
+      if (em) {
+        const txt = em.textContent!
+        em.innerHTML = [...txt].map(c =>
+          c === ' ' ? ' ' : `<span class="char" data-char="${c}">${c}</span>`
+        ).join('')
+        runScramble(em.querySelectorAll('.char') as any)
+        return
+      }
+      const txt = el.textContent!
+      el.innerHTML = [...txt].map(c =>
+        c === ' ' ? ' ' : `<span class="char" data-char="${c}">${c}</span>`
+      ).join('')
+      runScramble(el.querySelectorAll('.char') as any)
+    }
+
+    const lines = document.querySelectorAll('.hero-headline .line')
+    setTimeout(() => scrambleLine(lines[0] as HTMLElement), 1100)
+    setTimeout(() => scrambleLine(lines[1] as HTMLElement), 1320)
+    setTimeout(() => scrambleLine(lines[2] as HTMLElement), 1540)
 
     // Nav border on scroll
     const nav = document.querySelector('nav')
@@ -51,7 +67,7 @@ export default function HomePage() {
     window.addEventListener('scroll', onScroll, { passive: true })
 
     return () => {
-      obs.disconnect()
+      revealObs.disconnect()
       window.removeEventListener('scroll', onScroll)
     }
   }, [])
@@ -65,26 +81,22 @@ export default function HomePage() {
           <span className="status-dot"></span>
           <span>Available for hire</span>
         </div>
-        <div className="hero-headline">
-          <span className="line">UI/UX</span>
-          <span className="line">DESIGNER</span>
-          <span className="line">
-            <span id="scramble-0"></span> <em>.</em> <span id="scramble-1"></span> <em>.</em> <span id="scramble-2"></span>
-          </span>
+        <div className="hero-headline" aria-label="Research. Design. Experience.">
+          <span className="line" aria-hidden="true">RESEARCH.</span>
+          <span className="line" aria-hidden="true">DESIGN.</span>
+          <span className="line"><em>EXPERIENCE.</em></span>
         </div>
+
         <div className="hero-bottom">
           <p className="hero-sub">
-            Based in <strong>Kathmandu, Nepal</strong> &mdash; building digital products
-            that are <strong>simple</strong>, <strong>inclusive</strong>, and <strong>impactful</strong>.
+            <strong>UI/UX Designer &nbsp;&middot;&nbsp; 5 years</strong> building products that are simple, inclusive, and impactful — across enterprise, mobile, fintech, and beyond. Now AI-augmented and shipping faster than ever.
           </p>
           <div className="hero-actions">
             <Link to="/work" className="btn-primary">View Work</Link>
-            <button className="btn-ghost" onClick={showToast}>
-              Get in touch
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </button>
+            <Link to="/about" className="btn-ghost">
+              About Me
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </Link>
           </div>
         </div>
       </section>
@@ -92,15 +104,15 @@ export default function HomePage() {
       {/* ========== MARQUEE ========== */}
       <div className="marquee-wrap" aria-hidden="true">
         <div className="marquee-track">
-          <span>UI/UX DESIGN</span><span className="marquee-dot">✦</span>
-          <span>INTERACTION DESIGN</span><span className="marquee-dot">✦</span>
-          <span>DESIGN SYSTEMS</span><span className="marquee-dot">✦</span>
-          <span>PRODUCT DESIGN</span><span className="marquee-dot">✦</span>
-          <span>USER RESEARCH</span><span className="marquee-dot">✦</span>
-          <span>UI/UX DESIGN</span><span className="marquee-dot">✦</span>
-          <span>INTERACTION DESIGN</span><span className="marquee-dot">✦</span>
-          <span>DESIGN SYSTEMS</span><span className="marquee-dot">✦</span>
-          <span>PRODUCT DESIGN</span><span className="marquee-dot">✦</span>
+          <span>UI/UX DESIGN</span><span className="marquee-dot">&loz;</span>
+          <span>INTERACTION DESIGN</span><span className="marquee-dot">&loz;</span>
+          <span>DESIGN SYSTEMS</span><span className="marquee-dot">&loz;</span>
+          <span>PRODUCT DESIGN</span><span className="marquee-dot">&loz;</span>
+          <span>USER RESEARCH</span><span className="marquee-dot">&loz;</span>
+          <span>UI/UX DESIGN</span><span className="marquee-dot">&loz;</span>
+          <span>INTERACTION DESIGN</span><span className="marquee-dot">&loz;</span>
+          <span>DESIGN SYSTEMS</span><span className="marquee-dot">&loz;</span>
+          <span>PRODUCT DESIGN</span><span className="marquee-dot">&loz;</span>
           <span>USER RESEARCH</span>
         </div>
       </div>

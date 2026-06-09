@@ -152,27 +152,12 @@
   font-size:10px;
   letter-spacing:2.5px;
   text-transform:uppercase;
-  color:rgba(255,255,255,.35);
+  color:rgba(255,255,255,.4);
   font-weight:400;
   transition: gap 400ms cubic-bezier(.16,1,.3,1),
               color 350ms ease;
-  position:relative;
 }
-.proj-cta-link::after {
-  content:'';
-  position:absolute;
-  bottom:-4px;
-  left:0;
-  width:0;
-  height:1px;
-  background:var(--accent, var(--orange));
-  transition:width 400ms cubic-bezier(.16,1,.3,1);
-}
-.project-card-overview:hover .proj-cta-link { gap:12px }
-.project-card-overview:hover .proj-cta-link::after { width:100% }
-.card-raraspace:hover .proj-cta-link { color:#e8521a }
-.card-intellix:hover .proj-cta-link { color:#7879F9 }
-.card-loksewa:hover .proj-cta-link { color:#E48700 }
+.project-card-overview:hover .proj-cta-link { gap:14px; color:var(--orange) }
 .proj-cta-link svg {
   width:13px; height:13px;
   stroke-width:2.5;

@@ -1,11 +1,25 @@
-import { useEffect } from 'react'
+import React from 'react'
 
 const BASE = import.meta.env.BASE_URL || '/'
 
 export default function CaseStudy({ htmlFile }: { htmlFile: string }) {
-  useEffect(() => {
-    window.location.href = BASE + htmlFile
-  }, [htmlFile])
+  const src = BASE + htmlFile + '?embed=1'
 
-  return null
+  return (
+    <iframe
+      src={src}
+      title="Case Study"
+      style={{
+        width: '100%',
+        height: '100vh',
+        border: 'none',
+        display: 'block',
+        position: 'fixed',
+        top: '60px',
+        left: 0,
+        zIndex: 1,
+        background: 'var(--bg)',
+      }}
+    />
+  )
 }

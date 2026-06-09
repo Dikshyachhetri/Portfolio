@@ -66,8 +66,6 @@ export default function HomePage() {
           <span>Available for hire</span>
         </div>
         <div className="hero-headline">
-          <span className="line" style={{color:'rgba(240,236,228,.22)'}}>UI/UX</span>
-          <span className="line" style={{color:'rgba(240,236,228,.55)'}}>DESIGNER</span>
           <span className="line" style={{color:'var(--white)'}}>
             <span id="scramble-0"></span> <em style={{fontStyle:'normal',color:'var(--orange)'}}>.</em>{' '}
             <span id="scramble-1"></span> <em style={{fontStyle:'normal',color:'var(--orange)'}}>.</em>{' '}

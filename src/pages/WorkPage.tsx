@@ -17,7 +17,7 @@ const projects = [
     tags: ['Enterprise', 'Web App', 'Design System', 'Accessibility'],
     url: 'raraspace.html',
     visual: 'enterprise',
-    image: '/raraspace.png',
+    image: '/rara-hero.png',
     color: 'var(--orange)',
   },
   {

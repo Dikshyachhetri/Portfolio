@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 // Deployed as a project site: https://dikshyachhetri.github.io/Portfolio/
-// Set base to repo name for project pages
 export default defineConfig({
+  plugins: [react()],
   base: '/Portfolio/',
   build: {
     outDir: 'dist'

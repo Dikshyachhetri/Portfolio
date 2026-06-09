@@ -1,3 +1,5 @@
+import React from 'react'
+
 export function showToast(e: React.MouseEvent) {
   e.preventDefault()
   navigator.clipboard.writeText('dikshya@email.com').catch(() => {})

@@ -12,11 +12,12 @@ const projects = [
     company: 'Rara Digital Lab Pvt. Ltd.',
     role: 'UI/UX Designer',
     period: '2022–2024',
-    desc: 'Unified employee management, task tracking, payroll, and inventory into one seamless platform &mdash; eliminating fragmented tools across a 12-person team.',
+    desc: 'Unified employee management, task tracking, payroll, and inventory into one seamless platform, eliminating fragmented tools across a 12-person team.',
     metrics: { primary: '100%', label: 'Efficiency gain' },
     tags: ['Enterprise', 'Web App', 'Design System', 'Accessibility'],
     url: 'raraspace.html',
     visual: 'enterprise',
+    image: '/raraspace.png',
     color: 'var(--orange)',
   },
   {
@@ -42,7 +43,7 @@ const projects = [
     company: 'Freelancing (Pisces Moon)',
     role: 'UI/UX Designer',
     period: '2024–2025',
-    desc: 'Designed Nepal&rsquo;s top civil service exam prep app &mdash; 10,000+ downloads, 4.4★ rating, with practice sets, quizzes, and offline access.',
+    desc: 'Designed Nepal&rsquo;s top civil service exam prep app with 10,000+ downloads, 4.4★ rating, practice sets, quizzes, and offline access.',
     metrics: { primary: '10K+', label: 'Downloads' },
     tags: ['EdTech', 'Mobile App', 'iOS & Android', 'Consumer'],
     url: 'loksewa.html',
@@ -70,7 +71,7 @@ export default function WorkPage() {
         </div>
         <h1>SELECTED<br/>WORK</h1>
         <p className="sub">
-          Three case studies across enterprise, healthcare, and mobile &mdash;
+          Three case studies across enterprise, healthcare, and mobile,
           each with full process documentation from research to final iteration.
         </p>
       </header>
@@ -89,7 +90,9 @@ export default function WorkPage() {
           >
             <div className="proj-overview-visual" style={{'--accent': p.color} as React.CSSProperties}>
               <div className="proj-overview-glow" style={{background: `radial-gradient(circle at 50% 30%, ${p.color}15 0%, transparent 70%)`}}></div>
-              {p.visual === 'mobile' ? (
+              {p.image ? (
+                <img src={p.image} alt={`${p.title} preview`} className="ov-real-image" />
+              ) : p.visual === 'mobile' ? (
                 <div className="ov-phone-mock">
                   <div className="ov-phone-notch"></div>
                   <div className="ov-phone-body">

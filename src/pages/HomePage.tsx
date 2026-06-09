@@ -12,7 +12,7 @@ export default function HomePage() {
     }, { threshold: 0.08 })
     document.querySelectorAll('.ai-card, .stat-item').forEach(el => revealObs.observe(el))
 
-    // Scramble hero text — match original exactly
+    // Scramble hero text, match original exactly
     const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%?&'
 
     function runScramble(chars: NodeListOf<HTMLElement>) {
@@ -132,10 +132,10 @@ export default function HomePage() {
           </div>
           <div className="ai-cards" role="list" aria-label="AI workflow steps">
             {[
-              { num: '01', title: 'Research & synthesis', desc: 'AI mines app store reviews, support tickets, and user interviews to surface patterns — I frame the problem.', tools: ['Claude', 'ChatGPT'] },
+              { num: '01', title: 'Research & synthesis', desc: 'AI mines app store reviews, support tickets, and user interviews to surface patterns. I frame the problem.', tools: ['Claude', 'ChatGPT'] },
               { num: '02', title: 'Rapid exploration', desc: 'Generate 20+ interface directions from prompts in minutes. I curate, combine, and refine.', tools: ['Lovable', 'Uizard'] },
               { num: '03', title: 'Smart prototyping', desc: 'AI generates variants, micro-copy, and states. I focus on flows, behaviour, and user goals.', tools: ['Figma AI', 'Claude'] },
-              { num: '04', title: 'QA & handoff', desc: 'Accessibility checks, UX copy consistency, component naming — AI catches what human fatigue misses.', tools: ['Claude', 'Figma AI'] },
+              { num: '04', title: 'QA & handoff', desc: 'Accessibility checks, UX copy consistency, component naming. AI catches what human fatigue misses.', tools: ['Claude', 'Figma AI'] },
             ].map(card => (
               <article className="ai-card scroll-reveal" role="listitem" key={card.num}>
                 <p className="ai-card-num" aria-hidden="true">{card.num}</p>
@@ -157,20 +157,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ========== STATS ========== */}
-      <section className="stats-section" aria-label="Key statistics">
-        <div className="stats-grid">
-          {[
-            { num: '4', suffix: '+', label: 'Years Experience' },
-            { num: '12', suffix: '+', label: 'Industries Served' },
-          ].map(s => (
-            <div className="stat-item" key={s.label}>
-              <span className="stat-num">{s.num}<span>{s.suffix}</span></span>
-              <span className="stat-label">{s.label}</span>
-            </div>
-          ))}
-        </div>
-      </section>
+
 
       {/* ========== CTA ========== */}
       <section className="cta-section" aria-labelledby="cta-title">
@@ -182,7 +169,7 @@ export default function HomePage() {
           </h2>
           <p className="cta-sub">
             Currently open to full-time, contract, and freelance opportunities.
-            Based in Kathmandu &mdash; working globally.
+            Based in Kathmandu, working globally.
           </p>
           <div className="cta-actions">
             <button className="btn-primary" onClick={showToast}>Hire Me</button>

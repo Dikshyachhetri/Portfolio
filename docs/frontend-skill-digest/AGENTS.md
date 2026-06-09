@@ -3,9 +3,9 @@
 ## Purpose
 
 This folder contains the frontend-skill digest for the Dikshya Portfolio — a
-static portfolio site for a UI/UX designer. `project-digest.md` is the
-authoritative fingerprint of the repo; this file governs trust, freshness, and
-re-check rules for all frontend lanes.
+React SPA portfolio for a UI/UX designer, built with Vite and React Router.
+`project-digest.md` is the authoritative fingerprint of the repo; this file
+governs trust, freshness, and re-check rules for all frontend lanes.
 
 ## Authoritative File
 
@@ -32,7 +32,7 @@ ephemeral inline detection when the digest is stale.
 
 - Repo classification (`frontend-app`)
 - Package manager (`pnpm`)
-- Framework (static HTML via Vite)
+- Framework (React 18 + Vite SPA)
 - Workspace layout (single-package)
 
 ### Verify at runtime when staleness is possible

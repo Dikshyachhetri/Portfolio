@@ -4,8 +4,8 @@
 
 - **repo_kind**: `frontend-app`
 - **confidence**: `high`
-- **Signals**: Single static HTML portfolio app with Vite build tooling, no
-  monorepo layout, no design-system packages, no workspace config.
+- **Signals**: React SPA portfolio app with Vite build tooling, React Router for
+  client-side routing, no monorepo layout, no design-system packages.
 
 ## Tooling
 
@@ -19,22 +19,29 @@
 
 ## Framework & Runtime
 
-- **Primary framework**: None (pure HTML/CSS/JS)
-- **Build tool**: Vite 5.x (static asset bundler, no framework plugin)
-- **Rendering model**: Static HTML served as-is; no SSR, SPA, or component
-  framework
+- **Primary framework**: React 18 with React Router DOM 6
+- **Build tool**: Vite 5.x with React plugin
+- **Rendering model**: Client-side SPA; routes handled by React Router
+- **Routing**: `/` → redirects to `/home`; routes: `/home`, `/work`, `/about`
 - **App paths**:
-  - `index.html` (root) — home page
-  - `public/about.html` — about page
-  - `public/projects.html` — projects gallery
-  - `public/raraspace.html` — RaraSpace EMS case study
-  - `public/intellix.html` — Intellix Healthcare KPI case study
-  - `public/loksewa.html` — Loksewa Pro case study
+  - `src/main.tsx` — app entry
+  - `src/App.tsx` — router setup with shared layout (Nav + Footer)
+  - `src/pages/HomePage.tsx` — home page (hero, AI workflow, stats, CTA)
+  - `src/pages/WorkPage.tsx` — projects gallery with 3 full case study cards
+  - `src/pages/AboutPage.tsx` — about page with experience, skills, education
+  - `src/components/Nav.tsx` — shared navigation
+  - `src/components/Footer.tsx` — shared footer
+  - `src/components/CustomCursor.tsx` — custom cursor effect
+  - `src/components/Toast.tsx` — email copy toast notification
+  - `src/styles/global.css` — shared design system CSS variables
+  - `public/raraspace.html` — static case study (RaraSpace EMS)
+  - `public/intellix.html` — static case study (Intellix Healthcare)
+  - `public/loksewa.html` — static case study (Loksewa Pro)
 
 ## Styling & Design System
 
-- **Styling solution**: Pure CSS with CSS custom properties (no framework)
-- **Token source**: Inline `:root` variables in each HTML file:
+- **Styling solution**: Global CSS with CSS custom properties (no CSS-in-JS)
+- **Token source**: `src/styles/global.css` defines `:root` variables:
   `--bg`, `--bg2`, `--bg3`, `--orange`, `--orange2`, `--white`, `--gray`,
   `--gray2`, `--success`, `--border`, `--border2`
 - **Typography**: Google Fonts — Bebas Neue (headings), DM Sans (body),
@@ -46,11 +53,10 @@
 
 ## Data, State & API
 
-- **Data fetching**: None (static site)
-- **State management**: None
+- **Data fetching**: None (static portfolio SPA)
+- **State management**: React useState/useEffect only
 - **API client pattern**: None
-- **API contract sources**: None — this is a fully static portfolio with no
-  backend or API dependencies
+- **API contract sources**: None — fully static portfolio with no backend or API
 - **Backend directory mapping**: N/A
 
 ## Testing Stack
@@ -63,17 +69,17 @@
 
 - **Analytics stack**: None configured
 - **Observability stack**: None configured
-- No tracking or monitoring tools present
 
 ## CI/CD & Release Signals
 
 - **CI provider**: GitHub Actions
-- **Deploy platform**: GitHub Pages (user site)
-  - **URL**: `https://dikshyachhetri.github.io`
+- **Deploy platform**: GitHub Pages (project site)
+  - **URL**: `https://dikshyachhetri.github.io/Portfolio/`
 - **Preview/sandbox platform**: None (GitHub Pages deploys directly to prod)
 - **Release workflow**: `.github/workflows/deploy.yml` — on push to `main`,
   install with `pnpm install --frozen-lockfile`, build with `pnpm build`,
   deploy with `actions/deploy-pages@v4`
+- **404 fallback**: `dist/404.html` (copy of built index.html) for client-side routing
 
 ## Workflow Conventions
 
@@ -81,47 +87,48 @@
 - **PR/release branch model**: Standard GitHub flow (main as default)
 - **Docs/planning folders**:
   - `docs/frontend-skill-digest/` (this digest)
-  - `public/` (static HTML pages)
-  - `.github/workflows/` (CI/CD)
-- **Import/naming conventions**: N/A — no JS modules or components
+  - `docs/HANDOFF.md` — original project handoff
+  - `docs/VITE_SETUP.md` — Vite setup guide
+  - `docs/AGENT_CONTEXT.md` — agent context for Dikshya's portfolio
+  - `public/` — static assets (case study HTML pages)
+  - `.github/workflows/` — CI/CD
+- **Import/naming conventions**: PascalCase for components, camelCase for files
 
 ## Skill Applicability Map
 
 | Lane | Status | Notes |
 |------|--------|-------|
-| PR review | `partial` | Review HTML/CSS/JS changes only; no component framework |
-| API integration | `out_of_scope` | Static site with no API |
+| PR review | `applies` | Review React components, CSS, and static HTML case studies |
+| API integration | `out_of_scope` | Static SPA with no API |
 | Testing | `out_of_scope` | No test infrastructure |
-| Analytics | `partial` | No analytics installed; can advise on adding Google Analytics/Plausible |
+| Analytics | `partial` | No analytics installed; can advise on Google Analytics/Plausible |
 | Observability | `out_of_scope` | No observability tooling |
 | CI/CD | `applies` | GitHub Actions deploy to GitHub Pages |
-| Planning | `applies` | Standard branch/PR planning for static sites |
-| Commit hygiene | `applies` | Atomic commits for HTML/CSS/JS changes |
+| Planning | `applies` | Standard branch/PR planning for React apps |
+| Commit hygiene | `applies` | Atomic commits for React component changes |
 
 ## Freshness
 
-- **Generated**: `2026-06-09T14:12:00+05:45`
-- **Generated commit SHA**: `faa1779fc71f7e68c2dca6f748d288c383080c93`
+- **Generated**: `2026-06-09T14:33:00+05:45`
+- **Generated commit SHA**: `e85a17f53de478e27cdb6446b66ee1a270466d7b`
 - **Files/signals inspected**:
-  - `index.html` — 7908428b7e734a07f72938bde38d9df3
-  - `package.json` — fc662d22a4c2d810ab0c66dca2376e2f
-  - `vite.config.ts` — 12ca0f69ce1eec53abe11d03214f8b52
-  - `pnpm-lock.yaml` — 9a44e5f335c717a908a44161166fef83
-  - `.github/workflows/deploy.yml` — a3aa357a7e1fb601a33c5ce772380ec4
-  - `public/about.html` — f2b3a1efba872a588a85ab6f0240e5d8
-  - `public/intellix.html` — e7017a1a911da1e30c432fdac7fac72a
-  - `public/loksewa.html` — 5230b48c6f3836fcc6f31c1b7f0097de
-  - `public/projects.html` — 98ea244dc4e297552e4a15cedf8893e6
-  - `public/raraspace.html` — 91cd70c2bddf26547a40887079dc696a
+  - `src/App.tsx` — router and layout
+  - `src/pages/HomePage.tsx` — home page component
+  - `src/pages/WorkPage.tsx` — work page component
+  - `src/pages/AboutPage.tsx` — about page component
+  - `src/styles/global.css` — design system CSS
+  - `package.json` — deps and scripts
+  - `vite.config.ts` — Vite config with base path `/Portfolio/`
+  - `pnpm-lock.yaml` — lockfile
+  - `.github/workflows/deploy.yml` — CI/CD
 
 **Triggers for refresh**:
 - Lockfile change (`pnpm-lock.yaml`)
 - Vite config change (`vite.config.ts`)
-- New analytics/observability tool added
+- New React dependency or route added
 - CI/CD provider or deploy platform change
-- Any HTML file hash change
+- New source component added
 
 ## Open Questions
 
-None — this is a complete static app with no backend, API, or external
-dependencies.
+None.

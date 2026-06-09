@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>RaraSpace EMS — Case Study · Dikshya</title>
+<meta name="description" content="Case study: Employee Management System for Rara Digital Lab. UI/UX Design by Dikshya — from research to final iteration."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0e0e0e; --bg2:#161616; --bg3:#1e1e1e; --bg4:#222;
+  --orange:#e8521a; --orange2:#ff6b35; --teal:#0d6b5e;
+  --white:#f0ece4; --gray:#999; --gray2:#555; --gray3:#333;
+  --success:#22c55e; --border:rgba(255,255,255,.08); --border2:rgba(255,255,255,.13);
+  --ease:cubic-bezier(.16,1,.3,1); --dur-fast:180ms; --dur-mid:320ms; --dur-slow:700ms;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);line-height:1.6;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
+.skip-link{position:fixed;top:-100px;left:16px;z-index:10000;background:var(--orange);color:#fff;padding:10px 18px;border-radius:2px;font-size:11px;text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:top .2s}
+.skip-link:focus{top:16px}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:2px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* CURSOR */
+#cursor{position:fixed;width:10px;height:10px;background:var(--orange);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease)}
+#cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(232,82,26,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease),opacity .3s}
+body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:18px;height:18px}
+body:has(a:hover) #cursor-ring{width:48px;height:48px;opacity:.35}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:60px;border-bottom:1px solid var(--border);background:rgba(14,14,14,.9);backdrop-filter:blur(18px)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:10px}
+.nav-logo-dot{width:9px;height:9px;background:var(--orange);border-radius:50%;animation:navpulse 3s ease-in-out infinite}
+@keyframes navpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+.nav-links a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color var(--dur-fast);position:relative;padding-bottom:3px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--orange);transition:width var(--dur-mid) var(--ease)}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);border:1px solid var(--orange);padding:8px 20px;border-radius:2px;text-decoration:none;transition:background var(--dur-fast),color var(--dur-fast)}
+.nav-cta:hover{background:var(--orange);color:#fff}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:8px}
+.nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:transform var(--dur-mid) var(--ease),opacity var(--dur-fast)}
+.nav-drawer{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(14,14,14,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:48px;flex-direction:column;gap:24px;z-index:99}
+.nav-drawer a{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:3px;color:var(--gray);text-decoration:none;transition:color var(--dur-fast)}
+.nav-drawer a:hover{color:var(--orange)}
+.nav-drawer.open{display:flex}
+
+/* PROGRESS BAR — reading indicator */
+#progress{position:fixed;top:60px;left:0;height:2px;background:var(--orange);z-index:99;width:0%;transition:width .1s linear}
+
+/* ============================================================
+   HERO — full-bleed case study cover
+   ============================================================ */
+.cs-hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:80px 48px 80px;position:relative;overflow:hidden;
+}
+.cs-hero-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,#0d0d0d 0%,#161616 50%,#0a1a17 100%);
+  z-index:0;
+}
+/* Decorative grid lines */
+.cs-hero-grid{
+  position:absolute;inset:0;z-index:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:80px 80px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black,transparent);
+}
+.cs-hero-glow{
+  position:absolute;bottom:-100px;right:-100px;
+  width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(232,82,26,.07) 0%,transparent 65%);
+  pointer-events:none;animation:glow 9s ease-in-out infinite alternate;
+  z-index:0;
+}
+@keyframes glow{from{transform:scale(1)}to{transform:scale(1.3) translate(-40px,20px)}}
+.cs-hero-content{position:relative;z-index:1;max-width:1200px;margin:0 auto;width:100%}
+
+/* Breadcrumb */
+.cs-breadcrumb{
+  display:flex;align-items:center;gap:8px;margin-bottom:32px;
+  opacity:0;animation:fadeUp .6s var(--ease) forwards 100ms;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.cs-breadcrumb a,.cs-breadcrumb span{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);text-decoration:none;transition:color var(--dur-fast)}
+.cs-breadcrumb a:hover{color:var(--orange)}
+.cs-breadcrumb .sep{color:var(--gray3)}
+
+.cs-hero-meta{
+  display:flex;align-items:center;gap:12px;margin-bottom:24px;
+  opacity:0;animation:fadeUp .6s var(--ease) forwards 200ms;
+}
+.cs-chip{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:2px}
+.cs-chip.active{background:rgba(232,82,26,.15);border-color:rgba(232,82,26,.4);color:var(--orange)}
+
+.cs-hero h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(52px,9vw,130px);
+  letter-spacing:2px;line-height:.92;color:var(--white);
+  margin-bottom:28px;
+  opacity:0;animation:fadeUp .8s var(--ease) forwards 300ms;
+}
+.cs-hero h1 em{font-style:normal;color:var(--orange)}
+
+.cs-hero-tagline{
+  font-size:18px;color:rgba(240,236,228,.6);font-weight:300;
+  max-width:560px;line-height:1.75;margin-bottom:48px;
+  opacity:0;animation:fadeUp .6s var(--ease) forwards 450ms;
+}
+
+/* Quick stats row */
+.cs-quick-stats{
+  display:flex;gap:0;border:1px solid var(--border);width:fit-content;
+  opacity:0;animation:fadeUp .6s var(--ease) forwards 550ms;
+}
+.cs-stat{padding:16px 32px;border-right:1px solid var(--border);text-align:left}
+.cs-stat:last-child{border-right:none}
+.cs-stat-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);display:block;margin-bottom:4px}
+.cs-stat-val{font-size:15px;color:var(--white);font-weight:400}
+
+/* Scroll cue */
+.cs-scroll-cue{
+  position:absolute;bottom:32px;right:48px;z-index:1;
+  display:flex;align-items:center;gap:10px;
+  opacity:0;animation:fadeUp .6s var(--ease) forwards 700ms;
+}
+.cs-scroll-cue span{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2)}
+.cs-scroll-btn{width:34px;height:34px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gray2);animation:bob 2.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+/* ============================================================
+   HERO IMAGE — full-width project screenshot
+   ============================================================ */
+.cs-hero-image{
+  background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:64px 48px;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.cs-hero-image::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(13,107,94,.08) 0%,transparent 70%);
+}
+.cs-hero-image .screen-wrap{
+  width:90%;max-width:900px;border-radius:10px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 40px 100px rgba(0,0,0,.5);
+  transform:translateY(0);
+  transition:transform .6s var(--ease);
+  position:relative;z-index:1;
+}
+.cs-hero-image:hover .screen-wrap{transform:translateY(-8px)}
+/* Mockup window chrome */
+.screen-chrome{height:32px;background:#1a1a1a;display:flex;align-items:center;padding:0 14px;gap:7px;border-bottom:1px solid rgba(255,255,255,.06)}
+.s-dot{width:10px;height:10px;border-radius:50%}
+.screen-body-mock{background:var(--bg3);padding:0;min-height:380px;position:relative;overflow:hidden}
+/* Dashboard mockup — drawn in CSS/HTML to replicate the EMS UI feel */
+.mock-dashboard{display:flex;min-height:380px}
+.mock-sidebar{width:180px;background:#141414;border-right:1px solid rgba(255,255,255,.06);padding:20px 0;flex-shrink:0}
+.mock-sidebar-logo{padding:0 16px 20px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:12px}
+.mock-logo-block{display:flex;gap:3px}
+.mock-logo-sq{width:12px;height:12px;border-radius:2px}
+.mock-nav-item{padding:9px 16px;font-size:11px;color:rgba(255,255,255,.35);display:flex;align-items:center;gap:8px;transition:background .2s}
+.mock-nav-item.active{background:rgba(232,82,26,.12);color:var(--orange)}
+.mock-nav-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.15);flex-shrink:0}
+.mock-nav-dot.active{background:var(--orange)}
+.mock-main{flex:1;padding:20px;background:var(--bg3)}
+.mock-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.mock-date{font-size:10px;color:rgba(255,255,255,.3)}
+.mock-cta-btn{background:var(--orange);color:#fff;font-size:9px;padding:5px 12px;border-radius:3px;letter-spacing:.5px}
+.mock-welcome{background:linear-gradient(135deg,#1a2a26,#1e3530);border-radius:8px;padding:16px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between}
+.mock-welcome-text{font-size:16px;color:#7dd3c8;font-weight:300;line-height:1.3}
+.mock-bear{font-size:32px}
+.mock-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.mock-card{background:#1a1a1a;border-radius:6px;padding:10px;border:1px solid rgba(255,255,255,.06)}
+.mock-card-title{font-size:9px;color:var(--orange);margin-bottom:4px}
+.mock-card-sprint{font-size:8px;color:rgba(255,255,255,.3)}
+.mock-todo{background:#1a1a1a;border-radius:6px;padding:12px;border:1px solid rgba(255,255,255,.06)}
+.mock-todo-header{display:flex;justify-content:space-between;margin-bottom:8px}
+.mock-todo-title{font-size:9px;color:rgba(255,255,255,.5)}
+.mock-todo-see{font-size:8px;color:var(--orange)}
+.mock-todo-item{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.mock-checkbox{width:10px;height:10px;border:1px solid rgba(255,255,255,.2);border-radius:2px;flex-shrink:0}
+.mock-todo-text{font-size:8px;color:var(--orange)}
+.mock-aside{width:200px;background:#141414;border-left:1px solid rgba(255,255,255,.06);padding:20px 14px;flex-shrink:0}
+.mock-aside-title{font-size:9px;color:rgba(255,255,255,.4);letter-spacing:1px;margin-bottom:10px}
+.mock-member{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.mock-avatar{width:22px;height:22px;border-radius:50%;flex-shrink:0}
+.mock-member-name{font-size:8px;color:rgba(255,255,255,.5)}
+.mock-donut{width:80px;height:80px;margin:16px auto;position:relative}
+.mock-donut svg{transform:rotate(-90deg)}
+
+/* ============================================================
+   CONTENT SECTIONS
+   ============================================================ */
+.cs-section{padding:96px 48px;border-bottom:1px solid var(--border)}
+.cs-section.dark{background:var(--bg2)}
+.cs-section.darker{background:#0b0b0b}
+.cs-inner{max-width:1200px;margin:0 auto}
+
+.section-kicker{display:block;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:16px}
+.section-num{display:block;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gray2);margin-bottom:6px}
+
+/* Two-column layout */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.two-col-wide{display:grid;grid-template-columns:320px 1fr;gap:80px;align-items:start}
+.two-col-wide.right{grid-template-columns:1fr 320px}
+
+.cs-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);letter-spacing:2px;line-height:.95;color:var(--white);margin-bottom:16px}
+.cs-h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(24px,3vw,36px);letter-spacing:1.5px;color:var(--white);margin-bottom:12px}
+.cs-body{font-size:16px;color:rgba(240,236,228,.65);font-weight:300;line-height:1.85;max-width:60ch}
+.cs-body+.cs-body{margin-top:16px}
+.cs-body strong{color:var(--white);font-weight:400}
+
+/* Label — left side of two-col-wide */
+.cs-label-col{padding-top:4px}
+.cs-label-col .cs-h3{font-size:20px;color:rgba(240,236,228,.45)}
+
+/* ============================================================
+   PROBLEM + OVERVIEW
+   ============================================================ */
+.highlight-box{
+  background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--orange);
+  padding:24px 28px;border-radius:0 4px 4px 0;margin-top:24px;
+}
+.highlight-box p{font-size:15px;color:rgba(240,236,228,.7);line-height:1.75;font-weight:300}
+.highlight-box strong{color:var(--white);font-weight:400}
+
+/* ============================================================
+   PROCESS STEPS TIMELINE
+   ============================================================ */
+.process-timeline{display:flex;flex-direction:column;gap:0;margin-top:48px}
+.process-step{
+  display:flex;gap:32px;padding:32px 0;border-bottom:1px solid var(--border);
+  opacity:0;transform:translateX(-20px);
+  transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease);
+}
+.process-step.revealed{opacity:1;transform:translateX(0)}
+.process-step:nth-child(1){transition-delay:0ms}
+.process-step:nth-child(2){transition-delay:80ms}
+.process-step:nth-child(3){transition-delay:160ms}
+.process-step:nth-child(4){transition-delay:240ms}
+.process-step:last-child{border-bottom:none}
+.step-num{font-family:'Bebas Neue',sans-serif;font-size:52px;color:rgba(232,82,26,.15);line-height:1;min-width:64px;flex-shrink:0}
+.step-content h4{font-size:18px;font-weight:500;color:var(--white);margin-bottom:8px}
+.step-content p{font-size:14px;color:var(--gray);line-height:1.75}
+
+/* ============================================================
+   PAIN POINT CARDS — matching the Figma screenshot style
+   ============================================================ */
+.pain-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:48px}
+.pain-item{
+  background:var(--bg);padding:0;
+  opacity:0;transform:translateY(20px);
+  transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease);
+}
+.pain-item.revealed{opacity:1;transform:translateY(0)}
+.pain-item:nth-child(1){transition-delay:0ms}
+.pain-item:nth-child(2){transition-delay:80ms}
+.pain-item:nth-child(3){transition-delay:160ms}
+.pain-item:nth-child(4){transition-delay:240ms}
+.pain-top{padding:36px 28px 28px;background:var(--bg2);border-bottom:1px solid var(--border)}
+.pain-num{font-family:'Bebas Neue',sans-serif;font-size:64px;color:rgba(232,82,26,.2);line-height:1;margin-bottom:12px}
+.pain-top h4{font-size:15px;font-weight:400;color:var(--white);line-height:1.4}
+.arrow-down{display:flex;align-items:center;justify-content:center;padding:12px;color:var(--gray2)}
+.pain-solution{padding:24px 28px;background:var(--teal);min-height:120px}
+.pain-solution .sol-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px;display:block}
+.pain-solution p{font-size:13px;color:rgba(255,255,255,.75);line-height:1.6}
+.pain-solution strong{color:#fff}
+
+/* ============================================================
+   RESEARCH GRID
+   ============================================================ */
+.research-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:48px}
+.research-card{
+  background:var(--bg2);padding:32px 28px;
+  opacity:0;transform:translateY(16px);
+  transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease);
+}
+.research-card.revealed{opacity:1;transform:translateY(0)}
+.research-card:nth-child(1){transition-delay:0ms}
+.research-card:nth-child(2){transition-delay:80ms}
+.research-card:nth-child(3){transition-delay:160ms}
+.research-icon{font-size:28px;margin-bottom:16px}
+.research-card h4{font-size:16px;font-weight:500;color:var(--white);margin-bottom:10px}
+.research-card p{font-size:14px;color:var(--gray);line-height:1.7}
+
+/* ============================================================
+   WIREFRAME GRID
+   ============================================================ */
+.wireframe-note{
+  background:var(--bg3);border:1px solid var(--border);padding:20px 24px;
+  border-radius:4px;margin-bottom:32px;
+  display:flex;gap:12px;align-items:flex-start;
+}
+.wireframe-note .wi{color:var(--orange);flex-shrink:0;margin-top:2px}
+.wireframe-note p{font-size:14px;color:var(--gray);line-height:1.6}
+.wireframe-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
+}
+.wf-card{
+  background:var(--bg3);border:1px solid var(--border);border-radius:6px;overflow:hidden;
+  opacity:0;transform:scale(.95);
+  transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease);
+}
+.wf-card.revealed{opacity:1;transform:scale(1)}
+.wf-card:nth-child(n){transition-delay:calc(var(--i,0)*60ms)}
+.wf-card-inner{padding:12px;min-height:120px;background:var(--bg4);display:flex;flex-direction:column;gap:6px}
+.wf-row{height:7px;border-radius:3px;background:rgba(255,255,255,.08)}
+.wf-row.accent{background:rgba(232,82,26,.2)}
+.wf-row.wide{width:85%}.wf-row.mid{width:60%}.wf-row.short{width:40%}
+.wf-box{flex:1;border-radius:4px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.06)}
+.wf-label{padding:6px 10px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray2);background:var(--bg3)}
+
+/* ============================================================
+   DESIGN DECISIONS — before/after
+   ============================================================ */
+.decision-list{display:flex;flex-direction:column;gap:1px;background:var(--border);margin-top:48px}
+.decision-item{
+  display:grid;grid-template-columns:1fr 24px 1fr;gap:0;
+  background:var(--bg);
+  opacity:0;transform:translateY(12px);
+  transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease);
+}
+.decision-item.revealed{opacity:1;transform:translateY(0)}
+.decision-item:nth-child(1){transition-delay:0ms}
+.decision-item:nth-child(2){transition-delay:80ms}
+.decision-item:nth-child(3){transition-delay:160ms}
+.decision-item:nth-child(4){transition-delay:240ms}
+.decision-before,.decision-after{padding:24px 28px}
+.decision-before{background:var(--bg2);border-right:1px solid var(--border)}
+.decision-after{background:var(--bg)}
+.decision-arrow{display:flex;align-items:center;justify-content:center;background:var(--bg);color:var(--orange);font-size:16px}
+.dec-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);margin-bottom:8px;display:block}
+.dec-label.after{color:var(--orange)}
+.decision-before h4,.decision-after h4{font-size:15px;font-weight:400;color:var(--white);margin-bottom:6px}
+.decision-before p,.decision-after p{font-size:13px;color:var(--gray);line-height:1.6}
+.decision-after p{color:rgba(240,236,228,.75)}
+
+/* ============================================================
+   FINAL DESIGN SHOWCASE
+   ============================================================ */
+.showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px}
+.showcase-card{
+  background:var(--bg3);border:1px solid var(--border);border-radius:8px;overflow:hidden;
+  opacity:0;transform:translateY(20px);
+  transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease),border-color var(--dur-mid);
+}
+.showcase-card.revealed{opacity:1;transform:translateY(0)}
+.showcase-card:hover{border-color:rgba(232,82,26,.3)}
+.showcase-card-visual{min-height:200px;background:var(--bg4);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:24px}
+.showcase-card-info{padding:20px 24px;border-top:1px solid var(--border)}
+.showcase-card-info h4{font-size:15px;font-weight:500;color:var(--white);margin-bottom:6px}
+.showcase-card-info p{font-size:13px;color:var(--gray);line-height:1.6}
+
+/* Task detail mockup */
+.task-mock{width:90%;background:var(--bg);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:14px;box-shadow:0 16px 48px rgba(0,0,0,.4)}
+.task-mock-header{font-size:11px;color:var(--orange);margin-bottom:8px;font-family:'DM Mono',monospace;letter-spacing:1px}
+.task-mock-title{font-size:13px;color:var(--white);margin-bottom:10px;font-weight:400;line-height:1.4}
+.task-mock-row{display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.task-mock-key{font-size:10px;color:rgba(255,255,255,.3)}
+.task-mock-val{font-size:10px;color:var(--white)}
+.task-mock-badge{font-size:9px;padding:2px 7px;border-radius:2px}
+.badge-started{background:rgba(34,197,94,.2);color:#22c55e}
+.badge-urgent{background:rgba(239,68,68,.2);color:#ef4444}
+
+/* Mobile mockup */
+.mobile-mock-wrap{display:flex;gap:12px;align-items:flex-end}
+.mobile-mock{width:120px;background:var(--bg);border:1px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.5)}
+.mobile-notch{height:16px;background:#111;display:flex;align-items:center;justify-content:center}
+.mobile-notch-pill{width:40px;height:4px;background:rgba(255,255,255,.15);border-radius:2px}
+.mobile-body{padding:10px}
+.mobile-row{height:7px;border-radius:3px;background:rgba(255,255,255,.08);margin-bottom:6px}
+.mobile-row.accent{background:rgba(232,82,26,.25);width:60%}
+.mobile-row.short{width:40%}
+.mobile-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:8px}
+.mobile-cell{height:32px;border-radius:4px;background:rgba(255,255,255,.05)}
+
+/* ============================================================
+   METRICS — outcome numbers
+   ============================================================ */
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:48px}
+.metric-item{
+  background:var(--bg);padding:40px 28px;text-align:center;
+  opacity:0;transform:translateY(16px);
+  transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease);
+}
+.metric-item.revealed{opacity:1;transform:translateY(0)}
+.metric-item:nth-child(1){transition-delay:0ms}
+.metric-item:nth-child(2){transition-delay:80ms}
+.metric-item:nth-child(3){transition-delay:160ms}
+.metric-item:nth-child(4){transition-delay:240ms}
+.metric-num{font-family:'Bebas Neue',sans-serif;font-size:56px;letter-spacing:2px;color:var(--white);line-height:1;margin-bottom:8px;display:block}
+.metric-num span{color:var(--orange)}
+.metric-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray)}
+
+/* ============================================================
+   REFLECTION
+   ============================================================ */
+.reflection-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:48px}
+.reflection-card{
+  background:var(--bg2);padding:40px 36px;
+  opacity:0;transform:translateY(16px);
+  transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease);
+}
+.reflection-card.revealed{opacity:1;transform:translateY(0)}
+.reflection-card:nth-child(1){transition-delay:0ms}
+.reflection-card:nth-child(2){transition-delay:80ms}
+.reflection-card:nth-child(3){transition-delay:160ms}
+.reflection-card:nth-child(4){transition-delay:240ms}
+.reflection-card h4{font-size:18px;font-weight:500;color:var(--white);margin-bottom:12px}
+.reflection-card p{font-size:14px;color:var(--gray);line-height:1.75}
+
+/* ============================================================
+   NEXT PROJECT
+   ============================================================ */
+.next-project{padding:96px 48px;border-top:1px solid var(--border);background:var(--bg2)}
+.next-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:32px}
+.next-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);display:block;margin-bottom:12px}
+.next-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,72px);letter-spacing:2px;color:var(--white);line-height:.95}
+.next-cta{
+  display:flex;align-items:center;gap:12px;
+  font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--orange);text-decoration:none;white-space:nowrap;
+  border:1px solid var(--orange);padding:14px 28px;border-radius:2px;
+  transition:background var(--dur-fast),color var(--dur-fast);min-height:44px;flex-shrink:0;
+}
+.next-cta:hover{background:var(--orange);color:#fff}
+
+/* CTA */
+.cta-section{padding:96px 48px;text-align:center;position:relative;overflow:hidden;background:var(--bg)}
+.cta-section::before{content:'RARASPACE';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,12vw,180px);color:rgba(232,82,26,.03);letter-spacing:10px;pointer-events:none;white-space:nowrap}
+.cta-section h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,80px);letter-spacing:3px;color:var(--white);margin-bottom:12px;line-height:.95}
+.cta-section p{font-size:16px;color:var(--gray);font-weight:300;margin-bottom:40px}
+.cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-primary{font-size:11px;letter-spacing:2px;text-transform:uppercase;background:var(--orange);color:#fff;padding:13px 28px;border-radius:2px;text-decoration:none;transition:background var(--dur-fast);display:inline-flex;align-items:center;min-height:44px}
+.btn-primary:hover{background:var(--orange2)}
+.btn-outline{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.2);padding:13px 28px;border-radius:2px;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;transition:border-color var(--dur-fast)}
+.btn-outline:hover{border-color:rgba(255,255,255,.6)}
+
+/* Toast */
+.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--bg3);border:1px solid var(--border);padding:14px 22px;border-radius:2px;font-size:13px;color:var(--white);z-index:200;display:flex;align-items:center;gap:10px;transition:transform var(--dur-mid) var(--ease),opacity var(--dur-mid);opacity:0;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.toast-dot{width:7px;height:7px;background:var(--success);border-radius:50%;flex-shrink:0}
+
+footer{padding:24px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--bg)}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:3px;color:var(--gray2);text-decoration:none}
+.footer-logo:hover{color:var(--white)}
+footer p{font-size:12px;color:var(--gray2)}
+
+/* REDUCED MOTION */
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.cs-breadcrumb,.cs-hero-meta,.cs-hero h1,.cs-hero-tagline,.cs-quick-stats,.cs-scroll-cue{opacity:1;transform:none}}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .pain-grid{grid-template-columns:1fr 1fr}
+  .metrics-grid{grid-template-columns:1fr 1fr}
+  .wireframe-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:900px){
+  nav{padding:0 24px}.nav-links{display:none}.nav-hamburger{display:flex}
+  .cs-hero{padding:80px 24px 60px}
+  .cs-section{padding:60px 24px}
+  .two-col,.two-col-wide,.two-col-wide.right{grid-template-columns:1fr;gap:40px}
+  .cs-quick-stats{flex-direction:column;width:100%}
+  .cs-stat{border-right:none;border-bottom:1px solid var(--border)}
+  .cs-stat:last-child{border-bottom:none}
+  .showcase-grid{grid-template-columns:1fr}
+  .reflection-grid{grid-template-columns:1fr}
+  .next-inner{flex-direction:column;align-items:flex-start}
+  .wireframe-grid{grid-template-columns:1fr 1fr}
+  .decision-item{grid-template-columns:1fr;gap:0}
+  .decision-arrow{display:none}
+  .decision-before{border-right:none;border-bottom:1px solid var(--border)}
+  footer{flex-direction:column;gap:12px;text-align:center;padding:24px}
+  .cta-section{padding:60px 24px}
+  .next-project{padding:60px 24px}
+  .cs-hero-image{padding:40px 24px}
+}
+@media(max-width:600px){
+  .pain-grid{grid-template-columns:1fr}
+  .metrics-grid{grid-template-columns:1fr 1fr}
+  .wireframe-grid{grid-template-columns:1fr 1fr}
+  .research-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div id="cursor" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
+<div id="progress" aria-hidden="true"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-dot"></span>Email copied!</div>
+
+<!-- NAV -->
+<nav role="navigation" aria-label="Main navigation">
+  <a class="nav-logo" href="index.html" aria-label="Dikshya — Home"><span class="nav-logo-dot" aria-hidden="true"></span>DIKSHYA</a>
+  <ul class="nav-links" role="list">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="projects.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <a class="nav-cta" href="mailto:dikshya@email.com" onclick="showToast(event)">Hire Me</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
+  <a href="index.html" onclick="closeDrawer()">Home</a>
+  <a href="projects.html" onclick="closeDrawer()">Work</a>
+  <a href="about.html" onclick="closeDrawer()">About</a>
+  <a href="mailto:dikshya@email.com" onclick="closeDrawer();showToast(event)">Hire Me →</a>
+</nav>
+
+<main id="main">
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="cs-hero" aria-label="Project introduction">
+  <div class="cs-hero-bg" aria-hidden="true"></div>
+  <div class="cs-hero-grid" aria-hidden="true"></div>
+  <div class="cs-hero-glow" aria-hidden="true"></div>
+
+  <div class="cs-hero-content">
+    <div class="cs-breadcrumb">
+      <a href="index.html">Home</a><span class="sep" aria-hidden="true">·</span>
+      <a href="projects.html">Work</a><span class="sep" aria-hidden="true">·</span>
+      <span>RaraSpace EMS</span>
+    </div>
+
+    <div class="cs-hero-meta">
+      <span class="cs-chip">PROJECT</span>
+      <span class="cs-chip active">RARASPACE</span>
+      <span class="cs-chip">2022–2024</span>
+    </div>
+
+    <h1>EMPLOYEE<br/>MANAGEMENT<br/><em>SYSTEM</em></h1>
+    <p class="cs-hero-tagline">A comprehensive web application redesign that unified employee management, task tracking, payroll, and project operations into one seamless platform — improving operational efficiency by 100%.</p>
+
+    <div class="cs-quick-stats" role="list" aria-label="Project overview">
+      <div class="cs-stat" role="listitem">
+        <span class="cs-stat-label">My Role</span>
+        <span class="cs-stat-val">UI/UX Designer</span>
+      </div>
+      <div class="cs-stat" role="listitem">
+        <span class="cs-stat-label">Company</span>
+        <span class="cs-stat-val">Rara Digital Lab Pvt. Ltd.</span>
+      </div>
+      <div class="cs-stat" role="listitem">
+        <span class="cs-stat-label">Platform</span>
+        <span class="cs-stat-val">Web App · PWA</span>
+      </div>
+      <div class="cs-stat" role="listitem">
+        <span class="cs-stat-label">Team Size</span>
+        <span class="cs-stat-val">12 people</span>
+      </div>
+      <div class="cs-stat" role="listitem">
+        <span class="cs-stat-label">Duration</span>
+        <span class="cs-stat-val">9 Months</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-scroll-cue" aria-hidden="true">
+    <span>scroll to explore</span>
+    <div class="cs-scroll-btn">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- HERO DASHBOARD MOCKUP -->
+<div class="cs-hero-image" aria-label="Project dashboard preview">
+  <div class="screen-wrap">
+    <div class="screen-chrome">
+      <div class="s-dot" style="background:#ff5f57"></div>
+      <div class="s-dot" style="background:#febc2e"></div>
+      <div class="s-dot" style="background:#28c840"></div>
+    </div>
+    <div class="screen-body-mock">
+      <div class="mock-dashboard">
+        <!-- Sidebar -->
+        <div class="mock-sidebar">
+          <div class="mock-sidebar-logo">
+            <div class="mock-logo-block">
+              <div class="mock-logo-sq" style="background:#e84040"></div>
+              <div class="mock-logo-sq" style="background:#e8a040"></div>
+              <div class="mock-logo-sq" style="background:#40a8e8"></div>
+              <div class="mock-logo-sq" style="background:#0d6b5e"></div>
+            </div>
+          </div>
+          <div class="mock-nav-item active"><div class="mock-nav-dot active"></div>Dashboard</div>
+          <div class="mock-nav-item"><div class="mock-nav-dot"></div>Projects</div>
+          <div class="mock-nav-item"><div class="mock-nav-dot"></div>Tasks</div>
+          <div class="mock-nav-item"><div class="mock-nav-dot"></div>Late / Leave</div>
+          <div class="mock-nav-item"><div class="mock-nav-dot"></div>Members</div>
+          <div class="mock-nav-item"><div class="mock-nav-dot"></div>Payroll</div>
+          <div class="mock-nav-item"><div class="mock-nav-dot"></div>Logsheet</div>
+          <div class="mock-nav-item"><div class="mock-nav-dot"></div>Calendar</div>
+          <div class="mock-nav-item"><div class="mock-nav-dot"></div>Reports</div>
+        </div>
+        <!-- Main -->
+        <div class="mock-main">
+          <div class="mock-topbar">
+            <div class="mock-date">वैशाख १२, २०८० · 06 April 2023</div>
+            <div class="mock-cta-btn">Create Task</div>
+          </div>
+          <div class="mock-welcome">
+            <div>
+              <div class="mock-welcome-text">Happy<br/>Weekend!</div>
+              <div style="font-size:8px;color:rgba(255,255,255,.3);margin-top:4px">Welcome to your space, Nisha</div>
+            </div>
+            <div class="mock-bear">🐻</div>
+          </div>
+          <div style="font-size:9px;color:rgba(255,255,255,.3);margin-bottom:6px">My Projects (5)</div>
+          <div class="mock-grid">
+            <div class="mock-card"><div class="mock-card-title">E-Commerce App</div><div class="mock-card-sprint">Sprint 6 · Sprint 5</div></div>
+            <div class="mock-card"><div class="mock-card-title">Travel App</div><div class="mock-card-sprint">Sprint 6</div></div>
+            <div class="mock-card"><div class="mock-card-title">ERP</div><div class="mock-card-sprint">March 3rd Week</div></div>
+          </div>
+          <div class="mock-todo">
+            <div class="mock-todo-header">
+              <span class="mock-todo-title">My Todo</span>
+              <span class="mock-todo-see">See Completed</span>
+            </div>
+            <div class="mock-todo-item"><div class="mock-checkbox"></div><span class="mock-todo-text">Travel_232 · My Todo #1</span></div>
+            <div class="mock-todo-item"><div class="mock-checkbox"></div><span class="mock-todo-text">Travel_232 · My Todo #2</span></div>
+          </div>
+        </div>
+        <!-- Aside -->
+        <div class="mock-aside">
+          <div class="mock-aside-title">MEMBER ON LEAVE</div>
+          <div class="mock-member"><div class="mock-avatar" style="background:#7c5c3c"></div><span class="mock-member-name">Nisha Sharma · Designer</span></div>
+          <div class="mock-member"><div class="mock-avatar" style="background:#4a6080"></div><span class="mock-member-name">Bibek Malla · Designer</span></div>
+          <div class="mock-aside-title" style="margin-top:14px">WORK TYPE</div>
+          <div class="mock-donut">
+            <svg width="80" height="80" viewBox="0 0 80 80">
+              <circle cx="40" cy="40" r="28" fill="none" stroke="#e84040" stroke-width="16" stroke-dasharray="124 52"/>
+              <circle cx="40" cy="40" r="28" fill="none" stroke="#0d6b5e" stroke-width="16" stroke-dasharray="52 124" stroke-dashoffset="-124"/>
+            </svg>
+          </div>
+          <div style="font-size:8px;color:rgba(255,255,255,.3);text-align:center">70% Office · 30% Remote</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     01 — OVERVIEW & PROBLEM
+     ============================================================ -->
+<section class="cs-section" id="overview">
+  <div class="cs-inner">
+    <div class="two-col">
+      <div>
+        <span class="section-num">01</span>
+        <span class="section-kicker">Project Overview</span>
+        <h2 class="cs-h2">ONE PLATFORM.<br/>ALL OPERATIONS.</h2>
+        <p class="cs-body">RaraSpace is a comprehensive Employee Management System built to streamline and unify all of Rara Digital Lab's internal business operations — from employee and task management to payroll, leave tracking, project costing, and inventory.</p>
+        <p class="cs-body" style="margin-top:16px">The existing systems were fragmented, causing communication gaps, inefficiencies in tracking progress, and difficulty managing resources across a fast-growing team of 12+. The product needed a single source of truth.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:24px">
+          <span style="font-size:11px;color:var(--gray2);border:1px solid var(--border);padding:4px 12px;border-radius:2px">Web Application</span>
+          <span style="font-size:11px;color:var(--gray2);border:1px solid var(--border);padding:4px 12px;border-radius:2px">PWA</span>
+          <span style="font-size:11px;color:var(--gray2);border:1px solid var(--border);padding:4px 12px;border-radius:2px">Enterprise</span>
+          <span style="font-size:11px;color:var(--gray2);border:1px solid var(--border);padding:4px 12px;border-radius:2px">Internal Tool</span>
+        </div>
+      </div>
+      <div>
+        <span class="section-num">&nbsp;</span>
+        <span class="section-kicker">The Problem</span>
+        <h2 class="cs-h2">FRAGMENTED.<br/>INEFFICIENT.<br/>FRUSTRATING.</h2>
+        <p class="cs-body">The company faced challenges managing employee activity, task tracking, document handling, and project management — all across disparate, disconnected tools. Teams lost time, made errors, and had no unified view of what was happening across the organisation.</p>
+        <div class="highlight-box">
+          <p><strong>Core challenge:</strong> Build a user-friendly, all-in-one EMS that reduces operational friction for a cross-functional team — without overwhelming users with feature complexity.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     02 — RESEARCH & DISCOVERY
+     ============================================================ -->
+<section class="cs-section dark" id="research">
+  <div class="cs-inner">
+    <span class="section-num">1.0</span>
+    <span class="section-kicker">Research &amp; Discovery</span>
+    <h2 class="cs-h2">UNDERSTANDING<br/>THE PROBLEM SPACE</h2>
+    <p class="cs-body">Before designing anything, I needed to understand how the team actually worked — what broke down, where they lost time, and what they needed most. I used three research methods in parallel.</p>
+
+    <div class="research-grid" role="list">
+      <div class="research-card" role="listitem">
+        <div class="research-icon" aria-hidden="true">📋</div>
+        <h4>Google Surveys</h4>
+        <p>Distributed surveys to colleagues to identify pain points in existing systems. Key findings: navigation confusion, empty state errors, and notification overload.</p>
+      </div>
+      <div class="research-card" role="listitem">
+        <div class="research-icon" aria-hidden="true">🔍</div>
+        <h4>Competition Analysis</h4>
+        <p>Analysed existing EMS tools (Jira, Asana, BambooHR). Found a clear gap: no solution covered the full operational scope — most focused on just one area like tasks or HR.</p>
+      </div>
+      <div class="research-card" role="listitem">
+        <div class="research-icon" aria-hidden="true">🎯</div>
+        <h4>Stakeholder Alignment</h4>
+        <p>Worked with the product owner to define the solution scope: a unified platform covering 10+ business functions, prioritised by team impact and development feasibility.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:64px">
+      <div class="two-col-wide">
+        <div class="cs-label-col">
+          <h3 class="cs-h3">Targeted Solution &amp; Goal</h3>
+        </div>
+        <div>
+          <p class="cs-body">The goal was to develop a robust EMS that integrates seamlessly across all business aspects — <strong>employee management, task tracking, meeting booking, document management, project management, payroll logs, WFH policy tracking, activity logs, room management, notifications, project costing &amp; analysis, and inventory management</strong> — all within a single, user-friendly interface.</p>
+          <p class="cs-body" style="margin-top:16px">The software aimed to provide a one-stop solution for managing diverse business functions efficiently, eliminating the need to switch between disconnected tools.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     03 — PAIN POINT ANALYSIS
+     ============================================================ -->
+<section class="cs-section" id="painpoints">
+  <div class="cs-inner">
+    <span class="section-num">2.0</span>
+    <span class="section-kicker">Design Phase</span>
+    <h2 class="cs-h2">PAIN POINT<br/>ANALYSIS</h2>
+    <p class="cs-body">Survey results and direct observation revealed four primary pain points. For each, I mapped a concrete design solution.</p>
+
+    <div class="pain-grid" role="list">
+      <div class="pain-item" role="listitem">
+        <div class="pain-top">
+          <div class="pain-num" aria-hidden="true">1</div>
+          <h4>Complex User Interface</h4>
+        </div>
+        <div class="arrow-down" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+        <div class="pain-solution">
+          <span class="sol-label">Solution</span>
+          <p>Implemented <strong>clear labels and intuitive icons</strong> throughout. Simplified navigation hierarchy and reduced visual noise.</p>
+        </div>
+      </div>
+      <div class="pain-item" role="listitem">
+        <div class="pain-top">
+          <div class="pain-num" aria-hidden="true">2</div>
+          <h4>Lack of Guidance in Empty States</h4>
+        </div>
+        <div class="arrow-down" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+        <div class="pain-solution">
+          <span class="sol-label">Solution</span>
+          <p>Updated all empty states with <strong>contextual messages, tooltips, and onboarding pop-ups</strong> to guide users through first actions.</p>
+        </div>
+      </div>
+      <div class="pain-item" role="listitem">
+        <div class="pain-top">
+          <div class="pain-num" aria-hidden="true">3</div>
+          <h4>Navigation Issues</h4>
+        </div>
+        <div class="arrow-down" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+        <div class="pain-solution">
+          <span class="sol-label">Solution</span>
+          <p>Updated to clear and intuitive <strong>Breadcrumb navigation</strong> across all pages, giving users persistent context of where they are.</p>
+        </div>
+      </div>
+      <div class="pain-item" role="listitem">
+        <div class="pain-top">
+          <div class="pain-num" aria-hidden="true">4</div>
+          <h4>Ineffective Notification Mechanism</h4>
+        </div>
+        <div class="arrow-down" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+        <div class="pain-solution">
+          <span class="sol-label">Solution</span>
+          <p>Implemented tiered <strong>in-app alerts, email notifications, and push notifications</strong> with priority levels and user-controlled preferences.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     04 — WIREFRAMES
+     ============================================================ -->
+<section class="cs-section dark" id="wireframes">
+  <div class="cs-inner">
+    <span class="section-num">2.1</span>
+    <span class="section-kicker">Wireframe &amp; Prototyping</span>
+    <h2 class="cs-h2">FROM SKETCHES<br/>TO SYSTEMS</h2>
+    <p class="cs-body">I began with rough paper sketches to move fast and validate structure before committing to high-fidelity. Once the flows were confirmed, I moved into Figma to build the full prototype.</p>
+
+    <div class="wireframe-note">
+      <div class="wi" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      </div>
+      <p>Paper sketches covered 8+ screens including Dashboard, Employee list, Projects, Tasks, Leave management, Leave application, Leave history, and Leave response flows. Each sketch was reviewed with the dev team before moving to Figma.</p>
+    </div>
+
+    <!-- Wireframe cards representing the 8 screen sketches -->
+    <div class="wireframe-grid">
+      <div class="wf-card" style="--i:0">
+        <div class="wf-card-inner">
+          <div class="wf-row accent wide"></div>
+          <div class="wf-row mid"></div>
+          <div class="wf-box"></div>
+          <div class="wf-row short"></div>
+        </div>
+        <div class="wf-label">Dashboard</div>
+      </div>
+      <div class="wf-card" style="--i:1">
+        <div class="wf-card-inner">
+          <div class="wf-row wide"></div>
+          <div class="wf-row accent mid"></div>
+          <div class="wf-box"></div>
+          <div class="wf-row short"></div>
+        </div>
+        <div class="wf-label">Employee List</div>
+      </div>
+      <div class="wf-card" style="--i:2">
+        <div class="wf-card-inner">
+          <div class="wf-row accent wide"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;flex:1">
+            <div class="wf-box"></div><div class="wf-box"></div>
+          </div>
+        </div>
+        <div class="wf-label">Projects</div>
+      </div>
+      <div class="wf-card" style="--i:3">
+        <div class="wf-card-inner">
+          <div class="wf-row wide"></div>
+          <div class="wf-box"></div>
+          <div class="wf-row accent short"></div>
+        </div>
+        <div class="wf-label">Task Detail</div>
+      </div>
+      <div class="wf-card" style="--i:4">
+        <div class="wf-card-inner">
+          <div class="wf-row mid"></div>
+          <div class="wf-row accent wide"></div>
+          <div class="wf-box"></div>
+        </div>
+        <div class="wf-label">Leave Status</div>
+      </div>
+      <div class="wf-card" style="--i:5">
+        <div class="wf-card-inner">
+          <div class="wf-row accent wide"></div>
+          <div class="wf-row wide"></div>
+          <div class="wf-box"></div>
+          <div class="wf-row short"></div>
+        </div>
+        <div class="wf-label">Apply Leave</div>
+      </div>
+      <div class="wf-card" style="--i:6">
+        <div class="wf-card-inner">
+          <div class="wf-row wide"></div>
+          <div class="wf-row accent mid"></div>
+          <div class="wf-box"></div>
+        </div>
+        <div class="wf-label">Leave History</div>
+      </div>
+      <div class="wf-card" style="--i:7">
+        <div class="wf-card-inner">
+          <div class="wf-row accent wide"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;flex:1">
+            <div class="wf-box"></div><div class="wf-box"></div>
+          </div>
+        </div>
+        <div class="wf-label">Leave Response</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     05 — KEY DESIGN DECISIONS
+     ============================================================ -->
+<section class="cs-section" id="decisions">
+  <div class="cs-inner">
+    <span class="section-num">2.2</span>
+    <span class="section-kicker">Key Design Decisions</span>
+    <h2 class="cs-h2">BEFORE &amp;<br/>AFTER</h2>
+    <p class="cs-body">Each design decision was driven by a specific user pain point uncovered in research. Here are the most impactful changes made during the design phase.</p>
+
+    <div class="decision-list" role="list">
+      <div class="decision-item" role="listitem">
+        <div class="decision-before">
+          <span class="dec-label">Before</span>
+          <h4>Icon-only navigation</h4>
+          <p>Sidebar used ambiguous icons with no labels, causing users to memorise locations rather than recognise them intuitively.</p>
+        </div>
+        <div class="decision-arrow" aria-hidden="true">→</div>
+        <div class="decision-after">
+          <span class="dec-label after">After</span>
+          <h4>Labelled icon navigation + active state</h4>
+          <p>Added clear text labels to every nav item. Active page highlighted with orange accent. Reduced navigation errors immediately in testing.</p>
+        </div>
+      </div>
+      <div class="decision-item" role="listitem">
+        <div class="decision-before">
+          <span class="dec-label">Before</span>
+          <h4>Blank empty states</h4>
+          <p>When users landed on a section with no data, they saw a blank white area with no instructions — leaving them stranded.</p>
+        </div>
+        <div class="decision-arrow" aria-hidden="true">→</div>
+        <div class="decision-after">
+          <span class="dec-label after">After</span>
+          <h4>Guided empty states with CTAs</h4>
+          <p>Each empty state now includes an illustration, a friendly message, and a clear action button — turning confusion into momentum.</p>
+        </div>
+      </div>
+      <div class="decision-item" role="listitem">
+        <div class="decision-before">
+          <span class="dec-label">Before</span>
+          <h4>No breadcrumb trail</h4>
+          <p>Users inside nested pages (e.g., Project → Sprint → Task) had no clear sense of where they were or how to navigate back.</p>
+        </div>
+        <div class="decision-arrow" aria-hidden="true">→</div>
+        <div class="decision-after">
+          <span class="dec-label after">After</span>
+          <h4>Persistent breadcrumb navigation</h4>
+          <p>Every nested view now shows a full breadcrumb trail (e.g. Beta ERP → Sprint X → Beta_125), giving users constant orientation.</p>
+        </div>
+      </div>
+      <div class="decision-item" role="listitem">
+        <div class="decision-before">
+          <span class="dec-label">Before</span>
+          <h4>Single notification channel</h4>
+          <p>All notifications fired the same way regardless of urgency — causing alert fatigue and missed critical updates.</p>
+        </div>
+        <div class="decision-arrow" aria-hidden="true">→</div>
+        <div class="decision-after">
+          <span class="dec-label after">After</span>
+          <h4>Tiered notification system</h4>
+          <p>Notifications segmented into in-app alerts, email digests, and push notifications — each with configurable user preferences and priority levels.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     06 — FINAL DESIGN
+     ============================================================ -->
+<section class="cs-section dark" id="final">
+  <div class="cs-inner">
+    <span class="section-num">3.0</span>
+    <span class="section-kicker">Validating · Final Design</span>
+    <h2 class="cs-h2">THE FINAL<br/>ITERATION</h2>
+    <p class="cs-body">Multiple rounds of usability testing with colleagues refined the design. Continuous iterative testing ensured the final product resonated with real end-users before handoff.</p>
+
+    <div class="showcase-grid" role="list">
+
+      <div class="showcase-card" role="listitem">
+        <div class="showcase-card-visual" style="background:linear-gradient(135deg,#111,#1a1a1a)">
+          <div class="task-mock">
+            <div class="task-mock-header">Beta ERP › Sprint X › Beta_125</div>
+            <div class="task-mock-title">Implement Purchase Order module in the ERP software</div>
+            <div class="task-mock-row"><span class="task-mock-key">Assignee</span><span class="task-mock-val">Alex Beck</span></div>
+            <div class="task-mock-row"><span class="task-mock-key">Status</span><span class="task-mock-badge badge-started">Started</span></div>
+            <div class="task-mock-row"><span class="task-mock-key">Priority</span><span class="task-mock-badge badge-urgent">Urgent</span></div>
+            <div class="task-mock-row"><span class="task-mock-key">Due Date</span><span class="task-mock-val">2022-07-01</span></div>
+            <div class="task-mock-row"><span class="task-mock-key">Estimation</span><span class="task-mock-val">5h 30m</span></div>
+            <div class="task-mock-row"><span class="task-mock-key">Total Log</span><span class="task-mock-val">2h</span></div>
+          </div>
+        </div>
+        <div class="showcase-card-info">
+          <h4>Task Detail View — Desktop</h4>
+          <p>Full task detail with breadcrumb navigation, status badges, assignee, priority, and time logging — all in one clear, dense layout.</p>
+        </div>
+      </div>
+
+      <div class="showcase-card" role="listitem">
+        <div class="showcase-card-visual" style="background:linear-gradient(135deg,#0d1512,#111)">
+          <div class="mobile-mock-wrap">
+            <div class="mobile-mock">
+              <div class="mobile-notch"><div class="mobile-notch-pill"></div></div>
+              <div class="mobile-body">
+                <div style="display:flex;gap:4px;margin-bottom:8px">
+                  <div style="width:18px;height:18px;border-radius:3px;background:rgba(232,82,26,.3)"></div>
+                  <div style="flex:1;height:18px;background:rgba(255,255,255,.04);border-radius:3px"></div>
+                </div>
+                <div class="mobile-row accent"></div>
+                <div class="mobile-row"></div>
+                <div class="mobile-row short"></div>
+                <div style="background:rgba(34,197,94,.15);border-radius:3px;padding:4px 6px;margin:6px 0;font-size:7px;color:#22c55e">Started</div>
+                <div class="mobile-grid">
+                  <div class="mobile-cell"></div><div class="mobile-cell" style="background:rgba(232,82,26,.1)"></div>
+                  <div class="mobile-cell" style="background:rgba(232,82,26,.1)"></div><div class="mobile-cell"></div>
+                </div>
+              </div>
+            </div>
+            <div class="mobile-mock" style="height:80%;opacity:.5">
+              <div class="mobile-notch"><div class="mobile-notch-pill"></div></div>
+              <div class="mobile-body">
+                <div class="mobile-row accent"></div>
+                <div class="mobile-row"></div>
+                <div class="mobile-row short"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-card-info">
+          <h4>Task Detail View — Mobile (PWA)</h4>
+          <p>The same task view, optimised for mobile as a PWA — full feature parity with the desktop, with touch-friendly tap targets and condensed layout.</p>
+        </div>
+      </div>
+
+      <div class="showcase-card" role="listitem">
+        <div class="showcase-card-visual" style="background:linear-gradient(135deg,#0a1a17,#111)">
+          <div style="width:85%;background:var(--bg);border:1px solid rgba(255,255,255,.1);border-radius:8px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.4)">
+            <div style="height:28px;background:#1a1a1a;display:flex;align-items:center;padding:0 12px;gap:6px;border-bottom:1px solid rgba(255,255,255,.06)">
+              <div style="width:8px;height:8px;border-radius:50%;background:#ff5f57"></div>
+              <div style="width:8px;height:8px;border-radius:50%;background:#febc2e"></div>
+              <div style="width:8px;height:8px;border-radius:50%;background:#28c840"></div>
+              <span style="font-size:9px;color:rgba(255,255,255,.2);margin-left:auto">Leave Management</span>
+            </div>
+            <div style="padding:14px">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+                <div style="background:#1a1a1a;border-radius:4px;padding:10px;border:1px solid rgba(255,255,255,.06)">
+                  <div style="font-size:8px;color:var(--orange);margin-bottom:4px">EMPLOYEES ON LEAVE</div>
+                  <div style="display:flex;gap:4px;margin-bottom:4px"><div style="width:16px;height:16px;border-radius:50%;background:#7c5c3c"></div><div style="font-size:7px;color:rgba(255,255,255,.4);margin-top:4px">Nisha S.</div></div>
+                  <div style="display:flex;gap:4px"><div style="width:16px;height:16px;border-radius:50%;background:#4a6080"></div><div style="font-size:7px;color:rgba(255,255,255,.4);margin-top:4px">Bibek M.</div></div>
+                </div>
+                <div style="background:#1a1a1a;border-radius:4px;padding:10px;border:1px solid rgba(255,255,255,.06)">
+                  <div style="font-size:8px;color:var(--orange);margin-bottom:4px">LEAVE BY TYPE</div>
+                  <div style="font-size:7px;color:rgba(255,255,255,.3);margin-bottom:3px">Paid · Unpaid</div>
+                  <div style="height:4px;background:rgba(255,255,255,.1);border-radius:2px;margin-bottom:3px"><div style="height:100%;width:60%;background:var(--orange);border-radius:2px"></div></div>
+                  <div style="font-size:7px;color:rgba(255,255,255,.3)">Sick · Holiday</div>
+                  <div style="height:4px;background:rgba(255,255,255,.1);border-radius:2px;margin-top:3px"><div style="height:100%;width:35%;background:#0d6b5e;border-radius:2px"></div></div>
+                </div>
+              </div>
+              <div style="background:#1a1a1a;border-radius:4px;padding:10px;border:1px solid rgba(255,255,255,.06)">
+                <div style="font-size:8px;color:rgba(255,255,255,.3);margin-bottom:6px">RECENT APPLICATIONS</div>
+                <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.04)"><span style="font-size:7px;color:rgba(255,255,255,.4)">Nisha · Sick Leave</span><span style="font-size:7px;background:rgba(34,197,94,.2);color:#22c55e;padding:1px 5px;border-radius:2px">Approved</span></div>
+                <div style="display:flex;justify-content:space-between;padding:3px 0"><span style="font-size:7px;color:rgba(255,255,255,.4)">Ram · Annual Leave</span><span style="font-size:7px;background:rgba(239,68,68,.2);color:#ef4444;padding:1px 5px;border-radius:2px">Pending</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-card-info">
+          <h4>Leave Management Dashboard</h4>
+          <p>Unified leave overview showing employees on leave, leave type breakdown, and application statuses — replacing a manual spreadsheet process.</p>
+        </div>
+      </div>
+
+      <div class="showcase-card" role="listitem">
+        <div class="showcase-card-visual" style="background:linear-gradient(135deg,#111,#161616)">
+          <div style="width:85%;background:var(--bg);border:1px solid rgba(255,255,255,.1);border-radius:8px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.4)">
+            <div style="height:28px;background:#1a1a1a;display:flex;align-items:center;padding:0 12px;gap:6px;border-bottom:1px solid rgba(255,255,255,.06)">
+              <div style="width:8px;height:8px;border-radius:50%;background:#ff5f57"></div>
+              <div style="width:8px;height:8px;border-radius:50%;background:#febc2e"></div>
+              <div style="width:8px;height:8px;border-radius:50%;background:#28c840"></div>
+              <span style="font-size:9px;color:rgba(255,255,255,.2);margin-left:auto">Member Profile</span>
+            </div>
+            <div style="display:flex;min-height:120px">
+              <div style="width:40%;background:#141414;padding:12px;border-right:1px solid rgba(255,255,255,.06)">
+                <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#7c5c3c,#4a6080);margin:0 auto 8px"></div>
+                <div style="height:7px;background:rgba(255,255,255,.15);border-radius:3px;width:80%;margin:0 auto 4px"></div>
+                <div style="height:6px;background:rgba(255,255,255,.07);border-radius:3px;width:55%;margin:0 auto"></div>
+                <div style="margin-top:10px;display:flex;flex-direction:column;gap:4px">
+                  <div style="height:5px;background:rgba(255,255,255,.08);border-radius:2px"></div>
+                  <div style="height:5px;background:rgba(255,255,255,.08);border-radius:2px;width:70%"></div>
+                  <div style="height:5px;background:rgba(255,255,255,.08);border-radius:2px;width:55%"></div>
+                </div>
+              </div>
+              <div style="flex:1;padding:12px">
+                <div style="font-size:8px;color:var(--orange);margin-bottom:8px;letter-spacing:1px">EMPLOYEE DETAILS</div>
+                <div style="display:flex;flex-direction:column;gap:5px">
+                  <div style="display:flex;justify-content:space-between"><span style="font-size:7px;color:rgba(255,255,255,.3)">Department</span><span style="font-size:7px;color:rgba(255,255,255,.6)">Design</span></div>
+                  <div style="display:flex;justify-content:space-between"><span style="font-size:7px;color:rgba(255,255,255,.3)">Status</span><span style="font-size:7px;background:rgba(34,197,94,.2);color:#22c55e;padding:1px 5px;border-radius:2px">Active</span></div>
+                  <div style="display:flex;justify-content:space-between"><span style="font-size:7px;color:rgba(255,255,255,.3)">WFH</span><span style="font-size:7px;color:rgba(255,255,255,.6)">Office</span></div>
+                  <div style="display:flex;justify-content:space-between"><span style="font-size:7px;color:rgba(255,255,255,.3)">Tasks Done</span><span style="font-size:7px;color:var(--orange)">19 this week</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-card-info">
+          <h4>Employee Profile &amp; WFH Tracker</h4>
+          <p>Individual employee cards showing role, department, WFH/office status, and weekly task completion — giving managers a live overview of their team.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     07 — USABILITY TESTING
+     ============================================================ -->
+<section class="cs-section" id="testing">
+  <div class="cs-inner">
+    <span class="section-num">3.1</span>
+    <span class="section-kicker">Usability Testing</span>
+
+    <div class="two-col-wide">
+      <div class="cs-label-col">
+        <h2 class="cs-h2">TESTING<br/>WITH REAL<br/>USERS</h2>
+      </div>
+      <div>
+        <p class="cs-body">Multiple rounds of user testing were conducted to validate the design changes. This involved collecting feedback from colleagues and refining the UI/UX based on their insights. Continuous testing allowed for iterative improvements and ensured the final design resonated well with end-users.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:32px">
+          <div class="highlight-box">
+            <p><strong>Round 1:</strong> Paper prototype walkthroughs with 4 colleagues. Identified navigation confusion and empty state issues — both added to the pain point backlog.</p>
+          </div>
+          <div class="highlight-box">
+            <p><strong>Round 2:</strong> Figma prototype testing with 6 users. Validated breadcrumb navigation improvement. Discovered notification preferences needed more granular control.</p>
+          </div>
+          <div class="highlight-box">
+            <p><strong>Round 3:</strong> Live build testing before launch. Final iteration confirmed improved task discoverability and a significant reduction in navigation errors.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     08 — OUTCOMES
+     ============================================================ -->
+<section class="cs-section darker" id="outcomes">
+  <div class="cs-inner">
+    <span class="section-num">04</span>
+    <span class="section-kicker">Outcomes &amp; Impact</span>
+    <h2 class="cs-h2">THE RESULTS</h2>
+    <p class="cs-body">Measured outcomes from the RaraSpace EMS launch — tracked through team feedback, analytics, and stakeholder review.</p>
+
+    <div class="metrics-grid" role="list">
+      <div class="metric-item" role="listitem">
+        <span class="metric-num">100<span>%</span></span>
+        <span class="metric-label">Operational efficiency improvement</span>
+      </div>
+      <div class="metric-item" role="listitem">
+        <span class="metric-num">10<span>+</span></span>
+        <span class="metric-label">Business functions unified</span>
+      </div>
+      <div class="metric-item" role="listitem">
+        <span class="metric-num">9<span>mo</span></span>
+        <span class="metric-label">Design timeline (team of 12)</span>
+      </div>
+      <div class="metric-item" role="listitem">
+        <span class="metric-num">3<span>×</span></span>
+        <span class="metric-label">Rounds of usability testing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     09 — REFLECTION
+     ============================================================ -->
+<section class="cs-section dark" id="reflection">
+  <div class="cs-inner">
+    <span class="section-num">05</span>
+    <span class="section-kicker">Reflection</span>
+    <h2 class="cs-h2">WHAT I LEARNED</h2>
+
+    <div class="reflection-grid" role="list">
+      <div class="reflection-card" role="listitem">
+        <h4>Cross-functional collaboration</h4>
+        <p>The handoff process included working with stakeholders, development teams, and key participants. I expanded my experience collaborating with cross-functional members and learned which design decisions are technically feasible and which require early engineering alignment.</p>
+      </div>
+      <div class="reflection-card" role="listitem">
+        <h4>Impact on user experience</h4>
+        <p>The design decisions made had a measurable positive impact on the overall user experience. Analysing user interactions and feedback post-implementation validated the effectiveness of the design in creating a genuinely user-friendly interface.</p>
+      </div>
+      <div class="reflection-card" role="listitem">
+        <h4>Designing for cognitive load</h4>
+        <p>With 10+ modules in a single platform, the biggest challenge wasn't adding features — it was knowing what to hide. Progressive disclosure and clear information hierarchy became the most critical design tools throughout the project.</p>
+      </div>
+      <div class="reflection-card" role="listitem">
+        <h4>The value of early paper sketching</h4>
+        <p>Starting with rough paper wireframes — even for a complex enterprise product — allowed me to move faster in the early stages and get team alignment before investing time in Figma. A habit I carry into every project now.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT PROJECT -->
+<div class="next-project">
+  <div class="next-inner">
+    <div>
+      <span class="next-label">Next Case Study</span>
+      <h2 class="next-title">LOKSEWA PRO<br/>EXAM APP</h2>
+      <p style="font-size:14px;color:var(--gray);margin-top:10px;font-weight:300">EdTech · Mobile · 10,000+ Downloads · 4.4★</p>
+    </div>
+    <a href="loksewa.html" class="next-cta">
+      View Case Study
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section" aria-labelledby="cta-title">
+  <h2 id="cta-title">LIKE WHAT<br/>YOU SEE?</h2>
+  <p>Let's talk about what we can build together.</p>
+  <div class="cta-buttons">
+    <a href="mailto:dikshya@email.com" class="btn-primary" onclick="showToast(event)">Get In Touch</a>
+    <a href="projects.html" class="btn-outline">View All Work</a>
+  </div>
+</section>
+</main>
+
+<footer role="contentinfo">
+  <a class="footer-logo" href="index.html">DIKSHYA</a>
+  <p>© 2026 · UI/UX Designer · Kathmandu, Nepal</p>
+  <a href="projects.html" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
+</footer>
+
+<script>
+// CURSOR
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
+(function anim(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim)})();
+
+// SCROLL PROGRESS BAR
+window.addEventListener('scroll',()=>{
+  const pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+  document.getElementById('progress').style.width=pct+'%';
+},{passive:true});
+
+// SCROLL REVEAL
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed')}})
+},{threshold:.07});
+document.querySelectorAll('.process-step,.pain-item,.research-card,.wf-card,.decision-item,.showcase-card,.metric-item,.reflection-card').forEach(el=>obs.observe(el));
+
+// HAMBURGER
+const hamburger=document.getElementById('hamburger'),drawer=document.getElementById('navDrawer');
+hamburger.addEventListener('click',()=>{
+  const open=drawer.classList.toggle('open');hamburger.setAttribute('aria-expanded',open);
+  const spans=hamburger.querySelectorAll('span');
+  if(open){spans[0].style.transform='translateY(6.5px) rotate(45deg)';spans[1].style.opacity='0';spans[2].style.transform='translateY(-6.5px) rotate(-45deg)'}
+  else{spans.forEach(s=>{s.style.transform='';s.style.opacity=''})}
+});
+function closeDrawer(){drawer.classList.remove('open');hamburger.setAttribute('aria-expanded','false');hamburger.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity=''})}
+
+// TOAST
+function showToast(e){e.preventDefault();navigator.clipboard.writeText('dikshya@email.com').catch(()=>{});const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
+</script>
+</body>
+</html>

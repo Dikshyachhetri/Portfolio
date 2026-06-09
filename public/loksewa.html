@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Loksewa Pro — Case Study · Dikshya</title>
+<meta name="description" content="Case study: Loksewa Pro — Nepal Public Service Commission exam prep mobile app. 10K+ downloads, 4.4 stars. UI/UX by Dikshya."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0e0e0e; --bg2:#161616; --bg3:#1e1e1e; --bg4:#222;
+  --orange:#e8521a; --orange2:#ff6b35;
+  --amber:#f59e0b; --amber2:#fbbf24;
+  --white:#f0ece4; --gray:#999; --gray2:#555; --gray3:#333;
+  --success:#22c55e; --border:rgba(255,255,255,.08); --border2:rgba(255,255,255,.14);
+  --ease:cubic-bezier(.16,1,.3,1); --dur-fast:180ms; --dur-mid:320ms; --dur-slow:700ms;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);line-height:1.6;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
+.skip-link{position:fixed;top:-100px;left:16px;z-index:10000;background:var(--orange);color:#fff;padding:10px 18px;border-radius:2px;font-size:11px;text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:top .2s}
+.skip-link:focus{top:16px}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:2px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+#cursor{position:fixed;width:10px;height:10px;background:var(--orange);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease)}
+#cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(232,82,26,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease),opacity .3s}
+body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:18px;height:18px}
+body:has(a:hover) #cursor-ring{width:48px;height:48px;opacity:.35}
+#progress{position:fixed;top:60px;left:0;height:2px;background:var(--amber);z-index:99;width:0%;transition:width .1s linear}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:60px;border-bottom:1px solid var(--border);background:rgba(14,14,14,.9);backdrop-filter:blur(18px)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:10px}
+.nav-logo-dot{width:9px;height:9px;background:var(--orange);border-radius:50%;animation:navpulse 3s ease-in-out infinite}
+@keyframes navpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+.nav-links a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color var(--dur-fast);position:relative;padding-bottom:3px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--orange);transition:width var(--dur-mid) var(--ease)}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);border:1px solid var(--orange);padding:8px 20px;border-radius:2px;text-decoration:none;transition:background var(--dur-fast),color var(--dur-fast)}
+.nav-cta:hover{background:var(--orange);color:#fff}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:8px}
+.nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:transform var(--dur-mid) var(--ease),opacity var(--dur-fast)}
+.nav-drawer{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(14,14,14,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:48px;flex-direction:column;gap:24px;z-index:99}
+.nav-drawer a{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:3px;color:var(--gray);text-decoration:none;transition:color var(--dur-fast)}
+.nav-drawer a:hover{color:var(--orange)}
+.nav-drawer.open{display:flex}
+
+/* HERO */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.cs-hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:80px 48px 80px;position:relative;overflow:hidden}
+.cs-hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0d0d0d 0%,#12100a 50%,#0e0e0e 100%);z-index:0}
+.cs-hero-grid{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black,transparent)}
+.cs-hero-glow{position:absolute;bottom:-80px;right:-80px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,.06) 0%,transparent 65%);pointer-events:none;animation:glow 9s ease-in-out infinite alternate;z-index:0}
+@keyframes glow{from{transform:scale(1)}to{transform:scale(1.3) translate(-30px,20px)}}
+.cs-hero-content{position:relative;z-index:1;max-width:1200px;margin:0 auto;width:100%}
+.cs-breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:32px;opacity:0;animation:fadeUp .6s var(--ease) forwards 100ms}
+.cs-breadcrumb a,.cs-breadcrumb span{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);text-decoration:none;transition:color var(--dur-fast)}
+.cs-breadcrumb a:hover{color:var(--orange)}
+.cs-breadcrumb .sep{color:var(--gray3)}
+.cs-hero-meta{display:flex;align-items:center;gap:12px;margin-bottom:24px;opacity:0;animation:fadeUp .6s var(--ease) forwards 200ms;flex-wrap:wrap}
+.cs-chip{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:2px}
+.cs-chip.amber{background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.4);color:var(--amber2)}
+.cs-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,9vw,130px);letter-spacing:2px;line-height:.92;color:var(--white);margin-bottom:28px;opacity:0;animation:fadeUp .8s var(--ease) forwards 300ms}
+.cs-hero h1 em{font-style:normal;color:var(--amber)}
+.cs-hero-tagline{font-size:18px;color:rgba(240,236,228,.6);font-weight:300;max-width:560px;line-height:1.75;margin-bottom:48px;opacity:0;animation:fadeUp .6s var(--ease) forwards 450ms}
+.cs-quick-stats{display:flex;gap:0;border:1px solid var(--border);width:fit-content;flex-wrap:wrap;opacity:0;animation:fadeUp .6s var(--ease) forwards 550ms}
+.cs-stat{padding:16px 32px;border-right:1px solid var(--border)}
+.cs-stat:last-child{border-right:none}
+.cs-stat-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);display:block;margin-bottom:4px}
+.cs-stat-val{font-size:15px;color:var(--white);font-weight:400}
+.cs-scroll-cue{position:absolute;bottom:32px;right:48px;z-index:1;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp .6s var(--ease) forwards 700ms}
+.cs-scroll-cue span{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2)}
+.cs-scroll-btn{width:34px;height:34px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gray2);animation:bob 2.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+/* PLAY STORE BADGE — proof bar */
+.proof-bar{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 48px}
+.proof-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:48px;flex-wrap:wrap}
+.proof-item{display:flex;align-items:center;gap:12px}
+.proof-icon{font-size:20px}
+.proof-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);display:block;margin-bottom:2px}
+.proof-val{font-size:15px;color:var(--white);font-weight:400}
+.proof-val.amber{color:var(--amber2)}
+.proof-divider{width:1px;height:32px;background:var(--border)}
+
+/* HERO PHONE MOCKUP */
+.cs-hero-image{background:var(--bg2);border-bottom:1px solid var(--border);padding:64px 48px;display:flex;align-items:center;justify-content:center;gap:24px;position:relative;overflow:hidden;min-height:480px}
+.cs-hero-image::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 70% at 50% 50%,rgba(245,158,11,.05) 0%,transparent 70%)}
+/* Phone frames */
+.phone-wrap{position:relative;z-index:1;transition:transform .6s var(--ease)}
+.phone-wrap:hover{transform:translateY(-10px)}
+.phone-wrap.secondary{transform:scale(.88) translateY(20px)}
+.phone-wrap.secondary:hover{transform:scale(.88) translateY(10px)}
+.phone-frame{width:200px;background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.08)}
+.phone-notch{height:24px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #eee}
+.phone-notch-pill{width:56px;height:5px;background:#ddd;border-radius:3px}
+.phone-status{display:flex;justify-content:space-between;padding:4px 14px;font-size:8px;color:#999;background:#fff}
+
+/* App screens — Home screen */
+.app-home{background:#fff;padding:0}
+.app-topbar{padding:10px 14px 0;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.app-logo-text{font-size:14px;font-weight:700;color:#1a1a1a}
+.app-logo-text span{color:#f59e0b}
+.app-notif{width:22px;height:22px;background:#f3f4f6;border-radius:50%;display:flex;align-items:center;justify-content:center}
+/* Hero banner */
+.app-banner{margin:0 12px 10px;background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:12px;padding:14px;position:relative;overflow:hidden}
+.app-banner::after{content:'?';position:absolute;right:-4px;top:-8px;font-size:52px;color:rgba(245,158,11,.2);font-weight:900}
+.app-banner-label{font-size:9px;color:#f59e0b;font-weight:600;letter-spacing:1px;margin-bottom:4px}
+.app-banner-title{font-size:13px;color:#fff;font-weight:700;line-height:1.3;margin-bottom:8px}
+.app-banner-start{background:#f59e0b;color:#fff;font-size:9px;padding:4px 10px;border-radius:6px;display:inline-block;font-weight:600}
+/* Quick access */
+.app-section-title{font-size:10px;color:#1a1a1a;font-weight:600;padding:0 14px;margin-bottom:8px;display:flex;justify-content:space-between}
+.app-section-title span{color:#999;font-weight:400}
+.app-quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:0 12px;margin-bottom:10px}
+.app-quick-item{background:#f9fafb;border-radius:8px;padding:7px 4px;text-align:center;border:1px solid #f3f4f6}
+.app-quick-icon{font-size:14px;margin-bottom:3px}
+.app-quick-label{font-size:7px;color:#6b7280}
+/* Practice set cards */
+.app-practice-list{padding:0 12px}
+.app-practice-card{background:#f9fafb;border-radius:8px;padding:10px 12px;margin-bottom:6px;border:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between}
+.app-practice-info{}
+.app-practice-name{font-size:10px;color:#1a1a1a;font-weight:500;margin-bottom:2px}
+.app-practice-meta{font-size:8px;color:#9ca3af}
+.app-practice-btn{font-size:8px;background:#1a1a2e;color:#fff;padding:4px 8px;border-radius:5px;white-space:nowrap}
+
+/* Quiz screen */
+.app-quiz{background:#1a1a2e;padding:0}
+.quiz-header{padding:12px 14px;display:flex;align-items:center;justify-content:space-between}
+.quiz-back{font-size:10px;color:#f59e0b;display:flex;align-items:center;gap:4px}
+.quiz-title{font-size:11px;color:#fff;font-weight:600}
+.quiz-num{font-size:9px;color:#9ca3af}
+.quiz-progress-bar{height:3px;background:rgba(255,255,255,.1);margin:0 14px 12px}
+.quiz-progress-fill{height:100%;width:45%;background:#f59e0b;border-radius:2px}
+.quiz-question{padding:0 14px;margin-bottom:12px}
+.quiz-q-label{font-size:9px;color:#f59e0b;letter-spacing:1px;margin-bottom:6px}
+.quiz-q-text{font-size:11px;color:#fff;line-height:1.5;font-weight:400}
+.quiz-options{padding:0 14px;display:flex;flex-direction:column;gap:5px}
+.quiz-option{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:8px 10px;font-size:9px;color:#e0e0e0;display:flex;align-items:center;gap:8px}
+.quiz-option.correct{background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.4);color:#4ade80}
+.quiz-option.selected{background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.4);color:#fbbf24}
+.quiz-opt-num{width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:7px;flex-shrink:0}
+.quiz-footer{padding:10px 14px;display:flex;justify-content:space-between;margin-top:8px}
+.quiz-btn{font-size:9px;padding:7px 14px;border-radius:6px}
+.quiz-btn.primary{background:#f59e0b;color:#fff}
+.quiz-btn.ghost{background:rgba(255,255,255,.07);color:#9ca3af}
+
+/* Progress screen */
+.app-progress{background:#fff;padding:0}
+.prog-header{padding:10px 14px 8px;border-bottom:1px solid #f3f4f6}
+.prog-title{font-size:12px;font-weight:700;color:#1a1a1a}
+.prog-sub{font-size:9px;color:#9ca3af;margin-top:2px}
+.prog-week{padding:10px 14px}
+.prog-week-label{font-size:9px;color:#1a1a1a;font-weight:600;margin-bottom:8px;display:flex;justify-content:space-between}
+.prog-week-label span{color:#6b7280;font-weight:400}
+.prog-subject-list{display:flex;flex-direction:column;gap:5px}
+.prog-subject{display:flex;align-items:center;justify-content:space-between;padding:5px 0}
+.prog-subject-name{font-size:9px;color:#374151;font-weight:500}
+.prog-subject-score{display:flex;align-items:center;gap:6px}
+.prog-bar{width:60px;height:4px;background:#f3f4f6;border-radius:2px}
+.prog-bar-fill{height:100%;border-radius:2px}
+.prog-score{font-size:8px;color:#6b7280;min-width:28px;text-align:right}
+.prog-remarks{font-size:8px;color:#1d4ed8;border:1px solid #dbeafe;padding:1px 6px;border-radius:3px}
+
+/* SECTIONS */
+.cs-section{padding:96px 48px;border-bottom:1px solid var(--border)}
+.cs-section.dark{background:var(--bg2)}
+.cs-section.darker{background:#0b0b0b}
+.cs-inner{max-width:1200px;margin:0 auto}
+.section-kicker{display:block;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:16px}
+.section-kicker.orange{color:var(--orange)}
+.section-num{display:block;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gray2);margin-bottom:6px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.two-col-wide{display:grid;grid-template-columns:300px 1fr;gap:80px;align-items:start}
+.cs-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);letter-spacing:2px;line-height:.95;color:var(--white);margin-bottom:16px}
+.cs-body{font-size:16px;color:rgba(240,236,228,.65);font-weight:300;line-height:1.85;max-width:60ch}
+.cs-body strong{color:var(--white);font-weight:400}
+.cs-body+.cs-body{margin-top:14px}
+.highlight-box{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--amber);padding:22px 26px;border-radius:0 4px 4px 0;margin-top:20px}
+.highlight-box p{font-size:15px;color:rgba(240,236,228,.7);line-height:1.75;font-weight:300}
+.highlight-box strong{color:var(--white);font-weight:400}
+
+/* USER PERSONA */
+.persona-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:48px}
+.persona-card{background:var(--bg2);padding:32px 28px;opacity:0;transform:translateY(16px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
+.persona-card.revealed{opacity:1;transform:translateY(0)}
+.persona-card:nth-child(1){transition-delay:0ms}
+.persona-card:nth-child(2){transition-delay:80ms}
+.persona-card:nth-child(3){transition-delay:160ms}
+.persona-card:nth-child(4){transition-delay:240ms}
+.persona-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;background:var(--bg3);border:1px solid var(--border)}
+.persona-name{font-size:16px;font-weight:500;color:var(--white);margin-bottom:4px}
+.persona-role{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+.persona-body{font-size:14px;color:var(--gray);line-height:1.7}
+.persona-need{margin-top:12px;font-size:13px;color:rgba(240,236,228,.5);font-style:italic}
+.persona-need strong{color:var(--amber);font-style:normal}
+
+/* PAIN POINTS */
+.pain-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:48px}
+.pain-item{background:var(--bg);opacity:0;transform:translateY(20px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
+.pain-item.revealed{opacity:1;transform:translateY(0)}
+.pain-item:nth-child(1){transition-delay:0ms}
+.pain-item:nth-child(2){transition-delay:80ms}
+.pain-item:nth-child(3){transition-delay:160ms}
+.pain-item:nth-child(4){transition-delay:240ms}
+.pain-top{padding:36px 28px 28px;background:var(--bg2);border-bottom:1px solid var(--border)}
+.pain-num{font-family:'Bebas Neue',sans-serif;font-size:64px;color:rgba(245,158,11,.2);line-height:1;margin-bottom:12px}
+.pain-top h4{font-size:15px;font-weight:400;color:var(--white);line-height:1.4}
+.arrow-down{display:flex;align-items:center;justify-content:center;padding:12px;color:var(--gray2)}
+.pain-solution{padding:22px 26px;background:#0d4a3a;min-height:110px}
+.pain-solution .sol-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px;display:block}
+.pain-solution p{font-size:13px;color:rgba(255,255,255,.75);line-height:1.6}
+.pain-solution strong{color:#fff}
+
+/* RESEARCH */
+.research-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:48px}
+.research-card{background:var(--bg2);padding:32px 26px;opacity:0;transform:translateY(16px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
+.research-card.revealed{opacity:1;transform:translateY(0)}
+.research-card:nth-child(1){transition-delay:0ms}
+.research-card:nth-child(2){transition-delay:80ms}
+.research-card:nth-child(3){transition-delay:160ms}
+.research-icon{font-size:24px;margin-bottom:14px}
+.research-card h4{font-size:15px;font-weight:500;color:var(--white);margin-bottom:8px}
+.research-card p{font-size:14px;color:var(--gray);line-height:1.7}
+
+/* DESIGN DECISIONS */
+.decision-list{display:flex;flex-direction:column;gap:1px;background:var(--border);margin-top:48px}
+.decision-item{display:grid;grid-template-columns:1fr 24px 1fr;background:var(--bg);opacity:0;transform:translateY(12px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
+.decision-item.revealed{opacity:1;transform:translateY(0)}
+.decision-item:nth-child(1){transition-delay:0ms}
+.decision-item:nth-child(2){transition-delay:80ms}
+.decision-item:nth-child(3){transition-delay:160ms}
+.decision-item:nth-child(4){transition-delay:240ms}
+.decision-before,.decision-after{padding:24px 28px}
+.decision-before{background:var(--bg2);border-right:1px solid var(--border)}
+.decision-arrow-col{display:flex;align-items:center;justify-content:center;color:var(--amber);font-size:16px}
+.dec-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);margin-bottom:8px;display:block}
+.dec-label.after{color:var(--amber)}
+.decision-before h4,.decision-after h4{font-size:15px;font-weight:400;color:var(--white);margin-bottom:6px}
+.decision-before p,.decision-after p{font-size:13px;color:var(--gray);line-height:1.6}
+.decision-after p{color:rgba(240,236,228,.75)}
+
+/* SHOWCASE */
+.showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px}
+.showcase-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;overflow:hidden;opacity:0;transform:translateY(20px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease),border-color var(--dur-mid)}
+.showcase-card:hover{border-color:rgba(245,158,11,.35)}
+.showcase-card.revealed{opacity:1;transform:translateY(0)}
+.showcase-card:nth-child(1){transition-delay:0ms}
+.showcase-card:nth-child(2){transition-delay:120ms}
+.showcase-card:nth-child(3){transition-delay:240ms}
+.showcase-card:nth-child(4){transition-delay:360ms}
+.showcase-visual{min-height:220px;background:var(--bg4);display:flex;align-items:center;justify-content:center;padding:24px;position:relative;overflow:hidden}
+.showcase-info{padding:18px 22px;border-top:1px solid var(--border)}
+.showcase-info h4{font-size:15px;font-weight:500;color:var(--white);margin-bottom:6px}
+.showcase-info p{font-size:13px;color:var(--gray);line-height:1.6}
+
+/* METRICS */
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:48px}
+.metric-item{background:var(--bg);padding:40px 28px;text-align:center;opacity:0;transform:translateY(16px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
+.metric-item.revealed{opacity:1;transform:translateY(0)}
+.metric-item:nth-child(1){transition-delay:0ms}
+.metric-item:nth-child(2){transition-delay:80ms}
+.metric-item:nth-child(3){transition-delay:160ms}
+.metric-item:nth-child(4){transition-delay:240ms}
+.metric-num{font-family:'Bebas Neue',sans-serif;font-size:56px;letter-spacing:2px;color:var(--white);line-height:1;margin-bottom:8px;display:block}
+.metric-num span{color:var(--amber)}
+.metric-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray)}
+
+/* REVIEW CARDS */
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.review-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:24px;opacity:0;transform:translateY(16px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
+.review-card.revealed{opacity:1;transform:translateY(0)}
+.review-card:nth-child(1){transition-delay:0ms}
+.review-card:nth-child(2){transition-delay:80ms}
+.review-card:nth-child(3){transition-delay:160ms}
+.review-stars{color:var(--amber);font-size:14px;margin-bottom:10px}
+.review-text{font-size:14px;color:rgba(240,236,228,.65);line-height:1.7;margin-bottom:14px;font-style:italic;font-weight:300}
+.review-author{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--gray2)}
+
+/* REFLECTION */
+.reflection-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:48px}
+.reflection-card{background:var(--bg2);padding:36px 32px;opacity:0;transform:translateY(16px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
+.reflection-card.revealed{opacity:1;transform:translateY(0)}
+.reflection-card:nth-child(1){transition-delay:0ms}
+.reflection-card:nth-child(2){transition-delay:80ms}
+.reflection-card:nth-child(3){transition-delay:160ms}
+.reflection-card:nth-child(4){transition-delay:240ms}
+.reflection-card h4{font-size:17px;font-weight:500;color:var(--white);margin-bottom:10px}
+.reflection-card p{font-size:14px;color:var(--gray);line-height:1.75}
+
+/* NEXT + CTA + FOOTER */
+.next-project{padding:80px 48px;border-top:1px solid var(--border);background:var(--bg2)}
+.next-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:32px}
+.next-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);display:block;margin-bottom:12px}
+.next-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,72px);letter-spacing:2px;color:var(--white);line-height:.95}
+.next-cta{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);text-decoration:none;white-space:nowrap;border:1px solid var(--orange);padding:14px 28px;border-radius:2px;transition:background var(--dur-fast),color var(--dur-fast);min-height:44px;flex-shrink:0}
+.next-cta:hover{background:var(--orange);color:#fff}
+.cta-section{padding:96px 48px;text-align:center;position:relative;overflow:hidden;background:var(--bg)}
+.cta-section::before{content:'LOKSEWA';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,12vw,180px);color:rgba(245,158,11,.03);letter-spacing:10px;pointer-events:none;white-space:nowrap}
+.cta-section h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,80px);letter-spacing:3px;color:var(--white);margin-bottom:12px;line-height:.95}
+.cta-section>p{font-size:16px;color:var(--gray);font-weight:300;margin-bottom:40px}
+.cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-primary{font-size:11px;letter-spacing:2px;text-transform:uppercase;background:var(--orange);color:#fff;padding:13px 28px;border-radius:2px;text-decoration:none;transition:background var(--dur-fast);display:inline-flex;align-items:center;min-height:44px}
+.btn-primary:hover{background:var(--orange2)}
+.btn-outline{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.2);padding:13px 28px;border-radius:2px;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;transition:border-color var(--dur-fast)}
+.btn-outline:hover{border-color:rgba(255,255,255,.6)}
+.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--bg3);border:1px solid var(--border);padding:14px 22px;border-radius:2px;font-size:13px;color:var(--white);z-index:200;display:flex;align-items:center;gap:10px;transition:transform var(--dur-mid) var(--ease),opacity var(--dur-mid);opacity:0;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.toast-dot{width:7px;height:7px;background:var(--success);border-radius:50%;flex-shrink:0}
+footer{padding:24px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--bg)}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:3px;color:var(--gray2);text-decoration:none;transition:color var(--dur-fast)}
+.footer-logo:hover{color:var(--white)}
+footer p{font-size:12px;color:var(--gray2)}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+@media(max-width:1024px){.pain-grid{grid-template-columns:1fr 1fr}.metrics-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:900px){
+  nav{padding:0 24px}.nav-links{display:none}.nav-hamburger{display:flex}
+  .cs-hero{padding:80px 24px 60px}.cs-section{padding:60px 24px}
+  .two-col,.two-col-wide{grid-template-columns:1fr;gap:40px}
+  .cs-quick-stats{flex-direction:column;width:100%}
+  .cs-stat{border-right:none;border-bottom:1px solid var(--border)}
+  .cs-stat:last-child{border-bottom:none}
+  .showcase-grid,.reflection-grid,.persona-grid{grid-template-columns:1fr}
+  .reviews-grid{grid-template-columns:1fr}
+  .decision-item{grid-template-columns:1fr}
+  .decision-arrow-col{display:none}
+  .decision-before{border-right:none;border-bottom:1px solid var(--border)}
+  .next-inner{flex-direction:column;align-items:flex-start}
+  .cs-hero-image{flex-direction:column;gap:16px;padding:40px 24px}
+  .phone-wrap.secondary{transform:scale(.88) translateY(0)}
+  .proof-bar{padding:20px 24px}
+  footer{flex-direction:column;gap:12px;text-align:center;padding:24px}
+  .cta-section,.next-project{padding:60px 24px}
+}
+@media(max-width:600px){.pain-grid,.research-grid{grid-template-columns:1fr}.metrics-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div id="cursor" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
+<div id="progress" aria-hidden="true"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-dot"></span>Email copied!</div>
+
+<nav role="navigation" aria-label="Main navigation">
+  <a class="nav-logo" href="index.html" aria-label="Dikshya — Home"><span class="nav-logo-dot" aria-hidden="true"></span>DIKSHYA</a>
+  <ul class="nav-links" role="list">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="projects.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <a class="nav-cta" href="mailto:dikshya@email.com" onclick="showToast(event)">Hire Me</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
+  <a href="index.html" onclick="closeDrawer()">Home</a>
+  <a href="projects.html" onclick="closeDrawer()">Work</a>
+  <a href="about.html" onclick="closeDrawer()">About</a>
+  <a href="mailto:dikshya@email.com" onclick="closeDrawer();showToast(event)">Hire Me →</a>
+</nav>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="cs-hero" aria-label="Project introduction">
+  <div class="cs-hero-bg" aria-hidden="true"></div>
+  <div class="cs-hero-grid" aria-hidden="true"></div>
+  <div class="cs-hero-glow" aria-hidden="true"></div>
+  <div class="cs-hero-content">
+    <div class="cs-breadcrumb">
+      <a href="index.html">Home</a><span class="sep">·</span>
+      <a href="projects.html">Work</a><span class="sep">·</span>
+      <span>Loksewa Pro</span>
+    </div>
+    <div class="cs-hero-meta">
+      <span class="cs-chip">PROJECT</span>
+      <span class="cs-chip amber">LOKSEWA PRO</span>
+      <span class="cs-chip">EDTECH</span>
+      <span class="cs-chip">MOBILE</span>
+      <span class="cs-chip">2024–2025</span>
+    </div>
+    <h1>NEPAL'S<br/>EXAM PREP<br/><em>REDESIGNED.</em></h1>
+    <p class="cs-hero-tagline">Designed Loksewa Pro — a mobile app for Nepal's most competitive civil service exam. Achieved 10,000+ downloads, a 4.4-star rating, and became the go-to study companion for aspirants across the country.</p>
+    <div class="cs-quick-stats" role="list">
+      <div class="cs-stat" role="listitem"><span class="cs-stat-label">My Role</span><span class="cs-stat-val">UI/UX Designer</span></div>
+      <div class="cs-stat" role="listitem"><span class="cs-stat-label">Client</span><span class="cs-stat-val">Pisces Moon</span></div>
+      <div class="cs-stat" role="listitem"><span class="cs-stat-label">Platform</span><span class="cs-stat-val">Mobile · iOS &amp; Android</span></div>
+      <div class="cs-stat" role="listitem"><span class="cs-stat-label">Team</span><span class="cs-stat-val">2 people</span></div>
+      <div class="cs-stat" role="listitem"><span class="cs-stat-label">Duration</span><span class="cs-stat-val">2 Months</span></div>
+    </div>
+  </div>
+  <div class="cs-scroll-cue" aria-hidden="true">
+    <span>scroll to explore</span>
+    <div class="cs-scroll-btn">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF BAR — real numbers up front -->
+<div class="proof-bar" aria-label="App performance metrics">
+  <div class="proof-inner">
+    <div class="proof-item">
+      <span class="proof-icon" aria-hidden="true">📲</span>
+      <div><span class="proof-label">Downloads</span><span class="proof-val amber">10,000+</span></div>
+    </div>
+    <div class="proof-divider" aria-hidden="true"></div>
+    <div class="proof-item">
+      <span class="proof-icon" aria-hidden="true">⭐</span>
+      <div><span class="proof-label">Play Store Rating</span><span class="proof-val amber">4.4 / 5.0</span></div>
+    </div>
+    <div class="proof-divider" aria-hidden="true"></div>
+    <div class="proof-item">
+      <span class="proof-icon" aria-hidden="true">💬</span>
+      <div><span class="proof-label">User Reviews</span><span class="proof-val">28 on Play Store</span></div>
+    </div>
+    <div class="proof-divider" aria-hidden="true"></div>
+    <div class="proof-item">
+      <span class="proof-icon" aria-hidden="true">🇳🇵</span>
+      <div><span class="proof-label">Market</span><span class="proof-val">Nepal — Public Sector</span></div>
+    </div>
+    <div class="proof-divider" aria-hidden="true"></div>
+    <div class="proof-item">
+      <span class="proof-icon" aria-hidden="true">🔗</span>
+      <div><span class="proof-label">Live App</span>
+        <a href="https://play.google.com/store/apps/details?id=com.loksewapro" target="_blank" rel="noopener" style="font-size:15px;color:var(--amber2);text-decoration:none;border-bottom:1px solid rgba(251,191,36,.3)">View on Play Store ↗</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PHONE MOCKUPS -->
+<div class="cs-hero-image" aria-label="Loksewa Pro app screens">
+  <!-- Home Screen -->
+  <div class="phone-wrap">
+    <div class="phone-frame">
+      <div class="phone-notch"><div class="phone-notch-pill"></div></div>
+      <div class="phone-status"><span>9:41</span><span>◼◼◼◼ 100%</span></div>
+      <div class="app-home">
+        <div class="app-topbar">
+          <div class="app-logo-text">Loksewa<span>Pro</span></div>
+          <div class="app-notif">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          </div>
+        </div>
+        <div class="app-banner">
+          <div class="app-banner-label">DAILY QUIZ</div>
+          <div class="app-banner-title">Challenge yourself<br/>today!</div>
+          <div class="app-banner-start">Start →</div>
+        </div>
+        <div class="app-section-title">Quick access <span>View more</span></div>
+        <div class="app-quick-grid">
+          <div class="app-quick-item"><div class="app-quick-icon">⚡</div><div class="app-quick-label">Quick Practice</div></div>
+          <div class="app-quick-item"><div class="app-quick-icon">📝</div><div class="app-quick-label">Exercise Set</div></div>
+          <div class="app-quick-item"><div class="app-quick-icon">🎯</div><div class="app-quick-label">Practice Set</div></div>
+          <div class="app-quick-item"><div class="app-quick-icon">📚</div><div class="app-quick-label">Course Study</div></div>
+        </div>
+        <div class="app-section-title">Practice set <span>View more</span></div>
+        <div class="app-practice-list">
+          <div class="app-practice-card">
+            <div class="app-practice-info">
+              <div class="app-practice-name">Set 1 — Not started</div>
+              <div class="app-practice-meta">100 questions · 1hr 30mins</div>
+            </div>
+            <div class="app-practice-btn">Start set</div>
+          </div>
+          <div class="app-practice-card">
+            <div class="app-practice-info">
+              <div class="app-practice-name">Set 2 — In Progress</div>
+              <div class="app-practice-meta">50/100 questions · 1hr left</div>
+            </div>
+            <div class="app-practice-btn" style="background:#f59e0b">Resume</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quiz Screen -->
+  <div class="phone-wrap">
+    <div class="phone-frame">
+      <div class="phone-notch"><div class="phone-notch-pill"></div></div>
+      <div class="phone-status"><span>9:41</span><span>◼◼◼◼ 100%</span></div>
+      <div class="app-quiz">
+        <div class="quiz-header">
+          <div class="quiz-back">← Back</div>
+          <div class="quiz-title">Daily Quiz</div>
+          <div class="quiz-num">NO. 22</div>
+        </div>
+        <div class="quiz-progress-bar"><div class="quiz-progress-fill"></div></div>
+        <div class="quiz-question">
+          <div class="quiz-q-label">QUESTION 14 / 30</div>
+          <div class="quiz-q-text">नेपालको पहिलो विधान सभाको निर्वाचन कुन सालमा भयो?</div>
+        </div>
+        <div class="quiz-options">
+          <div class="quiz-option">
+            <div class="quiz-opt-num">A</div>
+            <span>२०१५ साल</span>
+          </div>
+          <div class="quiz-option correct">
+            <div class="quiz-opt-num" style="background:rgba(34,197,94,.3)">B</div>
+            <span>२०१७ साल ✓</span>
+          </div>
+          <div class="quiz-option selected">
+            <div class="quiz-opt-num" style="background:rgba(245,158,11,.3)">C</div>
+            <span>२०१९ साल</span>
+          </div>
+          <div class="quiz-option">
+            <div class="quiz-opt-num">D</div>
+            <span>२०२१ साल</span>
+          </div>
+        </div>
+        <div class="quiz-footer">
+          <div class="quiz-btn ghost">← Prev</div>
+          <div class="quiz-btn primary">Next →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progress Screen -->
+  <div class="phone-wrap secondary">
+    <div class="phone-frame">
+      <div class="phone-notch"><div class="phone-notch-pill"></div></div>
+      <div class="phone-status"><span>9:41</span><span>◼◼◼◼ 100%</span></div>
+      <div class="app-progress">
+        <div class="prog-header">
+          <div class="prog-title">This Week</div>
+          <div class="prog-sub">Performance overview</div>
+        </div>
+        <div class="prog-week">
+          <div class="prog-week-label">Subject scores <span>All · High · Low</span></div>
+          <div class="prog-subject-list">
+            <div class="prog-subject">
+              <span class="prog-subject-name">History</span>
+              <div class="prog-subject-score">
+                <div class="prog-bar"><div class="prog-bar-fill" style="width:80%;background:#22c55e"></div></div>
+                <span class="prog-score">80%</span>
+                <span class="prog-remarks">View remarks</span>
+              </div>
+            </div>
+            <div class="prog-subject">
+              <span class="prog-subject-name">Geography</span>
+              <div class="prog-subject-score">
+                <div class="prog-bar"><div class="prog-bar-fill" style="width:65%;background:#f59e0b"></div></div>
+                <span class="prog-score">65%</span>
+                <span class="prog-remarks">View remarks</span>
+              </div>
+            </div>
+            <div class="prog-subject">
+              <span class="prog-subject-name">Statistics</span>
+              <div class="prog-subject-score">
+                <div class="prog-bar"><div class="prog-bar-fill" style="width:45%;background:#ef4444"></div></div>
+                <span class="prog-score">45%</span>
+                <span class="prog-remarks">View remarks</span>
+              </div>
+            </div>
+            <div class="prog-subject">
+              <span class="prog-subject-name">Marketing</span>
+              <div class="prog-subject-score">
+                <div class="prog-bar"><div class="prog-bar-fill" style="width:72%;background:#22c55e"></div></div>
+                <span class="prog-score">72%</span>
+                <span class="prog-remarks">View remarks</span>
+              </div>
+            </div>
+            <div class="prog-subject">
+              <span class="prog-subject-name">Finance</span>
+              <div class="prog-subject-score">
+                <div class="prog-bar"><div class="prog-bar-fill" style="width:55%;background:#f59e0b"></div></div>
+                <span class="prog-score">55%</span>
+                <span class="prog-remarks">View remarks</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 01 OVERVIEW -->
+<section class="cs-section" id="overview">
+  <div class="cs-inner">
+    <div class="two-col">
+      <div>
+        <span class="section-num">01</span>
+        <span class="section-kicker">Project Overview</span>
+        <h2 class="cs-h2">ONE APP FOR<br/>NEPAL'S HARDEST<br/>EXAM.</h2>
+        <p class="cs-body">The Loksewa Aayog (Public Service Commission) exam is one of the most competitive examinations in Nepal — hundreds of thousands of aspirants sit it every year for a limited number of government positions. The stakes are high. The preparation is gruelling.</p>
+        <p class="cs-body">Loksewa Pro was designed to be the definitive study companion — consolidating quizzes, practice sets, exercise sets, audio books, course materials, and current affairs into a single, beautifully designed mobile app.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:24px">
+          <span style="font-size:11px;color:var(--gray2);border:1px solid var(--border);padding:4px 12px;border-radius:2px">Mobile App</span>
+          <span style="font-size:11px;color:var(--gray2);border:1px solid var(--border);padding:4px 12px;border-radius:2px">EdTech</span>
+          <span style="font-size:11px;color:var(--gray2);border:1px solid var(--border);padding:4px 12px;border-radius:2px">iOS &amp; Android</span>
+          <span style="font-size:11px;color:var(--gray2);border:1px solid var(--border);padding:4px 12px;border-radius:2px">Consumer</span>
+        </div>
+      </div>
+      <div>
+        <span class="section-num">&nbsp;</span>
+        <span class="section-kicker">The Problem</span>
+        <h2 class="cs-h2">EVERY EXISTING<br/>APP WAS<br/>FAILING USERS.</h2>
+        <p class="cs-body">Existing Loksewa preparation apps shared the same failures: incomplete and outdated study materials, no structured progress tracking, poor personalization, and frustrating navigation. Premium features rarely justified their price.</p>
+        <div class="highlight-box">
+          <p><strong>Core insight:</strong> Aspirants weren't just failing the exam — they were failing because their preparation tools were unreliable, demotivating, and impossible to use consistently offline.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 USER PERSONAS -->
+<section class="cs-section dark" id="personas">
+  <div class="cs-inner">
+    <span class="section-num">1.0</span>
+    <span class="section-kicker">User Understanding</span>
+    <h2 class="cs-h2">WHO WE DESIGNED<br/>FOR</h2>
+    <p class="cs-body">Through user surveys and review analysis, we identified two distinct user archetypes with different study behaviours but shared core needs around reliability, structure, and motivation.</p>
+    <div class="persona-grid" role="list">
+      <div class="persona-card" role="listitem">
+        <div class="persona-avatar" aria-hidden="true">👨‍🎓</div>
+        <div class="persona-name">Ramesh, 24</div>
+        <div class="persona-role">First-time Loksewa aspirant</div>
+        <p class="persona-body">A recent BSc graduate from outside the valley preparing for his first Loksewa attempt. Studies 3–4 hours daily using his phone, often on bus rides. Has patchy internet access.</p>
+        <p class="persona-need"><strong>Needs:</strong> Structured syllabus, offline access, clear progress tracking to stay motivated during a long preparation period.</p>
+      </div>
+      <div class="persona-card" role="listitem">
+        <div class="persona-avatar" aria-hidden="true">👩‍💼</div>
+        <div class="persona-name">Sita, 28</div>
+        <div class="persona-role">Repeat aspirant, 2nd attempt</div>
+        <p class="persona-body">Works part-time while preparing. Failed once — knows her weak subjects. Needs targeted practice, not broad review. Checks the app during breaks and late evenings.</p>
+        <p class="persona-need"><strong>Needs:</strong> Subject-specific practice, ability to revisit mistakes, performance analytics to identify gaps fast.</p>
+      </div>
+      <div class="persona-card" role="listitem">
+        <div class="persona-avatar" aria-hidden="true">🏙️</div>
+        <div class="persona-name">Bikash, 22</div>
+        <div class="persona-role">Urban aspirant, premium user</div>
+        <p class="persona-body">Lives in Kathmandu, has reliable internet. Competitive — wants to know how he ranks. Willing to pay for premium if the quality is genuinely better than free alternatives.</p>
+        <p class="persona-need"><strong>Needs:</strong> Daily quizzes, leaderboards, high-quality current affairs, audio books for multitasking.</p>
+      </div>
+      <div class="persona-card" role="listitem">
+        <div class="persona-avatar" aria-hidden="true">👩‍🏫</div>
+        <div class="persona-name">Kamala, 31</div>
+        <div class="persona-role">Rural aspirant, limited connectivity</div>
+        <p class="persona-body">Teacher from Surkhet, intermittent internet. Needs materials downloaded in advance. Trusts the app if content is accurate and updated — one wrong answer and she loses faith.</p>
+        <p class="persona-need"><strong>Needs:</strong> Reliable offline access, verified content accuracy, simple interface that doesn't require learning.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 RESEARCH -->
+<section class="cs-section" id="research">
+  <div class="cs-inner">
+    <span class="section-num">1.1</span>
+    <span class="section-kicker">Research &amp; Discovery</span>
+    <h2 class="cs-h2">WHAT THE DATA<br/>TOLD US</h2>
+    <p class="cs-body">We ran a three-pronged research process — analysing existing apps through user reviews, surveying exam aspirants directly, and studying competitor products to map gaps in the market.</p>
+    <div class="research-grid" role="list">
+      <div class="research-card" role="listitem">
+        <div class="research-icon" aria-hidden="true">⭐</div>
+        <h4>App review analysis</h4>
+        <p>Systematically analysed 1-star and 5-star reviews of competing Loksewa apps. Patterns: top praise for "organized content" and "offline mode." Top complaints: "glitches," "outdated questions," and "confusing navigation."</p>
+      </div>
+      <div class="research-card" role="listitem">
+        <div class="research-icon" aria-hidden="true">📋</div>
+        <h4>Aspirant surveys</h4>
+        <p>Surveys with exam aspirants surfaced insights on study habits, preferred learning methods (quiz-based over passive reading), and key challenges — inconsistent study schedules and inability to track weak subjects.</p>
+      </div>
+      <div class="research-card" role="listitem">
+        <div class="research-icon" aria-hidden="true">🔍</div>
+        <h4>Competitive audit</h4>
+        <p>Most competitors provide fragmented resources with limited personalization. None combined all formats (quiz, audio, practice sets, current affairs) in a single, well-designed experience with reliable offline access.</p>
+      </div>
+    </div>
+    <div style="margin-top:48px">
+      <div class="two-col-wide">
+        <div>
+          <h3 style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1.5px;color:rgba(240,236,228,.4);line-height:1.1">THE CORE DESIGN CHALLENGE</h3>
+        </div>
+        <div>
+          <p class="cs-body">Ensuring the <strong>accuracy and completeness of study materials</strong> was critical — many existing apps contained errors or outdated content, directly misleading users during high-stakes preparation.</p>
+          <p class="cs-body">Technical challenges included <strong>app stability, server connectivity, and offline access</strong> — all of which had to be designed for from the ground up, not patched after the fact.</p>
+          <div class="highlight-box">
+            <p><strong>Key design principle adopted:</strong> Trust is the product. Every content decision, every loading state, every error message had to communicate reliability — because one wrong question costs a user's confidence in the entire app.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 PAIN POINTS -->
+<section class="cs-section dark" id="painpoints">
+  <div class="cs-inner">
+    <span class="section-num">2.0</span>
+    <span class="section-kicker">Design Phase · Pain Point Analysis</span>
+    <h2 class="cs-h2">FOUR PROBLEMS.<br/>FOUR SOLUTIONS.</h2>
+    <div class="pain-grid" role="list">
+      <div class="pain-item" role="listitem">
+        <div class="pain-top">
+          <div class="pain-num" aria-hidden="true">1</div>
+          <h4>Incomplete &amp; Outdated Study Materials</h4>
+        </div>
+        <div class="arrow-down" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+        <div class="pain-solution">
+          <span class="sol-label">Solution</span>
+          <p>Implemented <strong>syllabus-aligned content curated by experts</strong> in one centralized app — with a clear content verification process visible to users.</p>
+        </div>
+      </div>
+      <div class="pain-item" role="listitem">
+        <div class="pain-top">
+          <div class="pain-num" aria-hidden="true">2</div>
+          <h4>Poor Progress Tracking &amp; Practice Management</h4>
+        </div>
+        <div class="arrow-down" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+        <div class="pain-solution">
+          <span class="sol-label">Solution</span>
+          <p>Built <strong>detailed progress reports, ability to revisit mistakes, and customizable practice schedules</strong> — so aspirants know exactly where they stand.</p>
+        </div>
+      </div>
+      <div class="pain-item" role="listitem">
+        <div class="pain-top">
+          <div class="pain-num" aria-hidden="true">3</div>
+          <h4>Limited Personalization &amp; Engagement</h4>
+        </div>
+        <div class="arrow-down" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+        <div class="pain-solution">
+          <span class="sol-label">Solution</span>
+          <p>Integrated <strong>personalized learning paths and Daily Quiz</strong> features — creating a daily habit loop that keeps aspirants engaged throughout their preparation.</p>
+        </div>
+      </div>
+      <div class="pain-item" role="listitem">
+        <div class="pain-top">
+          <div class="pain-num" aria-hidden="true">4</div>
+          <h4>Poor User Experience &amp; Interface</h4>
+        </div>
+        <div class="arrow-down" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+        <div class="pain-solution">
+          <span class="sol-label">Solution</span>
+          <p>Designed a <strong>clean, fast-loading interface with minimal distractions</strong> — both dark and light themes, optimised for users with varying device capabilities.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 WIREFRAMING -->
+<section class="cs-section" id="wireframing">
+  <div class="cs-inner">
+    <span class="section-num">2.1</span>
+    <span class="section-kicker">Wireframe &amp; Prototyping</span>
+    <h2 class="cs-h2">MID-FIDELITY<br/>FROM DAY ONE.</h2>
+    <div class="two-col-wide">
+      <div>
+        <h3 style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1.5px;color:rgba(240,236,228,.4)">WHY WE SKIPPED LOW-FI</h3>
+      </div>
+      <div>
+        <p class="cs-body">For this project, wireframing began directly at mid-fidelity — we had a clear project brief, well-defined requirements, a tight 2-month deadline, and an <strong>already-established user-side design and UI design kit.</strong></p>
+        <p class="cs-body">This approach let us focus immediately on <strong>structure and user flow</strong> without getting bogged down in early-stage sketches. It accelerated the feedback loop with the project manager significantly.</p>
+        <p class="cs-body">My team focused on developing and refining: <strong>detailed user and operator profiles, favourites, a blog section, a complete admin portal</strong> covering experiences, destinations, operators, customers, settings, reviews, and operator requests — all with fully mobile-responsive layouts.</p>
+        <div class="highlight-box">
+          <p><strong>Design choice:</strong> I designed both dark and light interface variants to increase accessibility and appeal — giving users genuine choice rather than forcing a single aesthetic. This decision directly influenced the app's positive reviews on the Play Store.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 KEY DESIGN DECISIONS -->
+<section class="cs-section dark" id="decisions">
+  <div class="cs-inner">
+    <span class="section-num">2.2</span>
+    <span class="section-kicker">Key Design Decisions</span>
+    <h2 class="cs-h2">BEFORE &amp;<br/>AFTER</h2>
+    <div class="decision-list" role="list">
+      <div class="decision-item" role="listitem">
+        <div class="decision-before">
+          <span class="dec-label">Before</span>
+          <h4>Flat list of all study materials</h4>
+          <p>Users were dropped into an overwhelming flat list of hundreds of questions with no sense of structure, priority, or progress.</p>
+        </div>
+        <div class="decision-arrow-col" aria-hidden="true">→</div>
+        <div class="decision-after">
+          <span class="dec-label after">After</span>
+          <h4>Structured practice sets with clear progress states</h4>
+          <p>Practice sets show Not Started / In Progress / Completed states, question counts, and time estimates upfront — so users always know where they are and what's next.</p>
+        </div>
+      </div>
+      <div class="decision-item" role="listitem">
+        <div class="decision-before">
+          <span class="dec-label">Before</span>
+          <h4>No daily habit mechanism</h4>
+          <p>Users had to decide what to study every day — choice fatigue led to inconsistent sessions and app abandonment.</p>
+        </div>
+        <div class="decision-arrow-col" aria-hidden="true">→</div>
+        <div class="decision-after">
+          <span class="dec-label after">After</span>
+          <h4>Daily Quiz as a front-and-center anchor</h4>
+          <p>The Daily Quiz feature sits at the top of the home screen — a low-friction daily entry point that builds a study habit without requiring the user to make a decision.</p>
+        </div>
+      </div>
+      <div class="decision-item" role="listitem">
+        <div class="decision-before">
+          <span class="dec-label">Before</span>
+          <h4>Single colour theme — light only</h4>
+          <p>One visual mode suited city users on new devices but frustrated rural users studying at night or on older, low-brightness screens.</p>
+        </div>
+        <div class="decision-arrow-col" aria-hidden="true">→</div>
+        <div class="decision-after">
+          <span class="dec-label after">After</span>
+          <h4>Dark and light themes — user's choice</h4>
+          <p>Both themes fully designed and implemented. Dark mode reduced eye strain for night studying — directly mentioned in positive Play Store reviews as a differentiator from competitors.</p>
+        </div>
+      </div>
+      <div class="decision-item" role="listitem">
+        <div class="decision-before">
+          <span class="dec-label">Before</span>
+          <h4>No feedback on wrong answers</h4>
+          <p>Users completed quizzes but had no way to understand why they got something wrong or revisit mistakes — the learning loop was broken.</p>
+        </div>
+        <div class="decision-arrow-col" aria-hidden="true">→</div>
+        <div class="decision-after">
+          <span class="dec-label after">After</span>
+          <h4>Mistake review + subject performance reports</h4>
+          <p>After every session, users can review wrong answers with explanations. Weekly subject-level performance reports surface weak areas automatically — turning data into a study plan.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 FINAL DESIGN -->
+<section class="cs-section" id="final">
+  <div class="cs-inner">
+    <span class="section-num">3.0</span>
+    <span class="section-kicker">Validating · Final Iteration</span>
+    <h2 class="cs-h2">THE FINAL<br/>DESIGN</h2>
+    <p class="cs-body">Validated through regular stakeholder collaboration, iterative feedback sessions with the client and internal team, and post-launch Play Store analytics. The final design reflects multiple rounds of focused iteration on usability, clarity, and module completeness.</p>
+    <div class="showcase-grid" role="list">
+      <div class="showcase-card" role="listitem">
+        <div class="showcase-visual" style="background:linear-gradient(135deg,#1a1506,#111)">
+          <div style="display:flex;gap:12px;align-items:flex-end">
+            <div style="width:130px;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)">
+              <div style="height:16px;background:#f9fafb;display:flex;align-items:center;justify-content:center"><div style="width:40px;height:4px;background:#e5e7eb;border-radius:2px"></div></div>
+              <div style="padding:10px 12px">
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+                  <span style="font-size:11px;font-weight:700;color:#1a1a1a">Loksewa<span style="color:#f59e0b">Pro</span></span>
+                  <div style="width:18px;height:18px;background:#f3f4f6;border-radius:50%"></div>
+                </div>
+                <div style="background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:10px;padding:10px;margin-bottom:8px">
+                  <div style="font-size:8px;color:#f59e0b;margin-bottom:3px">DAILY QUIZ</div>
+                  <div style="font-size:10px;color:#fff;font-weight:600;margin-bottom:5px">Challenge yourself today!</div>
+                  <div style="background:#f59e0b;color:#fff;font-size:7px;padding:3px 8px;border-radius:4px;display:inline-block">Start →</div>
+                </div>
+                <div style="font-size:8px;color:#374151;font-weight:600;margin-bottom:5px">Quick access</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:3px;margin-bottom:6px">
+                  <div style="background:#f9fafb;border-radius:5px;padding:4px;text-align:center"><div style="font-size:10px">⚡</div><div style="font-size:6px;color:#6b7280">Quick</div></div>
+                  <div style="background:#f9fafb;border-radius:5px;padding:4px;text-align:center"><div style="font-size:10px">📝</div><div style="font-size:6px;color:#6b7280">Exercise</div></div>
+                  <div style="background:#f9fafb;border-radius:5px;padding:4px;text-align:center"><div style="font-size:10px">🎯</div><div style="font-size:6px;color:#6b7280">Practice</div></div>
+                  <div style="background:#f9fafb;border-radius:5px;padding:4px;text-align:center"><div style="font-size:10px">📚</div><div style="font-size:6px;color:#6b7280">Course</div></div>
+                </div>
+              </div>
+            </div>
+            <!-- Dark mode version -->
+            <div style="width:110px;background:#1a1a2e;border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.5);opacity:.85">
+              <div style="height:14px;background:#111827;display:flex;align-items:center;justify-content:center"><div style="width:36px;height:3px;background:#374151;border-radius:2px"></div></div>
+              <div style="padding:8px 10px">
+                <div style="display:flex;justify-content:space-between;margin-bottom:7px">
+                  <span style="font-size:10px;font-weight:700;color:#fff">Loksewa<span style="color:#f59e0b">Pro</span></span>
+                  <div style="width:16px;height:16px;background:#374151;border-radius:50%"></div>
+                </div>
+                <div style="background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);border-radius:8px;padding:8px;margin-bottom:7px">
+                  <div style="font-size:7px;color:#f59e0b;margin-bottom:2px">DAILY QUIZ</div>
+                  <div style="font-size:9px;color:#fff;font-weight:500">Challenge daily!</div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px">
+                  <div style="background:rgba(255,255,255,.05);border-radius:5px;padding:5px;text-align:center"><div style="font-size:9px">⚡</div></div>
+                  <div style="background:rgba(255,255,255,.05);border-radius:5px;padding:5px;text-align:center"><div style="font-size:9px">📝</div></div>
+                  <div style="background:rgba(255,255,255,.05);border-radius:5px;padding:5px;text-align:center"><div style="font-size:9px">🎯</div></div>
+                  <div style="background:rgba(255,255,255,.05);border-radius:5px;padding:5px;text-align:center"><div style="font-size:9px">📚</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-info">
+          <h4>Home Screen — Light &amp; Dark</h4>
+          <p>Both themes fully designed. Daily Quiz anchors the home screen as a habit-forming entry point. Quick access grid reduces navigation depth to one tap for any study mode.</p>
+        </div>
+      </div>
+      <div class="showcase-card" role="listitem">
+        <div class="showcase-visual" style="background:linear-gradient(135deg,#0a0a12,#111)">
+          <div style="width:130px;background:#1a1a2e;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)">
+            <div style="height:16px;background:#111827;display:flex;align-items:center;justify-content:center"><div style="width:40px;height:4px;background:#374151;border-radius:2px"></div></div>
+            <div style="padding:10px 12px">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                <span style="font-size:9px;color:#f59e0b">← Back</span>
+                <span style="font-size:9px;font-weight:600;color:#fff">Daily Quiz</span>
+                <span style="font-size:8px;color:#6b7280">NO. 22</span>
+              </div>
+              <div style="height:2px;background:rgba(255,255,255,.1);border-radius:1px;margin-bottom:8px">
+                <div style="height:100%;width:45%;background:#f59e0b;border-radius:1px"></div>
+              </div>
+              <div style="font-size:8px;color:#f59e0b;margin-bottom:4px;letter-spacing:1px">QUESTION 14/30</div>
+              <div style="font-size:9px;color:#fff;line-height:1.4;margin-bottom:8px">नेपालको पहिलो विधान सभाको निर्वाचन कुन सालमा भयो?</div>
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:6px 8px;font-size:8px;color:#e0e0e0;display:flex;gap:5px"><span style="width:12px;height:12px;background:rgba(255,255,255,.1);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:6px">A</span>२०१५ साल</div>
+                <div style="background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35);border-radius:6px;padding:6px 8px;font-size:8px;color:#4ade80;display:flex;gap:5px"><span style="width:12px;height:12px;background:rgba(34,197,94,.2);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:6px">B</span>२०१७ साल ✓</div>
+                <div style="background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.35);border-radius:6px;padding:6px 8px;font-size:8px;color:#fbbf24;display:flex;gap:5px"><span style="width:12px;height:12px;background:rgba(245,158,11,.2);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:6px">C</span>२०१९ साल</div>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin-top:8px">
+                <div style="font-size:8px;background:rgba(255,255,255,.07);color:#9ca3af;padding:4px 10px;border-radius:5px">← Prev</div>
+                <div style="font-size:8px;background:#f59e0b;color:#fff;padding:4px 10px;border-radius:5px">Next →</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-info">
+          <h4>Quiz Screen — Answer Feedback</h4>
+          <p>Immediate colour-coded feedback (green = correct, amber = selected). Questions in Nepali script. Progress bar and question counter always visible. Optimised for one-thumb use.</p>
+        </div>
+      </div>
+      <div class="showcase-card" role="listitem">
+        <div class="showcase-visual" style="background:linear-gradient(135deg,#050f05,#111)">
+          <div style="width:130px;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)">
+            <div style="height:16px;background:#f9fafb;display:flex;align-items:center;justify-content:center"><div style="width:40px;height:4px;background:#e5e7eb;border-radius:2px"></div></div>
+            <div style="padding:10px 12px">
+              <div style="border-bottom:1px solid #f3f4f6;padding-bottom:8px;margin-bottom:8px">
+                <div style="font-size:10px;font-weight:700;color:#1a1a1a">This Week</div>
+                <div style="font-size:8px;color:#9ca3af">Performance overview</div>
+              </div>
+              <div style="font-size:8px;color:#374151;font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between"><span>Subject scores</span><span style="color:#6b7280;font-weight:400">All</span></div>
+              <div style="display:flex;flex-direction:column;gap:5px">
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                  <span style="font-size:8px;color:#374151">History</span>
+                  <div style="display:flex;align-items:center;gap:4px">
+                    <div style="width:44px;height:3px;background:#f3f4f6;border-radius:2px"><div style="height:100%;width:80%;background:#22c55e;border-radius:2px"></div></div>
+                    <span style="font-size:7px;color:#6b7280">80%</span>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                  <span style="font-size:8px;color:#374151">Geography</span>
+                  <div style="display:flex;align-items:center;gap:4px">
+                    <div style="width:44px;height:3px;background:#f3f4f6;border-radius:2px"><div style="height:100%;width:65%;background:#f59e0b;border-radius:2px"></div></div>
+                    <span style="font-size:7px;color:#6b7280">65%</span>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                  <span style="font-size:8px;color:#374151">Statistics</span>
+                  <div style="display:flex;align-items:center;gap:4px">
+                    <div style="width:44px;height:3px;background:#f3f4f6;border-radius:2px"><div style="height:100%;width:45%;background:#ef4444;border-radius:2px"></div></div>
+                    <span style="font-size:7px;color:#6b7280">45%</span>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                  <span style="font-size:8px;color:#374151">Marketing</span>
+                  <div style="display:flex;align-items:center;gap:4px">
+                    <div style="width:44px;height:3px;background:#f3f4f6;border-radius:2px"><div style="height:100%;width:72%;background:#22c55e;border-radius:2px"></div></div>
+                    <span style="font-size:7px;color:#6b7280">72%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-info">
+          <h4>Progress &amp; Performance Tracking</h4>
+          <p>Weekly subject-level performance reports with colour-coded scores. Green/amber/red system gives users an instant sense of where to focus next — turning raw data into a study plan.</p>
+        </div>
+      </div>
+      <div class="showcase-card" role="listitem">
+        <div class="showcase-visual" style="background:linear-gradient(135deg,#0a0808,#111)">
+          <div style="width:130px;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)">
+            <div style="height:16px;background:#f9fafb;display:flex;align-items:center;justify-content:center"><div style="width:40px;height:4px;background:#e5e7eb;border-radius:2px"></div></div>
+            <div style="padding:10px 12px">
+              <div style="font-size:10px;font-weight:700;color:#1a1a1a;margin-bottom:8px">← This week</div>
+              <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px">
+                <div style="font-size:7px;background:#f59e0b;color:#fff;padding:2px 6px;border-radius:3px">All</div>
+                <div style="font-size:7px;background:#f3f4f6;color:#6b7280;padding:2px 6px;border-radius:3px">High score</div>
+                <div style="font-size:7px;background:#f3f4f6;color:#6b7280;padding:2px 6px;border-radius:3px">Low score</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:5px">
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 6px;background:#f9fafb;border-radius:4px"><span style="font-size:8px;color:#374151">History</span><span style="font-size:7px;color:#1d4ed8;border:1px solid #dbeafe;padding:1px 5px;border-radius:3px">View remarks</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 6px;background:#f9fafb;border-radius:4px"><span style="font-size:8px;color:#374151">Geography</span><span style="font-size:7px;color:#1d4ed8;border:1px solid #dbeafe;padding:1px 5px;border-radius:3px">View remarks</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 6px;background:#fef2f2;border-radius:4px;border-left:2px solid #ef4444"><span style="font-size:8px;color:#374151">Statistics</span><span style="font-size:7px;color:#1d4ed8;border:1px solid #dbeafe;padding:1px 5px;border-radius:3px">View remarks</span></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 6px;background:#f9fafb;border-radius:4px"><span style="font-size:8px;color:#374151">Finance</span><span style="font-size:7px;color:#1d4ed8;border:1px solid #dbeafe;padding:1px 5px;border-radius:3px">View remarks</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-info">
+          <h4>Mistake Review &amp; Subject Breakdown</h4>
+          <p>Filterable subject list with "View remarks" for every session. Weak subjects are surfaced with a red indicator — closing the learning loop that all competitor apps left open.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 REAL USER REVIEWS -->
+<section class="cs-section dark" id="reviews">
+  <div class="cs-inner">
+    <span class="section-num">3.1</span>
+    <span class="section-kicker">Play Store Reviews · Real Users</span>
+    <h2 class="cs-h2">WHAT USERS<br/>ARE SAYING</h2>
+    <p class="cs-body">4.4 stars across 28 reviews. The patterns in the feedback directly validate every core design decision made during the process.</p>
+    <div class="reviews-grid" role="list">
+      <div class="review-card" role="listitem">
+        <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        <p class="review-text">"The interface is very clean and easy to navigate compared to other cluttered Loksewa apps. I can find what I need immediately without getting lost."</p>
+        <div class="review-author">Play Store User · Nepal</div>
+      </div>
+      <div class="review-card" role="listitem">
+        <div class="review-stars" aria-label="5 stars">★★★★★</div>
+        <p class="review-text">"Study materials are well-organized and up to date. Practice sets with progress tracking actually help me know what to focus on. This is what I was missing."</p>
+        <div class="review-author">Play Store User · Nepal</div>
+      </div>
+      <div class="review-card" role="listitem">
+        <div class="review-stars" aria-label="4 stars">★★★★☆</div>
+        <p class="review-text">"Daily quiz feature keeps me consistent. The dark mode is much easier on my eyes when studying at night. Works offline too which is great outside the valley."</p>
+        <div class="review-author">Play Store User · Surkhet, Nepal</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 METRICS -->
+<section class="cs-section darker" id="outcomes">
+  <div class="cs-inner">
+    <span class="section-num">04</span>
+    <span class="section-kicker orange">Outcomes &amp; Impact</span>
+    <h2 class="cs-h2">THE RESULTS</h2>
+    <p class="cs-body">Post-launch results tracked through Play Store analytics, user review sentiment, and download milestones.</p>
+    <div class="metrics-grid" role="list">
+      <div class="metric-item" role="listitem">
+        <span class="metric-num">10<span>K+</span></span>
+        <span class="metric-label">Downloads on Play Store</span>
+      </div>
+      <div class="metric-item" role="listitem">
+        <span class="metric-num">4.4<span>★</span></span>
+        <span class="metric-label">Average user rating</span>
+      </div>
+      <div class="metric-item" role="listitem">
+        <span class="metric-num">2<span>mo</span></span>
+        <span class="metric-label">Design timeline</span>
+      </div>
+      <div class="metric-item" role="listitem">
+        <span class="metric-num">2<span>×</span></span>
+        <span class="metric-label">Themes designed (dark &amp; light)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 REFLECTION -->
+<section class="cs-section dark" id="reflection">
+  <div class="cs-inner">
+    <span class="section-num">05</span>
+    <span class="section-kicker">Reflection</span>
+    <h2 class="cs-h2">WHAT I LEARNED</h2>
+    <div class="reflection-grid" role="list">
+      <div class="reflection-card" role="listitem">
+        <h4>Design for trust, not just usability</h4>
+        <p>In EdTech — especially for high-stakes exams — one wrong answer can break a user's trust in the entire product. Every content decision needed to communicate accuracy. I learned that in some contexts, perceived reliability is the primary UX metric.</p>
+      </div>
+      <div class="reflection-card" role="listitem">
+        <h4>Mid-fidelity wireframing accelerated delivery</h4>
+        <p>Skipping low-fidelity sketches and jumping to mid-fidelity — given the clear brief and existing design kit — cut the feedback loop in half. For small teams with tight deadlines, this is a principle I now apply deliberately.</p>
+      </div>
+      <div class="reflection-card" role="listitem">
+        <h4>Habit design is UX design</h4>
+        <p>The Daily Quiz wasn't just a feature — it was a retention mechanism. I learned that for a study app, the most important design question isn't "Is this usable?" but "Will users come back tomorrow?" That changes every priority in the product.</p>
+      </div>
+      <div class="reflection-card" role="listitem">
+        <h4>Offline-first thinking changed how I approach mobile</h4>
+        <p>Designing for users with unreliable internet forced me to think about every state — loading, offline, partial sync, error. This constraint produced a better product for all users, not just rural ones. Constraints are design tools.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT PROJECT -->
+<div class="next-project">
+  <div class="next-inner">
+    <div>
+      <span class="next-label">Next Case Study</span>
+      <h2 class="next-title">INTELLIX<br/>HEALTHCARE KPI</h2>
+      <p style="font-size:14px;color:var(--gray);margin-top:10px;font-weight:300">Healthcare · Web + Mobile · 30% Satisfaction Lift</p>
+    </div>
+    <a href="intellix.html" class="next-cta">
+      View Case Study
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section" aria-labelledby="cta-title">
+  <h2 id="cta-title">LIKE WHAT<br/>YOU SEE?</h2>
+  <p>Let's talk about what we can build together.</p>
+  <div class="cta-buttons">
+    <a href="mailto:dikshya@email.com" class="btn-primary" onclick="showToast(event)">Get In Touch</a>
+    <a href="projects.html" class="btn-outline">View All Work</a>
+  </div>
+</section>
+</main>
+
+<footer role="contentinfo">
+  <a class="footer-logo" href="index.html">DIKSHYA</a>
+  <p>© 2026 · UI/UX Designer · Kathmandu, Nepal</p>
+  <a href="projects.html" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
+</footer>
+
+<script>
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
+(function anim(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim)})();
+window.addEventListener('scroll',()=>{const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;document.getElementById('progress').style.width=p+'%';},{passive:true});
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('revealed')})},{threshold:.07});
+document.querySelectorAll('.pain-item,.research-card,.decision-item,.showcase-card,.metric-item,.reflection-card,.persona-card,.review-card').forEach(el=>obs.observe(el));
+const hamburger=document.getElementById('hamburger'),drawer=document.getElementById('navDrawer');
+hamburger.addEventListener('click',()=>{const open=drawer.classList.toggle('open');hamburger.setAttribute('aria-expanded',open);const spans=hamburger.querySelectorAll('span');if(open){spans[0].style.transform='translateY(6.5px) rotate(45deg)';spans[1].style.opacity='0';spans[2].style.transform='translateY(-6.5px) rotate(-45deg)'}else{spans.forEach(s=>{s.style.transform='';s.style.opacity=''})}});
+function closeDrawer(){drawer.classList.remove('open');hamburger.setAttribute('aria-expanded','false');hamburger.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity=''})}
+function showToast(e){e.preventDefault();navigator.clipboard.writeText('dikshya@email.com').catch(()=>{});const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
+</script>
+</body>
+</html>

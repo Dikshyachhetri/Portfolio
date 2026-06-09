@@ -35,31 +35,29 @@
 }
 
 /* =====================================================
-   PROJECT CARD - base
+   PROJECT CARD - Spotlight Design
    ===================================================== */
 .project-card-overview {
   position:relative;
   border-radius:16px;
   overflow:hidden;
   cursor:pointer;
-  padding:60px;
-  min-height:540px;
+  padding:56px;
+  min-height:500px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
-  background:#181818;
+  background:#141414;
   border:1px solid rgba(255,255,255,.06);
-  transition: background 350ms cubic-bezier(.16,1,.3,1),
-              transform 400ms cubic-bezier(.16,1,.3,1),
-              box-shadow 400ms cubic-bezier(.16,1,.3,1);
+  transition: transform 450ms cubic-bezier(.16,1,.3,1),
+              box-shadow 450ms cubic-bezier(.16,1,.3,1);
   opacity:0; transform:translateY(36px);
-  box-shadow: 0 4px 20px rgba(0,0,0,.08);
+  box-shadow: 0 4px 20px rgba(0,0,0,.1);
 }
 .project-card-overview.revealed {
   opacity:1; transform:translateY(0);
-  transition: background 350ms cubic-bezier(.16,1,.3,1),
-              transform 600ms cubic-bezier(.16,1,.3,1),
-              box-shadow 400ms cubic-bezier(.16,1,.3,1),
+  transition: transform 600ms cubic-bezier(.16,1,.3,1),
+              box-shadow 450ms cubic-bezier(.16,1,.3,1),
               opacity 600ms cubic-bezier(.16,1,.3,1);
 }
 .project-card-overview:nth-child(1){transition-delay:0ms}
@@ -67,121 +65,56 @@
 .project-card-overview:nth-child(3){transition-delay:160ms}
 .project-card-overview:hover {
   transform:translateY(-6px);
-  box-shadow: 0 24px 56px rgba(0,0,0,.35);
+  box-shadow: 0 24px 60px rgba(0,0,0,.4);
 }
 .project-card-overview:focus-visible {
   outline:2px solid var(--orange);
   outline-offset:2px;
 }
 
-/* =====================================================
-   RARA SPACE CARD
-   ===================================================== */
-.card-raraspace {
-  background:#181818;
-}
-.card-raraspace:hover {
-  background:#000000;
-}
-
-/* Watermark - 30% visible (70% cropped on right), slides center on hover */
-.card-raraspace .card-watermark {
+/* --- Spotlight gradient overlay --- */
+.card-spotlight {
   position:absolute;
-  top:50%;
-  right:-45%;
-  transform:translateY(-50%);
-  width:auto;
-  height:225px;
+  top:0; left:0; right:0; bottom:0;
   z-index:0;
+  opacity:0;
+  transition: opacity 500ms cubic-bezier(.16,1,.3,1);
   pointer-events:none;
-  opacity:1;
-  transition: right 500ms cubic-bezier(.16,1,.3,1),
-              opacity 400ms cubic-bezier(.16,1,.3,1);
 }
-.card-raraspace .card-watermark .watermark-img {
-  height:100%;
-  width:auto;
-  display:block;
-}
-.card-raraspace:hover .card-watermark {
-  right:5%;
+.project-card-overview:hover .card-spotlight {
   opacity:1;
 }
 
-/* =====================================================
-   INTELLIX CARD
-   ===================================================== */
-.card-intellix {
-  background:#7879F9;
-}
-.card-intellix:hover {
-  background:#17186C;
+/* Rara - warm amber spotlight */
+.card-raraspace .card-spotlight {
+  background: radial-gradient(ellipse 100% 80% at 0% 100%, rgba(232,82,26,.12) 0%, transparent 70%);
 }
 
-/* Intellix icon background - rotates 90° on hover */
-.card-intellix .intellix-icon-bg {
+/* Intellix - cool purple spotlight */
+.card-intellix .card-spotlight {
+  background: radial-gradient(ellipse 100% 80% at 100% 0%, rgba(120,121,249,.12) 0%, transparent 70%);
+}
+
+/* Loksewa - golden spotlight */
+.card-loksewa .card-spotlight {
+  background: radial-gradient(ellipse 100% 80% at 50% 100%, rgba(228,135,0,.12) 0%, transparent 70%);
+}
+
+/* --- Accent bar - bottom edge --- */
+.card-accent-bar {
   position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%) scale(.85);
-  width:120px;
-  height:120px;
-  z-index:0;
-  pointer-events:none;
-  opacity:.12;
-  overflow:hidden;
-  transition: transform 500ms cubic-bezier(.16,1,.3,1),
-              opacity 400ms cubic-bezier(.16,1,.3,1);
+  bottom:0; left:0; right:0;
+  height:3px;
+  z-index:1;
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition: transform 500ms cubic-bezier(.16,1,.3,1);
 }
-.card-intellix .intellix-icon-bg .intellix-icon-img {
-  width:auto;
-  height:100%;
-  display:block;
-  object-fit:cover;
-  object-position:left center;
-}
-.card-intellix:hover .intellix-icon-bg {
-  transform:translate(-50%, -50%) rotate(90deg) scale(1);
-  opacity:.25;
-}
-
-/* =====================================================
-   LOKSEWA CARD
-   ===================================================== */
-.card-loksewa {
-  background:linear-gradient(180deg, #FFFFFF 0%, #E48700 100%);
-  border-color:rgba(0,0,0,.08);
-}
-.card-loksewa:hover {
-  background:#B86F06;
-}
-
-/* Check sign - center-left, slides right on hover */
-.card-loksewa .loksewa-check-bg {
-  position:absolute;
-  top:50%;
-  left:8%;
-  transform:translateY(-50%);
-  width:120px;
-  height:120px;
-  z-index:0;
-  pointer-events:none;
-  opacity:.15;
-  transition: left 500ms cubic-bezier(.16,1,.3,1),
-              opacity 450ms cubic-bezier(.16,1,.3,1),
-              transform 500ms cubic-bezier(.16,1,.3,1);
-  color:#B86F06;
-}
-.card-loksewa .loksewa-check-bg .check-svg {
-  width:100%;
-  height:100%;
-  display:block;
-  filter:drop-shadow(0 2px 8px rgba(184,111,6,.2));
-}
-.card-loksewa:hover .loksewa-check-bg {
-  left:65%;
-  opacity:1;
-  transform:translateY(-50%) translateX(-50%);
+.card-raraspace .card-accent-bar { background:#e8521a }
+.card-intellix .card-accent-bar { background:#7879F9 }
+.card-loksewa .card-accent-bar { background:#E48700 }
+.project-card-overview:hover .card-accent-bar {
+  transform:scaleX(1);
 }
 
 /* =====================================================
@@ -189,12 +122,38 @@
    ===================================================== */
 .card-logo-top {
   position:relative;
-  z-index:1;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 .card-logo {
-  height:32px;
+  height:34px;
   width:auto;
   display:block;
+  filter:brightness(.9);
+  transition: filter 350ms ease;
+}
+.project-card-overview:hover .card-logo {
+  filter:brightness(1.1);
+}
+
+/* Industry badge */
+.card-badge {
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.3);
+  font-family:'DM Mono',monospace;
+  padding:3px 10px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:3px;
+  transition: border-color 350ms ease, color 350ms ease;
+  margin-left:auto;
+}
+.project-card-overview:hover .card-badge {
+  border-color:rgba(255,255,255,.2);
+  color:rgba(255,255,255,.5);
 }
 
 /* =====================================================
@@ -202,76 +161,64 @@
    ===================================================== */
 .card-info-bottom {
   position:relative;
-  z-index:1;
+  z-index:2;
 }
 .card-title {
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(28px,3vw,40px);
+  font-size:clamp(30px,3.2vw,42px);
   letter-spacing:1px;
   color:#ffffff;
   line-height:1.05;
   margin-bottom:6px;
-}
-.card-loksewa .card-title {
-  color:#1a1a1a;
-}
-.card-loksewa:hover .card-title {
-  color:#ffffff;
+  transition: color 350ms ease;
 }
 .card-subtitle {
   font-size:13px;
-  color:rgba(255,255,255,.5);
+  color:rgba(255,255,255,.4);
   font-weight:300;
-  margin-bottom:16px;
-}
-.card-loksewa .card-subtitle {
-  color:rgba(0,0,0,.5);
-}
-.card-loksewa:hover .card-subtitle {
-  color:rgba(255,255,255,.5);
+  margin-bottom:20px;
+  max-width:40ch;
+  line-height:1.5;
+  transition: color 350ms ease;
 }
 .card-cta {
   display:inline-flex;
   align-items:center;
   gap:8px;
-  font-size:11px;
-  letter-spacing:2px;
+  font-size:10px;
+  letter-spacing:2.5px;
   text-transform:uppercase;
-  color:var(--orange);
+  color:rgba(255,255,255,.5);
   font-weight:400;
-  transition: gap 400ms cubic-bezier(.16,1,.3,1);
+  border-bottom:1px solid transparent;
+  padding-bottom:2px;
+  transition: gap 400ms cubic-bezier(.16,1,.3,1),
+              color 350ms ease,
+              border-color 350ms ease;
 }
-.project-card-overview:hover .card-cta { gap:14px }
+.card-raraspace:hover .card-cta { color:#e8521a; border-color:#e8521a33 }
+.card-intellix:hover .card-cta { color:#7879F9; border-color:#7879F933 }
+.card-loksewa:hover .card-cta { color:#E48700; border-color:#E4870033 }
+.project-card-overview:hover .card-cta { gap:12px }
 .card-cta svg { 
   transition:transform 400ms cubic-bezier(.16,1,.3,1);
-  width:14px;
-  height:14px;
+  width:12px;
+  height:12px;
+  stroke-width:2.5;
 }
-.project-card-overview:hover .card-cta svg { transform:translateX(5px) }
-
-.card-loksewa .card-cta {
-  color:#B86F06;
-}
+.project-card-overview:hover .card-cta svg { transform:translateX(4px) }
 
 /* =====================================================
    RESPONSIVE
    ===================================================== */
 @media(max-width:1100px){
-  .project-card-overview {
-    padding:40px;
-    min-height:420px;
-  }
-  .card-raraspace .card-watermark { height:170px }
+  .project-card-overview { padding:40px; min-height:400px }
 }
 
 @media(max-width:900px){
   .page-header{ padding:120px 24px 48px }
   .projects-grid{ padding:40px 24px 24px; grid-template-columns:1fr }
-  .project-card-overview {
-    padding:36px;
-    min-height:360px;
-  }
-  .card-raraspace .card-watermark { height:130px }
-  .card-intellix .intellix-icon-bg { width:80px; height:80px }
-  .card-loksewa .loksewa-check-bg { width:80px; height:80px }
+  .project-card-overview { padding:36px; min-height:340px }
+  .card-logo { height:28px }
+  .card-title { font-size:28px }
 }

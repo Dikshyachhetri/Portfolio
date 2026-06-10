@@ -30,6 +30,14 @@ const projects = [
     logo: BASE + 'loksewa-logo.png',
     accent: '#E48700',
   },
+  {
+    id: 'myra',
+    title: 'A digital platform connecting cooperatives all over the nation to technology.',
+    info: 'Fintech · ERP · Web App',
+    path: '/case/myra',
+    logo: BASE + 'myra-logo.png',
+    accent: '#22a85a',
+  },
 ]
 
 export default function WorkPage() {
@@ -50,7 +58,7 @@ export default function WorkPage() {
         </div>
         <h1>SELECTED<br/>WORK</h1>
         <p className="sub">
-          Three case studies across enterprise, healthcare, and mobile.
+          Four case studies across enterprise, healthcare, fintech, and mobile.
         </p>
       </header>
 

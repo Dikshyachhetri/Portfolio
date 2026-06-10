@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <style>
 :root{
   --bg:#0e0e0e;--bg2:#161616;--bg3:#1e1e1e;--bg4:#222;
@@ -83,7 +84,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 /* HERO MOCKUP */
 .cs-hero-image{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:64px 48px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .cs-hero-image::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(13,107,94,.06) 0%,transparent 70%)}
-.screen-wrap{width:90%;max-width:920px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.12);box-shadow:0 40px 100px rgba(0,0,0,.5);transition:transform .6s var(--ease);position:relative;z-index:1}
+.screen-wrap{width:90%;max-width:920px;border-radius:10px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.5);transition:transform .6s var(--ease);position:relative;z-index:1}
 .cs-hero-image:hover .screen-wrap{transform:translateY(-8px)}
 .screen-chrome{height:32px;background:#1a1a1a;display:flex;align-items:center;padding:0 14px;gap:7px;border-bottom:1px solid rgba(255,255,255,.06)}
 .s-dot{width:10px;height:10px;border-radius:50%}
@@ -156,7 +157,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .research-card:nth-child(2){transition-delay:80ms}
 .research-card:nth-child(3){transition-delay:160ms}
 .research-card:nth-child(4){transition-delay:240ms}
-.research-icon{font-size:24px;margin-bottom:14px}
+.research-icon{margin-bottom:14px;color:var(--teal2)}
+.research-icon svg{width:24px;height:24px}
 .research-card h4{font-size:15px;font-weight:500;color:var(--white);margin-bottom:8px}
 .research-card p{font-size:14px;color:var(--gray);line-height:1.7}
 
@@ -197,8 +199,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 /* showcase-grid replaced by final-design-grid */
 .final-design-img:hover{box-shadow:0 28px 64px rgba(0,0,0,.45);transform:translateY(-4px)}
 .final-design-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}
-.final-design-item{border:1px solid var(--border);border-radius:8px;overflow:hidden}
-.final-design-img{width:100%;display:block;border-radius:10px;border:1px solid rgba(255,255,255,.1);box-shadow:0 20px 48px rgba(0,0,0,.35);transition:box-shadow .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1)}
+.final-design-item{border-radius:8px;overflow:hidden}
+.final-design-img{width:100%;display:block;border-radius:10px;box-shadow:0 20px 48px rgba(0,0,0,.35);transition:box-shadow .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1)}
 .showcase-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;overflow:hidden;opacity:0;transform:translateY(20px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease),border-color var(--dur-mid)}
 .showcase-card:hover{border-color:rgba(13,107,94,.4)}
 .showcase-card.revealed{opacity:1;transform:translateY(0)}
@@ -451,22 +453,22 @@ footer p{font-size:12px;color:var(--gray2)}
 
     <div class="research-grid" role="list">
       <div class="research-card" role="listitem">
-        <div class="research-icon" aria-hidden="true">🏥</div>
+        <div class="research-icon" aria-hidden="true"><i data-lucide="building-2"></i></div>
         <h4>Secondary research</h4>
         <p>Reviewed best practices and UI patterns from leading healthcare and analytics platforms. Analysed usability reports, case studies, and public design documentation focused on clinical workflow tools.</p>
       </div>
       <div class="research-card" role="listitem">
-        <div class="research-icon" aria-hidden="true">🔍</div>
+        <div class="research-icon" aria-hidden="true"><i data-lucide="search"></i></div>
         <h4>Competition analysis</h4>
         <p>Healthcare teams demand flexible platforms that reduce cognitive overload without multi-year deployments. Intellix was positioned as a focused, modern alternative to heavy legacy EHR systems.</p>
       </div>
       <div class="research-card" role="listitem">
-        <div class="research-icon" aria-hidden="true">👨‍⚕️</div>
+        <div class="research-icon" aria-hidden="true"><i data-lucide="stethoscope"></i></div>
         <h4>Direct user feedback</h4>
         <p>Connected directly with hospital doctors and nurses to gather insights on how the KPI module's workflow aligned with daily routines , identifying practical improvements grounded in real clinical needs.</p>
       </div>
       <div class="research-card" role="listitem">
-        <div class="research-icon" aria-hidden="true">📊</div>
+        <div class="research-icon" aria-hidden="true"><i data-lucide="bar-chart-3"></i></div>
         <h4>Analytics &amp; monitoring</h4>
         <p>Leveraged user analytics and direct feedback mechanisms to continuously monitor how the KPI module was used in real clinical settings , tracking adoption rates and usability issues post-launch.</p>
       </div>
@@ -503,7 +505,7 @@ footer p{font-size:12px;color:var(--gray2)}
         </div>
       </div>
       <div style="text-align:center">
-        <div style="font-size:56px;margin-bottom:16px" aria-hidden="true">🏥</div>
+        <div style="text-align:center" aria-hidden="true"><i data-lucide="building-2" style="width:56px;height:56px;color:var(--teal2)"></i></div>
         <div style="display:flex;flex-direction:column;gap:8px;text-align:left">
           <div style="background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:10px 14px">
             <div style="font-size:10px;color:var(--teal2);font-family:'DM Mono',monospace;letter-spacing:1px;margin-bottom:3px">ICU TEAM</div>
@@ -774,7 +776,7 @@ footer p{font-size:12px;color:var(--gray2)}
     <p class="cs-body">Measured through direct user feedback from hospital staff, stakeholder reviews, and post-launch analytics monitoring in real clinical environments.</p>
     <div class="metrics-grid" role="list">
       <div class="metric-item" role="listitem">
-        <span class="metric-num"><span>↑</span>30<span>%</span></span>
+        <span class="metric-num"><i data-lucide="trending-up" style="width:32px;height:32px"></i>30<span>%</span></span>
         <span class="metric-label">User satisfaction improvement</span>
       </div>
       <div class="metric-item" role="listitem">
@@ -867,6 +869,7 @@ function showToast(e){e.preventDefault();navigator.clipboard.writeText('dikshya@
 </script>
 <script>
 (function(){
+  lucide.createIcons();
   if(window.location.search.indexOf('embed=1')!==-1){
     document.documentElement.classList.add('embed-view');
   }

@@ -22,6 +22,7 @@ export default function App() {
         <Route path="/case/raraspace" element={<CaseStudy htmlFile="raraspace.html" />} />
         <Route path="/case/intellix" element={<CaseStudy htmlFile="intellix.html" />} />
         <Route path="/case/loksewa" element={<CaseStudy htmlFile="loksewa.html" />} />
+        <Route path="/case/myra" element={<CaseStudy htmlFile="myra.html" />} />
       </Routes>
       <Footer />
       <Toast />

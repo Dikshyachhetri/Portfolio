@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { showToast } from './Toast'
@@ -9,15 +8,14 @@ export default function Nav() {
 
   const closeDrawer = () => setDrawerOpen(false)
 
-  // Close drawer on route change
   useEffect(() => { setDrawerOpen(false) }, [location.pathname])
 
-  const isActive = (path: string) => location.pathname === path || location.pathname.endsWith(path)
+  const isActive = (path: string) => location.pathname === path
 
   return (
     <>
       <nav role="navigation" aria-label="Main navigation">
-        <Link className="nav-logo" to="/home" aria-label="Dikshya Home">
+        <Link className="nav-logo" to="/home" aria-label="Dikshya — Home">
           <span className="nav-logo-dot" aria-hidden="true"></span>DIKSHYA
         </Link>
         <ul className="nav-links" role="list">

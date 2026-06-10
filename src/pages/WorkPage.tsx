@@ -58,7 +58,7 @@ export default function WorkPage() {
         </div>
         <h1>SELECTED<br/>WORK</h1>
         <p className="sub">
-          Four case studies across enterprise, healthcare, fintech, and mobile.
+          Four case studies across enterprise, healthcare, edtech, and enterprise resource planning.
         </p>
       </header>
 
@@ -73,16 +73,16 @@ export default function WorkPage() {
             style={{ '--accent': p.accent } as React.CSSProperties}
           >
             <div className="proj-frame">
-              {/* Preview image */}
-              <div className="proj-preview" aria-hidden="true">
+              {/* Logo */}
+              <div className="proj-logo-area" aria-hidden="true">
                 <img src={p.logo} alt="" className="proj-logo-img" />
               </div>
-              {/* Info */}
+              {/* Body */}
               <div className="proj-body">
                 <h2 className="proj-title-text">{p.title}</h2>
                 <p className="proj-meta-text">{p.info}</p>
               </div>
-              {/* Action */}
+              {/* Tail */}
               <div className="proj-tail">
                 <span className="proj-cta-link">
                   <span>View Case Study</span>

@@ -42,7 +42,6 @@
   border-radius:14px;
   overflow:hidden;
   cursor:pointer;
-  background:#141414;
   text-decoration:none;
   color:inherit;
   border:1px solid rgba(255,255,255,.06);
@@ -68,7 +67,6 @@
   transform:translateY(-4px);
   box-shadow: 0 20px 48px rgba(0,0,0,.35);
   border-color:rgba(255,255,255,.1);
-  background:#181818;
 }
 .project-card-overview:focus-visible {
   outline:2px solid var(--orange);
@@ -76,14 +74,32 @@
   border-radius:14px;
 }
 
-/* Per-card hover border colors */
+/* Per-card subtle gradient backgrounds */
+.card-raraspace {
+  background: linear-gradient(135deg, #141414 0%, #1a0f0c 100%);
+}
+.card-intellix {
+  background: linear-gradient(135deg, #141414 0%, #0f0f1a 100%);
+}
+.card-loksewa {
+  background: linear-gradient(135deg, #141414 0%, #1a140a 100%);
+}
+.card-myra {
+  background: linear-gradient(135deg, #141414 0%, #0a140f 100%);
+}
+
 .card-raraspace:hover { border-color:rgba(232,82,26,.15) }
 .card-intellix:hover { border-color:rgba(120,121,249,.15) }
 .card-loksewa:hover { border-color:rgba(228,135,0,.15) }
 .card-myra:hover { border-color:rgba(34,168,90,.15) }
 
+/* Taller logo for portrait-format logos */
+.card-loksewa .proj-logo-img {
+  height:52px;
+}
+
 /* =====================================================
-   CARD FRAME — vertical flex layout
+   CARD FRAME
    ===================================================== */
 .proj-frame {
   display:flex;
@@ -92,16 +108,16 @@
 }
 
 /* =====================================================
-   PREVIEW — logo area
+   LOGO AREA
    ===================================================== */
-.proj-preview {
-  padding:44px 44px 0;
+.proj-logo-area {
+  padding:36px 36px 0;
   display:flex;
   align-items:center;
-  min-height:100px;
+  min-height:80px;
 }
 .proj-logo-img {
-  height:36px;
+  height:38px;
   width:auto;
   display:block;
   opacity:.8;
@@ -116,7 +132,7 @@
    BODY — title + info
    ===================================================== */
 .proj-body {
-  padding:20px 44px 0;
+  padding:18px 36px 0;
   flex:1;
 }
 .proj-title-text {
@@ -143,7 +159,7 @@
    TAIL — CTA
    ===================================================== */
 .proj-tail {
-  padding:20px 44px 36px;
+  padding:18px 36px 32px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -174,17 +190,20 @@
    RESPONSIVE
    ===================================================== */
 @media(max-width:1100px){
-  .proj-preview { padding:36px 36px 0; min-height:80px }
-  .proj-body { padding:16px 36px 0 }
-  .proj-tail { padding:16px 36px 28px }
+  .proj-logo-area { padding:28px 28px 0; min-height:70px }
+  .proj-body { padding:14px 28px 0 }
+  .proj-tail { padding:14px 28px 24px }
+  .proj-logo-img { height:34px }
+.card-loksewa .proj-logo-img { height:46px }
 }
 
 @media(max-width:900px){
   .page-header{ padding:120px 24px 48px }
   .projects-grid{ padding:40px 24px 32px; grid-template-columns:1fr }
-  .proj-preview { padding:32px 32px 0; min-height:70px }
-  .proj-body { padding:14px 32px 0 }
-  .proj-tail { padding:14px 32px 24px }
+  .proj-logo-area { padding:24px 24px 0; min-height:60px }
+  .proj-body { padding:12px 24px 0 }
+  .proj-tail { padding:12px 24px 20px }
   .proj-title-text { font-size:28px }
   .proj-logo-img { height:30px }
+.card-loksewa .proj-logo-img { height:40px }
 }

@@ -112,12 +112,12 @@ export default function AboutPage() {
           <h2 className="section-title" id="skills-title">SKILLS</h2>
           <div className="skills-grid" role="list" aria-label="Skill categories">
             {[
-              { group:'UX Design', skills:['User Research','Persona Creation','Journey Mapping','Information Architecture','Usability Testing','Accessibility Audits'] },
+              { group:'UX Design', skills:['UX Strategy','User Research','Persona Creation','Journey Mapping','Information Architecture','Usability Testing','Heuristic Evaluation','Accessibility Audits'] },
               { group:'UI Design', skills:['Visual Design','Design Systems','Component Libraries','Typography','Color Theory','Iconography'] },
               { group:'Tools', skills:['Figma','Sketch','Adobe XD','Framer','Principle','Maze'] },
               { group:'AI & Automation', skills:['Claude','ChatGPT','Lovable','Uizard','Figma AI','Stitch'] },
-              { group:'Prototyping', skills:['Interactive Prototypes','Micro-Interactions','Motion Design','Responsive Design','Design Tokens','Handoff'] },
-              { group:'Soft Skills', skills:['Stakeholder Mgmt','Design Critique','Cross-Functional','Mentoring','Presentations','User Advocacy'] },
+              { group:'Prototyping', skills:['Interactive Prototypes','Wireframing','Micro-Interactions','Motion Design','Responsive Design','Design Tokens','Handoff'] },
+              { group:'Soft Skills', skills:['Stakeholder Mgmt','Design Critique','Cross-Functional','Mentoring','Presentations','Workshop Facilitation','User Advocacy'] },
             ].map((sg, i) => (
               <div className="skill-group" role="listitem" key={i}>
                 <h3 className="skill-group-title">{sg.group}</h3>

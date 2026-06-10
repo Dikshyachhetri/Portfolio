@@ -43,13 +43,177 @@ export default function AboutPage() {
             </div>
           </div>
           <div className="about-right">
-            <div className="photo-frame" style={{
-              backgroundImage:'url(' + BASE + 'profile-photo.png)',
-              backgroundSize:'cover',
-              backgroundPosition:'center top',
-              backgroundRepeat:'no-repeat',
-              border:'1px solid var(--border)'
-            }}></div>
+            <div className="photo-orbit">
+              {/* Connection arcs */}
+              <svg className="orb-connections" viewBox="0 0 440 440" width="440" height="440" aria-hidden="true">
+                <path d="M220 220 Q 80 80 220 40" stroke="rgba(232,82,26,.06)" stroke-width="1" fill="none" stroke-dasharray="3 5"/>
+                <path d="M220 220 Q 370 60 370 220" stroke="rgba(232,82,26,.06)" stroke-width="1" fill="none" stroke-dasharray="3 5"/>
+                <path d="M220 220 Q 330 370 220 390" stroke="rgba(232,82,26,.06)" stroke-width="1" fill="none" stroke-dasharray="3 5"/>
+                <path d="M220 220 Q 60 330 60 220" stroke="rgba(232,82,26,.06)" stroke-width="1" fill="none" stroke-dasharray="3 5"/>
+                <path d="M220 220 Q 120 370 220 390" stroke="rgba(232,82,26,.04)" stroke-width="1" fill="none" stroke-dasharray="3 5"/>
+                <path d="M220 220 Q 320 80 370 100" stroke="rgba(232,82,26,.04)" stroke-width="1" fill="none" stroke-dasharray="3 5"/>
+                <path d="M220 220 Q 110 100 80 130" stroke="rgba(232,82,26,.04)" stroke-width="1" fill="none" stroke-dasharray="3 5"/>
+                <path d="M220 220 Q 340 340 320 380" stroke="rgba(232,82,26,.04)" stroke-width="1" fill="none" stroke-dasharray="3 5"/>
+              </svg>
+
+              {/* 1. Figma logo — isometric 3D — top */}
+              <div className="orb-art orb-art-figma" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" width="44" height="44">
+                  {/* Shadow */}
+                  <rect x="9" y="17" width="10" height="10" rx="2.5" fill="rgba(0,0,0,.2)" transform="translate(1,1)"/>
+                  <rect x="19" y="17" width="10" height="10" rx="2.5" fill="rgba(0,0,0,.2)" transform="translate(1,1)"/>
+                  <rect x="9" y="27" width="10" height="10" rx="2.5" fill="rgba(0,0,0,.2)" transform="translate(1,1)"/>
+                  {/* Figma squares */}
+                  <rect x="9" y="7" width="10" height="10" rx="2.5" fill="rgba(232,82,26,.2)" stroke="rgba(232,82,26,.5)" stroke-width="1.2"/>
+                  <rect x="19" y="7" width="10" height="10" rx="2.5" fill="rgba(120,80,230,.2)" stroke="rgba(120,80,230,.5)" stroke-width="1.2"/>
+                  <rect x="9" y="17" width="10" height="10" rx="2.5" fill="rgba(50,170,80,.2)" stroke="rgba(50,170,80,.5)" stroke-width="1.2"/>
+                  <rect x="19" y="17" width="10" height="10" rx="2.5" fill="rgba(232,82,26,.2)" stroke="rgba(232,82,26,.5)" stroke-width="1.2"/>
+                  <rect x="9" y="27" width="10" height="10" rx="2.5" fill="rgba(50,170,80,.2)" stroke="rgba(50,170,80,.5)" stroke-width="1.2"/>
+                </svg>
+              </div>
+
+              {/* 2. Wireframe frame — UI screen with grids — top-right */}
+              <div className="orb-art orb-art-wireframe" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" width="48" height="48">
+                  {/* Device frame */}
+                  <rect x="8" y="5" width="32" height="38" rx="3" stroke="rgba(200,180,255,.25)" stroke-width="1" fill="rgba(200,180,255,.04)"/>
+                  {/* Top bar */}
+                  <rect x="12" y="10" width="24" height="4" rx="1" fill="rgba(200,180,255,.1)"/>
+                  {/* Content blocks */}
+                  <rect x="12" y="18" width="10" height="8" rx="1.5" stroke="rgba(200,180,255,.12)" stroke-width=".7" fill="rgba(200,180,255,.04)"/>
+                  <rect x="24" y="18" width="12" height="3" rx=".8" fill="rgba(200,180,255,.08)"/>
+                  <rect x="24" y="23" width="8" height="3" rx=".8" fill="rgba(200,180,255,.06)"/>
+                  {/* Grid rows */}
+                  <rect x="12" y="30" width="24" height="2" rx=".5" fill="rgba(200,180,255,.06)"/>
+                  <rect x="12" y="34" width="20" height="2" rx=".5" fill="rgba(200,180,255,.06)"/>
+                  <rect x="12" y="38" width="16" height="2" rx=".5" fill="rgba(200,180,255,.04)"/>
+                </svg>
+              </div>
+
+              {/* 3. Component grid — design system — right */}
+              <div className="orb-art orb-art-components" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" width="46" height="46">
+                  {/* Grid box */}
+                  <rect x="6" y="6" width="36" height="36" rx="3" stroke="rgba(100,200,255,.18)" stroke-width=".8" fill="rgba(100,200,255,.03)"/>
+                  {/* Component blocks */}
+                  <rect x="10" y="10" width="12" height="8" rx="1.5" stroke="rgba(100,200,255,.15)" stroke-width=".7" fill="rgba(100,200,255,.05)"/>
+                  <rect x="26" y="10" width="12" height="8" rx="1.5" stroke="rgba(100,200,255,.12)" stroke-width=".7" fill="rgba(100,200,255,.04)"/>
+                  <rect x="10" y="22" width="12" height="8" rx="1.5" stroke="rgba(100,200,255,.12)" stroke-width=".7" fill="rgba(100,200,255,.04)"/>
+                  <rect x="26" y="22" width="12" height="8" rx="1.5" stroke="rgba(100,200,255,.15)" stroke-width=".7" fill="rgba(100,200,255,.05)"/>
+                  {/* Bottom row - color swatches */}
+                  <circle cx="12" cy="36" r="3" stroke="rgba(100,200,255,.12)" stroke-width=".6" fill="rgba(232,82,26,.12)"/>
+                  <circle cx="20" cy="36" r="3" stroke="rgba(100,200,255,.12)" stroke-width=".6" fill="rgba(120,80,230,.12)"/>
+                  <circle cx="28" cy="36" r="3" stroke="rgba(100,200,255,.12)" stroke-width=".6" fill="rgba(50,170,80,.12)"/>
+                  <circle cx="36" cy="36" r="3" stroke="rgba(100,200,255,.12)" stroke-width=".6" fill="rgba(232,82,26,.12)"/>
+                </svg>
+              </div>
+
+              {/* 4. Color swatches + design tokens — bottom-right */}
+              <div className="orb-art orb-art-tokens" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" width="44" height="44">
+                  {/* Main palette */}
+                  <rect x="8" y="8" width="32" height="32" rx="4" stroke="rgba(255,200,150,.15)" stroke-width=".8" fill="rgba(255,200,150,.03)"/>
+                  {/* Color circles */}
+                  <circle cx="16" cy="16" r="5" fill="rgba(232,82,26,.15)" stroke="rgba(232,82,26,.25)" stroke-width=".8"/>
+                  <circle cx="28" cy="16" r="5" fill="rgba(120,80,230,.15)" stroke="rgba(120,80,230,.25)" stroke-width=".8"/>
+                  <circle cx="16" cy="28" r="5" fill="rgba(50,170,80,.15)" stroke="rgba(50,170,80,.25)" stroke-width=".8"/>
+                  <circle cx="28" cy="28" r="5" fill="rgba(230,180,30,.15)" stroke="rgba(230,180,30,.25)" stroke-width=".8"/>
+                  {/* Small token pills */}
+                  <rect x="11" y="22" width="4" height="2" rx="1" fill="rgba(255,255,255,.08)"/>
+                  <rect x="23" y="22" width="4" height="2" rx="1" fill="rgba(255,255,255,.08)"/>
+                </svg>
+              </div>
+
+              {/* 5. Mobile + desktop device frames — bottom */}
+              <div className="orb-art orb-art-devices" aria-hidden="true">
+                <svg viewBox="0 0 52 48" fill="none" width="48" height="44">
+                  {/* Laptop */}
+                  <rect x="6" y="6" width="24" height="16" rx="2" stroke="rgba(150,220,200,.2)" stroke-width=".8" fill="rgba(150,220,200,.03)"/>
+                  <rect x="8" y="9" width="20" height="10" rx="1" fill="rgba(150,220,200,.04)"/>
+                  <rect x="8" y="11" width="14" height="2" rx=".5" fill="rgba(150,220,200,.08)"/>
+                  <rect x="8" y="15" width="10" height="2" rx=".5" fill="rgba(150,220,200,.06)"/>
+                  <path d="M8 22 L10 26 L26 26 L28 22" stroke="rgba(150,220,200,.15)" stroke-width=".8" fill="rgba(150,220,200,.04)"/>
+                  {/* Phone */}
+                  <rect x="34" y="10" width="14" height="24" rx="2.5" stroke="rgba(150,220,200,.18)" stroke-width=".8" fill="rgba(150,220,200,.03)"/>
+                  <rect x="37" y="14" width="8" height="12" rx="1" fill="rgba(150,220,200,.04)"/>
+                  <rect x="37" y="16" width="6" height="1.5" rx=".3" fill="rgba(150,220,200,.08)"/>
+                  <rect x="37" y="19" width="4" height="1.5" rx=".3" fill="rgba(150,220,200,.06)"/>
+                  <rect x="39" y="28" width="4" height="1.5" rx=".75" fill="rgba(150,220,200,.1)"/>
+                </svg>
+              </div>
+
+              {/* 6. Auto-layout brackets + cursor — bottom-left */}
+              <div className="orb-art orb-art-layout" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" width="46" height="46">
+                  {/* Auto-layout brackets */}
+                  <path d="M10 8 L10 40" stroke="rgba(180,230,200,.2)" stroke-width="1.2" stroke-linecap="round"/>
+                  <path d="M10 8 L18 8" stroke="rgba(180,230,200,.2)" stroke-width="1.2" stroke-linecap="round"/>
+                  <path d="M10 40 L18 40" stroke="rgba(180,230,200,.2)" stroke-width="1.2" stroke-linecap="round"/>
+                  <path d="M38 8 L38 40" stroke="rgba(180,230,200,.18)" stroke-width="1.2" stroke-linecap="round"/>
+                  <path d="M30 8 L38 8" stroke="rgba(180,230,200,.18)" stroke-width="1.2" stroke-linecap="round"/>
+                  <path d="M30 40 L38 40" stroke="rgba(180,230,200,.18)" stroke-width="1.2" stroke-linecap="round"/>
+                  {/* Arrow icon */}
+                  <path d="M20 16 L28 24 L20 32" stroke="rgba(180,230,200,.2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                  {/* Cursor arrow */}
+                  <path d="M28 10 L34 16 L30 18" stroke="rgba(180,230,200,.15)" stroke-width=".8" fill="none"/>
+                </svg>
+              </div>
+
+              {/* 7. Accessibility icons — left */}
+              <div className="orb-art orb-art-a11y" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" width="42" height="42">
+                  {/* Universal access circle */}
+                  <circle cx="24" cy="24" r="16" stroke="rgba(200,230,255,.18)" stroke-width=".8" fill="rgba(200,230,255,.03)"/>
+                  {/* Person icon */}
+                  <circle cx="24" cy="18" r="5" stroke="rgba(200,230,255,.15)" stroke-width=".8" fill="rgba(200,230,255,.06)"/>
+                  <path d="M16 32c0-5 3.5-8 8-8s8 3 8 8" stroke="rgba(200,230,255,.15)" stroke-width=".8" fill="none"/>
+                  {/* Accessibility indicators */}
+                  <circle cx="24" cy="18" r="8" stroke="rgba(200,230,255,.08)" stroke-width=".5" fill="none" stroke-dasharray="2 2"/>
+                  <path d="M20 24 L24 28 L28 24" stroke="rgba(200,230,255,.1)" stroke-width=".8" stroke-linecap="round" fill="none"/>
+                  <path d="M24 28 L24 34" stroke="rgba(200,230,255,.1)" stroke-width=".8"/>
+                </svg>
+              </div>
+
+              {/* 8. Prototype connection nodes — top-left */}
+              <div className="orb-art orb-art-prototype" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" width="44" height="44">
+                  {/* Connection lines */}
+                  <path d="M10 14 L22 14 L22 30 L34 30" stroke="rgba(255,180,200,.2)" stroke-width="1" stroke-dasharray="3 3" fill="none"/>
+                  <path d="M14 20 L34 20" stroke="rgba(255,180,200,.1)" stroke-width=".6" stroke-dasharray="2 3" fill="none"/>
+                  {/* Nodes */}
+                  <circle cx="10" cy="14" r="4" stroke="rgba(255,180,200,.25)" stroke-width="1" fill="rgba(255,180,200,.06)"/>
+                  <circle cx="10" cy="14" r="1.5" fill="rgba(255,180,200,.3)"/>
+                  <circle cx="22" cy="30" r="4" stroke="rgba(255,180,200,.2)" stroke-width="1" fill="rgba(255,180,200,.05)"/>
+                  <circle cx="22" cy="30" r="1.5" fill="rgba(255,180,200,.25)"/>
+                  <circle cx="34" cy="30" r="4" stroke="rgba(255,180,200,.2)" stroke-width="1" fill="rgba(255,180,200,.05)"/>
+                  <circle cx="34" cy="30" r="1.5" fill="rgba(255,180,200,.25)"/>
+                  {/* Flow arrows */}
+                  <path d="M12 10 L16 14 L12 18" stroke="rgba(255,180,200,.15)" stroke-width=".8" stroke-linecap="round" fill="none"/>
+                  <path d="M24 26 L28 30 L24 34" stroke="rgba(255,180,200,.12)" stroke-width=".8" stroke-linecap="round" fill="none"/>
+                </svg>
+              </div>
+
+              {/* Floating ambient particles */}
+              <div className="orb-particle p1" aria-hidden="true"></div>
+              <div className="orb-particle p2" aria-hidden="true"></div>
+              <div className="orb-particle p3" aria-hidden="true"></div>
+              <div className="orb-particle p4" aria-hidden="true"></div>
+              <div className="orb-particle p5" aria-hidden="true"></div>
+              <div className="orb-particle p6" aria-hidden="true"></div>
+              <div className="orb-particle p7" aria-hidden="true"></div>
+              <div className="orb-particle p8" aria-hidden="true"></div>
+              <div className="orb-particle p9" aria-hidden="true"></div>
+              <div className="orb-particle p10" aria-hidden="true"></div>
+              <div className="orb-particle p11" aria-hidden="true"></div>
+              <div className="orb-particle p12" aria-hidden="true"></div>
+
+              <div className="photo-frame" style={{
+                backgroundImage:'url(' + BASE + 'profile-photo.png)',
+                backgroundSize:'cover',
+                backgroundPosition:'center top',
+                backgroundRepeat:'no-repeat'
+              }}></div>
+            </div>
           </div>
         </div>
       </header>

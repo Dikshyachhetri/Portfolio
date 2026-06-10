@@ -2,6 +2,7 @@ import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import CustomCursor from './components/CustomCursor'
 import Nav from './components/Nav'
+import ScrollToTop from './components/ScrollToTop'
 import Footer from './components/Footer'
 import Toast from './components/Toast'
 import HomePage from './pages/HomePage'
@@ -13,6 +14,7 @@ export default function App() {
   return (
     <>
       <CustomCursor />
+      <ScrollToTop />
       <Nav />
       <Routes>
         <Route path="/" element={<Navigate to="/home" replace />} />

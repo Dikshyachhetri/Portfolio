@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" fill="none">
+  <!-- Airplane silhouette representing Nepal Airlines -->
+  <path d="M10 28 L20 28 L28 18 L44 18 L52 14 L70 14 L78 10 L90 10 L94 14 L88 18 L100 18 L108 22 L110 28 L100 28 L90 24 L78 24 L70 28 L52 28 L44 32 L20 32 Z" stroke="#f0ece4" stroke-width="1.8" fill="rgba(240,236,228,.08)" opacity=".85" stroke-linejoin="round"/>
+  <path d="M28 20 L44 20 L52 24 L70 24" stroke="#f0ece4" stroke-width="1.2" opacity=".4"/>
+  <text x="60" y="16" font-family="'Bebas Neue',sans-serif" font-size="6" fill="rgba(240,236,228,.25)" text-anchor="middle" letter-spacing="2">NEPAL AIRLINES</text>
+</svg>

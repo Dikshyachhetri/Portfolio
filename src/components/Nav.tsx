@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { showToast } from './Toast'
+
+function openGmail() {
+  window.open('https://mail.google.com/mail/?view=cm&fs=1&to=dikshyabc01@gmail.com', '_blank')
+}
 
 export default function Nav() {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const location = useLocation()
-
   const closeDrawer = () => setDrawerOpen(false)
-
   useEffect(() => { setDrawerOpen(false) }, [location.pathname])
 
   const isActive = (path: string) => location.pathname === path
@@ -23,7 +24,7 @@ export default function Nav() {
           <li><Link to="/work" className={isActive('/work') ? 'active' : ''}>Work</Link></li>
           <li><Link to="/about" className={isActive('/about') ? 'active' : ''}>About</Link></li>
         </ul>
-        <button className="nav-cta" onClick={showToast}>Hire Me</button>
+        <button className="nav-cta" onClick={openGmail}>Let's Talk</button>
         <button
           className="nav-hamburger"
           id="hamburger"
@@ -45,7 +46,7 @@ export default function Nav() {
         <Link to="/home" onClick={closeDrawer}>Home</Link>
         <Link to="/work" onClick={closeDrawer}>Work</Link>
         <Link to="/about" onClick={closeDrawer}>About</Link>
-        <Link to="/home" onClick={(e) => { closeDrawer(); showToast(e) }}>Hire Me →</Link>
+        <Link to="/home" onClick={(e) => { e.preventDefault(); closeDrawer(); openGmail() }}>Let's Talk →</Link>
       </nav>
     </>
   )

@@ -32,24 +32,6 @@ body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:18px;height:18px}
 body:has(a:hover) #cursor-ring{width:48px;height:48px;opacity:.35}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:60px;border-bottom:1px solid var(--border);background:rgba(14,14,14,.9);backdrop-filter:blur(18px)}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:10px}
-.nav-logo-dot{width:9px;height:9px;background:var(--orange);border-radius:50%;animation:navpulse 3s ease-in-out infinite}
-@keyframes navpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
-.nav-links{display:flex;align-items:center;gap:36px;list-style:none}
-.nav-links a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color var(--dur-fast);position:relative;padding-bottom:4px}.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--orange);transition:width var(--dur-mid) var(--ease);border-radius:1px}
-
-.nav-links a:hover{color:var(--white)}
-.nav-links a:hover{color:var(--white)}.nav-links a:hover::after{width:100%}.nav-links a.active{color:var(--white)}.nav-links a.active::after{width:100%}
-.nav-cta{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);border:1px solid var(--orange);padding:8px 22px;border-radius:2px;text-decoration:none;transition:background var(--dur-fast),color var(--dur-fast),box-shadow var(--dur-fast)}
-.nav-cta:hover{background:var(--orange);color:#fff;box-shadow:0 0 20px rgba(232,82,26,.25)}
-.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:8px}
-.nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:transform var(--dur-mid) var(--ease),opacity var(--dur-fast)}
-.nav-drawer{display:none;position:fixed;top:60px;left:0;right:0;height:400px;background:var(--bg);border-bottom:1px solid var(--border);padding:48px;flex-direction:column;gap:24px;z-index:99;overflow-y:auto}
-.nav-drawer a{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:3px;color:var(--gray);text-decoration:none;transition:color var(--dur-fast)}
-.nav-drawer a:hover{color:var(--orange)}
-.nav-drawer.open{display:flex}
-
 /* PROGRESS BAR , reading indicator */
 #progress{position:fixed;top:60px;left:0;height:2px;background:var(--orange);z-index:99;width:0%;transition:width .1s linear}
 
@@ -88,12 +70,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 /* Breadcrumb */
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
+.breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:32px;opacity:0;animation:fadeUp .6s var(--ease) forwards 100ms}
+.breadcrumb a,.breadcrumb span{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);text-decoration:none;transition:color var(--dur-fast)}
+.breadcrumb a:hover{color:var(--orange)}
+.breadcrumb .sep{color:var(--gray3)}
 .cs-hero-meta{
   display:flex;align-items:center;gap:12px;margin-bottom:24px;
   opacity:0;animation:fadeUp .6s var(--ease) forwards 200ms;
 }
-.cs-chip{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:2px}
+.cs-chip{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:100px}
 .cs-chip.active{background:rgba(232,82,26,.15);border-color:rgba(232,82,26,.4);color:var(--orange)}
+.visit-hero-link{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--orange2);text-decoration:none;display:inline-flex;align-items:center;gap:10px;padding:10px 22px;border:1.5px solid rgba(232,82,26,.35);border-radius:4px;background:rgba(232,82,26,.07);transition:background var(--dur-fast),color var(--dur-fast),border-color var(--dur-fast),transform var(--dur-fast);font-family:'DM Sans',sans-serif;font-weight:500}
+.visit-hero-link:hover{background:rgba(232,82,26,.15);border-color:var(--orange2);color:var(--orange2);transform:translateY(-1px)}
+.visit-hero-link svg{width:15px;height:15px;transition:transform var(--dur-mid) var(--ease)}
+.visit-hero-link:hover svg{transform:translateX(4px)}
 
 .cs-hero h1{
   font-family:'Bebas Neue',sans-serif;
@@ -121,7 +111,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .cs-stat-val{font-size:15px;color:var(--white);font-weight:400}
 
 /* Scroll cue */
-.cs-hero-art{position:absolute;right:-12px;top:10px;z-index:2;pointer-events:none;opacity:0;animation:fadeUp 1s var(--ease) forwards 800ms}.cs-hero-art svg{width:clamp(260px,32vw,420px);height:auto;display:block;filter:drop-shadow(0 0 60px rgba(0,0,0,.5))}
+.cs-hero-art{position:absolute;right:-12px;top:50px;z-index:2;pointer-events:none;opacity:0;animation:fadeUp 1s var(--ease) forwards 800ms}.cs-hero-art svg{width:clamp(260px,32vw,420px);height:auto;display:block;filter:drop-shadow(0 0 60px rgba(0,0,0,.5)) contrast(1.6) saturate(2)}
 @media(max-width:900px){.cs-hero-art{display:none}}
 .cs-scroll-cue{
   position:absolute;bottom:32px;right:48px;z-index:1;
@@ -230,6 +220,64 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .highlight-box p{font-size:15px;color:rgba(240,236,228,.7);line-height:1.75;font-weight:300}
 .highlight-box strong{color:var(--white);font-weight:400}
 
+/* MY CONTRIBUTION */
+.my-role-section{padding:80px 48px;border-bottom:1px solid var(--border)}
+.my-role-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:40px}
+.my-role-col{background:var(--bg2);padding:36px 32px}
+.my-role-col h4{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;margin-bottom:20px}
+.my-role-col h4.owned{color:var(--orange)}
+.my-role-col h4.team{color:var(--gray2)}
+.role-list{display:flex;flex-direction:column;gap:20px}
+.role-item{border-bottom:1px solid var(--border);padding-bottom:16px}
+.role-item:last-child{border-bottom:none;padding-bottom:0}
+.role-item-title{display:block;font-size:13px;font-weight:500;color:var(--white);margin-bottom:4px;padding-left:14px;position:relative}
+.role-item-title::before{content:'';position:absolute;left:0;top:5px;width:6px;height:6px;border-radius:50%}
+.my-role-col.owned .role-item-title::before{background:var(--orange)}
+.my-role-col.team .role-item-title::before{background:var(--gray2)}
+.role-item-desc{display:block;font-size:12px;color:var(--gray);line-height:1.6;padding-left:14px}
+.tools-strip{display:flex;gap:6px;flex-wrap:wrap;margin-top:24px}
+.tool-tag{font-size:10px;color:var(--orange);border:1px solid rgba(232,82,26,.25);padding:4px 12px;border-radius:14px}
+
+/* DUAL IMPACT */
+.impact-split{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:48px}
+.impact-col{background:var(--bg2);padding:32px 30px}
+.impact-list{display:flex;flex-direction:column;gap:12px}
+
+/* Impact col labels — more prominent */
+.impact-col-label{font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:.5px;text-transform:uppercase;font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.impact-col-label.user{color:var(--accent2,var(--orange))}
+.impact-col-label.business{color:var(--orange)}
+.impact-col-label svg{width:16px;height:16px;flex-shrink:0}
+
+/* Impact items — stacked layout, dot sits before <strong> */
+.impact-item{display:flex;flex-direction:column;gap:4px;padding-top:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.05)}
+.impact-item:last-child{border-bottom:none;padding-bottom:0}
+.impact-item::before{display:none}
+.impact-item strong{font-size:13px;color:var(--white);font-weight:500;display:flex;align-items:center;gap:7px}
+.impact-item strong::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.impact-col.user .impact-item strong::before{background:var(--accent2,var(--orange))}
+.impact-col.business .impact-item strong::before{background:var(--orange)}
+.impact-col .impact-item{font-size:13px;color:rgba(240,236,228,.6);line-height:1.65}
+
+/* PROCESS SECTION */
+.process-section{padding:80px 48px;border-bottom:1px solid var(--border);background:var(--bg2)}
+.pflow-steps{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--border);margin-top:40px}
+.pflow-step{background:var(--bg);padding:28px 22px;opacity:0;transform:translateY(14px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.pflow-step.revealed{opacity:1;transform:translateY(0)}
+.pflow-step:nth-child(1){transition-delay:0ms}
+.pflow-step:nth-child(2){transition-delay:60ms}
+.pflow-step:nth-child(3){transition-delay:120ms}
+.pflow-step:nth-child(4){transition-delay:180ms}
+.pflow-step:nth-child(5){transition-delay:240ms}
+.pflow-step:nth-child(6){transition-delay:300ms}
+.step-circle{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--orange);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:14px;color:var(--orange);margin-bottom:16px;background:var(--bg)}
+.pflow-step h4{font-size:13px;font-weight:500;color:var(--white);margin-bottom:8px;letter-spacing:.3px}
+.pflow-step p{font-size:12px;color:var(--gray);line-height:1.65}
+.constraint-box{background:var(--bg3);border:1px solid rgba(255,255,255,.06);border-left:3px solid var(--orange);padding:24px 28px;border-radius:0 6px 6px 0;margin-top:32px}
+.constraint-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--orange);margin-bottom:10px;display:block}
+.constraint-box p{font-size:14px;color:rgba(240,236,228,.7);line-height:1.8}
+.constraint-box strong{color:var(--white);font-weight:500}
+
 /* ============================================================
    PROCESS STEPS TIMELINE
    ============================================================ */
@@ -264,7 +312,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .pain-item:nth-child(2){transition-delay:80ms}
 .pain-item:nth-child(3){transition-delay:160ms}
 .pain-item:nth-child(4){transition-delay:240ms}
-.pain-top{padding:36px 28px 28px;background:var(--bg2);border-bottom:1px solid var(--border)}
+.pain-top{padding:36px 28px 28px;background:var(--bg2);border-bottom:1px solid var(--border);flex:1}
 .pain-num{font-family:'Bebas Neue',sans-serif;font-size:64px;color:rgba(232,82,26,.2);line-height:1;margin-bottom:12px}
 .pain-top h4{font-size:15px;font-weight:400;color:var(--white);line-height:1.4}
 .arrow-down{display:flex;align-items:center;justify-content:center;padding:12px;color:var(--gray2)}
@@ -471,12 +519,17 @@ footer p{font-size:12px;color:var(--gray2)}
   .pain-grid{grid-template-columns:1fr 1fr}
   .metrics-grid{grid-template-columns:1fr 1fr}
   .wireframe-grid{grid-template-columns:repeat(3,1fr)}
+  .pflow-steps{grid-template-columns:1fr 1fr}
+  .impact-split{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+  .pflow-steps{grid-template-columns:1fr}
 }
 @media(max-width:900px){
-  nav{padding:0 24px}.nav-links{display:none}.nav-hamburger{display:flex}
-  .cs-hero{padding:80px 24px 60px}
+   .cs-hero{padding:80px 24px 60px}
   .cs-section{padding:60px 24px}
   .two-col,.two-col-wide,.two-col-wide.right{grid-template-columns:1fr;gap:40px}
+  .impact-split{grid-template-columns:1fr}
   .cs-quick-stats{flex-direction:column;width:100%}
   .cs-stat{border-right:none;border-bottom:1px solid var(--border)}
   .cs-stat:last-child{border-bottom:none}
@@ -491,10 +544,13 @@ footer p{font-size:12px;color:var(--gray2)}
   .cta-section{padding:60px 24px}
   .next-project{padding:60px 24px}
   .cs-hero-image{padding:40px 24px}
+  .process-section{padding:56px 24px}
+  .my-role-section{padding:56px 24px}
 }
 
 @media(pointer:coarse){body{cursor:auto}#cursor,#cursor-ring{display:none}}
 @media(max-width:600px){
+  .my-role-grid{grid-template-columns:1fr}
   .pain-grid{grid-template-columns:1fr}
   .metrics-grid{grid-template-columns:1fr 1fr}
   .wireframe-grid{grid-template-columns:1fr 1fr}
@@ -502,6 +558,31 @@ footer p{font-size:12px;color:var(--gray2)}
 }
 </style>
 <style>
+/* TL;DR BAR */
+.tldr-bar-wrapper{max-width:1200px;margin:32px auto 40px;width:100%;padding:0 0}
+.tldr-bar{
+ background:var(--bg3);border:1px solid var(--border2);
+ padding:28px 32px;
+ opacity:0;animation:fadeUp .6s var(--ease) forwards 650ms;
+ border-radius:6px;
+}
+.tldr-intro{font-size:15px;color:rgba(240,236,228,.7);line-height:1.8;max-width:65ch}
+.tldr-intro strong{color:var(--white);font-weight:500}
+.tldr-intro-wrap{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.tldr-grid{display:flex;gap:0}
+.tldr-item{padding:0 24px 0 0;margin-right:24px;border-right:1px solid var(--border)}
+.tldr-item:last-child{border-right:none;padding-right:0;margin-right:0}
+.tldr-label{
+ font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2.5px;
+ text-transform:uppercase;color:var(--orange);display:block;margin-bottom:6px;
+}
+.tldr-val{font-size:13px;color:var(--white);line-height:1.55;display:block}
+@media(max-width:900px){
+ .tldr-grid{flex-direction:column;gap:16px}
+ .tldr-item{border-right:none;padding-right:0;margin-right:0;border-bottom:1px solid var(--border);padding-bottom:14px}
+ .tldr-item:last-child{border-bottom:none;padding-bottom:0}
+}
+
 /* Hide nav, cursor, footer when embedded in portfolio */
 .embed-view nav[role="navigation"],
 .embed-view .nav-drawer,
@@ -521,24 +602,6 @@ footer p{font-size:12px;color:var(--gray2)}
 <div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-dot"></span>Opening Gmail...</div>
 
 <!-- NAV -->
-<nav role="navigation" aria-label="Main navigation">
-  <a class="nav-logo" href="/Portfolio/home" aria-label="Dikshya Home"><span class="nav-logo-dot" aria-hidden="true"></span>DIKSHYA</a>
-  <ul class="nav-links" role="list">
-    <li><a href="/Portfolio/home">Home</a></li>
-    <li><a href="/Portfolio/work" class="active">Work</a></li>
-    <li><a href="/Portfolio/about">About</a></li>
-  </ul>
-  <a class="nav-cta" href="#" onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=dikshyabc01@gmail.com','_blank');return false;">Hire Me</a>
-  <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
-  <a href="/Portfolio/home" onclick="closeDrawer()">Home</a>
-  <a href="/Portfolio/work" onclick="closeDrawer()">Work</a>
-  <a href="/Portfolio/about" onclick="closeDrawer()">About</a>
-  <a href="#" onclick="closeDrawer();window.open('https://mail.google.com/mail/?view=cm&fs=1&to=dikshyabc01@gmail.com','_blank');return false;">Hire Me →</a>
-</nav>
 
 <main id="main">
 
@@ -551,10 +614,20 @@ footer p{font-size:12px;color:var(--gray2)}
   <div class="cs-hero-glow" aria-hidden="true"></div>
 
   <div class="cs-hero-content">
-    <div class="cs-hero-meta">
-      <span class="cs-chip">PROJECT</span>
-      <span class="cs-chip active">RARASPACE</span>
-      <span class="cs-chip">2022–2024</span>
+  <div class="breadcrumb" style="display:flex;align-items:center;justify-content:space-between;width:100%">
+   <div>
+    <a href="/Portfolio/home" target="_top">Home</a><span class="sep">·</span>
+    <a href="/Portfolio/work#raraspace" target="_top">Work</a><span class="sep">·</span>
+    <span>RaraSpace EMS</span>
+   </div>
+  </div>
+    <div class="cs-hero-meta" style="display:flex;align-items:center;justify-content:space-between;width:100%;flex-wrap:wrap;gap:8px">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span class="cs-chip">PROJECT</span>
+        <span class="cs-chip active">RARASPACE</span>
+        <span class="cs-chip">2022–2024</span>
+      </div>
+      <a href="https://space.raralabs.live/login" target="_blank" rel="noopener noreferrer" class="visit-hero-link">Visit Site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17l9-9M9 8h7v7"/></svg></a>
     </div>
 
     <h1>EMPLOYEE<br/>MANAGEMENT<br/><em>SYSTEM</em></h1>
@@ -585,80 +658,120 @@ footer p{font-size:12px;color:var(--gray2)}
 
         <!-- Hero illustration — Org chart hierarchy tree (EMS: people, teams, reporting lines) -->
     <div class="cs-hero-art" aria-hidden="true">
-      <svg viewBox="0 0 320 320" fill="none" width="320" height="320">
-        <!-- Top-level CEO node -->
-        <circle cx="160" cy="40" r="16" stroke="rgba(232,82,26,.35)" stroke-width="1.2" fill="rgba(232,82,26,.1)"/>
-        <circle cx="160" cy="40" r="6" fill="rgba(232,82,26,.25)"/>
-        <rect x="145" y="58" width="30" height="35" rx="3" stroke="rgba(232,82,26,.2)" stroke-width=".6" fill="rgba(232,82,26,.06)"/>
-        <rect x="150" y="64" width="20" height="3" rx=".5" fill="rgba(232,82,26,.15)"/>
-        <rect x="150" y="70" width="14" height="2" rx=".5" fill="rgba(232,82,26,.1)"/>
-        <rect x="150" y="76" width="18" height="2" rx=".5" fill="rgba(232,82,26,.08)"/>
-        <!-- Vertical line from CEO -->
-        <path d="M160 56 L160 100" stroke="rgba(232,82,26,.2)" stroke-width="1.2" stroke-dasharray="4 3"/>
-        <!-- Horizontal connector -->
-        <path d="M60 110 L260 110" stroke="rgba(232,82,26,.12)" stroke-width=".8" stroke-dasharray="3 4"/>
-        <!-- Mid-level node 1 (left: HR) -->
-        <circle cx="80" cy="100" r="12" stroke="rgba(232,82,26,.3)" stroke-width="1" fill="rgba(232,82,26,.08)"/>
-        <circle cx="80" cy="100" r="4.5" fill="rgba(232,82,26,.2)"/>
-        <path d="M80 112 L80 130" stroke="rgba(232,82,26,.15)" stroke-width=".8" stroke-dasharray="3 3"/>
-        <rect x="56" y="130" width="48" height="16" rx="2" stroke="rgba(232,82,26,.15)" stroke-width=".5" fill="rgba(232,82,26,.05)"/>
-        <rect x="62" y="134" width="20" height="2.5" rx=".5" fill="rgba(232,82,26,.12)"/>
-        <rect x="62" y="140" width="14" height="2" rx=".5" fill="rgba(232,82,26,.08)"/>
-        <!-- Mid-level node 2 (center: Ops) -->
-        <circle cx="160" cy="100" r="12" stroke="rgba(232,82,26,.3)" stroke-width="1" fill="rgba(232,82,26,.08)"/>
-        <circle cx="160" cy="100" r="4.5" fill="rgba(232,82,26,.2)"/>
-        <path d="M160 112 L160 130" stroke="rgba(232,82,26,.15)" stroke-width=".8" stroke-dasharray="3 3"/>
-        <rect x="136" y="130" width="48" height="16" rx="2" stroke="rgba(232,82,26,.15)" stroke-width=".5" fill="rgba(232,82,26,.05)"/>
-        <rect x="142" y="134" width="20" height="2.5" rx=".5" fill="rgba(232,82,26,.12)"/>
-        <rect x="142" y="140" width="14" height="2" rx=".5" fill="rgba(232,82,26,.08)"/>
-        <!-- Mid-level node 3 (right: Finance) -->
-        <circle cx="240" cy="100" r="12" stroke="rgba(232,82,26,.3)" stroke-width="1" fill="rgba(232,82,26,.08)"/>
-        <circle cx="240" cy="100" r="4.5" fill="rgba(232,82,26,.2)"/>
-        <path d="M240 112 L240 130" stroke="rgba(232,82,26,.15)" stroke-width=".8" stroke-dasharray="3 3"/>
-        <rect x="216" y="130" width="48" height="16" rx="2" stroke="rgba(232,82,26,.15)" stroke-width=".5" fill="rgba(232,82,26,.05)"/>
-        <rect x="222" y="134" width="20" height="2.5" rx=".5" fill="rgba(232,82,26,.12)"/>
-        <rect x="222" y="140" width="14" height="2" rx=".5" fill="rgba(232,82,26,.08)"/>
-        <!-- Vertical lines from mid-level to leaf nodes -->
-        <path d="M68 146 L68 170" stroke="rgba(232,82,26,.1)" stroke-width=".6" stroke-dasharray="2 3"/>
-        <path d="M92 146 L92 170" stroke="rgba(232,82,26,.1)" stroke-width=".6" stroke-dasharray="2 3"/>
-        <path d="M148 146 L148 170" stroke="rgba(232,82,26,.1)" stroke-width=".6" stroke-dasharray="2 3"/>
-        <path d="M172 146 L172 170" stroke="rgba(232,82,26,.1)" stroke-width=".6" stroke-dasharray="2 3"/>
-        <path d="M228 146 L228 170" stroke="rgba(232,82,26,.1)" stroke-width=".6" stroke-dasharray="2 3"/>
-        <path d="M252 146 L252 170" stroke="rgba(232,82,26,.1)" stroke-width=".6" stroke-dasharray="2 3"/>
-        <!-- Leaf nodes (employees) -->
-        <circle cx="68" cy="178" r="7" stroke="rgba(232,82,26,.15)" stroke-width=".5" fill="rgba(232,82,26,.06)"/>
-        <circle cx="68" cy="178" r="2.5" fill="rgba(232,82,26,.15)"/>
-        <circle cx="92" cy="178" r="7" stroke="rgba(232,82,26,.15)" stroke-width=".5" fill="rgba(232,82,26,.06)"/>
-        <circle cx="92" cy="178" r="2.5" fill="rgba(232,82,26,.15)"/>
-        <circle cx="148" cy="178" r="7" stroke="rgba(232,82,26,.15)" stroke-width=".5" fill="rgba(232,82,26,.06)"/>
-        <circle cx="148" cy="178" r="2.5" fill="rgba(232,82,26,.15)"/>
-        <circle cx="172" cy="178" r="7" stroke="rgba(232,82,26,.15)" stroke-width=".5" fill="rgba(232,82,26,.06)"/>
-        <circle cx="172" cy="178" r="2.5" fill="rgba(232,82,26,.15)"/>
-        <circle cx="228" cy="178" r="7" stroke="rgba(232,82,26,.15)" stroke-width=".5" fill="rgba(232,82,26,.06)"/>
-        <circle cx="228" cy="178" r="2.5" fill="rgba(232,82,26,.15)"/>
-        <circle cx="252" cy="178" r="7" stroke="rgba(232,82,26,.15)" stroke-width=".5" fill="rgba(232,82,26,.06)"/>
-        <circle cx="252" cy="178" r="2.5" fill="rgba(232,82,26,.15)"/>
-        <!-- Employee cards at bottom -->
-        <rect x="50" y="196" width="52" height="28" rx="3" stroke="rgba(232,82,26,.12)" stroke-width=".5" fill="rgba(232,82,26,.04)"/>
-        <circle cx="64" cy="206" r="5" stroke="rgba(232,82,26,.1)" stroke-width=".4" fill="rgba(232,82,26,.08)"/>
-        <rect x="74" y="202" width="20" height="2" rx=".3" fill="rgba(232,82,26,.1)"/>
-        <rect x="74" y="207" width="14" height="1.5" rx=".3" fill="rgba(232,82,26,.06)"/>
-        <rect x="56" y="214" width="30" height="2" rx=".3" fill="rgba(232,82,26,.06)"/>
-        <rect x="134" y="196" width="52" height="28" rx="3" stroke="rgba(232,82,26,.12)" stroke-width=".5" fill="rgba(232,82,26,.04)"/>
-        <circle cx="148" cy="206" r="5" stroke="rgba(232,82,26,.1)" stroke-width=".4" fill="rgba(232,82,26,.08)"/>
-        <rect x="158" y="202" width="20" height="2" rx=".3" fill="rgba(232,82,26,.1)"/>
-        <rect x="158" y="207" width="14" height="1.5" rx=".3" fill="rgba(232,82,26,.06)"/>
-        <rect x="140" y="214" width="30" height="2" rx=".3" fill="rgba(232,82,26,.06)"/>
-        <rect x="218" y="196" width="52" height="28" rx="3" stroke="rgba(232,82,26,.12)" stroke-width=".5" fill="rgba(232,82,26,.04)"/>
-        <circle cx="232" cy="206" r="5" stroke="rgba(232,82,26,.1)" stroke-width=".4" fill="rgba(232,82,26,.08)"/>
-        <rect x="242" y="202" width="20" height="2" rx=".3" fill="rgba(232,82,26,.1)"/>
-        <rect x="242" y="207" width="14" height="1.5" rx=".3" fill="rgba(232,82,26,.06)"/>
-        <rect x="224" y="214" width="30" height="2" rx=".3" fill="rgba(232,82,26,.06)"/>
-        <!-- Decorative floating dots -->
-        <circle cx="290" cy="40" r="2" fill="rgba(232,82,26,.12)"/>
-        <circle cx="30" cy="50" r="1.5" fill="rgba(232,82,26,.1)"/>
-        <circle cx="300" cy="120" r="1.5" fill="rgba(232,82,26,.08)"/>
-        <circle cx="20" cy="140" r="2" fill="rgba(232,82,26,.08)"/>
+      <svg viewBox="0 0 340 330" fill="none" width="340" height="330">
+        <!-- Dashboard card frame (background) -->
+        <rect x="15" y="20" width="310" height="240" rx="8" stroke="rgba(120,130,140,.35)" stroke-width="1" fill="rgba(120,130,140,.08)"/>
+
+        <!-- Top bar: RaraSpace header -->
+        <rect x="15" y="20" width="310" height="36" rx="8" fill="rgba(120,130,140,.15)"/>
+        <rect x="15" y="44" width="310" height="12" fill="rgba(120,130,140,.15)"/>
+        <circle cx="40" cy="38" r="6" fill="rgba(120,130,140,.35)"/>
+        <rect x="52" y="36" width="50" height="4" rx=".5" fill="rgba(120,130,140,.25)"/>
+        <rect x="52" y="42" width="30" height="3" rx=".5" fill="rgba(120,130,140,.2)"/>
+
+        <!-- Sidebar -->
+        <rect x="15" y="56" width="60" height="204" fill="rgba(120,130,140,.05)"/>
+        <rect x="24" y="70" width="18" height="3" rx=".3" fill="rgba(120,130,140,.2)"/>
+        <rect x="24" y="80" width="14" height="2" rx=".3" fill="rgba(120,130,140,.15)"/>
+        <rect x="24" y="100" width="18" height="3" rx=".3" fill="rgba(120,130,140,.18)"/>
+        <rect x="24" y="110" width="16" height="2" rx=".3" fill="rgba(120,130,140,.12)"/>
+        <rect x="24" y="130" width="18" height="3" rx=".3" fill="rgba(120,130,140,.18)"/>
+        <rect x="24" y="140" width="12" height="2" rx=".3" fill="rgba(120,130,140,.12)"/>
+
+        <!-- Main content area -->
+        <!-- Welcome card -->
+        <rect x="88" y="64" width="224" height="44" rx="5" stroke="rgba(120,130,140,.25)" stroke-width=".6" fill="rgba(120,130,140,.08)"/>
+        <circle cx="104" cy="82" r="9" fill="rgba(120,130,140,.18)"/>
+        <circle cx="104" cy="82" r="4" fill="rgba(120,130,140,.35)"/>
+        <rect x="118" y="76" width="80" height="4" rx=".3" fill="rgba(120,130,140,.2)"/>
+        <rect x="118" y="82" width="50" height="3" rx=".3" fill="rgba(120,130,140,.15)"/>
+        <rect x="88" y="108" width="224" height="1" fill="rgba(120,130,140,.12)"/>
+
+        <!-- Task cards row -->
+        <rect x="88" y="118" width="70" height="56" rx="4" stroke="rgba(120,130,140,.2)" stroke-width=".6" fill="rgba(120,130,140,.06)"/>
+        <circle cx="110" cy="132" r="6" stroke="rgba(120,130,140,.3)" stroke-width=".5" fill="rgba(120,130,140,.1)"/>
+        <text x="110" y="134" font-family="'DM Sans',sans-serif" font-size="6" fill="rgba(120,130,140,.5)" text-anchor="middle" font-weight="600">T</text>
+        <rect x="98" y="144" width="50" height="4" rx=".3" fill="rgba(120,130,140,.18)"/>
+        <rect x="98" y="150" width="34" height="3" rx=".3" fill="rgba(120,130,140,.12)"/>
+        <rect x="98" y="156" width="40" height="4" rx="2" fill="rgba(120,130,140,.15)"/>
+        <!-- Animated progress bar -->
+        <rect x="98" y="157" width="0" height="2" rx="1" fill="rgba(120,130,140,.45)">
+          <animate attributeName="width" values="0;38;0" dur="3s" repeatCount="indefinite"/>
+        </rect>
+
+        <rect x="164" y="118" width="70" height="56" rx="4" stroke="rgba(120,130,140,.2)" stroke-width=".6" fill="rgba(120,130,140,.06)"/>
+        <circle cx="186" cy="132" r="6" stroke="rgba(120,130,140,.3)" stroke-width=".5" fill="rgba(120,130,140,.1)"/>
+        <text x="186" y="134" font-family="'DM Sans',sans-serif" font-size="6" fill="rgba(120,130,140,.5)" text-anchor="middle" font-weight="600">L</text>
+        <rect x="174" y="144" width="50" height="4" rx=".3" fill="rgba(120,130,140,.18)"/>
+        <rect x="174" y="150" width="34" height="3" rx=".3" fill="rgba(120,130,140,.12)"/>
+        <rect x="174" y="156" width="40" height="4" rx="2" fill="rgba(120,130,140,.15)"/>
+        <rect x="174" y="157" width="0" height="2" rx="1" fill="rgba(120,130,140,.45)">
+          <animate attributeName="width" values="0;52;0" dur="3.5s" repeatCount="indefinite"/>
+        </rect>
+
+        <rect x="240" y="118" width="72" height="56" rx="4" stroke="rgba(120,130,140,.2)" stroke-width=".6" fill="rgba(120,130,140,.06)"/>
+        <circle cx="262" cy="132" r="6" stroke="rgba(120,130,140,.3)" stroke-width=".5" fill="rgba(120,130,140,.1)"/>
+        <text x="262" y="134" font-family="'DM Sans',sans-serif" font-size="6" fill="rgba(120,130,140,.5)" text-anchor="middle" font-weight="600">P</text>
+        <rect x="250" y="144" width="52" height="4" rx=".3" fill="rgba(120,130,140,.18)"/>
+        <rect x="250" y="150" width="34" height="3" rx=".3" fill="rgba(120,130,140,.12)"/>
+        <rect x="250" y="156" width="40" height="4" rx="2" fill="rgba(120,130,140,.15)"/>
+        <rect x="250" y="157" width="0" height="2" rx="1" fill="rgba(120,130,140,.45)">
+          <animate attributeName="width" values="0;46;0" dur="4s" repeatCount="indefinite"/>
+        </rect>
+
+        <!-- Bottom: Employee list with status dots -->
+        <rect x="88" y="184" width="224" height="1" fill="rgba(120,130,140,.12)"/>
+        <rect x="88" y="192" width="224" height="56" rx="5" stroke="rgba(120,130,140,.18)" stroke-width=".5" fill="rgba(120,130,140,.05)"/>
+
+        <!-- Employee row 1 -->
+        <circle cx="106" cy="208" r="8" stroke="rgba(120,130,140,.25)" stroke-width=".5" fill="rgba(120,130,140,.1)"/>
+        <circle cx="100" cy="203" r="3" fill="rgba(34,197,94,.55)">
+          <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <rect x="118" y="204" width="50" height="4" rx=".3" fill="rgba(120,130,140,.18)"/>
+        <rect x="118" y="210" width="30" height="3" rx=".3" fill="rgba(120,130,140,.12)"/>
+        <rect x="176" y="204" width="34" height="5" rx="1" fill="rgba(120,130,140,.2)"/>
+        <rect x="268" y="206" width="34" height="3" rx=".3" fill="rgba(120,130,140,.12)"/>
+
+        <!-- Employee row 2 -->
+        <circle cx="106" cy="228" r="8" stroke="rgba(120,130,140,.25)" stroke-width=".5" fill="rgba(120,130,140,.1)"/>
+        <circle cx="100" cy="223" r="3" fill="rgba(34,197,94,.55)">
+          <animate attributeName="opacity" values="0.4;0.7;0.4" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+        <rect x="118" y="224" width="50" height="4" rx=".3" fill="rgba(120,130,140,.18)"/>
+        <rect x="118" y="230" width="30" height="3" rx=".3" fill="rgba(120,130,140,.12)"/>
+        <rect x="176" y="224" width="28" height="5" rx="1" fill="rgba(120,130,140,.2)"/>
+        <rect x="268" y="226" width="34" height="3" rx=".3" fill="rgba(120,130,140,.12)"/>
+
+        <!-- Employee row 3 -->
+        <circle cx="106" cy="248" r="8" stroke="rgba(120,130,140,.25)" stroke-width=".5" fill="rgba(120,130,140,.1)"/>
+        <circle cx="100" cy="243" r="3" fill="rgba(239,68,68,.55)">
+          <animate attributeName="opacity" values="0.3;0.6;0.3" dur="4s" repeatCount="indefinite"/>
+        </circle>
+        <rect x="118" y="244" width="50" height="4" rx=".3" fill="rgba(120,130,140,.18)"/>
+        <rect x="118" y="250" width="30" height="3" rx=".3" fill="rgba(120,130,140,.12)"/>
+        <rect x="176" y="244" width="24" height="5" rx="1" fill="rgba(239,68,68,.2)"/>
+        <rect x="268" y="246" width="34" height="3" rx=".3" fill="rgba(120,130,140,.12)"/>
+
+        <!-- Footer badge: calendar date -->
+        <rect x="88" y="268" width="68" height="18" rx="3" stroke="rgba(120,130,140,.2)" stroke-width=".5" fill="rgba(120,130,140,.06)"/>
+        <rect x="94" y="272" width="22" height="4" rx=".5" fill="rgba(120,130,140,.18)"/>
+        <rect x="94" y="278" width="14" height="3" rx=".3" fill="rgba(120,130,140,.12)"/>
+
+        <rect x="168" y="268" width="68" height="18" rx="3" stroke="rgba(120,130,140,.2)" stroke-width=".5" fill="rgba(120,130,140,.06)"/>
+        <circle cx="178" cy="277" r="4" fill="rgba(120,130,140,.3)">
+          <animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <rect x="185" y="274" width="16" height="3" rx=".3" fill="rgba(120,130,140,.15)"/>
+        <rect x="185" y="279" width="20" height="3" rx=".3" fill="rgba(120,130,140,.15)"/>
+
+        <rect x="248" y="268" width="64" height="18" rx="3" stroke="rgba(120,130,140,.2)" stroke-width=".5" fill="rgba(120,130,140,.06)"/>
+        <rect x="254" y="274" width="40" height="4" rx=".5" fill="rgba(120,130,140,.18)"/>
+
+        <!-- Decorative dots -->
+        <circle cx="300" cy="30" r="2" fill="rgba(120,130,140,.2)"/>
+        <circle cx="320" cy="80" r="2.5" fill="rgba(120,130,140,.15)"/>
+        <circle cx="25" cy="280" r="2" fill="rgba(120,130,140,.15)"/>
       </svg>
     </div>
   </div>
@@ -678,6 +791,101 @@ footer p{font-size:12px;color:var(--gray2)}
   </div>
 </div>
 
+<!-- TL;DR BAR -->
+<div class="tldr-bar-wrapper">
+<div class="tldr-bar">
+ <div class="tldr-intro-wrap"><p class="tldr-intro">RaraSpace is a comprehensive employee management system designed from scratch to unify HR, task tracking, payroll, and project operations into one seamless platform. I led the full design process from user research through high-fidelity delivery. <strong>Improved operational efficiency by 100%, designed, tested, and validated with 50+ real colleagues.</strong></p></div>
+ <div class="tldr-grid">
+   <div class="tldr-item">
+    <span class="tldr-label">The problem</span>
+    <span class="tldr-val">The organization managed employees across spreadsheets, paper forms, and disconnected tools, no single source of truth for HR, payroll, or project tracking.</span>
+   </div>
+   <div class="tldr-item">
+    <span class="tldr-label">My contribution</span>
+    <span class="tldr-val">User research &amp; surveys, information architecture, wireframing, high-fidelity design, usability testing across 3 rounds, stakeholder alignment</span>
+   </div>
+   <div class="tldr-item">
+    <span class="tldr-label">The outcome</span>
+    <span class="tldr-val">100% ops efficiency improvement · 10+ business functions · 3 rounds of testing · Paper sketches to pixel-perfect UI</span>
+   </div>
+ </div>
+</div>
+</div>
+
+<!-- MY CONTRIBUTION -->
+<section class="my-role-section" id="my-contribution">
+  <div class="cs-inner" style="max-width:1200px;margin:0 auto">
+    <span class="section-num">1.0</span>
+    <span class="section-kicker">My Contribution</span>
+    <h2 class="cs-h2">WHAT I<br/>PERSONALLY OWNED</h2>
+    <p class="cs-body" style="max-width:60ch">Clarity on contribution matters. Here's the exact split between what I owned end-to-end and what the broader team handled.</p>
+    <div class="my-role-grid">
+      <div class="my-role-col owned">
+        <h4 class="owned">I owned this</h4>
+        <div class="role-list"><div class="role-item"><span class="role-item-title">User research</span><span class="role-item-desc">Designed and distributed Google Surveys to colleagues. Ran the competition analysis across Jira, Asana, and BambooHR.</span></div>
+<div class="role-item"><span class="role-item-title">Information architecture</span><span class="role-item-desc">Structured the navigation hierarchy and module groupings across 10+ business functions.</span></div>
+<div class="role-item"><span class="role-item-title">Wireframing</span><span class="role-item-desc">All paper sketches for 8+ core screens before moving to Figma.</span></div>
+<div class="role-item"><span class="role-item-title">High-fidelity design</span><span class="role-item-desc">Every screen in Figma, including components, states, empty states, and notifications.</span></div>
+<div class="role-item"><span class="role-item-title">Usability testing</span><span class="role-item-desc">Facilitated all 3 rounds — paper prototype, Figma prototype, and live build.</span></div>
+<div class="role-item"><span class="role-item-title">Stakeholder alignment</span><span class="role-item-desc">Ran alignment sessions with the product owner to define scope and priorities.</span></div>
+</div>
+        <div class="tools-strip"><span class="tool-tag">Figma</span><span class="tool-tag">FigJam</span><span class="tool-tag">Paper sketches</span><span class="tool-tag">Google Surveys</span><span class="tool-tag">Google Meet</span></div>
+      </div>
+      <div class="my-role-col team">
+        <h4 class="team">The team handled this</h4>
+        <div class="role-list"><div class="role-item"><span class="role-item-title">Product management</span><span class="role-item-desc">PM defined business requirements and prioritized the feature roadmap.</span></div>
+<div class="role-item"><span class="role-item-title">Development</span><span class="role-item-desc">Engineering team implemented the designs and flagged technical constraints.</span></div>
+<div class="role-item"><span class="role-item-title">Content &amp; HR policy</span><span class="role-item-desc">HR team provided leave policies, payroll logic, and document templates.</span></div>
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process-section" id="process">
+ <div class="cs-inner" style="max-width:1200px;margin:0 auto">
+   <span class="section-num">2.0</span>
+   <span class="section-kicker">Design Process</span>
+   <h2 class="cs-h2">HOW I WORKED<br/>THROUGH IT</h2>
+   <div class="pflow-steps">
+     <div class="pflow-step">
+       <div class="step-circle">01</div>
+       <h4>Surveys</h4>
+       <p>Google Survey to all 50+ colleagues</p>
+     </div>
+     <div class="pflow-step">
+       <div class="step-circle">02</div>
+       <h4>Competition</h4>
+       <p>Jira · Asana · BambooHR audit</p>
+     </div>
+     <div class="pflow-step">
+       <div class="step-circle">03</div>
+       <h4>Scope</h4>
+       <p>Stakeholder alignment on 10+ modules</p>
+     </div>
+     <div class="pflow-step">
+       <div class="step-circle">04</div>
+       <h4>Sketches</h4>
+       <p>Paper wireframes for 8 core flows</p>
+     </div>
+     <div class="pflow-step">
+       <div class="step-circle">05</div>
+       <h4>Hi-fi</h4>
+       <p>Figma components and all screen states</p>
+     </div>
+     <div class="pflow-step">
+       <div class="step-circle">06</div>
+       <h4>Testing</h4>
+       <p>3 rounds — paper → Figma → live build</p>
+     </div>
+   </div>
+   <div class="constraint-box">
+     <span class="constraint-label">KEY CONSTRAINT</span>
+     <p>The biggest constraint wasn't design — it was scope. With 10+ modules to design in 9 months for a live company, every prioritization call had a real cost. I learned to <strong>design highest-friction modules first</strong> (tasks, leave, dashboard) and build a shared component library to accelerate the later modules without losing consistency.</p>
+   </div>
+ </div>
+</section>
+
 <!-- ============================================================
      01 , OVERVIEW & PROBLEM
      ============================================================ -->
@@ -685,7 +893,7 @@ footer p{font-size:12px;color:var(--gray2)}
   <div class="cs-inner">
     <div class="two-col">
       <div>
-        <span class="section-num">01</span>
+        <span class="section-num">3.0</span>
         <span class="section-kicker">Project Overview</span>
         <h2 class="cs-h2">ONE PLATFORM.<br/>ALL OPERATIONS.</h2>
         <p class="cs-body">RaraSpace is a comprehensive Employee Management System built to streamline and unify all of Rara Digital Lab's internal business operations  from employee and task management to payroll, leave tracking, project costing, and inventory.</p>
@@ -715,7 +923,7 @@ footer p{font-size:12px;color:var(--gray2)}
      ============================================================ -->
 <section class="cs-section dark" id="research">
   <div class="cs-inner">
-    <span class="section-num">1.0</span>
+    <span class="section-num">4.0</span>
     <span class="section-kicker">Research &amp; Discovery</span>
     <h2 class="cs-h2">UNDERSTANDING<br/>THE PROBLEM SPACE</h2>
     <p class="cs-body">Before designing anything, I needed to understand how the team actually worked , what broke down, where they lost time, and what they needed most. I used three research methods in parallel.</p>
@@ -752,12 +960,52 @@ footer p{font-size:12px;color:var(--gray2)}
   </div>
 </section>
 
+<!-- My Contribution (0.5) moved to before Overview -->
+
+<!-- Process (0.8) moved to before Overview -->
+
+<!-- DUAL IMPACT -->
+<section class="cs-section" id="dual-impact" style="--accent2:var(--orange)">
+  <div class="cs-inner">
+    <span class="section-num">5.0</span>
+    <span class="section-kicker">Design Strategy</span>
+    <h2 class="cs-h2">SOLVING FOR BOTH<br/>SIDES OF THE TABLE</h2>
+    <p class="cs-body">Every design decision here had to satisfy two audiences at once — the people using the product daily, and the business outcomes that justified building it.</p>
+    <div class="impact-split" role="list">
+      <div class="impact-col user" role="listitem">
+        <div class="impact-col-label user">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          USER NEEDS
+        </div>
+        <div class="impact-list">
+          <div class="impact-item"><strong>Single source of truth</strong>employees no longer juggle 6+ disconnected tools just to log hours, request leave, or check payroll.</div>
+          <div class="impact-item"><strong>Faster task visibility</strong>kanban-style boards surface what's due now instead of burying it in email threads.</div>
+          <div class="impact-item"><strong>Reduced cognitive load</strong>consistent design system means every module feels familiar, cutting the learning curve for new hires.</div>
+          <div class="impact-item"><strong>Mobile-friendly access</strong>leave requests and approvals work just as well from a phone as a desktop.</div>
+        </div>
+      </div>
+      <div class="impact-col business" role="listitem">
+        <div class="impact-col-label business">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M18.7 8l-5.1 5.1-2.8-2.8L7 14"/></svg>
+          BUSINESS NEEDS
+        </div>
+        <div class="impact-list">
+          <div class="impact-item"><strong>100% operational efficiency gain</strong>directly tied to consolidating 10+ business functions into one platform, cutting tool-switching overhead.</div>
+          <div class="impact-item"><strong>Lower onboarding cost</strong>a unified design system meant new employees ramp up on one interface, not six separate tools.</div>
+          <div class="impact-item"><strong>Reduced IT overhead</strong>fewer third-party SaaS subscriptions to manage, audit, and secure across the organization.</div>
+          <div class="impact-item"><strong>Scalable foundation</strong>the design system supports adding new modules without starting from scratch each time.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============================================================
      03 , PAIN POINT ANALYSIS
      ============================================================ -->
 <section class="cs-section" id="painpoints">
   <div class="cs-inner">
-    <span class="section-num">2.0</span>
+    <span class="section-num">6.0</span>
     <span class="section-kicker">Design Phase</span>
     <h2 class="cs-h2">PAIN POINT<br/>ANALYSIS</h2>
     <p class="cs-body">Survey results and direct observation revealed four primary pain points. For each, I mapped a concrete design solution.</p>
@@ -824,7 +1072,7 @@ footer p{font-size:12px;color:var(--gray2)}
      ============================================================ -->
 <section class="cs-section dark" id="wireframes">
   <div class="cs-inner">
-    <span class="section-num">2.1</span>
+    <span class="section-num">7.0</span>
     <span class="section-kicker">Wireframe &amp; Prototyping</span>
     <h2 class="cs-h2">FROM SKETCHES<br/>TO SYSTEMS</h2>
     <p class="cs-body">I began with rough paper sketches to move fast and validate structure before committing to high-fidelity. Once the flows were confirmed, I moved into Figma to build the full prototype.</p>
@@ -874,7 +1122,7 @@ footer p{font-size:12px;color:var(--gray2)}
      ============================================================ -->
 <section class="cs-section" id="decisions">
   <div class="cs-inner">
-    <span class="section-num">2.2</span>
+    <span class="section-num">8.0</span>
     <span class="section-kicker">Key Design Decisions</span>
     <h2 class="cs-h2">BEFORE &amp;<br/>AFTER</h2>
     <p class="cs-body">Each design decision was driven by a specific user pain point uncovered in research. Here are the most impactful changes made during the design phase.</p>
@@ -941,7 +1189,7 @@ footer p{font-size:12px;color:var(--gray2)}
      ============================================================ -->
 <section class="cs-section dark" id="final">
   <div class="cs-inner">
-    <span class="section-num">3.0</span>
+    <span class="section-num">9.0</span>
     <span class="section-kicker">Validating · Final Design</span>
     <h2 class="cs-h2">THE FINAL<br/>ITERATION</h2>
     <p class="cs-body">Multiple rounds of usability testing with colleagues refined the design. Continuous iterative testing ensured the final product resonated with real end-users before handoff.</p>
@@ -957,7 +1205,7 @@ footer p{font-size:12px;color:var(--gray2)}
      ============================================================ -->
 <section class="cs-section" id="testing">
   <div class="cs-inner">
-    <span class="section-num">3.1</span>
+    <span class="section-num">10.0</span>
     <span class="section-kicker">Usability Testing</span>
 
     <div class="two-col-wide">
@@ -987,7 +1235,7 @@ footer p{font-size:12px;color:var(--gray2)}
      ============================================================ -->
 <section class="cs-section darker" id="outcomes">
   <div class="cs-inner">
-    <span class="section-num">04</span>
+    <span class="section-num">11.0</span>
     <span class="section-kicker">Outcomes &amp; Impact</span>
     <h2 class="cs-h2">THE RESULTS</h2>
     <p class="cs-body">Measured outcomes from the RaraSpace EMS launch , tracked through team feedback, analytics, and stakeholder review.</p>
@@ -1018,7 +1266,7 @@ footer p{font-size:12px;color:var(--gray2)}
      ============================================================ -->
 <section class="cs-section dark" id="reflection">
   <div class="cs-inner">
-    <span class="section-num">05</span>
+    <span class="section-num">12.0</span>
     <span class="section-kicker">Reflection</span>
     <h2 class="cs-h2">WHAT I LEARNED</h2>
 
@@ -1064,15 +1312,15 @@ footer p{font-size:12px;color:var(--gray2)}
   <p>Let's talk about what we can build together.</p>
   <div class="cta-buttons">
     <a href="mailto:dikshya@email.com" class="btn-primary" onclick="showToast(event)">Get In Touch</a>
-    <a href="/Portfolio/work" class="btn-outline">View All Work</a>
+    <a href="/Portfolio/work" target="_top" class="btn-outline">View All Work</a>
   </div>
 </section>
 </main>
 
 <footer role="contentinfo">
-  <a class="footer-logo" href="/Portfolio/home">DIKSHYA</a>
+  <a class="footer-logo" href="/Portfolio/home" target="_top">DIKSHYA</a>
   <p>© 2026 · UI/UX Designer · Kathmandu, Nepal</p>
-  <a href="/Portfolio/work" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
+  <a href="/Portfolio/work" target="_top" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
 </footer>
 
 <script>
@@ -1092,17 +1340,7 @@ window.addEventListener('scroll',()=>{
 const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed')}})
 },{threshold:.07});
-document.querySelectorAll('.process-step,.pain-item,.research-card,.wf-card,.decision-item,.showcase-card,.metric-item,.reflection-card').forEach(el=>obs.observe(el));
-
-// HAMBURGER
-const hamburger=document.getElementById('hamburger'),drawer=document.getElementById('navDrawer');
-hamburger.addEventListener('click',()=>{
-  const open=drawer.classList.toggle('open');hamburger.setAttribute('aria-expanded',open);
-  const spans=hamburger.querySelectorAll('span');
-  if(open){spans[0].style.transform='translateY(6.5px) rotate(45deg)';spans[1].style.opacity='0';spans[2].style.transform='translateY(-6.5px) rotate(-45deg)'}
-  else{spans.forEach(s=>{s.style.transform='';s.style.opacity=''})}
-});
-function closeDrawer(){drawer.classList.remove('open');hamburger.setAttribute('aria-expanded','false');hamburger.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity=''})}
+document.querySelectorAll('.tldr-bar,.pflow-step,.process-step,.pain-item,.research-card,.wf-card,.decision-item,.showcase-card,.metric-item,.reflection-card,.my-role-col,.impact-item').forEach(el=>obs.observe(el));
 
 // TOAST
 function showToast(e){e.preventDefault();navigator.clipboard.writeText('dikshya@email.com').catch(()=>{});const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}

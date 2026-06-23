@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" fill="none">
+  <!-- Abstract money transfer arrows for XUNO R2PX remittance -->
+  <rect x="8" y="8" width="24" height="24" rx="4" stroke="#f0ece4" stroke-width="2.2" fill="none" opacity=".85"/>
+  <path d="M14 14 L26 26 M26 14 L14 26" stroke="#f0ece4" stroke-width="2.2" stroke-linecap="round" opacity=".85"/>
+  <!-- Right side: globe/money transfer arrows -->
+  <circle cx="80" cy="20" r="14" stroke="#f0ece4" stroke-width="1.8" fill="none" opacity=".7"/>
+  <path d="M68 16 L80 10 L92 16" stroke="#f0ece4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".85"/>
+  <path d="M68 24 L80 30 L92 24" stroke="#f0ece4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".85"/>
+  <path d="M72 12 L72 28" stroke="#f0ece4" stroke-width=".8" stroke-dasharray="2 2" opacity=".3"/>
+  <path d="M88 12 L88 28" stroke="#f0ece4" stroke-width=".8" stroke-dasharray="2 2" opacity=".3"/>
+  <text x="100" y="22" font-family="'DM Mono',monospace" font-size="7" fill="rgba(240,236,228,.2)" letter-spacing="1">R2PX</text>
+</svg>

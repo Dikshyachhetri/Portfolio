@@ -96,25 +96,7 @@ export default function Footer() {
         ))}
       </div>
 
-      {/* Nav links */}
-      <nav aria-label="Footer navigation" style={{ display: 'flex', gap: '32px' }}>
-        {['Home', 'Work', 'About'].map(link => (
-          <Link
-            key={link}
-            to={`/${link.toLowerCase()}`}
-            style={{
-              fontSize: '11px',
-              letterSpacing: '2px',
-              textTransform: 'uppercase',
-              color: 'var(--gray)',
-              textDecoration: 'none',
-              transition: 'color var(--dur-fast)',
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--white)')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--gray)')}
-          >{link}</Link>
-        ))}
-      </nav>
+
 
       <p style={{
         fontSize: '11px',

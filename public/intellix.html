@@ -33,24 +33,6 @@ body:has(a:hover) #cursor-ring{width:48px;height:48px;opacity:.35}
 #progress{position:fixed;top:60px;left:0;height:2px;background:var(--teal2);z-index:99;width:0%;transition:width .1s linear}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:60px;border-bottom:1px solid var(--border);background:rgba(14,14,14,.9);backdrop-filter:blur(18px)}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:10px}
-.nav-logo-dot{width:9px;height:9px;background:var(--orange);border-radius:50%;animation:navpulse 3s ease-in-out infinite}
-@keyframes navpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
-.nav-links{display:flex;align-items:center;gap:36px;list-style:none}
-.nav-links a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color var(--dur-fast);position:relative;padding-bottom:4px}.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--orange);transition:width var(--dur-mid) var(--ease);border-radius:1px}
-
-.nav-links a:hover{color:var(--white)}
-.nav-links a:hover{color:var(--white)}.nav-links a:hover::after{width:100%}.nav-links a.active{color:var(--white)}.nav-links a.active::after{width:100%}
-.nav-cta{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);border:1px solid var(--orange);padding:8px 22px;border-radius:2px;text-decoration:none;transition:background var(--dur-fast),color var(--dur-fast),box-shadow var(--dur-fast)}
-.nav-cta:hover{background:var(--orange);color:#fff;box-shadow:0 0 20px rgba(232,82,26,.25)}
-.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:8px}
-.nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:transform var(--dur-mid) var(--ease),opacity var(--dur-fast)}
-.nav-drawer{display:none;position:fixed;top:60px;left:0;right:0;height:400px;background:var(--bg);border-bottom:1px solid var(--border);padding:48px;flex-direction:column;gap:24px;z-index:99;overflow-y:auto}
-.nav-drawer a{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:3px;color:var(--gray);text-decoration:none;transition:color var(--dur-fast)}
-.nav-drawer a:hover{color:var(--orange)}
-.nav-drawer.open{display:flex}
-
 /* HERO */
 .cs-hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:80px 48px 80px;position:relative;overflow:hidden}
 .cs-hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0d0d0d 0%,#0a1512 50%,#0e0e0e 100%);z-index:0}
@@ -62,9 +44,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
+.breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:32px;opacity:0;animation:fadeUp .6s var(--ease) forwards 100ms}
+.breadcrumb a,.breadcrumb span{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);text-decoration:none;transition:color var(--dur-fast)}
+.breadcrumb a:hover{color:var(--teal2)}
+.breadcrumb .sep{color:var(--gray3)}
 .cs-hero-meta{display:flex;align-items:center;gap:12px;margin-bottom:24px;opacity:0;animation:fadeUp .6s var(--ease) forwards 200ms}
-.cs-chip{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:2px}
+.cs-chip{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:100px}
 .cs-chip.teal{background:var(--teal-light);border-color:rgba(13,107,94,.5);color:var(--teal2)}
+.visit-hero-link{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--teal2);text-decoration:none;display:inline-flex;align-items:center;gap:10px;padding:10px 22px;border:1.5px solid rgba(13,107,94,.35);border-radius:4px;background:rgba(13,107,94,.07);transition:background var(--dur-fast),color var(--dur-fast),border-color var(--dur-fast),transform var(--dur-fast);font-family:'DM Sans',sans-serif;font-weight:500}
+.visit-hero-link:hover{background:rgba(13,107,94,.15);border-color:var(--teal2);color:var(--teal2);transform:translateY(-1px)}
+.visit-hero-link svg{width:15px;height:15px;transition:transform var(--dur-mid) var(--ease)}
+.visit-hero-link:hover svg{transform:translateX(4px)}
 .cs-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,9vw,130px);letter-spacing:2px;line-height:.92;color:var(--white);margin-bottom:28px;opacity:0;animation:fadeUp .8s var(--ease) forwards 300ms}
 .cs-hero h1 em{font-style:normal;color:var(--teal2)}
 .cs-hero-tagline{font-size:18px;color:rgba(240,236,228,.6);font-weight:300;max-width:560px;line-height:1.75;margin-bottom:48px;opacity:0;animation:fadeUp .6s var(--ease) forwards 450ms}
@@ -73,7 +63,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .cs-stat:last-child{border-right:none}
 .cs-stat-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);display:block;margin-bottom:4px}
 .cs-stat-val{font-size:15px;color:var(--white);font-weight:400}
-.cs-hero-art{position:absolute;right:-12px;top:10px;z-index:2;pointer-events:none;opacity:0;animation:fadeUp 1s var(--ease) forwards 800ms}.cs-hero-art svg{width:clamp(260px,32vw,420px);height:auto;display:block;filter:drop-shadow(0 0 60px rgba(0,0,0,.5))}
+.cs-hero-art{position:absolute;right:-12px;top:50px;z-index:2;pointer-events:none;opacity:0;animation:fadeUp 1s var(--ease) forwards 800ms}.cs-hero-art svg{width:clamp(260px,32vw,420px);height:auto;display:block;filter:drop-shadow(0 0 60px rgba(0,0,0,.5)) contrast(1.6) saturate(2)}
 @media(max-width:900px){.cs-hero-art{display:none}}
 .cs-scroll-cue{position:absolute;bottom:32px;right:48px;z-index:1;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp .6s var(--ease) forwards 700ms}
 .cs-scroll-cue span{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2)}
@@ -132,6 +122,74 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .highlight-box p{font-size:15px;color:rgba(240,236,228,.7);line-height:1.75;font-weight:300}
 .highlight-box strong{color:var(--white);font-weight:400}
 
+/* MY CONTRIBUTION */
+.my-role-section{padding:80px 48px;border-bottom:1px solid var(--border);background:var(--bg)}
+.my-role-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:40px}
+.my-role-col{background:var(--bg2);padding:36px 32px}
+.my-role-col h4{font-size:11px;font-family:'DM Mono',monospace;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.my-role-col h4.owned{color:var(--teal2)}
+.my-role-col h4.team{color:var(--gray2)}
+.role-list{display:flex;flex-direction:column;gap:20px}
+.role-item{display:flex;flex-direction:column;gap:5px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.role-item:last-child{border-bottom:none;padding-bottom:0}
+.role-item-title{font-size:14px;font-weight:500;color:var(--white);display:flex;align-items:center;gap:8px}
+.role-item-title::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.my-role-col.owned .role-item-title::before{background:var(--teal2)}
+.my-role-col.team .role-item-title::before{background:var(--gray2)}
+.role-item-desc{font-size:13px;color:rgba(240,236,228,.55);line-height:1.7;padding-left:14px}
+.tools-strip{margin-top:24px;display:flex;gap:8px;flex-wrap:wrap;padding-top:20px;border-top:1px solid var(--border)}
+.tool-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--gray);border:1px solid var(--border);padding:5px 12px;border-radius:2px}
+
+/* STAKEHOLDER MAPPING */
+.stakeholder-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:48px}
+.sh-card{background:var(--bg2);padding:28px 22px;opacity:0;transform:translateY(16px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
+.sh-card.revealed{opacity:1;transform:translateY(0)}
+.sh-card:nth-child(1){transition-delay:0ms}
+.sh-card:nth-child(2){transition-delay:70ms}
+.sh-card:nth-child(3){transition-delay:140ms}
+.sh-card:nth-child(4){transition-delay:210ms}
+.sh-icon{font-size:24px;margin-bottom:12px}
+.sh-icon svg{width:24px;height:24px;color:var(--teal2)}
+.sh-role{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--teal2);margin-bottom:8px;display:block}
+.sh-card h4{font-size:15px;font-weight:500;color:var(--white);margin-bottom:8px}
+.sh-card p{font-size:13px;color:var(--gray);line-height:1.65}
+
+/* DUAL IMPACT */
+.impact-split{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:48px}
+.impact-col{background:var(--bg2);padding:32px 30px}
+.impact-list{display:flex;flex-direction:column;gap:12px}
+.impact-col-label{font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:.5px;text-transform:uppercase;font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.impact-col-label.user{color:var(--teal2)}
+.impact-col-label.business{color:var(--orange)}
+.impact-col-label svg{width:16px;height:16px;flex-shrink:0}
+.impact-item{display:flex;flex-direction:column;gap:4px;padding-top:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.05)}
+.impact-item:last-child{border-bottom:none;padding-bottom:0}
+.impact-item::before{display:none}
+.impact-item strong{font-size:13px;color:var(--white);font-weight:500;display:flex;align-items:center;gap:7px}
+.impact-item strong::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.impact-col.user .impact-item strong::before{background:var(--teal2)}
+.impact-col.business .impact-item strong::before{background:var(--orange)}
+.impact-col .impact-item{font-size:13px;color:rgba(240,236,228,.6);line-height:1.65}
+
+/* PROCESS SECTION */
+.process-section{padding:80px 48px;border-bottom:1px solid var(--border);background:var(--bg2)}
+.pflow-steps{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--border);margin-top:40px}
+.pflow-step{background:var(--bg);padding:28px 22px;opacity:0;transform:translateY(14px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.pflow-step.revealed{opacity:1;transform:translateY(0)}
+.pflow-step:nth-child(1){transition-delay:0ms}
+.pflow-step:nth-child(2){transition-delay:60ms}
+.pflow-step:nth-child(3){transition-delay:120ms}
+.pflow-step:nth-child(4){transition-delay:180ms}
+.pflow-step:nth-child(5){transition-delay:240ms}
+.pflow-step:nth-child(6){transition-delay:300ms}
+.step-circle{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--teal2);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:14px;color:var(--teal2);margin-bottom:16px;background:var(--bg)}
+.pflow-step h4{font-size:13px;font-weight:500;color:var(--white);margin-bottom:8px;letter-spacing:.3px}
+.pflow-step p{font-size:12px;color:var(--gray);line-height:1.65}
+.constraint-box{background:var(--bg3);border:1px solid rgba(255,255,255,.06);border-left:3px solid var(--teal2);padding:24px 28px;border-radius:0 6px 6px 0;margin-top:32px}
+.constraint-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal2);margin-bottom:10px;display:block}
+.constraint-box p{font-size:14px;color:rgba(240,236,228,.7);line-height:1.8}
+.constraint-box strong{color:var(--white);font-weight:500}
+
 /* PAIN POINTS */
 .pain-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:48px}
 .pain-item{background:var(--bg);opacity:0;transform:translateY(20px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease);display:flex;flex-direction:column;height:100%}
@@ -140,7 +198,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .pain-item:nth-child(2){transition-delay:80ms}
 .pain-item:nth-child(3){transition-delay:160ms}
 .pain-item:nth-child(4){transition-delay:240ms}
-.pain-top{padding:36px 28px 28px;background:var(--bg2);border-bottom:1px solid var(--border)}
+.pain-top{padding:36px 28px 28px;background:var(--bg2);border-bottom:1px solid var(--border);flex:1}
 .pain-num{font-family:'Bebas Neue',sans-serif;font-size:64px;color:rgba(13,107,94,.25);line-height:1;margin-bottom:12px}
 .pain-top h4{font-size:15px;font-weight:400;color:var(--white);line-height:1.4}
 .arrow-down{display:flex;align-items:center;justify-content:center;padding:12px;color:var(--gray2)}
@@ -299,11 +357,11 @@ footer{padding:24px 48px;border-top:1px solid var(--border);display:flex;align-i
 footer p{font-size:12px;color:var(--gray2)}
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.cs-hero-meta,.cs-hero h1,.cs-hero-tagline,.cs-quick-stats,.cs-scroll-cue{opacity:1;transform:none}}
-@media(max-width:1024px){.pain-grid,.research-grid{grid-template-columns:1fr 1fr}.metrics-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:1024px){.pain-grid,.research-grid,.stakeholder-grid{grid-template-columns:1fr 1fr}.metrics-grid{grid-template-columns:1fr 1fr}.impact-split{grid-template-columns:1fr 1fr}.pflow-steps{grid-template-columns:1fr 1fr}}
 @media(max-width:900px){
-  nav{padding:0 24px}.nav-links{display:none}.nav-hamburger{display:flex}
-  .cs-hero{padding:80px 24px 60px}.cs-section{padding:60px 24px}
-  .two-col,.two-col-wide{grid-template-columns:1fr;gap:40px}
+   .cs-hero{padding:80px 24px 60px}.cs-section{padding:60px 24px}.my-role-section,.process-section{padding:56px 24px}
+  .two-col,.two-col-wide,.impact-split{grid-template-columns:1fr;gap:40px}
+  .impact-split{gap:1px}
   .cs-quick-stats{flex-direction:column;width:100%}
   .cs-stat{border-right:none;border-bottom:1px solid var(--border)}
   .cs-stat:last-child{border-bottom:none}
@@ -320,9 +378,34 @@ footer p{font-size:12px;color:var(--gray2)}
 }
 
 @media(pointer:coarse){body{cursor:auto}#cursor,#cursor-ring{display:none}}
-@media(max-width:600px){.pain-grid,.research-grid{grid-template-columns:1fr}.metrics-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.pain-grid,.research-grid,.stakeholder-grid{grid-template-columns:1fr}.metrics-grid{grid-template-columns:1fr 1fr}.my-role-grid{grid-template-columns:1fr}.pflow-steps{grid-template-columns:1fr}}
 </style>
 <style>
+/* TL;DR BAR */
+.tldr-bar-wrapper{max-width:1200px;margin:32px auto 40px;width:100%;padding:0 0}
+.tldr-bar{
+ background:var(--bg3);border:1px solid var(--border2);
+ padding:28px 32px;
+ opacity:0;animation:fadeUp .6s var(--ease) forwards 650ms;
+ border-radius:6px;
+}
+.tldr-intro{font-size:15px;color:rgba(240,236,228,.7);line-height:1.8;max-width:65ch}
+.tldr-intro strong{color:var(--white);font-weight:500}
+.tldr-intro-wrap{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.tldr-grid{display:flex;gap:0}
+.tldr-item{padding:0 24px 0 0;margin-right:24px;border-right:1px solid var(--border)}
+.tldr-item:last-child{border-right:none;padding-right:0;margin-right:0}
+.tldr-label{
+ font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2.5px;
+ text-transform:uppercase;color:var(--teal2);display:block;margin-bottom:6px;
+}
+.tldr-val{font-size:13px;color:var(--white);line-height:1.55;display:block}
+@media(max-width:900px){
+ .tldr-grid{flex-direction:column;gap:16px}
+ .tldr-item{border-right:none;padding-right:0;margin-right:0;border-bottom:1px solid var(--border);padding-bottom:14px}
+ .tldr-item:last-child{border-bottom:none;padding-bottom:0}
+}
+
 /* Hide nav, cursor, footer when embedded in portfolio */
 .embed-view nav[role="navigation"],
 .embed-view .nav-drawer,
@@ -341,24 +424,6 @@ footer p{font-size:12px;color:var(--gray2)}
 <div id="progress" aria-hidden="true"></div>
 <div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-dot"></span>Opening Gmail...</div>
 
-<nav role="navigation" aria-label="Main navigation">
-  <a class="nav-logo" href="/Portfolio/home" aria-label="Dikshya Home"><span class="nav-logo-dot" aria-hidden="true"></span>DIKSHYA</a>
-  <ul class="nav-links" role="list">
-    <li><a href="/Portfolio/home">Home</a></li>
-    <li><a href="/Portfolio/work" class="active">Work</a></li>
-    <li><a href="/Portfolio/about">About</a></li>
-  </ul>
-  <a class="nav-cta" href="#" onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=dikshyabc01@gmail.com','_blank');return false;">Hire Me</a>
-  <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
-  <a href="/Portfolio/home" onclick="closeDrawer()">Home</a>
-  <a href="/Portfolio/work" onclick="closeDrawer()">Work</a>
-  <a href="/Portfolio/about" onclick="closeDrawer()">About</a>
-  <a href="#" onclick="closeDrawer();window.open('https://mail.google.com/mail/?view=cm&fs=1&to=dikshyabc01@gmail.com','_blank');return false;">Hire Me →</a>
-</nav>
 
 <main id="main">
 
@@ -368,11 +433,21 @@ footer p{font-size:12px;color:var(--gray2)}
   <div class="cs-hero-grid" aria-hidden="true"></div>
   <div class="cs-hero-glow" aria-hidden="true"></div>
   <div class="cs-hero-content">
-    <div class="cs-hero-meta">
-      <span class="cs-chip">PROJECT</span>
-      <span class="cs-chip teal">INTELLIX</span>
-      <span class="cs-chip">HEALTHCARE</span>
-      <span class="cs-chip">2022–2024</span>
+  <div class="breadcrumb" style="display:flex;align-items:center;justify-content:space-between;width:100%">
+   <div>
+    <a href="/Portfolio/home" target="_top">Home</a><span class="sep">·</span>
+    <a href="/Portfolio/work#intellix" target="_top">Work</a><span class="sep">·</span>
+    <span>Intellix Healthcare</span>
+   </div>
+  </div>
+    <div class="cs-hero-meta" style="display:flex;align-items:center;justify-content:space-between;width:100%;flex-wrap:wrap;gap:8px">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span class="cs-chip">PROJECT</span>
+        <span class="cs-chip teal">INTELLIX</span>
+        <span class="cs-chip">HEALTHCARE</span>
+        <span class="cs-chip">2022–2024</span>
+      </div>
+      <a href="https://www.intellix.com/healthcare#improving-healthcare" target="_blank" rel="noopener noreferrer" class="visit-hero-link">Visit Site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17l9-9M9 8h7v7"/></svg></a>
     </div>
     <h1>IMPROVING<br/>PATIENT<br/><em>DIAGNOSTICS</em></h1>
     <p class="cs-hero-tagline">Designed the KPI module and Patient Dashboard for Intellix , a healthcare intelligence platform helping clinical teams transform complex medical data into clear, actionable insights. Used daily by doctors and nurses in live hospital settings.</p>
@@ -386,59 +461,105 @@ footer p{font-size:12px;color:var(--gray2)}
 
             <!-- Hero illustration — Medical patient monitor (heartbeat, vitals, patient card) -->
     <div class="cs-hero-art" aria-hidden="true">
-      <svg viewBox="0 0 320 320" fill="none" width="320" height="320">
-        <!-- Medical monitor frame -->
-        <rect x="60" y="30" width="200" height="180" rx="6" stroke="rgba(13,107,94,.3)" stroke-width="1" fill="rgba(13,107,94,.04)"/>
-        <!-- Monitor screen inner -->
-        <rect x="68" y="38" width="184" height="164" rx="3" fill="rgba(13,107,94,.02)"/>
-        <!-- Medical cross in top-right of screen -->
-        <rect x="222" y="44" width="10" height="26" rx="1.5" fill="rgba(13,107,94,.12)"/>
-        <rect x="212" y="54" width="30" height="6" rx="1.5" fill="rgba(13,107,94,.12)"/>
-        <!-- Patient info bar -->
-        <rect x="76" y="44" width="80" height="4" rx=".8" fill="rgba(13,107,94,.1)"/>
-        <rect x="76" y="52" width="56" height="3" rx=".5" fill="rgba(13,107,94,.06)"/>
-        <!-- Heartbeat/ECG waveform (large, prominent) -->
-        <path d="M70 120 L96 120 L104 108 L112 136 L122 98 L132 134 L142 88 L152 132 L162 106 L174 120 L200 120" stroke="rgba(13,107,94,.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <!-- ECG glow line (behind) -->
-        <path d="M70 120 L96 120 L104 108 L112 136 L122 98 L132 134 L142 88 L152 132 L162 106 L174 120 L200 120" stroke="rgba(13,107,94,.15)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <!-- Vitals grid (bottom of monitor) -->
-        <rect x="76" y="154" width="56" height="36" rx="2" stroke="rgba(13,107,94,.1)" stroke-width=".4" fill="rgba(13,107,94,.03)"/>
-        <rect x="82" y="158" width="20" height="3" rx=".5" fill="rgba(13,107,94,.08)"/>
-        <rect x="82" y="164" width="14" height="4" rx=".5" fill="rgba(13,107,94,.15)"/>
-        <rect x="82" y="172" width="10" height="2" rx=".3" fill="rgba(13,107,94,.06)"/>
-        <rect x="138" y="154" width="56" height="36" rx="2" stroke="rgba(13,107,94,.1)" stroke-width=".4" fill="rgba(13,107,94,.03)"/>
-        <rect x="144" y="158" width="20" height="3" rx=".5" fill="rgba(13,107,94,.08)"/>
-        <rect x="144" y="164" width="12" height="4" rx=".5" fill="rgba(13,107,94,.15)"/>
-        <rect x="144" y="172" width="10" height="2" rx=".3" fill="rgba(13,107,94,.06)"/>
-        <rect x="200" y="154" width="44" height="36" rx="2" stroke="rgba(13,107,94,.1)" stroke-width=".4" fill="rgba(13,107,94,.03)"/>
-        <rect x="206" y="158" width="16" height="3" rx=".5" fill="rgba(13,107,94,.08)"/>
-        <rect x="206" y="164" width="10" height="4" rx=".5" fill="rgba(13,107,94,.15)"/>
-        <rect x="206" y="172" width="10" height="2" rx=".3" fill="rgba(13,107,94,.06)"/>
-        <!-- Monitor stand -->
-        <rect x="152" y="210" width="16" height="14" rx="1" fill="rgba(13,107,94,.06)"/>
-        <rect x="132" y="224" width="56" height="4" rx="1" fill="rgba(13,107,94,.08)"/>
-        <!-- Floating pill (left) -->
-        <rect x="24" y="80" width="28" height="12" rx="6" stroke="rgba(13,107,94,.15)" stroke-width=".5" fill="rgba(13,107,94,.06)"/>
-        <rect x="38" y="80" width="14" height="12" rx="6" fill="rgba(13,107,94,.12)"/>
-        <!-- Floating pill (right) -->
-        <rect x="268" y="70" width="28" height="12" rx="6" stroke="rgba(13,107,94,.15)" stroke-width=".5" fill="rgba(13,107,94,.06)"/>
-        <rect x="268" y="70" width="14" height="12" rx="6" fill="rgba(13,107,94,.12)"/>
-        <!-- Patient card floating (right) -->
-        <rect x="254" y="124" width="56" height="40" rx="3" stroke="rgba(13,107,94,.12)" stroke-width=".5" fill="rgba(13,107,94,.04)"/>
-        <circle cx="268" cy="136" r="5" stroke="rgba(13,107,94,.1)" stroke-width=".4" fill="rgba(13,107,94,.06)"/>
-        <rect x="278" y="132" width="24" height="2" rx=".3" fill="rgba(13,107,94,.08)"/>
-        <rect x="278" y="138" width="16" height="2" rx=".3" fill="rgba(13,107,94,.06)"/>
-        <rect x="258" y="148" width="40" height="2" rx=".3" fill="rgba(13,107,94,.06)"/>
-        <rect x="258" y="154" width="32" height="2" rx=".3" fill="rgba(13,107,94,.06)"/>
-        <!-- Status badge -->
-        <rect x="68" y="240" width="52" height="18" rx="9" stroke="rgba(13,107,94,.12)" stroke-width=".5" fill="rgba(13,107,94,.05)"/>
-        <circle cx="78" cy="249" r="3" fill="rgba(13,107,94,.25)"/>
-        <rect x="86" y="247" width="26" height="2.5" rx=".5" fill="rgba(13,107,94,.1)"/>
+      <svg viewBox="0 0 340 330" fill="none" width="340" height="330">
+        <!-- Medical monitor background frame -->
+        <rect x="30" y="20" width="280" height="220" rx="8" stroke="rgba(13,107,94,.45)" stroke-width="1" fill="rgba(13,107,94,.08)"/>
+        <rect x="40" y="30" width="260" height="200" rx="4" fill="rgba(13,107,94,.04)"/>
+
+        <!-- Top bar: patient info + medical cross -->
+        <rect x="50" y="38" width="100" height="5" rx=".6" fill="rgba(13,107,94,.25)"/>
+        <rect x="50" y="46" width="70" height="4" rx=".5" fill="rgba(13,107,94,.18)"/>
+        <!-- Medical cross (top right) -->
+        <rect x="270" y="38" width="10" height="28" rx="1.5" fill="rgba(13,107,94,.35)"/>
+        <rect x="260" y="48" width="30" height="8" rx="1.5" fill="rgba(13,107,94,.35)"/>
+
+        <!-- Animated ECG / Heartbeat line -->
+        <path d="M46 120 L80 120 L90 106 L100 138 L112 94 L124 136 L136 88 L148 134 L160 104 L174 120 L240 120" stroke="rgba(13,107,94,.7)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <animate attributeName="stroke-dashoffset" values="800;0" dur="1.5s" repeatCount="indefinite"/>
+          <animate attributeName="stroke" values="rgba(13,107,94,.7);rgba(34,197,94,.8);rgba(13,107,94,.7)" dur="1.5s" repeatCount="indefinite"/>
+        </path>
+        <!-- ECG glow -->
+        <path d="M46 120 L80 120 L90 106 L100 138 L112 94 L124 136 L136 88 L148 134 L160 104 L174 120 L240 120" stroke="rgba(13,107,94,.25)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-dasharray="800" stroke-dashoffset="800">
+          <animate attributeName="stroke-dashoffset" values="800;0" dur="1.5s" repeatCount="indefinite"/>
+        </path>
+
+        <!-- Vitals grid -->
+        <!-- Heart Rate -->
+        <rect x="46" y="160" width="76" height="44" rx="4" stroke="rgba(13,107,94,.25)" stroke-width=".6" fill="rgba(13,107,94,.06)"/>
+        <text x="54" y="172" font-family="'DM Sans',sans-serif" font-size="6" fill="rgba(13,107,94,.5)" font-weight="500">Heart Rate</text>
+        <text x="54" y="190" font-family="'DM Sans',sans-serif" font-size="16" fill="rgba(13,107,94,.7)" font-weight="600">72</text>
+        <text x="84" y="190" font-family="'DM Sans',sans-serif" font-size="8" fill="rgba(13,107,94,.4)">bpm</text>
+        <circle cx="112" cy="166" r="5" fill="rgba(13,107,94,.3)">
+          <animate attributeName="r" values="3.5;6;3.5" dur="0.8s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Blood Pressure -->
+        <rect x="132" y="160" width="76" height="44" rx="4" stroke="rgba(13,107,94,.25)" stroke-width=".6" fill="rgba(13,107,94,.06)"/>
+        <text x="140" y="172" font-family="'DM Sans',sans-serif" font-size="6" fill="rgba(13,107,94,.5)" font-weight="500">Blood Press.</text>
+        <text x="140" y="190" font-family="'DM Sans',sans-serif" font-size="16" fill="rgba(13,107,94,.7)" font-weight="600">120/80</text>
+        <text x="188" y="190" font-family="'DM Sans',sans-serif" font-size="7" fill="rgba(13,107,94,.4)">mmHg</text>
+
+        <!-- SpO2 -->
+        <rect x="218" y="160" width="76" height="44" rx="4" stroke="rgba(13,107,94,.25)" stroke-width=".6" fill="rgba(13,107,94,.06)"/>
+        <text x="226" y="172" font-family="'DM Sans',sans-serif" font-size="6" fill="rgba(13,107,94,.5)" font-weight="500">SpO₂</text>
+        <text x="226" y="190" font-family="'DM Sans',sans-serif" font-size="16" fill="rgba(13,107,94,.7)" font-weight="600">98</text>
+        <text x="260" y="190" font-family="'DM Sans',sans-serif" font-size="8" fill="rgba(13,107,94,.4)">%</text>
+
+        <!-- Bottom status bar with animated badge -->
+        <rect x="46" y="214" width="248" height="1.5" fill="rgba(13,107,94,.12)"/>
+        <rect x="46" y="222" width="60" height="20" rx="3" stroke="rgba(13,107,94,.3)" stroke-width=".5" fill="rgba(13,107,94,.08)"/>
+        <circle cx="56" cy="232" r="4" fill="rgba(34,197,94,.55)">
+          <animate attributeName="opacity" values="0.3;0.7;0.3" dur="1.5s" repeatCount="indefinite"/>
+        </circle>
+        <text x="66" y="235" font-family="'DM Sans',sans-serif" font-size="6" fill="rgba(13,107,94,.45)" font-weight="500">MONITORING</text>
+
+        <rect x="118" y="222" width="70" height="20" rx="3" stroke="rgba(13,107,94,.3)" stroke-width=".5" fill="rgba(13,107,94,.08)"/>
+        <text x="128" y="235" font-family="'DM Sans',sans-serif" font-size="6" fill="rgba(13,107,94,.45)" font-weight="500">CHECKLIST: 6/8</text>
+        <rect x="166" y="231" width="14" height="3" rx=".5" fill="rgba(13,107,94,.3)"/>
+
+        <rect x="200" y="222" width="94" height="20" rx="3" stroke="rgba(13,107,94,.3)" stroke-width=".5" fill="rgba(13,107,94,.08)"/>
+        <text x="210" y="235" font-family="'DM Sans',sans-serif" font-size="6" fill="rgba(13,107,94,.45)" font-weight="500">LENGTH OF STAY: 4d</text>
+
+        <!-- KPI mini chart (bottom) -->
+        <rect x="46" y="252" width="80" height="16" rx="2" stroke="rgba(13,107,94,.18)" stroke-width=".4" fill="rgba(13,107,94,.05)"/>
+        <rect x="50" y="256" width="36" height="3" rx=".3" fill="rgba(13,107,94,.18)"/>
+        <rect x="50" y="261" width="60" height="3" rx=".3" fill="rgba(13,107,94,.12)"/>
+
+        <!-- Animated bar chart -->
+        <rect x="142" y="255" width="10" height="11" rx="1.5" fill="rgba(13,107,94,.3)">
+          <animate attributeName="height" values="7;13;7" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="259;253;259" dur="2s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="156" y="250" width="10" height="16" rx="1.5" fill="rgba(13,107,94,.35)">
+          <animate attributeName="height" values="11;16;11" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="255;250;255" dur="2s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="170" y="252" width="10" height="14" rx="1.5" fill="rgba(13,107,94,.3)">
+          <animate attributeName="height" values="9;14;9" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="257;252;257" dur="2s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="184" y="258" width="10" height="8" rx="1.5" fill="rgba(13,107,94,.2)">
+          <animate attributeName="height" values="5;10;5" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="261;256;261" dur="2s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="198" y="248" width="10" height="18" rx="1.5" fill="rgba(13,107,94,.35)">
+          <animate attributeName="height" values="13;18;13" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="253;248;253" dur="2s" repeatCount="indefinite"/>
+        </rect>
+
+        <!-- Patient card floating on right -->
+        <rect x="246" y="44" width="48" height="36" rx="3" stroke="rgba(13,107,94,.25)" stroke-width=".5" fill="rgba(13,107,94,.07)"/>
+        <circle cx="260" cy="56" r="6" stroke="rgba(13,107,94,.2)" stroke-width=".4" fill="rgba(13,107,94,.1)"/>
+        <rect x="270" y="52" width="18" height="3" rx=".3" fill="rgba(13,107,94,.18)"/>
+        <rect x="270" y="58" width="12" height="3" rx=".3" fill="rgba(13,107,94,.12)"/>
+        <rect x="250" y="68" width="36" height="3" rx=".3" fill="rgba(13,107,94,.15)"/>
+        <rect x="250" y="73" width="28" height="3" rx=".3" fill="rgba(13,107,94,.15)"/>
+
         <!-- Decorative dots -->
-        <circle cx="290" cy="40" r="2" fill="rgba(13,107,94,.08)"/>
-        <circle cx="30" cy="40" r="1.5" fill="rgba(13,107,94,.08)"/>
-        <circle cx="20" cy="180" r="2" fill="rgba(13,107,94,.06)"/>
-        <circle cx="300" cy="180" r="1.5" fill="rgba(13,107,94,.06)"/>
+        <circle cx="20" cy="50" r="2" fill="rgba(13,107,94,.2)"/>
+        <circle cx="320" cy="80" r="2" fill="rgba(13,107,94,.15)"/>
+        <circle cx="20" cy="280" r="2.5" fill="rgba(13,107,94,.15)"/>
+        <circle cx="320" cy="220" r="2" fill="rgba(13,107,94,.15)"/>
       </svg>
     </div>
   </div>
@@ -457,12 +578,108 @@ footer p{font-size:12px;color:var(--gray2)}
   </div>
 </div>
 
+<!-- TL;DR BAR -->
+<div class="tldr-bar-wrapper">
+<div class="tldr-bar">
+ <div class="tldr-intro-wrap"><p class="tldr-intro">Intellix is a healthcare intelligence platform used daily by doctors and nurses in live hospital settings. I designed the KPI module and Patient Dashboard to transform complex medical data into clear, actionable insights. <strong>Validated through real clinical feedback and usability testing with hospital staff.</strong></p></div>
+ <div class="tldr-grid">
+   <div class="tldr-item">
+    <span class="tldr-label">The problem</span>
+    <span class="tldr-val">Clinical teams struggled with fragmented medical data across systems, no centralized way to track patient KPIs or spot deteriorating conditions early.</span>
+   </div>
+   <div class="tldr-item">
+    <span class="tldr-label">My contribution</span>
+    <span class="tldr-val">KPI module design, Patient Dashboard redesign, configurable checklist system, user research &amp; usability testing with real clinicians</span>
+   </div>
+   <div class="tldr-item">
+    <span class="tldr-label">The outcome</span>
+    <span class="tldr-val">Used daily in live hospitals · Consistent design system extension · Validated with real clinical feedback</span>
+   </div>
+ </div>
+</div>
+</div>
+
+<!-- MY CONTRIBUTION -->
+<section class="my-role-section" id="my-contribution">
+  <div class="cs-inner">
+    <span class="section-num">1.0</span>
+    <span class="section-kicker">My Contribution</span>
+    <h2 class="cs-h2">WHAT I<br/>PERSONALLY OWNED</h2>
+    <p class="cs-body">Clarity on contribution matters. Here's the exact split between what I owned end-to-end and what the broader team handled.</p>
+    <div class="my-role-grid">
+      <div class="my-role-col owned">
+        <h4 class="owned">I owned this</h4>
+        <div class="role-list"><div class="role-item"><span class="role-item-title">User research &amp; competitive analysis</span><span class="role-item-desc">Conducted secondary research across healthcare and analytics platforms. Analysed usability reports and case studies focused on clinical workflow tools.</span></div>
+<div class="role-item"><span class="role-item-title">Direct user feedback sessions</span><span class="role-item-desc">Connected with hospital doctors and nurses to gather insights on how the KPI module aligned with daily routines , identifying improvements grounded in real clinical needs.</span></div>
+<div class="role-item"><span class="role-item-title">KPI module design</span><span class="role-item-desc">Designed the complete KPI module from wireframes to high-fidelity , covering 14 screens across two flow branches with multiple data states.</span></div>
+<div class="role-item"><span class="role-item-title">Patient Dashboard redesign</span><span class="role-item-desc">Revamped the Patient Dashboard to surface vitals, tasks, round history, and discharge options on a single scannable page.</span></div>
+<div class="role-item"><span class="role-item-title">Configurable checklist system</span><span class="role-item-desc">Designed a flexible task template system allowing department heads to define specialty-specific checklists while nurses see a clean unified view.</span></div>
+<div class="role-item"><span class="role-item-title">Design system extension</span><span class="role-item-desc">Extended the existing healthcare design system components without introducing visual inconsistency , maintaining a cohesive experience across the platform.</span></div>
+</div>
+        <div class="tools-strip"><span class="tool-tag">Figma</span><span class="tool-tag">User interviews</span><span class="tool-tag">Usability testing</span><span class="tool-tag">Healthcare UX research</span></div>
+      </div>
+      <div class="my-role-col team">
+        <h4 class="team">The team handled this</h4>
+        <div class="role-list"><div class="role-item"><span class="role-item-title">Co-designer (design system)</span><span class="role-item-desc">Established the core design system, layout structures, and visual language before the project started. I built on this foundation.</span></div>
+<div class="role-item"><span class="role-item-title">Development team</span><span class="role-item-desc">Implemented all frontend and backend components. Technical constraints on the medical data model influenced several IA decisions.</span></div>
+<div class="role-item"><span class="role-item-title">Stakeholders &amp; domain experts</span><span class="role-item-desc">Hospital administrators and clinical domain experts provided requirements, regulatory guidance, and validation throughout the design process.</span></div>
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section" id="process">
+ <div class="cs-inner" style="max-width:1200px;margin:0 auto">
+   <span class="section-num">2.0</span>
+   <span class="section-kicker">Research Methods</span>
+   <h2 class="cs-h2">HOW I WORKED<br/>THROUGH IT</h2>
+   <div class="pflow-steps">
+     <div class="pflow-step">
+       <div class="step-circle">01</div>
+       <h4>Secondary research</h4>
+       <p>Healthcare UI patterns + clinical workflow analysis</p>
+     </div>
+     <div class="pflow-step">
+       <div class="step-circle">02</div>
+       <h4>Competition audit</h4>
+       <p>EHR systems · analytics platforms · usability reports</p>
+     </div>
+     <div class="pflow-step">
+       <div class="step-circle">03</div>
+       <h4>User feedback</h4>
+       <p>Interviews with doctors and nurses in hospital settings</p>
+     </div>
+     <div class="pflow-step">
+       <div class="step-circle">04</div>
+       <h4>Briefs &amp; IA</h4>
+       <p>Data field briefs approved before any pixel was designed</p>
+     </div>
+     <div class="pflow-step">
+       <div class="step-circle">05</div>
+       <h4>High-fidelity</h4>
+       <p>14 screens across 2 flows with all data states</p>
+     </div>
+     <div class="pflow-step">
+       <div class="step-circle">06</div>
+       <h4>Validation</h4>
+       <p>Stakeholder reviews + live clinical staff feedback</p>
+     </div>
+   </div>
+   <div class="constraint-box">
+     <span class="constraint-label">KEY CONSTRAINT</span>
+     <p>The biggest constraint wasn't design complexity — it was clinical context. Every flow had to work under real hospital conditions: time pressure, information overload, and staff with varying technical comfort. I learned to <strong>design for the most stressed user first</strong> and simplify relentlessly, preserving progressive disclosure for power users who wanted deeper data.</p>
+   </div>
+ </div>
+</section>
+
 <!-- 01 OVERVIEW -->
 <section class="cs-section" id="overview">
   <div class="cs-inner">
     <div class="two-col">
       <div>
-        <span class="section-num">01</span>
+        <span class="section-num">3.0</span>
         <span class="section-kicker">Project Overview</span>
         <h2 class="cs-h2">CLINICAL DATA,<br/>MADE CLEAR.</h2>
         <p class="cs-body">Intellix is an advanced healthcare intelligence platform designed to help clinical teams transform complex, fragmented medical data into clear, actionable insights , supporting better decisions for both patient care and hospital operations.</p>
@@ -490,7 +707,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 02 RESEARCH -->
 <section class="cs-section dark" id="research">
   <div class="cs-inner">
-    <span class="section-num">1.0</span>
+    <span class="section-num">4.0</span>
     <span class="section-kicker">Research &amp; Discovery</span>
     <h2 class="cs-h2">UNDERSTANDING<br/>CLINICAL WORKFLOWS</h2>
     <p class="cs-body">Healthcare UX requires a deeper layer of empathy than most domains , the users are time-pressured, the stakes are high, and information overload can directly impact patient safety. I used four research methods to ground every design decision in reality.</p>
@@ -533,10 +750,50 @@ footer p{font-size:12px;color:var(--gray2)}
   </div>
 </section>
 
+<!-- My Contribution (0.5) moved to before Overview -->
+
+<!-- Process (0.8) moved to before Overview -->
+
+<!-- STAKEHOLDER MAPPING -->
+<section class="cs-section" id="stakeholders">
+  <div class="cs-inner">
+    <span class="section-num">5.0</span>
+    <span class="section-kicker">Stakeholder Mapping</span>
+    <h2 class="cs-h2">FOUR GROUPS.<br/>ONE SYSTEM.</h2>
+    <p class="cs-body">The Intellix platform served four distinct stakeholder groups across the hospital ecosystem — each with fundamentally different roles, technical literacy levels, and operational priorities. Designing for all of them within a single KPI module was one of the most complex aspects of this project.</p>
+    <div class="stakeholder-grid" role="list">
+      <div class="sh-card" role="listitem">
+        <div class="sh-icon" aria-hidden="true"><i data-lucide="building-2"></i></div>
+        <span class="sh-role">Primary Users</span>
+        <h4>Nurses &amp; Clinical Staff</h4>
+        <p>Frontline caregivers managing daily patient checklists, vitals monitoring, and task completion. Needed: fast, clear, error-tolerant interactions with minimal clicks.</p>
+      </div>
+      <div class="sh-card" role="listitem">
+        <div class="sh-icon" aria-hidden="true"><i data-lucide="stethoscope"></i></div>
+        <span class="sh-role">Clinical Users</span>
+        <h4>Doctors &amp; Medical Teams</h4>
+        <p>Physicians reviewing patient data, round history, and department-specific KPIs. Needed: at-a-glance patient summaries and configurable performance views.</p>
+      </div>
+      <div class="sh-card" role="listitem">
+        <div class="sh-icon" aria-hidden="true"><i data-lucide="bar-chart-3"></i></div>
+        <span class="sh-role">Management</span>
+        <h4>Hospital Administrators</h4>
+        <p>Overseeing operational KPIs across departments — length of stay, checklist completion rates, and safety metrics. Needed: real-time dashboards and drill-down analytics.</p>
+      </div>
+      <div class="sh-card" role="listitem">
+        <div class="sh-icon" aria-hidden="true"><i data-lucide="shield"></i></div>
+        <span class="sh-role">Leadership</span>
+        <h4>IT &amp; Compliance</h4>
+        <p>Managing system access, data security, and regulatory compliance. Needed: role-based access control, audit trails, and integration with existing hospital systems.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- 03 DESIGN CHALLENGE -->
 <section class="cs-section" id="challenge">
   <div class="cs-inner">
-    <span class="section-num">1.1</span>
+    <span class="section-num">6.0</span>
     <span class="section-kicker">The Core Design Challenge</span>
     <h2 class="cs-h2">ONE CHECKLIST.<br/>DOZENS OF<br/>SPECIALTIES.</h2>
     <div class="challenge-card">
@@ -572,10 +829,46 @@ footer p{font-size:12px;color:var(--gray2)}
   </div>
 </section>
 
+<!-- DUAL IMPACT -->
+<section class="cs-section" id="dual-impact" style="--accent2:var(--teal2)">
+  <div class="cs-inner">
+    <span class="section-num">7.0</span>
+    <span class="section-kicker">Design Strategy</span>
+    <h2 class="cs-h2">SOLVING FOR BOTH<br/>SIDES OF THE TABLE</h2>
+    <p class="cs-body">Every design decision here had to satisfy two audiences at once — the clinical staff using the product daily under time pressure, and the business outcomes that justified building it.</p>
+    <div class="impact-split" role="list">
+      <div class="impact-col user" role="listitem">
+        <div class="impact-col-label user">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          USER NEEDS
+        </div>
+        <div class="impact-list">
+          <div class="impact-item"><strong>Reduced cognitive load at the bedside</strong>nurses see only the most critical information first, with progressive disclosure for details they can access when needed.</div>
+          <div class="impact-item"><strong>Specialty-appropriate views</strong>ICU, surgical, and admin teams each see checklists and KPIs relevant to their workflow, eliminating irrelevant clutter.</div>
+          <div class="impact-item"><strong>Clear task status at a glance</strong>colour-coded badges (Completed · Incomplete · Missed · Ready) mean nurses know what needs attention without scanning through text.</div>
+          <div class="impact-item"><strong>Everything on one screen</strong>patient vitals, today's tasks, round history, and discharge options unified into a single scannable patient dashboard.</div>
+        </div>
+      </div>
+      <div class="impact-col business" role="listitem">
+        <div class="impact-col-label business">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M18.7 8l-5.1 5.1-2.8-2.8L7 14"/></svg>
+          BUSINESS NEEDS
+        </div>
+        <div class="impact-list">
+          <div class="impact-item"><strong>30% user satisfaction improvement</strong>measured through direct feedback from hospital staff, doctors, and nurses using the system in live clinical settings.</div>
+          <div class="impact-item"><strong>Centralized KPI tracking replaces spreadsheets</strong>administrators no longer export raw data to Excel; they get real-time dashboards with configurable views and trend visibility.</div>
+          <div class="impact-item"><strong>Reduced clinical cognitive load</strong>streamlined interfaces and progressive disclosure reduce decision fatigue for time-pressured healthcare staff.</div>
+          <div class="impact-item"><strong>Scalable foundation for future modules</strong>the design system and configurable template approach support adding new specialties and departments without starting from scratch.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- 04 PAIN POINTS -->
 <section class="cs-section dark" id="painpoints">
   <div class="cs-inner">
-    <span class="section-num">2.0</span>
+    <span class="section-num">8.0</span>
     <span class="section-kicker">Design Phase · Pain Point Analysis</span>
     <h2 class="cs-h2">FOUR PROBLEMS.<br/>FOUR SOLUTIONS.</h2>
     <p class="cs-body">Research revealed four primary pain points affecting both clinical staff and administrators. Each was mapped to a concrete design decision.</p>
@@ -640,7 +933,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 05 PROTOTYPING -->
 <section class="cs-section" id="prototyping">
   <div class="cs-inner">
-    <span class="section-num">2.1</span>
+    <span class="section-num">9.0</span>
     <span class="section-kicker">Wireframe &amp; Prototyping</span>
     <h2 class="cs-h2">STRAIGHT TO<br/>HIGH FIDELITY.</h2>
 
@@ -657,7 +950,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 06 DESIGN DECISIONS -->
 <section class="cs-section dark" id="decisions">
   <div class="cs-inner">
-    <span class="section-num">2.2</span>
+    <span class="section-num">10.0</span>
     <span class="section-kicker">Key Design Decisions</span>
     <h2 class="cs-h2">BEFORE &amp;<br/>AFTER</h2>
     <p class="cs-body">Every decision was grounded in a specific clinical workflow pain point. Here are the four most impactful changes made during the design process.</p>
@@ -722,7 +1015,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 07 FINAL DESIGN -->
 <section class="cs-section dark" id="final">
   <div class="cs-inner">
-    <span class="section-num">3.0</span>
+    <span class="section-num">11.0</span>
     <span class="section-kicker">Validating Final Design</span>
     <h2 class="cs-h2">THE FINAL<br/>ITERATION</h2>
     <p class="cs-body">Validated through multiple rounds of stakeholder reviews and direct feedback from hospital staff, doctors and nurses using the system in real clinical settings.</p>
@@ -740,7 +1033,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 08 OUTCOMES -->
 <section class="cs-section darker" id="outcomes">
   <div class="cs-inner">
-    <span class="section-num">04</span>
+    <span class="section-num">12.0</span>
     <span class="section-kicker orange">Outcomes &amp; Impact</span>
     <h2 class="cs-h2">THE RESULTS</h2>
     <p class="cs-body">Measured through direct user feedback from hospital staff, stakeholder reviews, and post-launch analytics monitoring in real clinical environments.</p>
@@ -768,7 +1061,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 09 REFLECTION -->
 <section class="cs-section dark" id="reflection">
   <div class="cs-inner">
-    <span class="section-num">05</span>
+    <span class="section-num">13.0</span>
     <span class="section-kicker">Reflection</span>
     <h2 class="cs-h2">WHAT I LEARNED</h2>
     <div class="reflection-grid" role="list">
@@ -813,15 +1106,15 @@ footer p{font-size:12px;color:var(--gray2)}
   <p>Let's talk about what we can build together.</p>
   <div class="cta-buttons">
     <a href="mailto:dikshya@email.com" class="btn-primary" onclick="showToast(event)">Get In Touch</a>
-    <a href="/Portfolio/work" class="btn-outline">View All Work</a>
+    <a href="/Portfolio/work" target="_top" class="btn-outline">View All Work</a>
   </div>
 </section>
 </main>
 
 <footer role="contentinfo">
-  <a class="footer-logo" href="/Portfolio/home">DIKSHYA</a>
+  <a class="footer-logo" href="/Portfolio/home" target="_top">DIKSHYA</a>
   <p>© 2026 · UI/UX Designer · Kathmandu, Nepal</p>
-  <a href="/Portfolio/work" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
+  <a href="/Portfolio/work" target="_top" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
 </footer>
 
 <script>
@@ -831,10 +1124,7 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style
 (function anim(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim)})();
 window.addEventListener('scroll',()=>{const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;document.getElementById('progress').style.width=p+'%';},{passive:true});
 const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('revealed')})},{threshold:.07});
-document.querySelectorAll('.pain-item,.research-card,.decision-item,.showcase-card,.metric-item,.reflection-card').forEach(el=>obs.observe(el));
-const hamburger=document.getElementById('hamburger'),drawer=document.getElementById('navDrawer');
-hamburger.addEventListener('click',()=>{const open=drawer.classList.toggle('open');hamburger.setAttribute('aria-expanded',open);const spans=hamburger.querySelectorAll('span');if(open){spans[0].style.transform='translateY(6.5px) rotate(45deg)';spans[1].style.opacity='0';spans[2].style.transform='translateY(-6.5px) rotate(-45deg)'}else{spans.forEach(s=>{s.style.transform='';s.style.opacity=''})}});
-function closeDrawer(){drawer.classList.remove('open');hamburger.setAttribute('aria-expanded','false');hamburger.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity=''})}
+document.querySelectorAll('.tldr-bar,.pain-item,.research-card,.sh-card,.pflow-step,.decision-item,.showcase-card,.metric-item,.reflection-card').forEach(el=>obs.observe(el));
 function showToast(e){e.preventDefault();navigator.clipboard.writeText('dikshya@email.com').catch(()=>{});const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
 </script>
 <script>

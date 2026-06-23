@@ -275,13 +275,13 @@ export default function AboutPage() {
           <span className="section-kicker">Expertise</span>
           <h2 className="section-title" id="skills-title">SKILLS</h2>
           <div className="skills-grid" role="list" aria-label="Skill categories">
-            {[
-              { group:'UX Design', skills:['UX Strategy','User Research','Persona Creation','Journey Mapping','Information Architecture','Usability Testing','Heuristic Evaluation','Accessibility Audits'] },
-              { group:'UI Design', skills:['Visual Design','Design Systems','Component Libraries','Typography','Color Theory','Iconography'] },
-              { group:'Tools', skills:['Figma','Sketch','Adobe XD','Framer','Principle','Maze'] },
-              { group:'AI & Automation', skills:['Claude','ChatGPT','Lovable','Uizard','Figma AI','Stitch'] },
-              { group:'Prototyping', skills:['Interactive Prototypes','Wireframing','Micro-Interactions','Motion Design','Responsive Design','Design Tokens','Handoff'] },
-              { group:'Soft Skills', skills:['Stakeholder Mgmt','Design Critique','Cross-Functional','Mentoring','Presentations','Workshop Facilitation','User Advocacy'] },
+                        {[
+              { group:'Core Design', skills:['User-Experience Design','User-Interface Design','Visual Design','Interaction Design','Digital Design','Design Systems','Component Libraries','Research, Wireframe & Prototyping','Information Architecture','Empathy Maps','User Personas','Responsive Design','Accessibility (WCAG)','Design Thinking'] },
+              { group:'Research & Strategy', skills:['Usability Testing','Journey Mapping','Empathy Mapping','Heuristic Evaluation','HMW · Rapid Sketching','User Story','Cross-Functional Collaboration','Agile & Scrum','Stakeholder Presentations','Problem Statements','Competitive Analysis','A/B Testing','Data-Informed Design','Design Sprint'] },
+              { group:'AI Tools', skills:['Claude','ChatGPT','DeepSeek','Perplexity','Cursor','Lovable','Uizard','Figma AI','Stitch','Cmux'] },
+              { group:'Software', skills:['Figma','FigJam','Adobe Illustrator','Adobe Photoshop','Framer','Principle','Procreate','Maze','Visual Studio Code','DaVinci Resolve','Google Analytics · HotJar','Wordpress','Notion','Jira'] },
+              { group:'Code', skills:['HTML / CSS / SASS','JavaScript','React','Tailwind CSS','Bootstrap','Git','JSON / API Understanding','SMTP · Email Marketing','UI Animation & Micro-Interactions'] },
+              { group:'Soft Skills', skills:['Leadership','Problem Solving','Critical Thinking','Communication & Presentation','Adaptability','Professional Ethics','Mentoring','Design Critique','Workshop Facilitation','User Advocacy','Remote Collaboration','Self-Directed','Graphic Design','Video Editing'] },
             ].map((sg, i) => (
               <div className="skill-group" role="listitem" key={i}>
                 <h3 className="skill-group-title">{sg.group}</h3>

@@ -154,15 +154,10 @@ body:has(a:hover) #cursor-ring{width:48px;height:48px;opacity:.35}
 .decision-after p{color:rgba(240,236,228,.75)}
 
 /* SHOWCASE */
-.showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px}
-.showcase-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;overflow:hidden;opacity:0;transform:translateY(20px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease),border-color var(--dur-mid)}
-.showcase-card:hover{border-color:rgba(59,158,234,.4)}
-.showcase-card.revealed{opacity:1;transform:translateY(0)}
-.showcase-card:nth-child(1){transition-delay:0ms}.showcase-card:nth-child(2){transition-delay:120ms}.showcase-card:nth-child(3){transition-delay:240ms}.showcase-card:nth-child(4){transition-delay:360ms}
-.showcase-visual{min-height:220px;background:var(--bg4);display:flex;align-items:center;justify-content:center;padding:24px;position:relative;overflow:hidden}
-.showcase-info{padding:18px 22px;border-top:1px solid var(--border)}
-.showcase-info h4{font-size:15px;font-weight:500;color:var(--white);margin-bottom:6px}
-.showcase-info p{font-size:13px;color:var(--gray);line-height:1.6}
+.final-design-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}
+.final-design-item{border-radius:8px;overflow:hidden}
+.final-design-img{width:100%;display:block;border-radius:10px;box-shadow:0 20px 48px rgba(0,0,0,.35);transition:box-shadow .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1)}
+.final-design-img:hover{box-shadow:0 28px 64px rgba(0,0,0,.45);transform:translateY(-4px)}
 
 /* METRICS */
 .metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:48px}
@@ -213,7 +208,8 @@ footer p{font-size:12px;color:var(--gray2)}
  .cs-quick-stats{flex-direction:column;width:100%}
  .cs-stat{border-right:none;border-bottom:1px solid var(--border)}
  .cs-stat:last-child{border-bottom:none}
- .showcase-grid,.reflection-grid{grid-template-columns:1fr}
+ .final-design-grid{grid-template-columns:1fr}
+ .reflection-grid{grid-template-columns:1fr}
  .decision-item{grid-template-columns:1fr}
  .decision-arrow-col{display:none}
  .decision-before{border-right:none;border-bottom:1px solid var(--border)}
@@ -423,7 +419,7 @@ footer p{font-size:12px;color:var(--gray2)}
      <span class="cs-chip">MARKETPLACE</span>
     </div>
     <h1>GATEWAY TO<br/>EXHILARATING<br/><em>ADVENTURE.</em></h1>
-    <p class="cs-hero-tagline">Designed the global hub for heliski adventure seekers and experience providers a booking marketplace connecting travelers with curated heliski trips, plus the full tour operator and admin systems behind it.</p>
+    <p class="cs-hero-tagline">Designed the global hub for heliski adventure seekers and experience providers — a booking marketplace connecting travelers with curated heliski trips, plus the full tour operator and admin systems behind it.</p>
     <div class="cs-quick-stats" role="list">
      <div class="cs-stat" role="listitem"><span class="cs-stat-label">My Role</span><span class="cs-stat-val">UI/UX Designer</span></div>
      <div class="cs-stat" role="listitem"><span class="cs-stat-label">Platform</span><span class="cs-stat-val">Website · Admin Portal</span></div>
@@ -445,7 +441,7 @@ footer p{font-size:12px;color:var(--gray2)}
  <div class="tldr-grid">
    <div class="tldr-item">
     <span class="tldr-label">The problem</span>
-    <span class="tldr-val">Good front-end with no operational backbone: no admin, no profiles, not mobile</span>
+    <span class="tldr-val">Good front-end with no operational backbone — no admin, no profiles, not mobile</span>
    </div>
    <div class="tldr-item">
     <span class="tldr-label">My contribution</span>
@@ -474,9 +470,9 @@ footer p{font-size:12px;color:var(--gray2)}
   <div class="my-role-grid">
    <div class="my-role-col owned">
     <h4 class="owned">I owned this</h4>
-    <div class="role-list"><div class="role-item"><span class="role-item-title">Audience & journey research</span><span class="role-item-desc">Identified the target user profile high-intent adventure seekers, not casual tourists and mapped their discovery-to-booking journey.</span></div>
-<div class="role-item"><span class="role-item-title">User & operator profile design</span><span class="role-item-desc">Designed both profile types from scratch traveler profiles with booking history/favourites, and operator profiles with credentials/trip listings.</span></div>
-<div class="role-item"><span class="role-item-title">Full admin portal</span><span class="role-item-desc">Designed every admin workflow experiences, destinations, operators, customers, settings, reviews, operator requests.</span></div>
+    <div class="role-list"><div class="role-item"><span class="role-item-title">Audience & journey research</span><span class="role-item-desc">Identified the target user profile — high-intent adventure seekers, not casual tourists — and mapped their discovery-to-booking journey.</span></div>
+<div class="role-item"><span class="role-item-title">User & operator profile design</span><span class="role-item-desc">Designed both profile types from scratch — traveler profiles with booking history/favourites, and operator profiles with credentials/trip listings.</span></div>
+<div class="role-item"><span class="role-item-title">Full admin portal</span><span class="role-item-desc">Designed every admin workflow — experiences, destinations, operators, customers, settings, reviews, operator requests.</span></div>
 <div class="role-item"><span class="role-item-title">Blog & favourites</span><span class="role-item-desc">Designed the editorial section and favourites system to support the long consideration window of high-ticket adventure travel.</span></div>
 <div class="role-item"><span class="role-item-title">Mobile-first responsive design</span><span class="role-item-desc">Rebuilt all consumer-facing screens mobile-first, not just responsive adaptations of desktop.</span></div>
 <div class="role-item"><span class="role-item-title">Design system extension</span><span class="role-item-desc">Extended the existing UI kit to cover all new surfaces without introducing visual inconsistency.</span></div>
@@ -533,7 +529,7 @@ footer p{font-size:12px;color:var(--gray2)}
     <p class="cs-body">Heliski International already had basic user-facing designs, but lacked many essential features for a complete travel platform. The absence of an admin portal prevented efficient management of operators, experiences, destinations, customer details, and reviews.</p>
     <p class="cs-body">Without dedicated pages for personal profiles and operator information, travelers found it difficult to manage bookings or interact with operators. Additionally, the existing site was not fully mobile responsive, resulting in a poor user experience.</p>
     <div class="highlight-box">
-     <p><strong>The real gap:</strong> A pretty front-end with no operational backbone no way to manage the marketplace at scale, and no way for users to trust or track what they were booking.</p>
+     <p><strong>The real gap:</strong> A pretty front-end with no operational backbone — no way to manage the marketplace at scale, and no way for users to trust or track what they were booking.</p>
     </div>
    </div>
   </div>
@@ -546,7 +542,7 @@ footer p{font-size:12px;color:var(--gray2)}
   <span class="section-num">1.0</span>
   <span class="section-kicker">Design Strategy</span>
   <h2 class="cs-h2">SOLVING FOR BOTH<br/>SIDES OF THE TABLE</h2>
-  <p class="cs-body">A marketplace only works if it serves both sides travelers searching for the experience of a lifetime, and operators trying to fill seats on expensive, weather-dependent trips. Every design decision had to hold up for both.</p>
+  <p class="cs-body">A marketplace only works if it serves both sides — travelers searching for the experience of a lifetime, and operators trying to fill seats on expensive, weather-dependent trips. Every design decision had to hold up for both.</p>
   <div class="impact-split" role="list">
    <div class="impact-col user" role="listitem">
     <div class="impact-col-label user">
@@ -582,12 +578,12 @@ footer p{font-size:12px;color:var(--gray2)}
   <span class="section-num">1.1</span>
   <span class="section-kicker">Research &amp; Discovery</span>
   <h2 class="cs-h2">A MARKET WITH<br/>NO REAL HUB</h2>
-  <p class="cs-body">Most heliski competitors were either single operators offering trips to their own locations, or booking sites listing multiple operators with limited features. Existing platforms often lacked tools for easy booking management, user profiles, and operator admin control the envisioned platform filled this exact gap.</p>
+  <p class="cs-body">Most heliski competitors were either single operators offering trips to their own locations, or booking sites listing multiple operators with limited features. Existing platforms often lacked tools for easy booking management, user profiles, and operator admin control — the envisioned platform filled this exact gap.</p>
   <div class="research-grid" role="list">
    <div class="research-card" role="listitem">
     <div class="research-icon" aria-hidden="true">🎯</div>
     <h4>Audience identification</h4>
-    <p>The process began by identifying the platform's target audience enthusiasts seeking unique, high-commitment heli-skiing adventures, not casual ski tourists.</p>
+    <p>The process began by identifying the platform's target audience — enthusiasts seeking unique, high-commitment heli-skiing adventures, not casual ski tourists.</p>
    </div>
    <div class="research-card" role="listitem">
     <div class="research-icon" aria-hidden="true">🗺️</div>
@@ -633,7 +629,7 @@ footer p{font-size:12px;color:var(--gray2)}
    <div class="pain-item" role="listitem">
     <div class="pain-top"><div class="pain-num">4</div><h4>Fragmented &amp; Incomplete Trip Information</h4></div>
     <div class="arrow-down" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
-    <div class="pain-solution"><span class="sol-label">Solution</span><p>Implemented <strong>centralized, detailed trip data and user reviews</strong> for easy comparison destination, operator credentials, safety policy, all in one listing.</p></div>
+    <div class="pain-solution"><span class="sol-label">Solution</span><p>Implemented <strong>centralized, detailed trip data and user reviews</strong> for easy comparison — destination, operator credentials, safety policy, all in one listing.</p></div>
    </div>
   </div>
  </div>
@@ -651,7 +647,7 @@ footer p{font-size:12px;color:var(--gray2)}
     <p class="cs-body">For this project, the wireframing and prototyping process began with an already-established user-side design and UI design kit. Our team focused on developing and refining key new areas: detailed user and operator profiles, favourites, and an engaging blog section.</p>
     <p class="cs-body">We also built out the <strong>complete admin portal</strong> designing every page and workflow covering experiences, destinations, operators, customers, settings, reviews, and operator requests. Each component was created with fully mobile-responsive layouts in mind, ensuring seamless usability across devices.</p>
     <div class="highlight-box">
-     <p><strong>Design discipline:</strong> This approach ensured consistency with the existing visual language while expanding the platform's functionality achieving a cohesive, user-friendly interface rather than a bolt-on admin tool that felt disconnected from the consumer brand.</p>
+     <p><strong>Design discipline:</strong> This approach ensured consistency with the existing visual language while expanding the platform's functionality — achieving a cohesive, user-friendly interface rather than a bolt-on admin tool that felt disconnected from the consumer brand.</p>
     </div>
    </div>
   </div>
@@ -661,7 +657,7 @@ footer p{font-size:12px;color:var(--gray2)}
    <div class="scope-card" role="listitem">
     <div class="scope-card-icon" aria-hidden="true">👤</div>
     <h4>User &amp; Operator Profiles</h4>
-    <p>Dedicated profile pages for travelers and operators booking history, favourites, credentials, and direct communication in one place.</p>
+    <p>Dedicated profile pages for travelers and operators — booking history, favourites, credentials, and direct communication in one place.</p>
    </div>
    <div class="scope-card" role="listitem">
     <div class="scope-card-icon" aria-hidden="true">🛠️</div>
@@ -685,9 +681,9 @@ footer p{font-size:12px;color:var(--gray2)}
   <h2 class="cs-h2">BEFORE &amp;<br/>AFTER</h2>
   <div class="decision-list" role="list">
    <div class="decision-item" role="listitem">
-    <div class="decision-before"><span class="dec-label">Before</span><h4>No admin visibility into the marketplace</h4><p>Operators, listings, and reviews had no central management system every update required manual developer intervention.</p></div>
+    <div class="decision-before"><span class="dec-label">Before</span><h4>No admin visibility into the marketplace</h4><p>Operators, listings, and reviews had no central management system — every update required manual developer intervention.</p></div>
     <div class="decision-arrow-col" aria-hidden="true">→</div>
-    <div class="decision-after"><span class="dec-label after">After</span><h4>Full admin portal across every entity</h4><p>A complete admin system covering experiences, destinations, operators, customers, reviews, and settings self-serve for the business team.</p></div>
+    <div class="decision-after"><span class="dec-label after">After</span><h4>Full admin portal across every entity</h4><p>A complete admin system covering experiences, destinations, operators, customers, reviews, and settings — self-serve for the business team.</p></div>
    </div>
    <div class="decision-item" role="listitem">
     <div class="decision-before"><span class="dec-label">Before</span><h4>Trip details scattered across pages</h4><p>Travelers had to piece together destination info, operator reputation, and safety details from multiple disconnected sources.</p></div>
@@ -697,7 +693,7 @@ footer p{font-size:12px;color:var(--gray2)}
    <div class="decision-item" role="listitem">
     <div class="decision-before"><span class="dec-label">Before</span><h4>Desktop-only experience</h4><p>The existing site broke down on mobile, despite high-value adventure travel research often happening on the go.</p></div>
     <div class="decision-arrow-col" aria-hidden="true">→</div>
-    <div class="decision-after"><span class="dec-label after">After</span><h4>Fully mobile-responsive across every page</h4><p>Every new and existing screen booking flow, profiles, admin portal rebuilt mobile-first for seamless access on any device.</p></div>
+    <div class="decision-after"><span class="dec-label after">After</span><h4>Fully mobile-responsive across every page</h4><p>Every new and existing screen — booking flow, profiles, admin portal — rebuilt mobile-first for seamless access on any device.</p></div>
    </div>
    <div class="decision-item" role="listitem">
     <div class="decision-before"><span class="dec-label">Before</span><h4>No way to contact an operator directly</h4><p>Inquiries went through generic contact forms with no tracking, often resulting in slow or missed responses.</p></div>
@@ -714,62 +710,35 @@ footer p{font-size:12px;color:var(--gray2)}
   <span class="section-num">3.0</span>
   <span class="section-kicker">Validating · Final Iteration</span>
   <h2 class="cs-h2">THE FINAL<br/>DESIGN</h2>
-  <p class="cs-body">Validated through regular collaboration and feedback sessions with key stakeholders the client and internal team. Feedback was incorporated iteratively, focusing on usability, clarity, and completeness of modules like experience management, customer handling, and review systems.</p>
-  <div class="showcase-grid" role="list">
-
-   <!-- Operator profile page -->
-   <div class="showcase-card" role="listitem">
-    <div class="showcase-visual" style="background:linear-gradient(135deg,#0a1622,#111);padding:0">
-     <img src="heliski/Operator Profile.png" alt="Operator Profile Page" style="width:100%;height:100%;object-fit:cover;display:block"/>
-    </div>
-    <div class="showcase-info">
-     <h4>Operator Profile Page</h4>
-     <p>Verified credentials, years active, skier count, and a direct "Send Request" button built to establish trust before a traveler commits to a high-value booking.</p>
-    </div>
+  <p class="cs-body">Validated through regular collaboration and feedback sessions with key stakeholders — the client and internal team. Feedback was incorporated iteratively, focusing on usability, clarity, and completeness of modules like experience management, customer handling, and review systems.</p>
+  <div class="final-design-grid">
+   <div class="final-design-item">
+    <img src="heliski/Operator Profile.png" alt="Operator Profile Page" class="final-design-img" />
    </div>
-
-   <!-- Booking marketplace search -->
-   <div class="showcase-card" role="listitem">
-    <div class="showcase-visual" style="background:linear-gradient(135deg,#081420,#111);padding:0">
-     <img src="heliski/Search and Filter.png" alt="Booking Marketplace Search & Filter" style="width:100%;height:100%;object-fit:cover;display:block"/>
-    </div>
-    <div class="showcase-info">
-     <h4>Booking Marketplace · Search &amp; Filter</h4>
-     <p>Destination, budget, and operator filters narrow hundreds of listings to a curated few. Favourite hearts let users build a shortlist across multiple sessions.</p>
-    </div>
+   <div class="final-design-item">
+    <img src="heliski/Search and Filter.png" alt="Booking Marketplace Search & Filter" class="final-design-img" />
    </div>
-
-   <!-- Mobile responsive home -->
-   <div class="showcase-card" role="listitem">
-    <div class="showcase-visual" style="background:linear-gradient(135deg,#0a1825,#111);padding:0">
-     <img src="heliski/Mobile Responsive 1.png" alt="Mobile Responsive Home" style="width:100%;height:100%;object-fit:cover;display:block"/>
-    </div>
-    <div class="showcase-info">
-     <h4>Mobile Responsive Home</h4>
-     <p>The entire booking flow search, filter, compare, and request rebuilt mobile-first. Editorial hook content drives engagement before the search form even loads.</p>
-    </div>
+   <div class="final-design-item">
+    <img src="heliski/Mobile Responsive 1.png" alt="Mobile Responsive Home" class="final-design-img" />
    </div>
-
-   <!-- Admin portal -->
-   <div class="showcase-card" role="listitem">
-    <div class="showcase-visual" style="background:linear-gradient(135deg,#081420,#111);padding:0">
-     <img src="heliski/Admin.png" alt="Admin Portal Operator Management" style="width:100%;height:100%;object-fit:cover;display:block"/>
-    </div>
-    <div class="showcase-info">
-     <h4>Admin Portal · Operator Management</h4>
-     <p>Full operator onboarding queue with status tracking. The business team can approve, edit, or manage every operator and listing without engineering involvement.</p>
-    </div>
+   <div class="final-design-item">
+    <img src="heliski/Admin.png" alt="Admin Portal Operator Management" class="final-design-img" />
    </div>
-
   </div>
 
-  <!-- Additional final iteration & mobile images -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px">
-   <img src="heliski/Mobile Responsive 2.png" alt="Mobile responsive design additional" style="width:100%;height:auto;border-radius:8px;border:1px solid var(--border);display:block"/>
-   <img src="heliski/Hero Imagae 2.png" alt="Hero design variant" style="width:100%;height:auto;border-radius:8px;border:1px solid var(--border);display:block"/>
+  <div class="final-design-grid" style="margin-top:20px">
+   <div class="final-design-item">
+    <img src="heliski/Mobile Responsive 2.png" alt="Mobile responsive design" class="final-design-img" />
+   </div>
+   <div class="final-design-item">
+    <img src="heliski/Hero Imagae 2.png" alt="Hero design variant" class="final-design-img" />
+   </div>
   </div>
-  <div style="margin-top:16px">
-   <img src="heliski/Additional in final iteration.png" alt="Additional final iteration designs" style="width:100%;height:auto;border-radius:8px;border:1px solid var(--border);display:block"/>
+
+  <div class="final-design-grid" style="margin-top:20px">
+   <div class="final-design-item">
+    <img src="heliski/Additional in final iteration.png" alt="Additional final iteration designs" class="final-design-img" />
+   </div>
   </div>
  </div>
 </section>
@@ -799,7 +768,7 @@ footer p{font-size:12px;color:var(--gray2)}
   <div class="reflection-grid" role="list">
    <div class="reflection-card" role="listitem">
     <h4>Designing the invisible half of a marketplace</h4>
-    <p>The admin portal never gets seen by end users, but it's what makes the consumer experience possible at scale. I learned to treat internal tools with the same craft as customer-facing screens because a broken admin workflow eventually becomes a broken customer experience.</p>
+    <p>The admin portal never gets seen by end users, but it's what makes the consumer experience possible at scale. I learned to treat internal tools with the same craft as customer-facing screens — because a broken admin workflow eventually becomes a broken customer experience.</p>
    </div>
    <div class="reflection-card" role="listitem">
     <h4>Cross-functional collaboration across 5 disciplines</h4>
@@ -807,11 +776,11 @@ footer p{font-size:12px;color:var(--gray2)}
    </div>
    <div class="reflection-card" role="listitem">
     <h4>Extending an existing design system without breaking it</h4>
-    <p>Working from an established UI kit meant every new screen profiles, admin, blog had to feel native to the existing brand. This taught me real discipline in extending systems rather than reinventing them.</p>
+    <p>Working from an established UI kit meant every new screen — profiles, admin, blog had to feel native to the existing brand. This taught me real discipline in extending systems rather than reinventing them.</p>
    </div>
    <div class="reflection-card" role="listitem">
     <h4>Trust signals matter more in high-ticket travel</h4>
-    <p>Heliski trips cost thousands of dollars and depend on operator safety records. I learned that for high-stakes purchases, UI decisions around credibility reviews, credentials, transparency carry as much weight as the booking flow itself.</p>
+    <p>Heliski trips cost thousands of dollars and depend on operator safety records. I learned that for high-stakes purchases, UI decisions around credibility — reviews, credentials, transparency carry as much weight as the booking flow itself.</p>
    </div>
   </div>
  </div>
@@ -856,7 +825,7 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style
 (function anim(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim)})();
 window.addEventListener('scroll',()=>{const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;document.getElementById('progress').style.width=p+'%';},{passive:true});
 const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('revealed')})},{threshold:.07});
-document.querySelectorAll('.pflow-step,.impact-col,.pain-item,.research-card,.scope-card,.decision-item,.showcase-card,.metric-item,.reflection-card').forEach(el=>obs.observe(el));
+document.querySelectorAll('.pflow-step,.impact-col,.pain-item,.research-card,.scope-card,.decision-item,.metric-item,.reflection-card').forEach(el=>obs.observe(el));
 
 function showToast(e){e.preventDefault();navigator.clipboard.writeText('dikshya@email.com').catch(()=>{});const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
 </script>

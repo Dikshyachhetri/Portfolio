@@ -206,6 +206,7 @@ nav {
   nav{padding:0 24px}
   .nav-links{display:none}
   .nav-hamburger{display:flex}
+}
 
 /* Restore default cursor on touch devices */
 @media(pointer: coarse){

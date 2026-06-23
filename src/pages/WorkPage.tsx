@@ -38,6 +38,38 @@ const projects = [
     logo: BASE + 'myra-logo.png',
     accent: '#22a85a',
   },
+  {
+    id: 'nac',
+    title: 'Nepal Airlines GSE Inventory System',
+    info: 'Aviation · Enterprise · Inventory Mgmt',
+    path: '/case/nac',
+    logo: BASE + 'nac-logo.png',
+    accent: '#1d4ed8',
+  },
+  {
+    id: 'xuno',
+    title: 'XUNO R2PX Remittance Transfer',
+    info: 'Fintech · Remittance · Web + Mobile',
+    path: '/case/xuno',
+    logo: BASE + 'xuno-logo.png',
+    accent: '#059669',
+  },
+  {
+    id: 'passion',
+    title: 'Passion Projects',
+    info: 'Digital Design, Video Editing, Graphic Design, Mockups, Social Media Content',
+    path: '/case/passion',
+    logo: BASE + 'passion-logo.png',
+    accent: '#fbbf24',
+  },
+  {
+    id: 'heliski',
+    title: 'Heliski International',
+    info: 'Travel · Global Marketplace · Admin Portal',
+    path: '/case/heliski',
+    logo: BASE + 'heliski-logo.svg',
+    accent: '#3b9eea',
+  },
 ]
 
 export default function WorkPage() {
@@ -58,7 +90,7 @@ export default function WorkPage() {
         </div>
         <h1>SELECTED<br/>WORK</h1>
         <p className="sub">
-          Four case studies across enterprise, healthcare, edtech, and enterprise resource planning.
+          Seven case studies across enterprise, healthcare, edtech, fintech, travel, cybersecurity, and more.
         </p>
       </header>
 

@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Heliski International — Case Study · Dikshya</title>
+<meta name="description" content="Case study: Heliski International — global heliski booking marketplace with tour operator and admin portals. UI/UX design by Dikshya."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0e0e0e;--bg2:#161616;--bg3:#1e1e1e;--bg4:#222;
+  --orange:#e8521a;--orange2:#ff6b35;
+  --sky:#1d6fb8;--sky2:#3b9eea;--sky-light:rgba(29,111,184,.15);
+  --white:#f0ece4;--gray:#999;--gray2:#555;--gray3:#333;
+  --success:#22c55e;--border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.13);
+  --ease:cubic-bezier(.16,1,.3,1);--dur-fast:180ms;--dur-mid:320ms;--dur-slow:700ms;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);line-height:1.6;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
+.skip-link{position:fixed;top:-100px;left:16px;z-index:10000;background:var(--orange);color:#fff;padding:10px 18px;border-radius:2px;font-size:11px;text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:top .2s}
+.skip-link:focus{top:16px}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:2px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+#cursor{position:fixed;width:10px;height:10px;background:var(--orange);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease)}
+#cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(232,82,26,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease),opacity .3s}
+body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:18px;height:18px}
+body:has(a:hover) #cursor-ring{width:48px;height:48px;opacity:.35}
+#progress{position:fixed;top:60px;left:0;height:2px;background:var(--sky2);z-index:99;width:0%;transition:width .1s linear}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:60px;border-bottom:1px solid var(--border);background:rgba(14,14,14,.9);backdrop-filter:blur(18px)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:10px}
+.nav-logo-dot{width:9px;height:9px;background:var(--orange);border-radius:50%;animation:navpulse 3s ease-in-out infinite}
+@keyframes navpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+.nav-links a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color var(--dur-fast);position:relative;padding-bottom:3px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--orange);transition:width var(--dur-mid) var(--ease)}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);border:1px solid var(--orange);padding:8px 20px;border-radius:2px;text-decoration:none;transition:background var(--dur-fast),color var(--dur-fast)}
+.nav-cta:hover{background:var(--orange);color:#fff}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:8px}
+.nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:transform var(--dur-mid) var(--ease),opacity var(--dur-fast)}
+.nav-drawer{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(14,14,14,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:48px;flex-direction:column;gap:24px;z-index:99}
+.nav-drawer a{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:3px;color:var(--gray);text-decoration:none;transition:color var(--dur-fast)}
+.nav-drawer a:hover{color:var(--orange)}
+.nav-drawer.open{display:flex}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.cs-hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:80px 48px 80px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0d0d0d 0%,#0a141d 50%,#0d0d0d 100%);z-index:0}
+.hero-grid{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black,transparent)}
+.hero-glow{position:absolute;top:-60px;right:-80px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(59,158,234,.08) 0%,transparent 65%);pointer-events:none;animation:glow 9s ease-in-out infinite alternate;z-index:0}
+@keyframes glow{from{transform:scale(1)}to{transform:scale(1.3) translate(-30px,20px)}}
+.hero-content{position:relative;z-index:1;max-width:1200px;margin:0 auto;width:100%}
+.breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:32px;opacity:0;animation:fadeUp .6s var(--ease) forwards 100ms}
+.breadcrumb a,.breadcrumb span{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);text-decoration:none;transition:color var(--dur-fast)}
+.breadcrumb a:hover{color:var(--orange)}
+.breadcrumb .sep{color:var(--gray3)}
+.hero-meta{display:flex;align-items:center;gap:12px;margin-bottom:24px;opacity:0;animation:fadeUp .6s var(--ease) forwards 200ms;flex-wrap:wrap}
+.cs-chip{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:2px}
+.cs-chip.sky{background:var(--sky-light);border-color:rgba(29,111,184,.5);color:var(--sky2)}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,9vw,130px);letter-spacing:2px;line-height:.92;color:var(--white);margin-bottom:28px;opacity:0;animation:fadeUp .8s var(--ease) forwards 300ms}
+.hero h1 em{font-style:normal;color:var(--sky2)}
+.hero-tagline{font-size:18px;color:rgba(240,236,228,.6);font-weight:300;max-width:600px;line-height:1.75;margin-bottom:48px;opacity:0;animation:fadeUp .6s var(--ease) forwards 450ms}
+.hero-stats{display:flex;gap:0;border:1px solid var(--border);width:fit-content;flex-wrap:wrap;opacity:0;animation:fadeUp .6s var(--ease) forwards 600ms}
+.hs{padding:16px 32px;border-right:1px solid var(--border)}
+.hs:last-child{border-right:none}
+.hs-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);display:block;margin-bottom:4px}
+.hs-val{font-size:15px;color:var(--white);font-weight:400}
+.scroll-cue{position:absolute;bottom:32px;right:48px;z-index:1;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp .6s var(--ease) forwards 750ms}
+.scroll-cue span{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2)}
+.scroll-btn{width:34px;height:34px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gray2);animation:bob 2.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+/* HERO ILLUSTRATION LAYOUT */
+.hero-split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;max-width:1200px;margin:0 auto;width:100%;position:relative;z-index:1}
+.hero-split-left{width:100%}
+.hero-split-left .hero-content{max-width:none;margin:0}
+.hero-illus{position:relative;display:flex;align-items:center;justify-content:center;opacity:0;animation:heroDrift .9s cubic-bezier(.16,1,.3,1) forwards 700ms}
+@keyframes heroDrift{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-illus svg{width:100%;max-width:520px;height:auto;filter:drop-shadow(0 16px 40px rgba(0,0,0,.35))}
+@media(max-width:1000px){.hero-split{grid-template-columns:1fr;gap:40px}.hero-illus{order:-1}.hero-illus svg{max-width:380px;margin:0 auto;display:block}}
+@media(max-width:600px){.hero-illus{display:none}}
+@media(prefers-reduced-motion:reduce){.hero-illus{opacity:1;animation:none}}
+
+/* SCOPE BADGES BAR */
+.scope-bar{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:28px 48px}
+.scope-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center}
+.scope-item{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(240,236,228,.65);border:1px solid var(--border);padding:8px 16px;border-radius:20px}
+.scope-item svg{color:var(--sky2);flex-shrink:0}
+.scope-divider{width:1px;height:18px;background:var(--border)}
+
+/* SECTIONS */
+.cs-section{padding:96px 48px;border-bottom:1px solid var(--border)}
+.cs-section.dark{background:var(--bg2)}
+.cs-section.darker{background:#0b0b0b}
+.cs-inner{max-width:1200px;margin:0 auto}
+.section-kicker{display:block;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--sky2);margin-bottom:16px}
+.section-kicker.orange{color:var(--orange)}
+.section-num{display:block;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gray2);margin-bottom:6px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.two-col-wide{display:grid;grid-template-columns:300px 1fr;gap:80px;align-items:start}
+.cs-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);letter-spacing:2px;line-height:.95;color:var(--white);margin-bottom:16px}
+.cs-body{font-size:16px;color:rgba(240,236,228,.65);font-weight:300;line-height:1.85;max-width:60ch}
+.cs-body strong{color:var(--white);font-weight:400}
+.cs-body+.cs-body{margin-top:14px}
+.highlight-box{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--sky2);padding:22px 26px;border-radius:0 4px 4px 0;margin-top:20px}
+.highlight-box p{font-size:15px;color:rgba(240,236,228,.7);line-height:1.75;font-weight:300}
+.highlight-box strong{color:var(--white);font-weight:400}
+
+/* BUSINESS + USER IMPACT */
+.impact-split{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:48px}
+.impact-col{background:var(--bg2);padding:32px 30px}
+.impact-col-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.impact-col-label.user{color:var(--sky2)}
+.impact-col-label.business{color:var(--orange)}
+.impact-list{display:flex;flex-direction:column;gap:12px}
+.impact-item{display:flex;gap:10px;font-size:14px;color:rgba(240,236,228,.65);line-height:1.6}
+.impact-item::before{content:'';width:5px;height:5px;border-radius:50%;margin-top:7px;flex-shrink:0}
+.impact-col.user .impact-item::before{background:var(--sky2)}
+.impact-col.business .impact-item::before{background:var(--orange)}
+.impact-item strong{color:var(--white);font-weight:500}
+
+/* PAIN POINTS */
+.pain-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:48px}
+.pain-item{background:var(--bg);opacity:0;transform:translateY(20px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
+.pain-item.revealed{opacity:1;transform:translateY(0)}
+.pain-item:nth-child(1){transition-delay:0ms}.pain-item:nth-child(2){transition-delay:80ms}.pain-item:nth-child(3){transition-delay:160ms}.pain-item:nth-child(4){transition-delay:240ms}
+.pain-top{padding:36px 28px 28px;background:var(--bg2);border-bottom:1px solid var(--border)}
+.pain-num{font-family:'Bebas Neue',sans-serif;font-size:64px;color:rgba(59,158,234,.2);line-height:1;margin-bottom:12px}
+.pain-top h4{font-size:15px;font-weight:400;color:var(--white);line-height:1.4}
+.arrow-down{display:flex;align-items:center;justify-content:center;padding:12px;color:var(--gray2)}
+.pain-solution{padding:22px 26px;background:#0a3a5e;min-height:110px}
+.pain-solution .sol-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px;display:block}
+.pain-solution p{font-size:13px;color:rgba(255,255,255,.8);line-height:1.6}
+.pain-solution strong{color:#fff}
+
+/* RESEARCH */
+.research-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:48px}
+.research-card{background:var(--bg2);padding:28px 22px;opacity:0;transform:translateY(16px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
+.research-card.revealed{opacity:1;transform:translateY(0)}
+.research-card:nth-child(1){transition-delay:0ms}.research-card:nth-child(2){transition-delay:70ms}.research-card:nth-child(3){transition-delay:140ms}.research-card:nth-child(4){transition-delay:210ms}
+.research-icon{font-size:22px;margin-bottom:12px}
+.research-card h4{font-size:15px;font-weight:500;color:var(--white);margin-bottom:8px}
+.research-card p{font-size:13px;color:var(--gray);line-height:1.7}
+
+/* SCOPE EXPANSION GRID */
+.scope-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:48px}
+.scope-card{background:var(--bg2);padding:30px 26px;opacity:0;transform:translateY(16px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
+.scope-card.revealed{opacity:1;transform:translateY(0)}
+.scope-card:nth-child(1){transition-delay:0ms}.scope-card:nth-child(2){transition-delay:80ms}.scope-card:nth-child(3){transition-delay:160ms}
+.scope-card-icon{width:40px;height:40px;border-radius:8px;background:var(--sky-light);border:1px solid rgba(29,111,184,.3);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px}
+.scope-card h4{font-size:15px;font-weight:500;color:var(--white);margin-bottom:8px}
+.scope-card p{font-size:13px;color:var(--gray);line-height:1.7}
+
+/* DECISION TABLE */
+.decision-list{display:flex;flex-direction:column;gap:1px;background:var(--border);margin-top:48px}
+.decision-item{display:grid;grid-template-columns:1fr 24px 1fr;background:var(--bg);opacity:0;transform:translateY(12px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
+.decision-item.revealed{opacity:1;transform:translateY(0)}
+.decision-item:nth-child(1){transition-delay:0ms}.decision-item:nth-child(2){transition-delay:80ms}.decision-item:nth-child(3){transition-delay:160ms}.decision-item:nth-child(4){transition-delay:240ms}
+.decision-before,.decision-after{padding:24px 28px}
+.decision-before{background:var(--bg2);border-right:1px solid var(--border)}
+.decision-arrow-col{display:flex;align-items:center;justify-content:center;color:var(--sky2);font-size:16px}
+.dec-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);margin-bottom:8px;display:block}
+.dec-label.after{color:var(--sky2)}
+.decision-before h4,.decision-after h4{font-size:15px;font-weight:400;color:var(--white);margin-bottom:6px}
+.decision-before p,.decision-after p{font-size:13px;color:var(--gray);line-height:1.6}
+.decision-after p{color:rgba(240,236,228,.75)}
+
+/* SHOWCASE */
+.showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px}
+.showcase-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;overflow:hidden;opacity:0;transform:translateY(20px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease),border-color var(--dur-mid)}
+.showcase-card:hover{border-color:rgba(59,158,234,.4)}
+.showcase-card.revealed{opacity:1;transform:translateY(0)}
+.showcase-card:nth-child(1){transition-delay:0ms}.showcase-card:nth-child(2){transition-delay:120ms}.showcase-card:nth-child(3){transition-delay:240ms}.showcase-card:nth-child(4){transition-delay:360ms}
+.showcase-visual{min-height:220px;background:var(--bg4);display:flex;align-items:center;justify-content:center;padding:24px;position:relative;overflow:hidden}
+.showcase-info{padding:18px 22px;border-top:1px solid var(--border)}
+.showcase-info h4{font-size:15px;font-weight:500;color:var(--white);margin-bottom:6px}
+.showcase-info p{font-size:13px;color:var(--gray);line-height:1.6}
+
+/* METRICS */
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:48px}
+.metric-item{background:var(--bg);padding:40px 28px;text-align:center;opacity:0;transform:translateY(16px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
+.metric-item.revealed{opacity:1;transform:translateY(0)}
+.metric-item:nth-child(1){transition-delay:0ms}.metric-item:nth-child(2){transition-delay:80ms}.metric-item:nth-child(3){transition-delay:160ms}.metric-item:nth-child(4){transition-delay:240ms}
+.metric-num{font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:1px;color:var(--white);line-height:1;margin-bottom:8px;display:block}
+.metric-num span{color:var(--sky2)}
+.metric-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray)}
+
+/* REFLECTION */
+.reflection-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:48px}
+.reflection-card{background:var(--bg2);padding:36px 32px;opacity:0;transform:translateY(16px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
+.reflection-card.revealed{opacity:1;transform:translateY(0)}
+.reflection-card:nth-child(1){transition-delay:0ms}.reflection-card:nth-child(2){transition-delay:80ms}.reflection-card:nth-child(3){transition-delay:160ms}.reflection-card:nth-child(4){transition-delay:240ms}
+.reflection-card h4{font-size:17px;font-weight:500;color:var(--white);margin-bottom:10px}
+.reflection-card p{font-size:14px;color:var(--gray);line-height:1.75}
+
+.next-project{padding:80px 48px;border-top:1px solid var(--border);background:var(--bg2)}
+.next-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:32px}
+.next-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);display:block;margin-bottom:12px}
+.next-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,72px);letter-spacing:2px;color:var(--white);line-height:.95}
+.next-cta{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);text-decoration:none;white-space:nowrap;border:1px solid var(--orange);padding:14px 28px;border-radius:2px;transition:background var(--dur-fast),color var(--dur-fast);min-height:44px;flex-shrink:0}
+.next-cta:hover{background:var(--orange);color:#fff}
+.cta-section{padding:96px 48px;text-align:center;position:relative;overflow:hidden;background:var(--bg)}
+.cta-section::before{content:'HELISKI';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(70px,16vw,260px);color:rgba(59,158,234,.04);letter-spacing:14px;pointer-events:none;white-space:nowrap}
+.cta-section h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,80px);letter-spacing:3px;color:var(--white);margin-bottom:12px;line-height:.95}
+.cta-section>p{font-size:16px;color:var(--gray);font-weight:300;margin-bottom:40px}
+.cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-primary{font-size:11px;letter-spacing:2px;text-transform:uppercase;background:var(--orange);color:#fff;padding:13px 28px;border-radius:2px;text-decoration:none;transition:background var(--dur-fast);display:inline-flex;align-items:center;min-height:44px}
+.btn-primary:hover{background:var(--orange2)}
+.btn-outline{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.2);padding:13px 28px;border-radius:2px;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;transition:border-color var(--dur-fast)}
+.btn-outline:hover{border-color:rgba(255,255,255,.6)}
+.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--bg3);border:1px solid var(--border);padding:14px 22px;border-radius:2px;font-size:13px;color:var(--white);z-index:200;display:flex;align-items:center;gap:10px;transition:transform var(--dur-mid) var(--ease),opacity var(--dur-mid);opacity:0;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.toast-dot{width:7px;height:7px;background:var(--success);border-radius:50%;flex-shrink:0}
+footer{padding:24px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--bg)}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:3px;color:var(--gray2);text-decoration:none;transition:color var(--dur-fast)}
+.footer-logo:hover{color:var(--white)}
+footer p{font-size:12px;color:var(--gray2)}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+@media(max-width:1024px){.pain-grid,.research-grid{grid-template-columns:1fr 1fr}.metrics-grid{grid-template-columns:1fr 1fr}.scope-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:900px){
+  nav{padding:0 24px}.nav-links{display:none}.nav-hamburger{display:flex}
+  .cs-hero{padding:80px 24px 60px}.cs-section{padding:60px 24px}
+  .two-col,.two-col-wide,.impact-split{grid-template-columns:1fr;gap:40px}
+  .impact-split{gap:1px}
+  .hero-stats{flex-direction:column;width:100%}
+  .hs{border-right:none;border-bottom:1px solid var(--border)}
+  .hs:last-child{border-bottom:none}
+  .showcase-grid,.reflection-grid{grid-template-columns:1fr}
+  .decision-item{grid-template-columns:1fr}
+  .decision-arrow-col{display:none}
+  .decision-before{border-right:none;border-bottom:1px solid var(--border)}
+  .next-inner{flex-direction:column;align-items:flex-start}
+  .scope-bar{padding:20px 24px}
+  footer{flex-direction:column;gap:12px;text-align:center;padding:24px}
+  .cta-section,.next-project{padding:60px 24px}
+}
+@media(max-width:600px){.pain-grid,.research-grid{grid-template-columns:1fr}.metrics-grid{grid-template-columns:1fr 1fr}.scope-grid{grid-template-columns:1fr}}
+
+    
+    /* ── UPGRADE: TL;DR + My Role + Process ── */
+    .tldr-bar{
+      background:var(--bg3);border:1px solid var(--border2);
+      border-left:3px solid var(--orange);
+      padding:28px 32px;margin-bottom:40px;
+      opacity:0;animation:fadeUp .6s var(--ease) forwards 650ms;
+      border-radius:0 6px 6px 0;
+    }
+    .tldr-bar[data-accent]{border-left-color:var(--accent,var(--orange))}
+    .tldr-intro{
+      font-size:15px;color:rgba(240,236,228,.7);line-height:1.8;
+      padding-bottom:20px;margin-bottom:20px;
+      border-bottom:1px solid var(--border);
+    }
+    .tldr-intro strong{color:var(--white);font-weight:500}
+    .tldr-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-top:none}
+    .tldr-item{padding:0 24px 0 0;margin-right:24px;border-right:1px solid var(--border)}
+    .tldr-item:last-child{border-right:none;padding-right:0;margin-right:0}
+    .tldr-grid{display:flex;gap:0}
+    .tldr-label{
+      font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;
+      text-transform:uppercase;color:var(--gray2);display:block;margin-bottom:6px;
+    }
+    .tldr-val{font-size:13px;color:var(--white);line-height:1.55;display:block}
+
+    /* MY CONTRIBUTION */
+    .my-role-section{
+      padding:80px 48px;border-bottom:1px solid var(--border);background:var(--bg);
+    }
+    .my-role-grid{
+      display:grid;grid-template-columns:1fr 1fr;gap:1px;
+      background:var(--border);margin-top:40px;
+    }
+    .my-role-col{background:var(--bg2);padding:36px 32px}
+    .my-role-col h4{
+      font-size:11px;font-family:'DM Mono',monospace;letter-spacing:2.5px;
+      text-transform:uppercase;margin-bottom:24px;padding-bottom:14px;
+      border-bottom:1px solid var(--border);
+    }
+    .my-role-col h4.owned{color:var(--orange)}
+    .my-role-col h4.team{color:var(--gray2)}
+    .role-list{display:flex;flex-direction:column;gap:20px}
+    .role-item{
+      display:flex;flex-direction:column;gap:5px;
+      padding-bottom:20px;border-bottom:1px solid var(--border);
+    }
+    .role-item:last-child{border-bottom:none;padding-bottom:0}
+    .role-item-title{
+      font-size:14px;font-weight:500;color:var(--white);
+      display:flex;align-items:center;gap:8px;
+    }
+    .role-item-title::before{
+      content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0;
+    }
+    .my-role-col.owned .role-item-title::before{background:var(--orange)}
+    .my-role-col.team .role-item-title::before{background:var(--gray2)}
+    .role-item-desc{
+      font-size:13px;color:rgba(240,236,228,.55);line-height:1.7;
+      padding-left:14px;
+    }
+    .tools-strip{
+      margin-top:24px;display:flex;gap:8px;flex-wrap:wrap;
+      padding-top:20px;border-top:1px solid var(--border);
+    }
+    .tool-tag{
+      font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;
+      color:var(--gray);border:1px solid var(--border);padding:5px 12px;
+      border-radius:2px;
+    }
+
+    /* PROCESS SECTION */
+    .process-section{
+      padding:80px 48px;border-bottom:1px solid var(--border);background:var(--bg2);
+    }
+    .pflow-steps{
+      display:grid;grid-template-columns:repeat(6,1fr);
+      gap:1px;background:var(--border);margin-top:40px;
+    }
+    .pflow-step{
+      background:var(--bg);padding:28px 22px;
+      opacity:0;transform:translateY(14px);
+      transition:opacity .6s var(--ease),transform .6s var(--ease);
+    }
+    .pflow-step.revealed{opacity:1;transform:translateY(0)}
+    .pflow-step:nth-child(1){transition-delay:0ms}
+    .pflow-step:nth-child(2){transition-delay:60ms}
+    .pflow-step:nth-child(3){transition-delay:120ms}
+    .pflow-step:nth-child(4){transition-delay:180ms}
+    .pflow-step:nth-child(5){transition-delay:240ms}
+    .pflow-step:nth-child(6){transition-delay:300ms}
+    .step-circle{
+      width:40px;height:40px;border-radius:50%;
+      border:1.5px solid var(--orange);
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Bebas Neue',sans-serif;font-size:14px;
+      color:var(--orange);margin-bottom:16px;background:var(--bg);
+    }
+    .step-circle[data-accent]{
+      border-color:var(--accent,var(--orange));
+      color:var(--accent,var(--orange));
+    }
+    .pflow-step h4{
+      font-size:13px;font-weight:500;color:var(--white);
+      margin-bottom:8px;letter-spacing:.3px;
+    }
+    .pflow-step p{font-size:12px;color:var(--gray);line-height:1.65}
+    .constraint-box{
+      background:var(--bg3);border:1px solid rgba(255,255,255,.06);
+      border-left:3px solid var(--orange);
+      padding:24px 28px;border-radius:0 6px 6px 0;margin-top:32px;
+    }
+    .constraint-box[data-accent]{border-left-color:var(--accent,var(--orange))}
+    .constraint-label{
+      font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2.5px;
+      text-transform:uppercase;color:var(--orange);margin-bottom:10px;display:block;
+    }
+    .constraint-box p{
+      font-size:14px;color:rgba(240,236,228,.7);line-height:1.8;
+    }
+    .constraint-box strong{color:var(--white);font-weight:500}
+
+    /* IMPACT COL LABELS — more prominent */
+    .impact-col-label{
+      font-family:'DM Sans',sans-serif !important;
+      font-size:13px !important;letter-spacing:.5px !important;
+      text-transform:uppercase !important;font-weight:600 !important;
+      margin-bottom:20px !important;display:flex !important;
+      align-items:center !important;gap:10px !important;
+      padding-bottom:14px !important;border-bottom:1px solid var(--border) !important;
+    }
+    .impact-col-label.user{color:var(--accent2,#10b981) !important}
+    .impact-col-label.business{color:var(--orange) !important}
+    .impact-col-label svg{width:16px !important;height:16px !important;flex-shrink:0}
+    .impact-item{
+      display:flex;flex-direction:column;gap:4px;
+      padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.05);
+    }
+    .impact-item:last-child{border-bottom:none;padding-bottom:0}
+    .impact-item::before{display:none}
+    .impact-item strong{
+      font-size:13px;color:var(--white);font-weight:500;
+      display:flex;align-items:center;gap:7px;
+    }
+    .impact-item strong::before{
+      content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;
+    }
+    .impact-col.user .impact-item strong::before{background:var(--accent2,#10b981)}
+    .impact-col.business .impact-item strong::before{background:var(--orange)}
+    /* Remove the old ::before on impact-item parent */
+    .impact-col .impact-item{font-size:13px;color:rgba(240,236,228,.6);line-height:1.65}
+
+    @media(max-width:900px){
+      .tldr-grid{flex-direction:column;gap:16px}
+      .tldr-item{border-right:none;padding-right:0;margin-right:0;border-bottom:1px solid var(--border);padding-bottom:14px}
+      .tldr-item:last-child{border-bottom:none;padding-bottom:0}
+      .my-role-grid{grid-template-columns:1fr}
+      .pflow-steps{grid-template-columns:1fr 1fr}
+      .process-section,.my-role-section{padding:56px 24px}
+    }
+    @media(max-width:600px){
+      .pflow-steps{grid-template-columns:1fr}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .pflow-step{opacity:1;transform:none}
+    }
+
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div id="cursor" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
+<div id="progress" aria-hidden="true"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-dot"></span>Email copied!</div>
+
+<nav role="navigation" aria-label="Main navigation">
+  <a class="nav-logo" href="index.html" aria-label="Dikshya — Home"><span class="nav-logo-dot" aria-hidden="true"></span>DIKSHYA</a>
+  <ul class="nav-links" role="list">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="projects.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <a class="nav-cta" href="mailto:dikshya@email.com" onclick="showToast(event)">Hire Me</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
+  <a href="index.html" onclick="closeDrawer()">Home</a>
+  <a href="projects.html" onclick="closeDrawer()">Work</a>
+  <a href="about.html" onclick="closeDrawer()">About</a>
+  <a href="mailto:dikshya@email.com" onclick="closeDrawer();showToast(event)">Hire Me →</a>
+</nav>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="cs-hero" aria-label="Project introduction">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-split">
+    <div class="hero-split-left">
+      <div class="hero-content">
+        <div class="breadcrumb">
+          <a href="index.html">Home</a><span class="sep">·</span>
+          <a href="projects.html">Work</a><span class="sep">·</span>
+          <span>Heliski International</span>
+        </div>
+        <div class="hero-meta">
+          <span class="cs-chip">PROJECT</span>
+          <span class="cs-chip sky">HELISKI INTERNATIONAL</span>
+          <span class="cs-chip">TRAVEL</span>
+          <span class="cs-chip">MARKETPLACE</span>
+        </div>
+        <h1>GATEWAY TO<br/>EXHILARATING<br/><em>ADVENTURE.</em></h1>
+        <p class="hero-tagline">Designed the global hub for heliski adventure seekers and experience providers — a booking marketplace connecting travelers with curated heliski trips, plus the full tour operator and admin systems behind it.</p>
+        <div class="hero-stats" role="list">
+          <div class="hs" role="listitem"><span class="hs-label">My Role</span><span class="hs-val">UI/UX Designer</span></div>
+          <div class="hs" role="listitem"><span class="hs-label">Platform</span><span class="hs-val">Website · Admin Portal</span></div>
+          <div class="hs" role="listitem"><span class="hs-label">Team Size</span><span class="hs-val">8 people</span></div>
+          <div class="hs" role="listitem"><span class="hs-label">Duration</span><span class="hs-val">4 Months</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Minimal line-art illustration: mountain + booking flow -->
+    <div class="hero-illus" aria-hidden="true">
+      <svg viewBox="0 0 440 380" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <!-- Mountain range -->
+        <path d="M20 220 L90 110 L130 160 L190 70 L260 200 L300 140 L340 220" stroke="rgba(59,158,234,0.5)" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M90 110 l16 22 -32 0z" stroke="rgba(59,158,234,0.3)" stroke-width="1.1" stroke-linejoin="round"/>
+        <path d="M190 70 l18 26 -36 0z" stroke="rgba(59,158,234,0.3)" stroke-width="1.1" stroke-linejoin="round"/>
+
+        <!-- Helicopter icon -->
+        <g transform="translate(250,60)">
+          <line x1="-22" y1="0" x2="22" y2="0" stroke="#3b9eea" stroke-width="1.4" stroke-linecap="round">
+            <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="2.2s" repeatCount="indefinite"/>
+          </line>
+          <circle cx="0" cy="0" r="2.5" fill="#3b9eea"/>
+          <path d="M-10 4 q10 -4 24 0 l-2 14 q-10 4 -20 0z" stroke="#3b9eea" stroke-width="1.3"/>
+          <line x1="14" y1="10" x2="30" y2="8" stroke="#3b9eea" stroke-width="1.2"/>
+          <line x1="-4" y1="18" x2="-4" y2="26" stroke="#3b9eea" stroke-width="1"/>
+          <line x1="8" y1="18" x2="8" y2="26" stroke="#3b9eea" stroke-width="1"/>
+          <line x1="-8" y1="26" x2="12" y2="26" stroke="#3b9eea" stroke-width="1"/>
+        </g>
+
+        <!-- Booking card floating -->
+        <rect x="56" y="240" width="170" height="84" rx="10" stroke="rgba(59,158,234,0.55)" stroke-width="1.4"/>
+        <line x1="72" y1="258" x2="140" y2="258" stroke="#3b9eea" stroke-width="1.3" stroke-linecap="round"/>
+        <line x1="72" y1="272" width="2" x2="200" y2="272" stroke="rgba(59,158,234,0.3)" stroke-width="1" stroke-linecap="round"/>
+        <rect x="72" y="284" width="64" height="14" rx="4" stroke="rgba(59,158,234,0.4)" stroke-width="1.1"/>
+        <rect x="142" y="284" width="64" height="14" rx="4" stroke="rgba(59,158,234,0.4)" stroke-width="1.1"/>
+        <rect x="72" y="304" width="134" height="14" rx="7" stroke="#3b9eea" stroke-width="1.3"/>
+
+        <!-- Star rating badge -->
+        <circle cx="280" cy="270" r="42" stroke="rgba(59,158,234,0.45)" stroke-width="1.4"/>
+        <path d="M280 250 l5 10 11 1.6 -8 7.8 1.9 11 -9.9 -5.2 -9.9 5.2 1.9 -11 -8 -7.8 11 -1.6z" stroke="#3b9eea" stroke-width="1.2" stroke-linejoin="round"/>
+        <text x="280" y="300" text-anchor="middle" font-size="9" fill="rgba(59,158,234,0.7)" font-family="DM Sans,sans-serif" font-weight="600">4.8 Rated</text>
+
+        <!-- Compare / filter chips -->
+        <rect x="340" y="240" width="80" height="22" rx="11" stroke="rgba(59,158,234,0.35)" stroke-width="1.1"/>
+        <text x="380" y="254" text-anchor="middle" font-size="8" fill="rgba(59,158,234,0.6)" font-family="DM Sans,sans-serif">Compare</text>
+        <rect x="340" y="268" width="80" height="22" rx="11" stroke="rgba(59,158,234,0.35)" stroke-width="1.1"/>
+        <text x="380" y="282" text-anchor="middle" font-size="8" fill="rgba(59,158,234,0.6)" font-family="DM Sans,sans-serif">Favourite ♡</text>
+
+        <!-- Snow dots -->
+        <circle cx="40" cy="60" r="2" fill="#3b9eea" opacity="0.4">
+          <animate attributeName="opacity" values="0.4;0.1;0.4" dur="2.6s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="395" cy="100" r="2" fill="#3b9eea" opacity="0.3">
+          <animate attributeName="opacity" values="0.3;0.6;0.3" dur="3s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+    </div>
+  </div>
+  
+<!-- TL;DR BAR -->
+<div class="tldr-bar" data-accent style="--accent:#3b9eea">
+  <p class="tldr-intro">Heliski International had a consumer-facing website but no admin system — operators couldn't manage listings, users couldn't save favourites, and the site broke on mobile. I designed the full expansion: user profiles, operator portal, complete admin system, and mobile-responsive rebuild across 4 platforms. <strong>Everything delivered in 4 months, extending an existing design kit without breaking it.</strong></p>
+  <div class="tldr-grid">
+      <div class="tldr-item">
+        <span class="tldr-label">The problem</span>
+        <span class="tldr-val">Good front-end, no operational backbone — no admin, no profiles, not mobile</span>
+      </div>
+      <div class="tldr-item">
+        <span class="tldr-label">My contribution</span>
+        <span class="tldr-val">New profiles, favourites, blog, full admin portal, mobile-first rebuild</span>
+      </div>
+      <div class="tldr-item">
+        <span class="tldr-label">The outcome</span>
+        <span class="tldr-val">4 connected platforms · 100% mobile responsive · Consistent design system</span>
+      </div>
+  </div>
+</div>
+<div class="scroll-cue" aria-hidden="true">
+    <span>scroll to explore</span>
+    <div class="scroll-btn">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </div>
+</section>
+<!-- MY CONTRIBUTION SECTION -->
+<section class="my-role-section" id="my-contribution">
+  <div class="cs-inner" style="max-width:1200px;margin:0 auto">
+    <span class="section-num" style="display:block;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gray2);margin-bottom:6px">0.5</span>
+    <span class="section-kicker" style="display:block;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#3b9eea;margin-bottom:16px">My Contribution</span>
+    <h2 class="cs-h2">WHAT I<br/>PERSONALLY OWNED</h2>
+    <p class="cs-body" style="max-width:60ch;font-size:16px;color:rgba(240,236,228,.65);font-weight:300;line-height:1.85">Clarity on contribution matters. Here's the exact split between what I owned end-to-end and what the broader team handled.</p>
+    <div class="my-role-grid">
+      <div class="my-role-col owned">
+        <h4 class="owned">I owned this</h4>
+        <div class="role-list"><div class="role-item"><span class="role-item-title">Audience & journey research</span><span class="role-item-desc">Identified the target user profile — high-intent adventure seekers, not casual tourists — and mapped their discovery-to-booking journey.</span></div>
+<div class="role-item"><span class="role-item-title">User & operator profile design</span><span class="role-item-desc">Designed both profile types from scratch — traveler profiles with booking history/favourites, and operator profiles with credentials/trip listings.</span></div>
+<div class="role-item"><span class="role-item-title">Full admin portal</span><span class="role-item-desc">Designed every admin workflow — experiences, destinations, operators, customers, settings, reviews, operator requests.</span></div>
+<div class="role-item"><span class="role-item-title">Blog & favourites</span><span class="role-item-desc">Designed the editorial section and favourites system to support the long consideration window of high-ticket adventure travel.</span></div>
+<div class="role-item"><span class="role-item-title">Mobile-first responsive design</span><span class="role-item-desc">Rebuilt all consumer-facing screens mobile-first — not just responsive adaptations of desktop.</span></div>
+<div class="role-item"><span class="role-item-title">Design system extension</span><span class="role-item-desc">Extended the existing UI kit to cover all new surfaces without introducing visual inconsistency.</span></div>
+</div>
+        <div class="tools-strip"><span class="tool-tag">Figma</span><span class="tool-tag">Existing UI kit</span><span class="tool-tag">Sprint planning & retros</span><span class="tool-tag">Journey mapping</span></div>
+      </div>
+      <div class="my-role-col team">
+        <h4 class="team">The team handled this</h4>
+        <div class="role-list"><div class="role-item"><span class="role-item-title">Existing design team</span><span class="role-item-desc">Established the original consumer-side design and UI kit that I extended. I built on their foundation, not from scratch.</span></div>
+<div class="role-item"><span class="role-item-title">Development team</span><span class="role-item-desc">Implemented all new pages. Tech constraints on the admin data model shaped several IA decisions.</span></div>
+<div class="role-item"><span class="role-item-title">Client (Heliski International)</span><span class="role-item-desc">Provided business requirements, operator relationships, and destination content. Sprint retros were the main feedback loop.</span></div>
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SCOPE BAR -->
+<div class="scope-bar" aria-label="Project scope">
+  <div class="scope-inner">
+    <div class="scope-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20"/></svg> Marketing Website</div>
+    <div class="scope-divider" aria-hidden="true"></div>
+    <div class="scope-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg> Booking Marketplace</div>
+    <div class="scope-divider" aria-hidden="true"></div>
+    <div class="scope-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Tour Operator Portal</div>
+    <div class="scope-divider" aria-hidden="true"></div>
+    <div class="scope-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg> Admin Portal</div>
+    <div class="scope-divider" aria-hidden="true"></div>
+    <div class="scope-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> Mobile Responsive</div>
+  </div>
+</div>
+
+<!-- 01 OVERVIEW -->
+<section class="cs-section" id="overview">
+  <div class="cs-inner">
+    <div class="two-col">
+      <div>
+        <span class="section-num">01</span>
+        <span class="section-kicker">Project Overview</span>
+        <h2 class="cs-h2">ONE PLATFORM,<br/>EVERY HELISKI<br/>TRIP ON EARTH.</h2>
+        <p class="cs-body">Heliski International is a platform designed to serve as a global hub for heliskiing adventure seekers and experience providers. The project encompassed the design and development of a modern website and booking marketplace that enables users to discover, compare, and book curated heliski trips in premier mountain destinations worldwide.</p>
+        <p class="cs-body">The system was designed to simplify global heliski trip discovery and booking for adventure enthusiasts, while giving operators a powerful digital channel to reach customers and manage their listings.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:24px">
+          <span style="font-size:11px;color:var(--gray2);border:1px solid var(--border);padding:4px 12px;border-radius:2px">Website</span>
+          <span style="font-size:11px;color:var(--gray2);border:1px solid var(--border);padding:4px 12px;border-radius:2px">Booking Marketplace</span>
+          <span style="font-size:11px;color:var(--gray2);border:1px solid var(--border);padding:4px 12px;border-radius:2px">Tour Operator</span>
+        </div>
+      </div>
+      <div>
+        <span class="section-num">&nbsp;</span>
+        <span class="section-kicker">The Problem</span>
+        <h2 class="cs-h2">A SITE WITH<br/>NO ENGINE<br/>BEHIND IT.</h2>
+        <p class="cs-body">Heliski International already had basic user-facing designs, but lacked many essential features for a complete travel platform. The absence of an admin portal prevented efficient management of operators, experiences, destinations, customer details, and reviews.</p>
+        <p class="cs-body">Without dedicated pages for personal profiles and operator information, travelers found it difficult to manage bookings or interact with operators. Additionally, the existing site was not fully mobile responsive, resulting in a poor user experience.</p>
+        <div class="highlight-box">
+          <p><strong>The real gap:</strong> A pretty front-end with no operational backbone — no way to manage the marketplace at scale, and no way for users to trust or track what they were booking.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 BUSINESS + USER IMPACT -->
+<section class="cs-section dark" id="dual-impact">
+  <div class="cs-inner">
+    <span class="section-num">1.0</span>
+    <span class="section-kicker">Design Strategy</span>
+    <h2 class="cs-h2">SOLVING FOR BOTH<br/>SIDES OF THE TABLE</h2>
+    <p class="cs-body">A marketplace only works if it serves both sides — travelers searching for the experience of a lifetime, and operators trying to fill seats on expensive, weather-dependent trips. Every design decision had to hold up for both.</p>
+    <div class="impact-split" role="list">
+      <div class="impact-col user" role="listitem">
+        <div class="impact-col-label user">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          USER NEEDS
+        </div>
+        <div class="impact-list">
+          <div class="impact-item"><strong>Easy comparison</strong>filter and compare trips by destination, budget, and operator without leaving the search results.</div>
+          <div class="impact-item"><strong>Trust before booking</strong>verified reviews, operator credentials, and transparent safety policies visible upfront.</div>
+          <div class="impact-item"><strong>A real profile, not just a transaction</strong>saved favourites, booking history, and direct messaging with operators.</div>
+          <div class="impact-item"><strong>Mobile-first access</strong>research and book a high-value adventure trip from a phone, not just a desktop.</div>
+        </div>
+      </div>
+      <div class="impact-col business" role="listitem">
+        <div class="impact-col-label business">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M18.7 8l-5.1 5.1-2.8-2.8L7 14"/></svg>
+          BUSINESS NEEDS
+        </div>
+        <div class="impact-list">
+          <div class="impact-item"><strong>Operational control at scale</strong>a centralized admin portal to manage operators, listings, customers, and reviews without manual spreadsheets.</div>
+          <div class="impact-item"><strong>Automated onboarding</strong>streamlined operator onboarding workflows replacing what had previously been manual, email-based processes.</div>
+          <div class="impact-item"><strong>A real digital sales channel</strong>operators gain direct access to a qualified, high-intent adventure travel audience.</div>
+          <div class="impact-item"><strong>Reduced support overhead</strong>built-in messaging and transparent listings cut down on pre-booking inquiry volume.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 RESEARCH -->
+<section class="cs-section" id="research">
+  <div class="cs-inner">
+    <span class="section-num">1.1</span>
+    <span class="section-kicker">Research &amp; Discovery</span>
+    <h2 class="cs-h2">A MARKET WITH<br/>NO REAL HUB</h2>
+    <p class="cs-body">Most heliski competitors were either single operators offering trips to their own locations, or booking sites listing multiple operators with limited features. Existing platforms often lacked tools for easy booking management, user profiles, and operator admin control — the envisioned platform filled this exact gap.</p>
+    <div class="research-grid" role="list">
+      <div class="research-card" role="listitem">
+        <div class="research-icon" aria-hidden="true">🎯</div>
+        <h4>Audience identification</h4>
+        <p>The process began by identifying the platform's target audience — enthusiasts seeking unique, high-commitment heli-skiing adventures, not casual ski tourists.</p>
+      </div>
+      <div class="research-card" role="listitem">
+        <div class="research-icon" aria-hidden="true">🗺️</div>
+        <h4>Journey mapping</h4>
+        <p>Iterative prototyping, user journey mapping, and feedback implementation at every stage helped minimize friction across the discovery-to-booking flow.</p>
+      </div>
+      <div class="research-card" role="listitem">
+        <div class="research-icon" aria-hidden="true">💎</div>
+        <h4>Emotional drivers of luxury travel</h4>
+        <p>The goal was to align with emotional drivers of high-value adventure travel and set a new benchmark for ease, transparency, and engagement in the category.</p>
+      </div>
+      <div class="research-card" role="listitem">
+        <div class="research-icon" aria-hidden="true">🏔️</div>
+        <h4>Competitive gap analysis</h4>
+        <p>The envisioned platform offered a unified, mobile-friendly experience where users compare and book trips from various operators, while operators manage their own listings.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 PAIN POINTS -->
+<section class="cs-section dark" id="painpoints">
+  <div class="cs-inner">
+    <span class="section-num">2.0</span>
+    <span class="section-kicker">Design Phase · Pain Point Analysis</span>
+    <h2 class="cs-h2">FOUR PROBLEMS.<br/>FOUR SOLUTIONS.</h2>
+    <div class="pain-grid" role="list">
+      <div class="pain-item" role="listitem">
+        <div class="pain-top"><div class="pain-num">1</div><h4>Complex &amp; Time-Consuming Booking Process</h4></div>
+        <div class="arrow-down" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+        <div class="pain-solution"><span class="sol-label">Solution</span><p>Implemented a <strong>step-by-step booking flow, saved profiles, and automated confirmations</strong> — turning a multi-day inquiry process into minutes.</p></div>
+      </div>
+      <div class="pain-item" role="listitem">
+        <div class="pain-top"><div class="pain-num">2</div><h4>Poor Mobile Experience</h4></div>
+        <div class="arrow-down" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+        <div class="pain-solution"><span class="sol-label">Solution</span><p>Built a <strong>fully responsive, mobile-first platform</strong> — every screen designed and tested for phone-first discovery and booking.</p></div>
+      </div>
+      <div class="pain-item" role="listitem">
+        <div class="pain-top"><div class="pain-num">3</div><h4>No Reliable Communication with Operators</h4></div>
+        <div class="arrow-down" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+        <div class="pain-solution"><span class="sol-label">Solution</span><p>Integrated a <strong>direct messaging system with real-time notifications</strong> — travelers and operators communicate inside the platform, not over scattered emails.</p></div>
+      </div>
+      <div class="pain-item" role="listitem">
+        <div class="pain-top"><div class="pain-num">4</div><h4>Fragmented &amp; Incomplete Trip Information</h4></div>
+        <div class="arrow-down" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+        <div class="pain-solution"><span class="sol-label">Solution</span><p>Implemented <strong>centralized, detailed trip data and user reviews</strong> for easy comparison — destination, operator credentials, safety policy, all in one listing.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 WIREFRAMING & SCOPE EXPANSION -->
+<section class="cs-section" id="wireframing">
+  <div class="cs-inner">
+    <span class="section-num">2.1</span>
+    <span class="section-kicker">Wireframe &amp; Prototyping</span>
+    <h2 class="cs-h2">EXPANDING ON<br/>AN EXISTING<br/>FOUNDATION.</h2>
+    <div class="two-col-wide">
+      <div><h3 style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1.5px;color:rgba(240,236,228,.35)">BUILDING ON<br/>WHAT EXISTED</h3></div>
+      <div>
+        <p class="cs-body">For this project, the wireframing and prototyping process began with an already-established user-side design and UI design kit. Our team focused on developing and refining key new areas: detailed user and operator profiles, favourites, and an engaging blog section.</p>
+        <p class="cs-body">We also built out the <strong>complete admin portal</strong> — designing every page and workflow covering experiences, destinations, operators, customers, settings, reviews, and operator requests. Each component was created with fully mobile-responsive layouts in mind, ensuring seamless usability across devices.</p>
+        <div class="highlight-box">
+          <p><strong>Design discipline:</strong> This approach ensured consistency with the existing visual language while expanding the platform's functionality — achieving a cohesive, user-friendly interface rather than a bolt-on admin tool that felt disconnected from the consumer brand.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="cs-body" style="margin-top:48px;margin-bottom:8px">New surface area designed across the platform:</p>
+    <div class="scope-grid" role="list">
+      <div class="scope-card" role="listitem">
+        <div class="scope-card-icon" aria-hidden="true">👤</div>
+        <h4>User &amp; Operator Profiles</h4>
+        <p>Dedicated profile pages for travelers and operators — booking history, favourites, credentials, and direct communication in one place.</p>
+      </div>
+      <div class="scope-card" role="listitem">
+        <div class="scope-card-icon" aria-hidden="true">🛠️</div>
+        <h4>Full Admin Portal</h4>
+        <p>Every page and workflow for managing experiences, destinations, operators, customers, settings, reviews, and operator requests.</p>
+      </div>
+      <div class="scope-card" role="listitem">
+        <div class="scope-card-icon" aria-hidden="true">📰</div>
+        <h4>Blog &amp; Favourites</h4>
+        <p>An engaging editorial section for destination content, plus a favourites system to support the long consideration window of adventure travel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 KEY DESIGN DECISIONS -->
+<section class="cs-section dark" id="decisions">
+  <div class="cs-inner">
+    <span class="section-num">2.2</span>
+    <span class="section-kicker">Key Design Decisions</span>
+    <h2 class="cs-h2">BEFORE &amp;<br/>AFTER</h2>
+    <div class="decision-list" role="list">
+      <div class="decision-item" role="listitem">
+        <div class="decision-before"><span class="dec-label">Before</span><h4>No admin visibility into the marketplace</h4><p>Operators, listings, and reviews had no central management system — every update required manual developer intervention.</p></div>
+        <div class="decision-arrow-col" aria-hidden="true">→</div>
+        <div class="decision-after"><span class="dec-label after">After</span><h4>Full admin portal across every entity</h4><p>A complete admin system covering experiences, destinations, operators, customers, reviews, and settings — self-serve for the business team.</p></div>
+      </div>
+      <div class="decision-item" role="listitem">
+        <div class="decision-before"><span class="dec-label">Before</span><h4>Trip details scattered across pages</h4><p>Travelers had to piece together destination info, operator reputation, and safety details from multiple disconnected sources.</p></div>
+        <div class="decision-arrow-col" aria-hidden="true">→</div>
+        <div class="decision-after"><span class="dec-label after">After</span><h4>One unified trip listing</h4><p>Detailed trip data, verified reviews, operator credentials, and safety policy all live on a single, scannable listing page.</p></div>
+      </div>
+      <div class="decision-item" role="listitem">
+        <div class="decision-before"><span class="dec-label">Before</span><h4>Desktop-only experience</h4><p>The existing site broke down on mobile, despite high-value adventure travel research often happening on the go.</p></div>
+        <div class="decision-arrow-col" aria-hidden="true">→</div>
+        <div class="decision-after"><span class="dec-label after">After</span><h4>Fully mobile-responsive across every page</h4><p>Every new and existing screen — booking flow, profiles, admin portal — rebuilt mobile-first for seamless access on any device.</p></div>
+      </div>
+      <div class="decision-item" role="listitem">
+        <div class="decision-before"><span class="dec-label">Before</span><h4>No way to contact an operator directly</h4><p>Inquiries went through generic contact forms with no tracking, often resulting in slow or missed responses.</p></div>
+        <div class="decision-arrow-col" aria-hidden="true">→</div>
+        <div class="decision-after"><span class="dec-label after">After</span><h4>In-platform messaging with real-time notifications</h4><p>A "Send Request" flow connects travelers directly to operators, with notifications keeping both sides informed throughout.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 FINAL DESIGN -->
+<section class="cs-section" id="final">
+  <div class="cs-inner">
+    <span class="section-num">3.0</span>
+    <span class="section-kicker">Validating · Final Iteration</span>
+    <h2 class="cs-h2">THE FINAL<br/>DESIGN</h2>
+    <p class="cs-body">Validated through regular collaboration and feedback sessions with key stakeholders — the client and internal team. Feedback was incorporated iteratively, focusing on usability, clarity, and completeness of modules like experience management, customer handling, and review systems.</p>
+    <div class="showcase-grid" role="list">
+
+      <!-- Operator profile page -->
+      <div class="showcase-card" role="listitem">
+        <div class="showcase-visual" style="background:linear-gradient(135deg,#0a1622,#111)">
+          <div style="width:88%;background:#fff;border-radius:8px;box-shadow:0 16px 48px rgba(0,0,0,.35);overflow:hidden">
+            <div style="padding:14px;display:flex;flex-direction:column;align-items:center;border-bottom:1px solid #eee">
+              <div style="width:36px;height:36px;border-radius:50%;background:#1d6fb8;display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:6px">✈</div>
+              <div style="font-size:11px;font-weight:600;color:#1a1a1a">Travel Perk</div>
+              <div style="font-size:8px;color:#80868b;margin-bottom:6px">🇸🇪 Sweden</div>
+              <div style="display:flex;gap:6px;margin-bottom:6px">
+                <div style="background:#f8f9fb;border-radius:4px;padding:4px 10px;text-align:center"><div style="font-size:7px;color:#80868b">Active</div><div style="font-size:9px;font-weight:600;color:#1a1a1a">11 years</div></div>
+                <div style="background:#f8f9fb;border-radius:4px;padding:4px 10px;text-align:center"><div style="font-size:7px;color:#80868b">Skiers since</div><div style="font-size:9px;font-weight:600;color:#1a1a1a">2,628</div></div>
+              </div>
+              <div style="background:#1d6fb8;color:#fff;font-size:9px;padding:5px 24px;border-radius:14px">Send request</div>
+            </div>
+            <div style="padding:12px">
+              <div style="font-size:9px;font-weight:600;color:#1a1a1a;margin-bottom:4px">About</div>
+              <div style="font-size:8px;color:#80868b;line-height:1.5">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC.</div>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-info">
+          <h4>Operator Profile Page</h4>
+          <p>Verified credentials, years active, skier count, and a direct "Send Request" button — built to establish trust before a traveler commits to a high-value booking.</p>
+        </div>
+      </div>
+
+      <!-- Booking marketplace search -->
+      <div class="showcase-card" role="listitem">
+        <div class="showcase-visual" style="background:linear-gradient(135deg,#081420,#111)">
+          <div style="width:90%;background:#fff;border-radius:8px;box-shadow:0 16px 48px rgba(0,0,0,.35);overflow:hidden">
+            <div style="background:#0e1f33;padding:8px 12px;display:flex;gap:6px">
+              <div style="flex:1;background:rgba(255,255,255,.08);border-radius:4px;padding:5px 8px"><div style="font-size:6px;color:rgba(255,255,255,.4)">Destination</div><div style="font-size:8px;color:#fff">Pick a destination</div></div>
+              <div style="flex:1;background:rgba(255,255,255,.08);border-radius:4px;padding:5px 8px"><div style="font-size:6px;color:rgba(255,255,255,.4)">Budget</div><div style="font-size:8px;color:#fff">What's your budget</div></div>
+              <div style="background:#1d6fb8;border-radius:4px;padding:5px 14px;display:flex;align-items:center"><span style="font-size:8px;color:#fff;font-weight:600">Explore</span></div>
+            </div>
+            <div style="padding:10px">
+              <div style="font-size:9px;font-weight:600;color:#1a1a1a;margin-bottom:6px">Top Experiences</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+                <div style="background:#f8f9fb;border-radius:6px;overflow:hidden;border:1px solid #eee">
+                  <div style="height:34px;background:linear-gradient(135deg,#cbd5e1,#94a3b8);position:relative"><span style="position:absolute;top:3px;right:3px;font-size:8px">♡</span></div>
+                  <div style="padding:5px"><div style="font-size:7px;color:#1a1a1a;font-weight:500">Two Group Private Package</div><div style="font-size:6.5px;color:#80868b;margin-top:2px">from 19,293 USD</div></div>
+                </div>
+                <div style="background:#f8f9fb;border-radius:6px;overflow:hidden;border:1px solid #eee">
+                  <div style="height:34px;background:linear-gradient(135deg,#fef3c7,#fde68a);position:relative"><span style="position:absolute;top:3px;right:3px;font-size:8px">♡</span></div>
+                  <div style="padding:5px"><div style="font-size:7px;color:#1a1a1a;font-weight:500">Small Group Vertical Package</div><div style="font-size:6.5px;color:#80868b;margin-top:2px">from 15,969 USD</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-info">
+          <h4>Booking Marketplace — Search &amp; Filter</h4>
+          <p>Destination, budget, and operator filters narrow hundreds of listings to a curated few. Favourite hearts let users build a shortlist across multiple sessions.</p>
+        </div>
+      </div>
+
+      <!-- Mobile responsive home -->
+      <div class="showcase-card" role="listitem">
+        <div class="showcase-visual" style="background:linear-gradient(135deg,#0a1825,#111)">
+          <div style="width:140px;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.4)">
+            <div style="background:#0e1f33;padding:8px 10px;display:flex;align-items:center;justify-content:space-between">
+              <div style="font-size:9px;color:#fff;font-weight:700">HELISKI</div>
+              <div style="width:14px;height:10px;display:flex;flex-direction:column;justify-content:space-between"><div style="height:1.5px;background:#fff"></div><div style="height:1.5px;background:#fff"></div><div style="height:1.5px;background:#fff"></div></div>
+            </div>
+            <div style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);padding:14px 10px">
+              <div style="font-size:10px;font-weight:700;color:#0e1f33;line-height:1.3;margin-bottom:6px">Have you been heliskiing around the world?</div>
+              <div style="font-size:6.5px;color:#475569;line-height:1.4;margin-bottom:8px">In 2024 the first book ever about global heliskiing will be released</div>
+              <div style="background:#fff;border-radius:4px;padding:5px 7px;margin-bottom:4px"><div style="font-size:6px;color:#94a3b8">Destination</div></div>
+              <div style="background:#fff;border-radius:4px;padding:5px 7px;margin-bottom:4px"><div style="font-size:6px;color:#94a3b8">Budget</div></div>
+              <div style="background:#fff;border-radius:4px;padding:5px 7px;margin-bottom:8px"><div style="font-size:6px;color:#94a3b8">Operator</div></div>
+              <div style="background:#1d6fb8;border-radius:4px;padding:7px;text-align:center"><span style="font-size:8px;color:#fff;font-weight:600">Explore</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-info">
+          <h4>Mobile Responsive Home</h4>
+          <p>The entire booking flow — search, filter, compare, and request — rebuilt mobile-first. Editorial hook content drives engagement before the search form even loads.</p>
+        </div>
+      </div>
+
+      <!-- Admin portal -->
+      <div class="showcase-card" role="listitem">
+        <div class="showcase-visual" style="background:linear-gradient(135deg,#081420,#111)">
+          <div style="width:90%;background:#fff;border-radius:8px;box-shadow:0 16px 48px rgba(0,0,0,.35);overflow:hidden">
+            <div style="background:#0e1f33;padding:8px 12px;display:flex;align-items:center;gap:10px">
+              <div style="font-size:9px;color:#fff;font-weight:700">ADMIN</div>
+              <span style="font-size:7px;color:rgba(255,255,255,.5);border-bottom:1.5px solid #3b9eea;padding-bottom:1px">Operators</span>
+              <span style="font-size:7px;color:rgba(255,255,255,.3)">Destinations</span>
+              <span style="font-size:7px;color:rgba(255,255,255,.3)">Customers</span>
+              <span style="font-size:7px;color:rgba(255,255,255,.3)">Reviews</span>
+            </div>
+            <div style="padding:10px">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+                <div style="font-size:9px;font-weight:600;color:#1a1a1a">Operator Requests</div>
+                <div style="background:#1d6fb8;color:#fff;font-size:7px;padding:3px 10px;border-radius:4px">+ Add Operator</div>
+              </div>
+              <div style="background:#f8f9fb;border-radius:5px;overflow:hidden;border:1px solid #eee">
+                <div style="display:grid;grid-template-columns:1fr 60px 60px;padding:5px 8px;background:#eef0f8;font-size:7px;color:#374151;font-weight:500"><span>Operator</span><span>Status</span><span>Action</span></div>
+                <div style="display:grid;grid-template-columns:1fr 60px 60px;padding:5px 8px;border-top:1px solid #eee;align-items:center"><span style="font-size:7.5px;color:#1a1a1a">Bella Coola Heli</span><span style="font-size:6px;background:#fff3e0;color:#e65100;padding:1px 5px;border-radius:3px;width:fit-content">Pending</span><span style="font-size:7px;color:#1d6fb8">Review</span></div>
+                <div style="display:grid;grid-template-columns:1fr 60px 60px;padding:5px 8px;border-top:1px solid #eee;align-items:center"><span style="font-size:7.5px;color:#1a1a1a">Tweedsmuir Lodge</span><span style="font-size:6px;background:#e8f5e9;color:#1a6b3c;padding:1px 5px;border-radius:3px;width:fit-content">Approved</span><span style="font-size:7px;color:#1d6fb8">Edit</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-info">
+          <h4>Admin Portal — Operator Management</h4>
+          <p>Full operator onboarding queue with status tracking. The business team can approve, edit, or manage every operator and listing without engineering involvement.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 08 METRICS -->
+<section class="cs-section darker" id="outcomes">
+  <div class="cs-inner">
+    <span class="section-num">04</span>
+    <span class="section-kicker orange">Outcomes &amp; Impact</span>
+    <h2 class="cs-h2">THE RESULTS</h2>
+    <p class="cs-body">The design decisions made had a positive impact on the overall user experience. Users now enjoy seamless discovery, comparison, and booking of heliski adventures worldwide, all from a single, easy-to-navigate platform. Detailed trip information, verified reviews, and clear safety and operator credentials have boosted user confidence and transparency in decision-making.</p>
+    <div class="metrics-grid" role="list">
+      <div class="metric-item" role="listitem"><span class="metric-num">4</span><span class="metric-label">Connected platforms designed</span></div>
+      <div class="metric-item" role="listitem"><span class="metric-num">8</span><span class="metric-label">Person cross-functional team</span></div>
+      <div class="metric-item" role="listitem"><span class="metric-num">4<span>mo</span></span><span class="metric-label">Full design timeline</span></div>
+      <div class="metric-item" role="listitem"><span class="metric-num">100<span>%</span></span><span class="metric-label">Mobile-responsive coverage</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 REFLECTION -->
+<section class="cs-section dark" id="reflection">
+  <div class="cs-inner">
+    <span class="section-num">05</span>
+    <span class="section-kicker">Reflection</span>
+    <h2 class="cs-h2">WHAT I LEARNED</h2>
+    <div class="reflection-grid" role="list">
+      <div class="reflection-card" role="listitem">
+        <h4>Designing the invisible half of a marketplace</h4>
+        <p>The admin portal never gets seen by end users, but it's what makes the consumer experience possible at scale. I learned to treat internal tools with the same craft as customer-facing screens — because a broken admin workflow eventually becomes a broken customer experience.</p>
+      </div>
+      <div class="reflection-card" role="listitem">
+        <h4>Cross-functional collaboration across 5 disciplines</h4>
+        <p>Regular sprint planning and retrospective meetings provided structured opportunities to address challenges, clarify requirements, and refine design and functionality. Close coordination among developers, designers, product managers, QA, and business stakeholders kept goals aligned and workflows streamlined.</p>
+      </div>
+      <div class="reflection-card" role="listitem">
+        <h4>Extending an existing design system without breaking it</h4>
+        <p>Working from an established UI kit meant every new screen — profiles, admin, blog — had to feel native to the existing brand. This taught me real discipline in extending systems rather than reinventing them.</p>
+      </div>
+      <div class="reflection-card" role="listitem">
+        <h4>Trust signals matter more in high-ticket travel</h4>
+        <p>Heliski trips cost thousands of dollars and depend on operator safety records. I learned that for high-stakes purchases, UI decisions around credibility — reviews, credentials, transparency — carry as much weight as the booking flow itself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT PROJECT -->
+<div class="next-project">
+  <div class="next-inner">
+    <div>
+      <span class="next-label">Next Case Study</span>
+      <h2 class="next-title">RARASPACE<br/>EMS</h2>
+      <p style="font-size:14px;color:var(--gray);margin-top:10px;font-weight:300">Enterprise · Web App · 100% Efficiency Improvement</p>
+    </div>
+    <a href="raraspace.html" class="next-cta">
+      View Case Study
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section" aria-labelledby="cta-title">
+  <h2 id="cta-title">LIKE WHAT<br/>YOU SEE?</h2>
+  <p>Let's talk about what we can build together.</p>
+  <div class="cta-buttons">
+    <a href="mailto:dikshya@email.com" class="btn-primary" onclick="showToast(event)">Get In Touch</a>
+    <a href="projects.html" class="btn-outline">View All Work</a>
+  </div>
+</section>
+</main>
+
+<footer role="contentinfo">
+  <a class="footer-logo" href="index.html">DIKSHYA</a>
+  <p>© 2026 · UI/UX Designer · Kathmandu, Nepal</p>
+  <a href="projects.html" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
+</footer>
+
+<script>
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
+(function anim(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim)})();
+window.addEventListener('scroll',()=>{const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;document.getElementById('progress').style.width=p+'%';},{passive:true});
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('revealed')})},{threshold:.07});
+document.querySelectorAll('.pflow-step,.impact-col,.pain-item,.research-card,.scope-card,.decision-item,.showcase-card,.metric-item,.reflection-card').forEach(el=>obs.observe(el));
+const hamburger=document.getElementById('hamburger'),drawer=document.getElementById('navDrawer');
+hamburger.addEventListener('click',()=>{const open=drawer.classList.toggle('open');hamburger.setAttribute('aria-expanded',open);const s=hamburger.querySelectorAll('span');if(open){s[0].style.transform='translateY(6.5px) rotate(45deg)';s[1].style.opacity='0';s[2].style.transform='translateY(-6.5px) rotate(-45deg)'}else{s.forEach(x=>{x.style.transform='';x.style.opacity=''})}});
+function closeDrawer(){drawer.classList.remove('open');hamburger.setAttribute('aria-expanded','false');hamburger.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity=''})}
+function showToast(e){e.preventDefault();navigator.clipboard.writeText('dikshya@email.com').catch(()=>{});const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
+</script>
+</body>
+</html>

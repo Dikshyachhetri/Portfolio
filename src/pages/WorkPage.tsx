@@ -67,7 +67,7 @@ const projects = [
     title: 'Heliski International',
     info: 'Travel · Global Marketplace · Admin Portal',
     path: '/case/heliski',
-    logo: BASE + 'heliski-logo.svg',
+    logo: BASE + 'heliski/LOGO.png',
     accent: '#3b9eea',
   },
 ]

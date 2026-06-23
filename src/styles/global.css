@@ -121,6 +121,12 @@ body:has(button:hover) #cursor-ring { width:48px; height:48px; opacity:.35 }
 }
 
 
+@media(max-width:900px){
+  nav{padding:0 24px}
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+}
+
 /* Restore default cursor on touch devices */
 @media(pointer: coarse){
   body { cursor: auto }

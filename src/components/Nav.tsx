@@ -3,8 +3,8 @@ import { Link, useLocation } from 'react-router-dom'
 
 const NAV_LINKS = [
   { to: '/home', label: 'Home' },
-  { to: '/work', label: 'Work' },
   { to: '/about', label: 'About' },
+  { to: '/work', label: 'Work' },
 ]
 
 function openGmail() {

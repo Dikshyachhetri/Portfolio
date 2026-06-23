@@ -13,7 +13,7 @@
 :root{
   --bg:#0e0e0e; --bg2:#161616; --bg3:#1e1e1e; --bg4:#222;
   --orange:#e8521a; --orange2:#ff6b35;
-  --blue:#1d4ed8; --blue2:#3b82f6; --blue-light:rgba(29,78,216,.15);
+  --blue:#3730a3; --blue2:#4f46e5; --blue3:#6366f1; --blue-light:rgba(55,48,163,.15);
   --white:#f0ece4; --gray:#999; --gray2:#555; --gray3:#333;
   --success:#22c55e; --border:rgba(255,255,255,.08); --border2:rgba(255,255,255,.14);
   --ease:cubic-bezier(.16,1,.3,1); --dur-fast:180ms; --dur-mid:320ms; --dur-slow:700ms;
@@ -30,7 +30,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);li
 #cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(232,82,26,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease),opacity .3s}
 body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:18px;height:18px}
 body:has(a:hover) #cursor-ring{width:48px;height:48px;opacity:.35}
-#progress{position:fixed;top:60px;left:0;height:2px;background:var(--blue2);z-index:99;width:0%;transition:width .1s linear}
+#progress{position:fixed;top:60px;left:0;height:2px;background:var(--blue3);z-index:99;width:0%;transition:width .1s linear}
 
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 48px;height:60px;border-bottom:1px solid var(--border);background:rgba(14,14,14,.9);backdrop-filter:blur(18px)}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:10px;justify-self:start}
@@ -52,26 +52,30 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .cs-hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:80px 48px 80px;position:relative;overflow:hidden}
 .cs-hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0d0d0d 0%,#0a0e1a 50%,#0e0e0e 100%);z-index:0}
 .cs-hero-grid{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black,transparent)}
-.cs-hero-glow{position:absolute;bottom:-80px;right:-80px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(29,78,216,.06) 0%,transparent 65%);pointer-events:none;animation:glow 9s ease-in-out infinite alternate;z-index:0}
+.cs-hero-glow{position:absolute;bottom:-80px;right:-80px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(55,48,163,.06) 0%,transparent 65%);pointer-events:none;animation:glow 9s ease-in-out infinite alternate;z-index:0}
 @keyframes glow{from{transform:scale(1)}to{transform:scale(1.3) translate(-30px,20px)}}
 .cs-hero-content{position:relative;z-index:1;max-width:1200px;margin:0 auto;width:100%}
-.cs-hero-content::before{content:"";position:absolute;right:-20px;top:50%;transform:translateY(-50%);width:380px;height:340px;background:radial-gradient(circle at 55% 45%,rgba(29,78,216,.06) 0%,transparent 50%),radial-gradient(circle at 60% 55%,rgba(29,78,216,.04) 0%,transparent 50%);border-radius:50%;pointer-events:none;z-index:-1}
+.cs-hero-content::before{content:"";position:absolute;right:-20px;top:50%;transform:translateY(-50%);width:380px;height:340px;background:radial-gradient(circle at 55% 45%,rgba(55,48,163,.06) 0%,transparent 50%),radial-gradient(circle at 60% 55%,rgba(55,48,163,.04) 0%,transparent 50%);border-radius:50%;pointer-events:none;z-index:-1}
+.breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:32px;opacity:0;animation:fadeUp .6s var(--ease) forwards 100ms}
+.breadcrumb a,.breadcrumb span{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);text-decoration:none;transition:color var(--dur-fast)}
+.breadcrumb a:hover{color:var(--blue3)}
+.breadcrumb .sep{color:var(--gray3)}
 .cs-hero-meta{display:flex;align-items:center;gap:12px;margin-bottom:24px;opacity:0;animation:fadeUp .6s var(--ease) forwards 200ms;flex-wrap:wrap}
-.cs-chip{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:2px}
-.cs-chip.blue{background:var(--blue-light);border-color:rgba(29,78,216,.4);color:var(--blue2)}
-.visit-hero-link{float:right;margin:10px 20px 0 0;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(59,130,246,.7);text-decoration:none;display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:1px solid rgba(59,130,246,.3);border-radius:3px;transition:background var(--dur-fast),color var(--dur-fast),border-color var(--dur-fast);font-family:'DM Sans',sans-serif;font-weight:400}
-.visit-hero-link:hover{background:rgba(59,130,246,.08);border-color:var(--blue2);color:var(--blue2)}
-.visit-hero-link svg{width:14px;height:14px;transition:transform var(--dur-mid) var(--ease)}
-.visit-hero-link:hover svg{transform:translateX(3px)}
+.cs-chip{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:100px}
+.cs-chip.blue{background:var(--blue-light);border-color:rgba(55,48,163,.4);color:var(--blue3)}
+.visit-hero-link{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--blue3);text-decoration:none;display:inline-flex;align-items:center;gap:10px;padding:10px 22px;border:1.5px solid rgba(55,48,163,.35);border-radius:4px;background:rgba(55,48,163,.07);transition:background var(--dur-fast),color var(--dur-fast),border-color var(--dur-fast),transform var(--dur-fast);font-family:'DM Sans',sans-serif;font-weight:500}
+.visit-hero-link:hover{background:rgba(55,48,163,.15);border-color:var(--blue3);color:var(--blue3);transform:translateY(-1px)}
+.visit-hero-link svg{width:15px;height:15px;transition:transform var(--dur-mid) var(--ease)}
+.visit-hero-link:hover svg{transform:translateX(4px)}
 .cs-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,9vw,130px);letter-spacing:2px;line-height:.92;color:var(--white);margin-bottom:28px;opacity:0;animation:fadeUp .8s var(--ease) forwards 300ms}
-.cs-hero h1 em{font-style:normal;color:var(--blue2)}
+.cs-hero h1 em{font-style:normal;color:var(--blue3)}
 .cs-hero-tagline{font-size:18px;color:rgba(240,236,228,.6);font-weight:300;max-width:560px;line-height:1.75;margin-bottom:48px;opacity:0;animation:fadeUp .6s var(--ease) forwards 450ms}
 .cs-quick-stats{display:flex;gap:0;border:1px solid var(--border);width:fit-content;flex-wrap:wrap;opacity:0;animation:fadeUp .6s var(--ease) forwards 550ms}
 .cs-stat{padding:16px 32px;border-right:1px solid var(--border)}
 .cs-stat:last-child{border-right:none}
 .cs-stat-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);display:block;margin-bottom:4px}
 .cs-stat-val{font-size:15px;color:var(--white);font-weight:400}
-.cs-hero-art{position:absolute;right:-12px;top:10px;z-index:2;pointer-events:none;opacity:0;animation:fadeUp 1s var(--ease) forwards 800ms}.cs-hero-art svg{width:clamp(260px,32vw,420px);height:auto;display:block;filter:drop-shadow(0 0 60px rgba(0,0,0,.5)) contrast(1.6) saturate(2)}
+.cs-hero-art{position:absolute;right:-12px;top:50px;z-index:2;pointer-events:none;opacity:0;animation:fadeUp 1s var(--ease) forwards 800ms}.cs-hero-art svg{width:clamp(260px,32vw,420px);height:auto;display:block;filter:drop-shadow(0 0 60px rgba(0,0,0,.5)) contrast(1.6) saturate(2)}
 @media(max-width:900px){.cs-hero-art{display:none}}
 .cs-scroll-cue{position:absolute;bottom:32px;right:48px;z-index:1;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp .6s var(--ease) forwards 700ms}
 .cs-scroll-cue span{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2)}
@@ -79,14 +83,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 
 .cs-hero-image{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:64px 48px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;min-height:420px}
-.cs-hero-image::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(29,78,216,.05) 0%,transparent 70%)}
+.cs-hero-image::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(55,48,163,.05) 0%,transparent 70%)}
 .screen-wrap{width:90%;max-width:920px;border-radius:10px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.5);transition:transform .6s var(--ease);position:relative;z-index:1}
 .cs-hero-image:hover .screen-wrap{transform:translateY(-8px)}
 
 .cs-section{padding:96px 48px;border-bottom:1px solid var(--border)}
 .cs-section.dark{background:var(--bg2)}.cs-section.darker{background:#0b0b0b}
 .cs-inner{max-width:1200px;margin:0 auto}
-.section-kicker{display:block;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--blue2);margin-bottom:16px}
+.section-kicker{display:block;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--blue3);margin-bottom:16px}
 .section-kicker.orange{color:var(--orange)}
 .section-num{display:block;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gray2);margin-bottom:6px}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
@@ -95,7 +99,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .cs-body{font-size:16px;color:rgba(240,236,228,.65);font-weight:300;line-height:1.85;max-width:60ch}
 .cs-body strong{color:var(--white);font-weight:400}
 .cs-body+.cs-body{margin-top:14px}
-.highlight-box{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--blue2);padding:22px 26px;border-radius:0 4px 4px 0;margin-top:20px}
+.highlight-box{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--blue3);padding:22px 26px;border-radius:0 4px 4px 0;margin-top:20px}
 .highlight-box p{font-size:15px;color:rgba(240,236,228,.7);line-height:1.75;font-weight:300}
 .highlight-box strong{color:var(--white);font-weight:400}
 
@@ -105,16 +109,54 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .research-card:nth-child(1){transition-delay:0ms}
 .research-card:nth-child(2){transition-delay:80ms}
 .research-card:nth-child(3){transition-delay:160ms}
-.research-icon{margin-bottom:14px;color:var(--blue2)}.research-icon svg{width:24px;height:24px}
+.research-icon{margin-bottom:14px;color:var(--blue3)}.research-icon svg{width:24px;height:24px}
 .research-card h4{font-size:15px;font-weight:500;color:var(--white);margin-bottom:8px}
 .research-card p{font-size:14px;color:var(--gray);line-height:1.7}
+
+/* STAKEHOLDER MAPPING */
+.stakeholder-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:48px}
+.sh-card{background:var(--bg2);padding:28px 22px;opacity:0;transform:translateY(16px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
+.sh-card.revealed{opacity:1;transform:translateY(0)}
+.sh-card:nth-child(1){transition-delay:0ms}
+.sh-card:nth-child(2){transition-delay:70ms}
+.sh-card:nth-child(3){transition-delay:140ms}
+.sh-card:nth-child(4){transition-delay:210ms}
+.sh-icon{font-size:24px;margin-bottom:12px}
+.sh-role{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue3);margin-bottom:8px;display:block}
+.sh-card h4{font-size:15px;font-weight:500;color:var(--white);margin-bottom:8px}
+.sh-card p{font-size:13px;color:var(--gray);line-height:1.65}
+
+/* DUAL IMPACT */
+.impact-split{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:48px}
+.impact-col{background:var(--bg2);padding:32px 30px}
+.impact-list{display:flex;flex-direction:column;gap:12px}
+
+/* Impact col labels — more prominent */
+.impact-col-label{font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:.5px;text-transform:uppercase;font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.impact-col-label.user{color:var(--blue3)}
+.impact-col-label.business{color:var(--orange)}
+.impact-col-label svg{width:16px;height:16px;flex-shrink:0}
+
+/* Impact items — stacked layout, dot sits before <strong> */
+.impact-item{display:flex;flex-direction:column;gap:4px;padding-top:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.05)}
+.impact-item:last-child{border-bottom:none;padding-bottom:0}
+.impact-item::before{display:none}
+.impact-item strong{font-size:13px;color:var(--white);font-weight:500;display:flex;align-items:center;gap:7px}
+.impact-item strong::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.impact-col.user .impact-item strong::before{background:var(--blue3)}
+.impact-col.business .impact-item strong::before{background:var(--orange)}
+.impact-col .impact-item{font-size:13px;color:rgba(240,236,228,.6);line-height:1.65}
+
+/* FLOW CARDS for prototyping */
+.flow-card{opacity:0;transform:scale(.95);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.flow-card.revealed{opacity:1;transform:scale(1)}
 
 .pain-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:48px}
 .pain-item{background:var(--bg);opacity:0;transform:translateY(20px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease);display:flex;flex-direction:column;height:100%}
 .pain-item.revealed{opacity:1;transform:translateY(0)}
 .pain-item:nth-child(1){transition-delay:0ms}.pain-item:nth-child(2){transition-delay:80ms}.pain-item:nth-child(3){transition-delay:160ms}.pain-item:nth-child(4){transition-delay:240ms}
-.pain-top{padding:36px 28px 28px;background:var(--bg2);border-bottom:1px solid var(--border)}
-.pain-num{font-family:'Bebas Neue',sans-serif;font-size:64px;color:rgba(29,78,216,.2);line-height:1;margin-bottom:12px}
+.pain-top{padding:36px 28px 28px;background:var(--bg2);border-bottom:1px solid var(--border);flex:1}
+.pain-num{font-family:'Bebas Neue',sans-serif;font-size:64px;color:rgba(55,48,163,.2);line-height:1;margin-bottom:12px}
 .pain-top h4{font-size:15px;font-weight:400;color:var(--white);line-height:1.4}
 .arrow-down{display:flex;align-items:center;justify-content:center;padding:12px;color:var(--gray2)}
 .pain-solution{padding:22px 26px;background:#1a2a5e;flex:1;display:flex;flex-direction:column;justify-content:center}
@@ -128,9 +170,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .decision-item:nth-child(1){transition-delay:0ms}.decision-item:nth-child(2){transition-delay:80ms}.decision-item:nth-child(3){transition-delay:160ms}.decision-item:nth-child(4){transition-delay:240ms}
 .decision-before,.decision-after{padding:24px 28px}
 .decision-before{background:var(--bg2);border-right:1px solid var(--border)}
-.decision-arrow-col{display:flex;align-items:center;justify-content:center;color:var(--blue2);font-size:16px}
+.decision-arrow-col{display:flex;align-items:center;justify-content:center;color:var(--blue3);font-size:16px}
 .dec-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);margin-bottom:8px;display:block}
-.dec-label.after{color:var(--blue2)}
+.dec-label.after{color:var(--blue3)}
 .decision-before h4,.decision-after h4{font-size:15px;font-weight:400;color:var(--white);margin-bottom:6px}
 .decision-before p,.decision-after p{font-size:13px;color:var(--gray);line-height:1.6}
 .decision-after p{color:rgba(240,236,228,.75)}
@@ -145,7 +187,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .metric-item.revealed{opacity:1;transform:translateY(0)}
 .metric-item:nth-child(1){transition-delay:0ms}.metric-item:nth-child(2){transition-delay:80ms}.metric-item:nth-child(3){transition-delay:160ms}.metric-item:nth-child(4){transition-delay:240ms}
 .metric-num{font-family:'Bebas Neue',sans-serif;font-size:56px;letter-spacing:2px;color:var(--white);line-height:1;margin-bottom:8px;display:block}
-.metric-num span{color:var(--blue2)}
+.metric-num span{color:var(--blue3)}
 .metric-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray)}
 
 .reflection-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:48px}
@@ -162,7 +204,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .next-cta{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);text-decoration:none;white-space:nowrap;border:1px solid var(--orange);padding:14px 28px;border-radius:2px;transition:background var(--dur-fast),color var(--dur-fast);min-height:44px;flex-shrink:0}
 .next-cta:hover{background:var(--orange);color:#fff}
 .cta-section{padding:96px 48px;text-align:center;position:relative;overflow:hidden;background:var(--bg)}
-.cta-section::before{content:'NAC';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,12vw,180px);color:rgba(29,78,216,.03);letter-spacing:10px;pointer-events:none;white-space:nowrap}
+.cta-section::before{content:'NAC';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,12vw,180px);color:rgba(55,48,163,.03);letter-spacing:10px;pointer-events:none;white-space:nowrap}
 .cta-section h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,80px);letter-spacing:3px;color:var(--white);margin-bottom:12px;line-height:.95}
 .cta-section>p{font-size:16px;color:var(--gray);font-weight:300;margin-bottom:40px}
 .cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
@@ -179,10 +221,11 @@ footer{padding:24px 48px;border-top:1px solid var(--border);display:flex;align-i
 footer p{font-size:12px;color:var(--gray2)}
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
-@media(max-width:1024px){.pain-grid{grid-template-columns:1fr 1fr}.metrics-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:1024px){.pain-grid,.stakeholder-grid{grid-template-columns:1fr 1fr}.metrics-grid{grid-template-columns:1fr 1fr}.impact-split{grid-template-columns:1fr 1fr}}
 @media(max-width:900px){
    .cs-hero{padding:80px 24px 60px}.cs-section{padding:60px 24px}
   .two-col,.two-col-wide{grid-template-columns:1fr;gap:40px}
+  .impact-split{grid-template-columns:1fr}
   .cs-quick-stats{flex-direction:column;width:100%}
   .cs-stat{border-right:none;border-bottom:1px solid var(--border)}
   .cs-stat:last-child{border-bottom:none}
@@ -195,9 +238,84 @@ footer p{font-size:12px;color:var(--gray2)}
   .cta-section,.next-project{padding:60px 24px}
 }
 @media(pointer:coarse){body{cursor:auto}#cursor,#cursor-ring{display:none}}
-@media(max-width:600px){.pain-grid{grid-template-columns:1fr}.metrics-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.pain-grid,.stakeholder-grid{grid-template-columns:1fr}.metrics-grid{grid-template-columns:1fr 1fr}}
 </style>
-<style>.embed-view nav[role="navigation"],.embed-view .nav-drawer,.embed-view footer{display:none!important}.embed-view main{padding-top:0!important}.embed-view .cs-hero{padding-top:40px!important}.embed-view .cs-hero-image{border-top:none!important}.embed-view #progress{top:0!important}</style>
+<style>
+/* MY CONTRIBUTION */
+.my-role-section{
+   padding:80px 48px;border-bottom:1px solid var(--border);background:var(--bg);
+  }
+  .my-role-grid{
+   display:grid;grid-template-columns:1fr 1fr;gap:1px;
+   background:var(--border);margin-top:40px;
+  }
+  .my-role-col{background:var(--bg2);padding:36px 32px}
+  .my-role-col h4{
+   font-size:11px;font-family:'DM Mono',monospace;letter-spacing:2.5px;
+   text-transform:uppercase;margin-bottom:24px;padding-bottom:14px;
+   border-bottom:1px solid var(--border);
+  }
+  .my-role-col h4.owned{color:var(--blue3)}
+  .my-role-col h4.team{color:var(--gray2)}
+  .role-list{display:flex;flex-direction:column;gap:20px}
+  .role-item{
+   display:flex;flex-direction:column;gap:5px;
+   padding-bottom:20px;border-bottom:1px solid var(--border);
+  }
+  .role-item:last-child{border-bottom:none;padding-bottom:0}
+  .role-item-title{
+   font-size:14px;font-weight:500;color:var(--white);
+   display:flex;align-items:center;gap:8px;
+  }
+  .role-item-title::before{
+   content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0;
+  }
+  .my-role-col.owned .role-item-title::before{background:var(--blue3)}
+  .my-role-col.team .role-item-title::before{background:var(--gray2)}
+  .role-item-desc{
+   font-size:13px;color:rgba(240,236,228,.55);line-height:1.7;
+   padding-left:14px;
+  }
+  .tools-strip{
+   margin-top:24px;display:flex;gap:8px;flex-wrap:wrap;
+   padding-top:20px;border-top:1px solid var(--border);
+  }
+  .tool-tag{
+   font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;
+   color:var(--gray);border:1px solid var(--border);padding:5px 12px;
+   border-radius:2px;
+  }
+  @media(max-width:900px){
+   .my-role-section{padding:56px 24px}
+   .my-role-grid{grid-template-columns:1fr}
+  }
+.embed-view nav[role="navigation"],.embed-view .nav-drawer,.embed-view footer{display:none!important}.embed-view main{padding-top:0!important}.embed-view .cs-hero{padding-top:40px!important}.embed-view .cs-hero-image{border-top:none!important}.embed-view #progress{top:0!important}
+
+/* TL;DR BAR */
+.tldr-bar-wrapper{max-width:1200px;margin:32px auto 40px;width:100%;padding:0 0}
+.tldr-bar{
+ background:var(--bg3);border:1px solid var(--border2);
+ padding:28px 32px;
+ opacity:0;animation:fadeUp .6s var(--ease) forwards 650ms;
+ border-radius:6px;
+}
+.tldr-intro{font-size:15px;color:rgba(240,236,228,.7);line-height:1.8;max-width:65ch}
+.tldr-intro strong{color:var(--white);font-weight:500}
+.tldr-intro-wrap{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.tldr-grid{display:flex;gap:0}
+.tldr-item{padding:0 24px 0 0;margin-right:24px;border-right:1px solid var(--border)}
+.tldr-item:last-child{border-right:none;padding-right:0;margin-right:0}
+.tldr-label{
+ font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2.5px;
+ text-transform:uppercase;color:var(--blue3);display:block;margin-bottom:6px;
+}
+.tldr-val{font-size:13px;color:var(--white);line-height:1.55;display:block}
+@media(max-width:900px){
+ .tldr-grid{flex-direction:column;gap:16px}
+ .tldr-item{border-right:none;padding-right:0;margin-right:0;border-bottom:1px solid var(--border);padding-bottom:14px}
+ .tldr-item:last-child{border-bottom:none;padding-bottom:0}
+}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -215,12 +333,21 @@ footer p{font-size:12px;color:var(--gray2)}
   <div class="cs-hero-grid" aria-hidden="true"></div>
   <div class="cs-hero-glow" aria-hidden="true"></div>
   <div class="cs-hero-content">
-    <a href="https://www.nepalairlines.com.np/" target="_blank" rel="noopener noreferrer" class="visit-hero-link">Visit Site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17l9-9M9 8h7v7"/></svg></a>
-    <div class="cs-hero-meta">
-      <span class="cs-chip">PROJECT</span>
-      <span class="cs-chip blue">NAC</span>
-      <span class="cs-chip">AVIATION</span>
-      <span class="cs-chip">2022–2024</span>
+  <div class="breadcrumb" style="display:flex;align-items:center;justify-content:space-between;width:100%">
+   <div>
+    <a href="/Portfolio/home" target="_top">Home</a><span class="sep">·</span>
+    <a href="/Portfolio/work#nac" target="_top">Work</a><span class="sep">·</span>
+    <span>NAC GSE System</span>
+   </div>
+  </div>
+    <div class="cs-hero-meta" style="display:flex;align-items:center;justify-content:space-between;width:100%;flex-wrap:wrap;gap:8px">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span class="cs-chip">PROJECT</span>
+        <span class="cs-chip blue">NAC</span>
+        <span class="cs-chip">AVIATION</span>
+        <span class="cs-chip">2022–2024</span>
+      </div>
+      <a href="https://www.nepalairlines.com.np/" target="_blank" rel="noopener noreferrer" class="visit-hero-link">Visit Site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17l9-9M9 8h7v7"/></svg></a>
     </div>
     <h1>NEPAL AIRLINES<br/>GSE INVENTORY<br/><em>SYSTEM</em></h1>
     <p class="cs-hero-tagline">Designed a Ground Support Equipment inventory management system for Nepal Airlines Corporation (NAC)  a comprehensive web application that digitised the tracking, maintenance scheduling, and lifecycle management of aviation ground equipment across multiple airport locations.</p>
@@ -236,95 +363,176 @@ footer p{font-size:12px;color:var(--gray2)}
     <div class="cs-hero-art" aria-hidden="true">
       <svg viewBox="0 0 340 330" fill="none" width="340" height="330">
         <!-- Radar/tarmac background -->
-        <ellipse cx="170" cy="210" rx="160" ry="30" stroke="rgba(29,78,216,.15)" stroke-width=".6" fill="rgba(29,78,216,.04)"/>
-        <rect x="10" y="220" width="320" height="3" rx=".5" fill="rgba(29,78,216,.12)"/>
+        <ellipse cx="170" cy="210" rx="160" ry="30" stroke="rgba(55,48,163,.15)" stroke-width=".6" fill="rgba(55,48,163,.04)"/>
+        <rect x="10" y="220" width="320" height="3" rx=".5" fill="rgba(55,48,163,.12)"/>
 
-        <!-- Aircraft silhouette (large) -->
-        <path d="M70 60 L90 48 L200 48 L270 62 L290 72 L290 82 L270 78 L200 78 L90 78 L70 72 Z" stroke="rgba(29,78,216,.5)" stroke-width="1.2" fill="rgba(29,78,216,.08)"/>
-        <path d="M110 58 L110 48" stroke="rgba(29,78,216,.3)" stroke-width=".8"/>
-        <path d="M180 58 L180 48" stroke="rgba(29,78,216,.3)" stroke-width=".8"/>
-        <path d="M150 63 L150 48" stroke="rgba(29,78,216,.22)" stroke-width=".6"/>
-        <path d="M230 63 L230 48" stroke="rgba(29,78,216,.22)" stroke-width=".6"/>
+        <!-- Aircraft — sleek, detailed modern jet -->
+        <!-- Fuselage (smooth curved body) -->
+        <path d="M75 62 Q82 46 110 46 L220 46 Q270 46 285 56 Q298 64 298 70 Q298 76 285 80 Q270 86 220 86 L110 86 Q82 86 75 70 Z" stroke="rgba(55,48,163,.55)" stroke-width="1.1" fill="rgba(55,48,163,.08)"/>
+        <!-- Fuselage highlight line -->
+        <path d="M82 62 Q88 52 110 52 L220 52 Q265 52 280 60" stroke="rgba(55,48,163,.15)" stroke-width=".5" fill="none"/>
+        <!-- Nose cone -->
+        <path d="M75 62 Q68 60 62 64 Q68 68 75 70 Z" stroke="rgba(55,48,163,.4)" stroke-width=".9" fill="rgba(55,48,163,.06)"/>
+        <!-- Radome (weather radar tip) -->
+        <path d="M62 64 Q58 64 56 65" stroke="rgba(55,48,163,.3)" stroke-width=".6" fill="none"/>
+        
+        <!-- Left wing (swept, with detail) -->
+        <path d="M120 54 L90 26 L114 26 L138 50 Z" stroke="rgba(55,48,163,.45)" stroke-width=".8" fill="rgba(55,48,163,.1)"/>
+        <!-- Left wing flap line -->
+        <line x1="120" y1="54" x2="105" y2="36" stroke="rgba(55,48,163,.2)" stroke-width=".4"/>
+        
+        <!-- Right wing (swept, with detail) -->
+        <path d="M218 54 L248 26 L270 26 L248 50 Z" stroke="rgba(55,48,163,.45)" stroke-width=".8" fill="rgba(55,48,163,.1)"/>
+        <!-- Right wing flap line -->
+        <line x1="218" y1="54" x2="240" y2="36" stroke="rgba(55,48,163,.2)" stroke-width=".4"/>
+        
+        <!-- Left engine nacelle (under wing) -->
+        <path d="M116 60 Q116 72 124 76 L132 76 Q140 72 140 60 Z" stroke="rgba(55,48,163,.4)" stroke-width=".7" fill="rgba(55,48,163,.12)"/>
+        <ellipse cx="128" cy="66" rx="4" ry="2" stroke="rgba(55,48,163,.25)" stroke-width=".3" fill="rgba(55,48,163,.06)"/>
+        <!-- Engine pylon (left) -->
+        <line x1="126" y1="54" x2="128" y2="60" stroke="rgba(55,48,163,.3)" stroke-width=".5"/>
+        
+        <!-- Right engine nacelle (under wing) -->
+        <path d="M198 60 Q198 72 206 76 L214 76 Q222 72 222 60 Z" stroke="rgba(55,48,163,.4)" stroke-width=".7" fill="rgba(55,48,163,.12)"/>
+        <ellipse cx="210" cy="66" rx="4" ry="2" stroke="rgba(55,48,163,.25)" stroke-width=".3" fill="rgba(55,48,163,.06)"/>
+        <!-- Engine pylon (right) -->
+        <line x1="212" y1="54" x2="210" y2="60" stroke="rgba(55,48,163,.3)" stroke-width=".5"/>
+        
+        <!-- Tail / vertical stabilizer (swept fin) -->
+        <path d="M260 50 L272 18 L283 22 L283 56 Z" stroke="rgba(55,48,163,.4)" stroke-width=".8" fill="rgba(55,48,163,.08)"/>
+        <!-- Tail fin tip -->
+        <path d="M272 18 Q274 16 278 16 L283 22 Z" stroke="rgba(55,48,163,.35)" stroke-width=".5" fill="rgba(55,48,163,.06)"/>
+        <!-- Horizontal stabilizer (left) -->
+        <path d="M262 70 L248 76 L256 76 L268 72 Z" stroke="rgba(55,48,163,.3)" stroke-width=".5" fill="rgba(55,48,163,.06)"/>
+        <!-- Horizontal stabilizer (right) -->
+        <path d="M276 70 L290 76 L282 76 L270 72 Z" stroke="rgba(55,48,163,.3)" stroke-width=".5" fill="rgba(55,48,163,.06)"/>
+        <!-- APU exhaust (tail cone) -->
+        <path d="M283 56 Q288 60 290 65 L285 66 Q284 60 280 56 Z" stroke="rgba(55,48,163,.2)" stroke-width=".3" fill="rgba(55,48,163,.04)"/>
+        
+        <!-- Cockpit windows (curved) -->
+        <path d="M95 52 Q102 48 112 49 L112 53 Q104 52 98 55 Z" stroke="rgba(55,48,163,.45)" stroke-width=".6" fill="rgba(55,48,163,.18)"/>
+        <!-- Side cockpit window (left) -->
+        <path d="M90 56 Q95 54 100 55 L100 58 Q95 57 91 58 Z" stroke="rgba(55,48,163,.3)" stroke-width=".4" fill="rgba(55,48,163,.12)"/>
+        
+        <!-- Passenger window line (small dots) -->
+        <circle cx="116" cy="56" r="1.2" fill="rgba(55,48,163,.25)"/>
+        <circle cx="126" cy="56" r="1.2" fill="rgba(55,48,163,.25)"/>
+        <circle cx="136" cy="56" r="1.2" fill="rgba(55,48,163,.25)"/>
+        <circle cx="146" cy="56" r="1.2" fill="rgba(55,48,163,.25)"/>
+        <circle cx="156" cy="56" r="1.2" fill="rgba(55,48,163,.25)"/>
+        <circle cx="166" cy="56" r="1.2" fill="rgba(55,48,163,.25)"/>
+        <circle cx="176" cy="56" r="1.2" fill="rgba(55,48,163,.25)"/>
+        <circle cx="186" cy="56" r="1.2" fill="rgba(55,48,163,.25)"/>
+        <circle cx="196" cy="56" r="1.2" fill="rgba(55,48,163,.25)"/>
+        <circle cx="206" cy="56" r="1.2" fill="rgba(55,48,163,.25)"/>
+        <circle cx="216" cy="56" r="1.2" fill="rgba(55,48,163,.25)"/>
+        <circle cx="226" cy="56" r="1.2" fill="rgba(55,48,163,.25)"/>
+        <circle cx="236" cy="56" r="1.2" fill="rgba(55,48,163,.25)"/>
+        <circle cx="246" cy="56" r="1.2" fill="rgba(55,48,163,.25)"/>
+        
+        <!-- Fuselage stripe / accent line -->
+        <line x1="108" y1="68" x2="220" y2="68" stroke="rgba(55,48,163,.2)" stroke-width=".6"/>
+        <!-- Door outline (front left) -->
+        <path d="M106 60 L106 80 L112 80 L112 60 Z" stroke="rgba(55,48,163,.2)" stroke-width=".3" fill="none"/>
+        <!-- Door outline (rear) -->
+        <path d="M228 60 L228 80 L234 80 L234 60 Z" stroke="rgba(55,48,163,.2)" stroke-width=".3" fill="none"/>
+        
+        <!-- Front landing gear -->
+        <line x1="98" y1="78" x2="98" y2="86" stroke="rgba(55,48,163,.45)" stroke-width=".8"/>
+        <rect x="93" y="85" width="10" height="3.5" rx="1.5" stroke="rgba(55,48,163,.45)" stroke-width=".5" fill="rgba(55,48,163,.12)"/>
+        <!-- Main landing gear (left) -->
+        <line x1="125" y1="80" x2="120" y2="86" stroke="rgba(55,48,163,.45)" stroke-width=".8"/>
+        <line x1="145" y1="80" x2="140" y2="86" stroke="rgba(55,48,163,.45)" stroke-width=".8"/>
+        <rect x="115" y="85" width="30" height="3.5" rx="1.5" stroke="rgba(55,48,163,.45)" stroke-width=".5" fill="rgba(55,48,163,.12)"/>
+        <!-- Main landing gear (right) -->
+        <line x1="195" y1="80" x2="200" y2="86" stroke="rgba(55,48,163,.45)" stroke-width=".8"/>
+        <line x1="215" y1="80" x2="220" y2="86" stroke="rgba(55,48,163,.45)" stroke-width=".8"/>
+        <rect x="195" y="85" width="30" height="3.5" rx="1.5" stroke="rgba(55,48,163,.45)" stroke-width=".5" fill="rgba(55,48,163,.12)"/>
+        
+        <!-- Ground operations divider line -->
+        <line x1="50" y1="96" x2="300" y2="96" stroke="rgba(55,48,163,.25)" stroke-width=".8" stroke-dasharray="4 3"/>
+        <!-- Ground ops label -->
+        <text x="170" y="108" font-family="'DM Sans',sans-serif" font-size="6" fill="rgba(55,48,163,.35)" text-anchor="middle" font-weight="500">GROUND OPERATIONS ZONE</text>
 
         <!-- Radar sweep arc -->
-        <path d="M170 170 A130 130 0 0 1 296 130" stroke="rgba(29,78,216,.15)" stroke-width=".7" fill="none" stroke-dasharray="2 4"/>
-        <path d="M170 170 A130 130 0 0 0 44 130" stroke="rgba(29,78,216,.15)" stroke-width=".7" fill="none" stroke-dasharray="2 4"/>
+        <path d="M170 170 A130 130 0 0 1 296 130" stroke="rgba(55,48,163,.15)" stroke-width=".7" fill="none" stroke-dasharray="2 4"/>
+        <path d="M170 170 A130 130 0 0 0 44 130" stroke="rgba(55,48,163,.15)" stroke-width=".7" fill="none" stroke-dasharray="2 4"/>
 
         <!-- GSE Equipment 1: Tow Tractor (left) -->
-        <rect x="28" y="148" width="48" height="22" rx="3" stroke="rgba(29,78,216,.5)" stroke-width="1" fill="rgba(29,78,216,.12)"/>
-        <rect x="18" y="158" width="14" height="12" rx="2" stroke="rgba(29,78,216,.35)" stroke-width=".6" fill="rgba(29,78,216,.08)"/>
-        <circle cx="35" cy="172" r="5" stroke="rgba(29,78,216,.35)" stroke-width=".6" fill="rgba(29,78,216,.12)"/>
-        <circle cx="64" cy="172" r="5" stroke="rgba(29,78,216,.35)" stroke-width=".6" fill="rgba(29,78,216,.12)"/>
-        <rect x="31" y="140" width="8" height="10" rx="1" fill="rgba(29,78,216,.25)"/>
+        <rect x="28" y="148" width="48" height="22" rx="3" stroke="rgba(55,48,163,.5)" stroke-width="1" fill="rgba(55,48,163,.12)"/>
+        <rect x="18" y="158" width="14" height="12" rx="2" stroke="rgba(55,48,163,.35)" stroke-width=".6" fill="rgba(55,48,163,.08)"/>
+        <circle cx="35" cy="172" r="5" stroke="rgba(55,48,163,.35)" stroke-width=".6" fill="rgba(55,48,163,.12)"/>
+        <circle cx="64" cy="172" r="5" stroke="rgba(55,48,163,.35)" stroke-width=".6" fill="rgba(55,48,163,.12)"/>
+        <rect x="31" y="140" width="8" height="10" rx="1" fill="rgba(55,48,163,.25)"/>
         <!-- Status: Available (green) -->
         <circle cx="28" cy="148" r="5" fill="rgba(34,197,94,.55)">
           <animate attributeName="opacity" values="0.25;0.6;0.25" dur="1.5s" repeatCount="indefinite"/>
         </circle>
-        <text x="52" y="180" font-family="'DM Sans',sans-serif" font-size="5" fill="rgba(29,78,216,.4)" text-anchor="middle" font-weight="500">Tow Tractor</text>
+        <text x="52" y="180" font-family="'DM Sans',sans-serif" font-size="5" fill="rgba(55,48,163,.4)" text-anchor="middle" font-weight="500">Tow Tractor</text>
 
         <!-- GSE Equipment 2: Baggage Cart (center) -->
-        <rect x="100" y="152" width="54" height="16" rx="2" stroke="rgba(29,78,216,.4)" stroke-width=".8" fill="rgba(29,78,216,.08)"/>
-        <circle cx="108" cy="170" r="4.5" stroke="rgba(29,78,216,.35)" stroke-width=".5" fill="rgba(29,78,216,.1)"/>
-        <circle cx="142" cy="170" r="4.5" stroke="rgba(29,78,216,.35)" stroke-width=".5" fill="rgba(29,78,216,.1)"/>
-        <rect x="108" y="146" width="38" height="6" rx="1" stroke="rgba(29,78,216,.25)" stroke-width=".4" fill="rgba(29,78,216,.06)"/>
+        <rect x="100" y="152" width="54" height="16" rx="2" stroke="rgba(55,48,163,.4)" stroke-width=".8" fill="rgba(55,48,163,.08)"/>
+        <circle cx="108" cy="170" r="4.5" stroke="rgba(55,48,163,.35)" stroke-width=".5" fill="rgba(55,48,163,.1)"/>
+        <circle cx="142" cy="170" r="4.5" stroke="rgba(55,48,163,.35)" stroke-width=".5" fill="rgba(55,48,163,.1)"/>
+        <rect x="108" y="146" width="38" height="6" rx="1" stroke="rgba(55,48,163,.25)" stroke-width=".4" fill="rgba(55,48,163,.06)"/>
         <!-- Status: Maintenance (yellow) -->
         <circle cx="156" cy="152" r="5" fill="rgba(234,179,8,.55)">
           <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" repeatCount="indefinite"/>
         </circle>
-        <text x="127" y="182" font-family="'DM Sans',sans-serif" font-size="5" fill="rgba(29,78,216,.4)" text-anchor="middle" font-weight="500">Baggage Cart</text>
+        <text x="127" y="182" font-family="'DM Sans',sans-serif" font-size="5" fill="rgba(55,48,163,.4)" text-anchor="middle" font-weight="500">Baggage Cart</text>
 
         <!-- GSE Equipment 3: GPU / Belt Loader (right) -->
-        <rect x="178" y="146" width="42" height="24" rx="3" stroke="rgba(29,78,216,.5)" stroke-width="1" fill="rgba(29,78,216,.12)"/>
-        <rect x="214" y="140" width="12" height="8" rx="1" stroke="rgba(29,78,216,.35)" stroke-width=".6" fill="rgba(29,78,216,.08)"/>
-        <circle cx="189" cy="172" r="4.5" stroke="rgba(29,78,216,.35)" stroke-width=".5" fill="rgba(29,78,216,.1)"/>
-        <circle cx="208" cy="172" r="4.5" stroke="rgba(29,78,216,.35)" stroke-width=".5" fill="rgba(29,78,216,.1)"/>
+        <rect x="178" y="146" width="42" height="24" rx="3" stroke="rgba(55,48,163,.5)" stroke-width="1" fill="rgba(55,48,163,.12)"/>
+        <rect x="214" y="140" width="12" height="8" rx="1" stroke="rgba(55,48,163,.35)" stroke-width=".6" fill="rgba(55,48,163,.08)"/>
+        <circle cx="189" cy="172" r="4.5" stroke="rgba(55,48,163,.35)" stroke-width=".5" fill="rgba(55,48,163,.1)"/>
+        <circle cx="208" cy="172" r="4.5" stroke="rgba(55,48,163,.35)" stroke-width=".5" fill="rgba(55,48,163,.1)"/>
         <!-- Status: Available (green) -->
         <circle cx="178" cy="146" r="5" fill="rgba(34,197,94,.55)">
           <animate attributeName="opacity" values="0.25;0.6;0.25" dur="1.8s" repeatCount="indefinite"/>
         </circle>
-        <text x="199" y="182" font-family="'DM Sans',sans-serif" font-size="5" fill="rgba(29,78,216,.4)" text-anchor="middle" font-weight="500">GPU</text>
+        <text x="199" y="182" font-family="'DM Sans',sans-serif" font-size="5" fill="rgba(55,48,163,.4)" text-anchor="middle" font-weight="500">GPU</text>
 
         <!-- Inventory tracking panel (right) -->
-        <rect x="248" y="140" width="80" height="40" rx="4" stroke="rgba(29,78,216,.25)" stroke-width=".5" fill="rgba(29,78,216,.05)"/>
-        <text x="264" y="156" font-family="'DM Sans',sans-serif" font-size="6" fill="rgba(29,78,216,.45)" font-weight="500">INVENTORY</text>
-        <rect x="256" y="162" width="40" height="3" rx=".3" fill="rgba(29,78,216,.18)"/>
-        <rect x="256" y="168" width="28" height="3" rx=".3" fill="rgba(29,78,216,.12)"/>
+        <rect x="248" y="140" width="80" height="40" rx="4" stroke="rgba(55,48,163,.25)" stroke-width=".5" fill="rgba(55,48,163,.05)"/>
+        <text x="264" y="156" font-family="'DM Sans',sans-serif" font-size="6" fill="rgba(55,48,163,.45)" font-weight="500">INVENTORY</text>
+        <rect x="256" y="162" width="40" height="3" rx=".3" fill="rgba(55,48,163,.18)"/>
+        <rect x="256" y="168" width="28" height="3" rx=".3" fill="rgba(55,48,163,.12)"/>
         <!-- Scanner icon -->
-        <rect x="276" y="146" width="12" height="10" rx="1" stroke="rgba(29,78,216,.3)" stroke-width=".4" fill="rgba(29,78,216,.08)"/>
+        <rect x="276" y="146" width="12" height="10" rx="1" stroke="rgba(55,48,163,.3)" stroke-width=".4" fill="rgba(55,48,163,.08)"/>
 
         <!-- Maintenance schedule badge -->
-        <rect x="52" y="200" width="84" height="20" rx="3" stroke="rgba(29,78,216,.25)" stroke-width=".5" fill="rgba(29,78,216,.05)"/>
-        <circle cx="64" cy="210" r="4" stroke="rgba(29,78,216,.2)" stroke-width=".4" fill="rgba(29,78,216,.08)"/>
-        <text x="74" y="214" font-family="'DM Sans',sans-serif" font-size="6" fill="rgba(29,78,216,.4)" font-weight="500">3 maintenance due</text>
+        <rect x="52" y="200" width="84" height="20" rx="3" stroke="rgba(55,48,163,.25)" stroke-width=".5" fill="rgba(55,48,163,.05)"/>
+        <circle cx="64" cy="210" r="4" stroke="rgba(55,48,163,.2)" stroke-width=".4" fill="rgba(55,48,163,.08)"/>
+        <text x="74" y="214" font-family="'DM Sans',sans-serif" font-size="6" fill="rgba(55,48,163,.4)" font-weight="500">3 maintenance due</text>
 
         <!-- Animated scanning line -->
-        <line x1="30" y1="130" x2="290" y2="130" stroke="rgba(29,78,216,.15)" stroke-width=".7">
+        <line x1="30" y1="130" x2="290" y2="130" stroke="rgba(55,48,163,.15)" stroke-width=".7">
           <animate attributeName="y1" values="120;140;120" dur="3s" repeatCount="indefinite"/>
           <animate attributeName="y2" values="120;140;120" dur="3s" repeatCount="indefinite"/>
         </line>
 
         <!-- Location pin (left) -->
-        <path d="M20 100 L24 88 L28 100 L24 104 Z" stroke="rgba(29,78,216,.3)" stroke-width=".5" fill="rgba(29,78,216,.08)"/>
-        <circle cx="24" cy="94" r="3" fill="rgba(29,78,216,.25)">
+        <path d="M20 100 L24 88 L28 100 L24 104 Z" stroke="rgba(55,48,163,.3)" stroke-width=".5" fill="rgba(55,48,163,.08)"/>
+        <circle cx="24" cy="94" r="3" fill="rgba(55,48,163,.25)">
           <animate attributeName="r" values="2;3.5;2" dur="2s" repeatCount="indefinite"/>
         </circle>
 
         <!-- Location pin (right) -->
-        <path d="M310 90 L314 78 L318 90 L314 94 Z" stroke="rgba(29,78,216,.3)" stroke-width=".5" fill="rgba(29,78,216,.08)"/>
-        <circle cx="314" cy="84" r="3" fill="rgba(29,78,216,.25)">
+        <path d="M310 90 L314 78 L318 90 L314 94 Z" stroke="rgba(55,48,163,.3)" stroke-width=".5" fill="rgba(55,48,163,.08)"/>
+        <circle cx="314" cy="84" r="3" fill="rgba(55,48,163,.25)">
           <animate attributeName="r" values="2.5;4;2.5" dur="2.5s" repeatCount="indefinite"/>
         </circle>
 
         <!-- Compliance report badge -->
-        <rect x="220" y="200" width="84" height="20" rx="3" stroke="rgba(29,78,216,.25)" stroke-width=".5" fill="rgba(29,78,216,.05)"/>
-        <rect x="226" y="205" width="12" height="10" rx="1.5" stroke="rgba(29,78,216,.2)" stroke-width=".4" fill="rgba(29,78,216,.06)"/>
-        <text x="244" y="214" font-family="'DM Sans',sans-serif" font-size="6" fill="rgba(29,78,216,.4)" font-weight="500">Compliance OK</text>
+        <rect x="220" y="200" width="84" height="20" rx="3" stroke="rgba(55,48,163,.25)" stroke-width=".5" fill="rgba(55,48,163,.05)"/>
+        <rect x="226" y="205" width="12" height="10" rx="1.5" stroke="rgba(55,48,163,.2)" stroke-width=".4" fill="rgba(55,48,163,.06)"/>
+        <text x="244" y="214" font-family="'DM Sans',sans-serif" font-size="6" fill="rgba(55,48,163,.4)" font-weight="500">Compliance OK</text>
 
         <!-- Decorative dots -->
-        <circle cx="320" cy="30" r="2" fill="rgba(29,78,216,.2)"/>
-        <circle cx="20" cy="30" r="2" fill="rgba(29,78,216,.15)"/>
-        <circle cx="320" cy="270" r="2.5" fill="rgba(29,78,216,.15)"/>
-        <circle cx="20" cy="280" r="2" fill="rgba(29,78,216,.15)"/>
+        <circle cx="320" cy="30" r="2" fill="rgba(55,48,163,.2)"/>
+        <circle cx="20" cy="30" r="2" fill="rgba(55,48,163,.15)"/>
+        <circle cx="320" cy="270" r="2.5" fill="rgba(55,48,163,.15)"/>
+        <circle cx="20" cy="280" r="2" fill="rgba(55,48,163,.15)"/>
       </svg>
     </div>
   </div>
@@ -341,12 +549,63 @@ footer p{font-size:12px;color:var(--gray2)}
   </div>
 </div>
 
+<!-- TL;DR BAR -->
+<div class="tldr-bar-wrapper">
+<div class="tldr-bar">
+ <div class="tldr-intro-wrap"><p class="tldr-intro">NAC GSE is a Ground Support Equipment inventory management system for Nepal Airlines Corporation. I designed a comprehensive web application that digitised equipment tracking, maintenance scheduling, and lifecycle management across multiple airport locations. <strong>Brief-first approach aligned 4 distinct stakeholder groups before a single screen was designed.</strong></p></div>
+ <div class="tldr-grid">
+   <div class="tldr-item">
+    <span class="tldr-label">The problem</span>
+    <span class="tldr-val">Aviation ground equipment was tracked on paper logbooks and wall calendars, no centralized system, missed maintenance was common, and compliance audits took days.</span>
+   </div>
+   <div class="tldr-item">
+    <span class="tldr-label">My contribution</span>
+    <span class="tldr-val">End-to-end UI/UX design, stakeholder research with 4 user groups, brief-first content strategy, complete design system extension</span>
+   </div>
+   <div class="tldr-item">
+    <span class="tldr-label">The outcome</span>
+    <span class="tldr-val">Digital records across all stations · Automated maintenance alerts · One-click compliance reports · Multi-location tracking</span>
+   </div>
+ </div>
+</div>
+</div>
+
+<!-- MY CONTRIBUTION -->
+<section class="my-role-section" id="my-contribution">
+  <div class="cs-inner">
+    <span class="section-num">1.0</span>
+    <span class="section-kicker">My Contribution</span>
+    <h2 class="cs-h2">WHAT I<br/>PERSONALLY OWNED</h2>
+    <p class="cs-body">Clarity on contribution matters. Here's the exact split between what I owned end-to-end and what the broader team handled for this government aviation project.</p>
+    <div class="my-role-grid">
+      <div class="my-role-col owned">
+        <h4 class="owned">I owned this</h4>
+        <div class="role-list"><div class="role-item"><span class="role-item-title">Ground operations research</span><span class="role-item-desc">Conducted interviews with NAC ground staff and supervisors. Audited the full GSE lifecycle from procurement to decommissioning to identify gaps in tracking and compliance.</span></div>
+<div class="role-item"><span class="role-item-title">Stakeholder requirements</span><span class="role-item-desc">Worked with NAC management and the Rara Digital Lab team to define requirements across 4 user groups: ground staff, engineers, managers, and administration.</span></div>
+<div class="role-item"><span class="role-item-title">Brief-first design</span><span class="role-item-desc">Started with detailed content briefs documenting every data field, metric, and workflow decision before moving to high-fidelity designs, ensuring alignment across all departments.</span></div>
+<div class="role-item"><span class="role-item-title">Complete UI/UX design</span><span class="role-item-desc">Designed the full GSE inventory system: equipment records, maintenance scheduling, location tracking, compliance reporting, and role-based dashboards.</span></div>
+<div class="role-item"><span class="role-item-title">Multi-stakeholder validation</span><span class="role-item-desc">Ran three-phase validation with ground staff, engineers, and management to ensure the system worked for every user group before final handoff.</span></div>
+<div class="role-item"><span class="role-item-title">Design system extension</span><span class="role-item-desc">Extended the existing Rara Digital Lab design system to cover aviation-specific components without introducing visual inconsistency.</span></div>
+</div>
+        <div class="tools-strip"><span class="tool-tag">Figma</span><span class="tool-tag">Stakeholder interviews</span><span class="tool-tag">Content briefs</span><span class="tool-tag">Usability testing</span></div>
+      </div>
+      <div class="my-role-col team">
+        <h4 class="team">The team handled this</h4>
+        <div class="role-list"><div class="role-item"><span class="role-item-title">Development team</span><span class="role-item-desc">Implemented all frontend and backend components. Technical constraints around the aviation data model influenced several IA decisions.</span></div>
+<div class="role-item"><span class="role-item-title">NAC domain experts</span><span class="role-item-desc">Provided regulatory compliance requirements, equipment taxonomy, and real-world operational context for ground handling workflows.</span></div>
+<div class="role-item"><span class="role-item-title">Rara Digital Lab management</span><span class="role-item-desc">Coordinated stakeholder sessions, managed government procurement processes, and facilitated the three-phase validation cycle.</span></div>
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- 01 OVERVIEW -->
 <section class="cs-section" id="overview">
   <div class="cs-inner">
     <div class="two-col">
       <div>
-        <span class="section-num">01</span>
+        <span class="section-num">2.0</span>
         <span class="section-kicker">Project Overview</span>
         <h2 class="cs-h2">GROUND SUPPORT.<br/>DIGITALLY TRACKED.<br/>EVERY ASSET.</h2>
         <p class="cs-body">Nepal Airlines Corporation (NAC), the national flag carrier of Nepal, manages a large fleet of Ground Support Equipment (GSE)  tow tractors, baggage carts, ground power units, air stairs, belt loaders, and more ,  essential for airport ground operations across multiple locations.</p>
@@ -374,7 +633,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 02 RESEARCH -->
 <section class="cs-section dark" id="research">
   <div class="cs-inner">
-    <span class="section-num">1.0</span>
+    <span class="section-num">3.0</span>
     <span class="section-kicker">Research &amp; Discovery</span>
     <h2 class="cs-h2">UNDERSTANDING<br/>GROUND OPERATIONS</h2>
     <p class="cs-body">Aviation ground operations have unique workflow constraints  equipment is spread across multiple airport locations, maintenance schedules are regulated by aviation authorities, and equipment downtime directly impacts flight turnaround times and operational costs.</p>
@@ -407,6 +666,78 @@ footer p{font-size:12px;color:var(--gray2)}
   </div>
 </section>
 
+<!-- STAKEHOLDER MAPPING -->
+<section class="cs-section" id="stakeholders">
+  <div class="cs-inner">
+    <span class="section-num">4.0</span>
+    <span class="section-kicker">Stakeholder Mapping</span>
+    <h2 class="cs-h2">FOUR GROUPS.<br/>ONE SYSTEM.</h2>
+    <p class="cs-body">The system served four distinct stakeholder groups, each with fundamentally different roles, technical literacy levels, and operational needs. Designing for all of them simultaneously was one of the most complex parts of this project.</p>
+    <div class="stakeholder-grid" role="list">
+      <div class="sh-card" role="listitem">
+        <div class="sh-icon" aria-hidden="true"><i data-lucide="building-2" width="24" height="24"></i></div>
+        <span class="sh-role">Primary Users</span>
+        <h4>Ground Operations Staff</h4>
+        <p>Frontline crew managing day-to-day equipment check-in/out, maintenance logging, and stock movements. Needed: fast, simple, error-tolerant interactions.</p>
+      </div>
+      <div class="sh-card" role="listitem">
+        <div class="sh-icon" aria-hidden="true"><i data-lucide="wrench" width="24" height="24"></i></div>
+        <span class="sh-role">Technical Users</span>
+        <h4>Maintenance &amp; Technical Team</h4>
+        <p>Engineers responsible for scheduling and recording equipment maintenance. Needed: detailed maintenance history, automated reminders, and compliance-ready reports.</p>
+      </div>
+      <div class="sh-card" role="listitem">
+        <div class="sh-icon" aria-hidden="true"><i data-lucide="clipboard-list" width="24" height="24"></i></div>
+        <span class="sh-role">Management</span>
+        <h4>Inventory &amp; Store Managers</h4>
+        <p>Overseeing stock levels, procurement, and reporting. Needed: real-time inventory dashboards, low-stock alerts, and audit-ready documentation.</p>
+      </div>
+      <div class="sh-card" role="listitem">
+        <div class="sh-icon" aria-hidden="true"><i data-lucide="landmark" width="24" height="24"></i></div>
+        <span class="sh-role">Leadership</span>
+        <h4>NAC Administration &amp; IT</h4>
+        <p>Setting policy, managing access, and ensuring compliance with aviation regulatory requirements. Needed: role-based access control and high-level operational summaries.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DUAL IMPACT -->
+<section class="cs-section" id="dual-impact" style="--accent2:var(--blue3)">
+  <div class="cs-inner">
+    <span class="section-num">5.0</span>
+    <span class="section-kicker">Design Strategy</span>
+    <h2 class="cs-h2">SOLVING FOR BOTH<br/>SIDES OF THE TABLE</h2>
+    <p class="cs-body">Every design decision here had to satisfy two audiences at once: the people using the product daily, and the business outcomes that justified building it.</p>
+    <div class="impact-split" role="list">
+      <div class="impact-col user" role="listitem">
+        <div class="impact-col-label user">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          USER NEEDS
+        </div>
+        <div class="impact-list">
+          <div class="impact-item"><strong>Trust over manual methods</strong>ground staff resistant to change adopted the system because it was genuinely faster than paper.</div>
+          <div class="impact-item"><strong>Role-appropriate views</strong>ground crew, engineers, and managers each see only what's relevant to their job, reducing confusion.</div>
+          <div class="impact-item"><strong>Clear equipment status at a glance</strong>colour-coded badges mean no more asking around to find out if equipment is available.</div>
+          <div class="impact-item"><strong>Maintenance that doesn't get missed</strong>automated priority alerts replace the informal email/memo system that caused delays.</div>
+        </div>
+      </div>
+      <div class="impact-col business" role="listitem">
+        <div class="impact-col-label business">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M18.7 8l-5.1 5.1-2.8-2.8L7 14"/></svg>
+          BUSINESS NEEDS
+        </div>
+        <div class="impact-list">
+          <div class="impact-item"><strong>100% data accuracy improvement</strong>eliminating paper-based transcription errors across all GSE tracking.</div>
+          <div class="impact-item"><strong>50% reduction in operational errors</strong>directly reducing safety risk and operational delays for a national airline.</div>
+          <div class="impact-item"><strong>Audit and compliance ready</strong>one-click standardized reports replace a multi-day manual compilation process.</div>
+          <div class="impact-item"><strong>Validated institutional adoption</strong>three-phase stakeholder validation (pre/during/post-deployment) ensured the system was actually used, not just delivered.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div style="max-width:1200px;margin:0 auto;padding:32px 48px 0">
   <img src="nac-wireframe.png" alt="NAC GSE wireframes" style="width:100%;display:block;border-radius:8px;box-shadow:0 16px 48px rgba(0,0,0,.4);margin-bottom:24px;" />
 </div>
@@ -414,38 +745,59 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 03 PAIN POINTS -->
 <section class="cs-section" id="painpoints">
   <div class="cs-inner">
-    <span class="section-num">2.0</span>
+    <span class="section-num">6.0</span>
     <span class="section-kicker">Design Phase · Pain Point Analysis</span>
     <h2 class="cs-h2">FOUR PROBLEMS.<br/>FOUR SOLUTIONS.</h2>
     <div class="pain-grid" role="list">
       <div class="pain-item" role="listitem">
         <div class="pain-top"><div class="pain-num" aria-hidden="true">1</div><h4>Paper Logs Made Data Unreliable</h4></div>
-        <div class="arrow-down" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+        <div class="arrow-down" aria-hidden="true"><i data-lucide="chevron-down" width="16" height="16"></i></div>
         <div class="pain-solution"><span class="sol-label">Solution</span><p>Replaced paper logs with <strong>digital equipment records</strong> with mandatory fields, validation, and real-time sync across all airport stations.</p></div>
       </div>
       <div class="pain-item" role="listitem">
         <div class="pain-top"><div class="pain-num" aria-hidden="true">2</div><h4>No Visibility into Maintenance Schedules</h4></div>
-        <div class="arrow-down" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+        <div class="arrow-down" aria-hidden="true"><i data-lucide="chevron-down" width="16" height="16"></i></div>
         <div class="pain-solution"><span class="sol-label">Solution</span><p>Built a <strong>maintenance scheduling dashboard</strong> with automated reminders, overdue alerts, and a calendar view for planned vs. completed maintenance.</p></div>
       </div>
       <div class="pain-item" role="listitem">
         <div class="pain-top"><div class="pain-num" aria-hidden="true">3</div><h4>Equipment Location Was Unknown</h4></div>
-        <div class="arrow-down" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+        <div class="arrow-down" aria-hidden="true"><i data-lucide="chevron-down" width="16" height="16"></i></div>
         <div class="pain-solution"><span class="sol-label">Solution</span><p>Implemented <strong>location tracking per equipment item</strong> with check-in/check-out workflow and station-level inventory views.</p></div>
       </div>
       <div class="pain-item" role="listitem">
         <div class="pain-top"><div class="pain-num" aria-hidden="true">4</div><h4>Compliance Reporting Was Manual</h4></div>
-        <div class="arrow-down" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+        <div class="arrow-down" aria-hidden="true"><i data-lucide="chevron-down" width="16" height="16"></i></div>
         <div class="pain-solution"><span class="sol-label">Solution</span><p>Automated compliance reporting with <strong>one-click report generation</strong> for aviation authority requirements ,  reducing reporting time from days to minutes.</p></div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- PROTOTYPING -->
+<section class="cs-section" id="prototyping">
+  <div class="cs-inner">
+    <span class="section-num">7.0</span>
+    <span class="section-kicker">Wireframe &amp; Prototyping</span>
+    <h2 class="cs-h2">BRIEFS FIRST.<br/>PIXELS SECOND.</h2>
+    <div class="two-col-wide">
+      <div><h3 style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1.5px;color:rgba(240,236,228,.35)">ALIGNED BEFORE<br/>DESIGNED</h3></div>
+      <div>
+        <p class="cs-body">My process began with drafting <strong>detailed briefs outlining the key elements and data fields for each form</strong>, the content and functionality of detailed pages, and the key metrics or summaries to be displayed on the dashboard and main overview screens. These briefs served as a foundational blueprint, ensuring alignment with stakeholders before moving forward.</p>
+        <p class="cs-body">Once the briefs were approved, I proceeded directly to high-fidelity designs, leveraging an already established design system that streamlined consistency without starting from scratch. This approach enabled a rapid transition from concept to pixel-perfect UI.</p>
+        <div class="highlight-box">
+          <p><strong>Why this mattered at NAC:</strong> With 4 distinct stakeholder groups and cross-departmental workflows, misalignment in the design phase would have caused cascading problems. Brief-first forced all teams to agree on data structure and workflow logic before a single screen was designed.</p>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
 <!-- 04 DESIGN DECISIONS -->
 <section class="cs-section dark" id="decisions">
   <div class="cs-inner">
-    <span class="section-num">2.2</span>
+    <span class="section-num">8.0</span>
     <span class="section-kicker">Key Design Decisions</span>
     <h2 class="cs-h2">BEFORE &amp;<br/>AFTER</h2>
     <div class="decision-list" role="list">
@@ -476,16 +828,16 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 05 FINAL DESIGN -->
 <section class="cs-section" id="final">
   <div class="cs-inner">
-    <span class="section-num">3.0</span>
+    <span class="section-num">9.0</span>
     <span class="section-kicker">Validating Final Iteration</span>
     <h2 class="cs-h2">THE FINAL<br/>DESIGN</h2>
     <p class="cs-body">Validated through prototype walkthroughs with NAC ground operations supervisors and management. Iterated based on real-world scenarios like equipment breakdown during turnaround, end-of-month reporting, and multi-station inventory reconciliation.</p>
     <div class="final-design-grid">
       <div class="final-design-item">
-        <img src="nac-final-1.png" alt="NAC GSE final design — inventory dashboard" class="final-design-img" />
+        <img src="nac-final-1.png" alt="NAC GSE final design: inventory dashboard" class="final-design-img" />
       </div>
       <div class="final-design-item">
-        <img src="nac-final-2.png" alt="NAC GSE final design — equipment maintenance view" class="final-design-img" />
+        <img src="nac-final-2.png" alt="NAC GSE final design: equipment maintenance view" class="final-design-img" />
       </div>
     </div>
   </div>
@@ -494,7 +846,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 06 METRICS -->
 <section class="cs-section darker" id="outcomes">
   <div class="cs-inner">
-    <span class="section-num">04</span>
+    <span class="section-num">10.0</span>
     <span class="section-kicker orange">Outcomes &amp; Impact</span>
     <h2 class="cs-h2">THE RESULTS</h2>
     <p class="cs-body">Measured through pilot deployment feedback and comparison with baseline paper-based processes.</p>
@@ -510,7 +862,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 07 REFLECTION -->
 <section class="cs-section dark" id="reflection">
   <div class="cs-inner">
-    <span class="section-num">05</span>
+    <span class="section-num">11.0</span>
     <span class="section-kicker">Reflection</span>
     <h2 class="cs-h2">WHAT I LEARNED</h2>
     <div class="reflection-grid" role="list">
@@ -542,15 +894,15 @@ footer p{font-size:12px;color:var(--gray2)}
   <p>Let's talk about what we can build together.</p>
   <div class="cta-buttons">
     <a href="mailto:dikshyabc01@gmail.com" class="btn-primary" onclick="showToast(event)">Get In Touch</a>
-    <a href="/Portfolio/work" class="btn-outline">View All Work</a>
+    <a href="/Portfolio/work" target="_top" class="btn-outline">View All Work</a>
   </div>
 </section>
 </main>
 
 <footer role="contentinfo">
-  <a class="footer-logo" href="/Portfolio/home">DIKSHYA</a>
+  <a class="footer-logo" href="/Portfolio/home" target="_top">DIKSHYA</a>
   <p>© 2026 · UI/UX Designer · Kathmandu, Nepal</p>
-  <a href="/Portfolio/work" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
+  <a href="/Portfolio/work" target="_top" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
 </footer>
 
 <script>
@@ -560,8 +912,7 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style
 (function anim(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim)})();
 window.addEventListener('scroll',()=>{const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;document.getElementById('progress').style.width=p+'%';},{passive:true});
 const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('revealed')})},{threshold:.07});
-document.querySelectorAll('.pain-item,.research-card,.decision-item,.metric-item,.reflection-card').forEach(el=>obs.observe(el));
-)}
+document.querySelectorAll('.tldr-bar,.pain-item,.research-card,.sh-card,.decision-item,.flow-card,.metric-item,.reflection-card').forEach(el=>obs.observe(el));
 function showToast(e){e.preventDefault();navigator.clipboard.writeText('dikshyabc01@gmail.com').catch(()=>{});const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
 </script>
 <script>

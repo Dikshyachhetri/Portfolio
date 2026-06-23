@@ -43,13 +43,17 @@ body:has(a:hover) #cursor-ring{width:48px;height:48px;opacity:.35}
 .cs-hero-content{position:relative;z-index:1;max-width:1200px;margin:0 auto;width:100%}
 .cs-hero-content::before{content:"";position:absolute;right:-20px;top:50%;transform:translateY(-50%);width:380px;height:340px;background:radial-gradient(circle at 55% 45%,rgba(245,158,11,.06) 0%,transparent 50%),radial-gradient(circle at 60% 55%,rgba(245,158,11,.04) 0%,transparent 50%);border-radius:50%;pointer-events:none;z-index:-1}
 
+.breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:32px;opacity:0;animation:fadeUp .6s var(--ease) forwards 100ms}
+.breadcrumb a,.breadcrumb span{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);text-decoration:none;transition:color var(--dur-fast)}
+.breadcrumb a:hover{color:var(--amber)}
+.breadcrumb .sep{color:var(--gray3)}
 .cs-hero-meta{display:flex;align-items:center;gap:12px;margin-bottom:24px;opacity:0;animation:fadeUp .6s var(--ease) forwards 200ms;flex-wrap:wrap}
-.cs-chip{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:2px}
+.cs-chip{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:100px}
 .cs-chip.amber{background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.4);color:var(--amber2)}
-.visit-hero-link{float:right;margin:10px 20px 0 0;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(245,158,11,.7);text-decoration:none;display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:1px solid rgba(245,158,11,.3);border-radius:3px;transition:background var(--dur-fast),color var(--dur-fast),border-color var(--dur-fast);font-family:'DM Sans',sans-serif;font-weight:400}
-.visit-hero-link:hover{background:rgba(245,158,11,.08);border-color:var(--amber);color:var(--amber)}
-.visit-hero-link svg{width:14px;height:14px;transition:transform var(--dur-mid) var(--ease)}
-.visit-hero-link:hover svg{transform:translateX(3px)}
+.visit-hero-link{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--amber2);text-decoration:none;display:inline-flex;align-items:center;gap:10px;padding:10px 22px;border:1.5px solid rgba(245,158,11,.35);border-radius:4px;background:rgba(245,158,11,.07);transition:background var(--dur-fast),color var(--dur-fast),border-color var(--dur-fast),transform var(--dur-fast);font-family:'DM Sans',sans-serif;font-weight:500}
+.visit-hero-link:hover{background:rgba(245,158,11,.15);border-color:var(--amber2);color:var(--amber2);transform:translateY(-1px)}
+.visit-hero-link svg{width:15px;height:15px;transition:transform var(--dur-mid) var(--ease)}
+.visit-hero-link:hover svg{transform:translateX(4px)}
 .cs-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,9vw,130px);letter-spacing:2px;line-height:.92;color:var(--white);margin-bottom:28px;opacity:0;animation:fadeUp .8s var(--ease) forwards 300ms}
 .cs-hero h1 em{font-style:normal;color:var(--amber)}
 .cs-hero-tagline{font-size:18px;color:rgba(240,236,228,.6);font-weight:300;max-width:560px;line-height:1.75;margin-bottom:48px;opacity:0;animation:fadeUp .6s var(--ease) forwards 450ms}
@@ -58,7 +62,7 @@ body:has(a:hover) #cursor-ring{width:48px;height:48px;opacity:.35}
 .cs-stat:last-child{border-right:none}
 .cs-stat-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);display:block;margin-bottom:4px}
 .cs-stat-val{font-size:15px;color:var(--white);font-weight:400}
-.cs-hero-art{position:absolute;right:-12px;top:10px;z-index:2;pointer-events:none;opacity:0;animation:fadeUp 1s var(--ease) forwards 800ms}.cs-hero-art svg{width:clamp(260px,32vw,420px);height:auto;display:block;filter:drop-shadow(0 0 60px rgba(0,0,0,.5)) contrast(1.6) saturate(2)}
+.cs-hero-art{position:absolute;right:-12px;top:50px;z-index:2;pointer-events:none;opacity:0;animation:fadeUp 1s var(--ease) forwards 800ms}.cs-hero-art svg{width:clamp(260px,32vw,420px);height:auto;display:block;filter:drop-shadow(0 0 60px rgba(0,0,0,.5)) contrast(1.6) saturate(2)}
 @media(max-width:900px){.cs-hero-art{display:none}}
 .cs-scroll-cue{position:absolute;bottom:32px;right:48px;z-index:1;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp .6s var(--ease) forwards 700ms}
 .cs-scroll-cue span{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2)}
@@ -68,7 +72,7 @@ body:has(a:hover) #cursor-ring{width:48px;height:48px;opacity:.35}
 
 /* PLAY STORE BADGE ,  proof bar */
 .proof-bar{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 48px}
-.proof-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:48px;flex-wrap:wrap}
+.proof-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
 .proof-item{display:flex;align-items:center;gap:12px}
 .proof-icon{color:var(--orange)}
 .proof-icon svg{width:20px;height:20px}
@@ -196,7 +200,7 @@ body:has(a:hover) #cursor-ring{width:48px;height:48px;opacity:.35}
 .pain-item:nth-child(2){transition-delay:80ms}
 .pain-item:nth-child(3){transition-delay:160ms}
 .pain-item:nth-child(4){transition-delay:240ms}
-.pain-top{padding:36px 28px 28px;background:var(--bg2);border-bottom:1px solid var(--border)}
+.pain-top{padding:36px 28px 28px;background:var(--bg2);border-bottom:1px solid var(--border);flex:1}
 .pain-num{font-family:'Bebas Neue',sans-serif;font-size:64px;color:rgba(245,158,11,.2);line-height:1;margin-bottom:12px}
 .pain-top h4{font-size:15px;font-weight:400;color:var(--white);line-height:1.4}
 .arrow-down{display:flex;align-items:center;justify-content:center;padding:12px;color:var(--gray2)}
@@ -337,7 +341,145 @@ footer p{font-size:12px;color:var(--gray2)}
 </style>
 <style>
 /* Hide nav, cursor, footer when embedded in portfolio */
-.embed-view nav[role="navigation"],
+/* DUAL IMPACT */
+.impact-split{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:48px}
+.impact-col{background:var(--bg2);padding:32px 30px}
+.impact-col-label{font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:.5px;text-transform:uppercase;font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.impact-col-label.user{color:var(--amber2)}
+.impact-col-label.business{color:var(--orange)}
+.impact-col-label svg{width:16px;height:16px;flex-shrink:0}
+.impact-item{display:flex;flex-direction:column;gap:4px;padding-top:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.05)}
+.impact-item:last-child{border-bottom:none;padding-bottom:0}
+.impact-item::before{display:none}
+.impact-item strong{font-size:13px;color:var(--white);font-weight:500;display:flex;align-items:center;gap:7px}
+.impact-item strong::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.impact-col.user .impact-item strong::before{background:var(--amber2)}
+.impact-col.business .impact-item strong::before{background:var(--orange)}
+.impact-col .impact-item{font-size:13px;color:rgba(240,236,228,.6);line-height:1.65}
+@media(max-width:900px){.impact-split{grid-template-columns:1fr;gap:1px}}
+/* MY CONTRIBUTION */
+.my-role-section{
+   padding:80px 48px;border-bottom:1px solid var(--border);background:var(--bg);
+  }
+  .my-role-grid{
+   display:grid;grid-template-columns:1fr 1fr;gap:1px;
+   background:var(--border);margin-top:40px;
+  }
+  .my-role-col{background:var(--bg2);padding:36px 32px}
+  .my-role-col h4{
+   font-size:11px;font-family:'DM Mono',monospace;letter-spacing:2.5px;
+   text-transform:uppercase;margin-bottom:24px;padding-bottom:14px;
+   border-bottom:1px solid var(--border);
+  }
+  .my-role-col h4.owned{color:var(--amber2)}
+  .my-role-col h4.team{color:var(--gray2)}
+  .role-list{display:flex;flex-direction:column;gap:20px}
+  .role-item{
+   display:flex;flex-direction:column;gap:5px;
+   padding-bottom:20px;border-bottom:1px solid var(--border);
+  }
+  .role-item:last-child{border-bottom:none;padding-bottom:0}
+  .role-item-title{
+   font-size:14px;font-weight:500;color:var(--white);
+   display:flex;align-items:center;gap:8px;
+  }
+  .role-item-title::before{
+   content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0;
+  }
+  .my-role-col.owned .role-item-title::before{background:var(--amber2)}
+  .my-role-col.team .role-item-title::before{background:var(--gray2)}
+  .role-item-desc{
+   font-size:13px;color:rgba(240,236,228,.55);line-height:1.7;
+   padding-left:14px;
+  }
+  .tools-strip{
+   margin-top:24px;display:flex;gap:8px;flex-wrap:wrap;
+   padding-top:20px;border-top:1px solid var(--border);
+  }
+  .tool-tag{
+   font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;
+   color:var(--gray);border:1px solid var(--border);padding:5px 12px;
+   border-radius:2px;
+  }
+  @media(max-width:900px){
+   .my-role-section{padding:56px 24px}
+   .my-role-grid{grid-template-columns:1fr}
+  }
+  /* PROCESS SECTION */
+  .process-section{
+   padding:80px 48px;border-bottom:1px solid var(--border);background:var(--bg2);
+  }
+  .pflow-steps{
+   display:grid;grid-template-columns:repeat(6,1fr);
+   gap:1px;background:var(--border);margin-top:40px;
+  }
+  .pflow-step{
+   background:var(--bg);padding:28px 22px;
+   opacity:0;transform:translateY(14px);
+   transition:opacity .6s var(--ease),transform .6s var(--ease);
+  }
+  .pflow-step.revealed{opacity:1;transform:translateY(0)}
+  .pflow-step:nth-child(1){transition-delay:0ms}
+  .pflow-step:nth-child(2){transition-delay:60ms}
+  .pflow-step:nth-child(3){transition-delay:120ms}
+  .pflow-step:nth-child(4){transition-delay:180ms}
+  .pflow-step:nth-child(5){transition-delay:240ms}
+  .pflow-step:nth-child(6){transition-delay:300ms}
+  .step-circle{
+   width:40px;height:40px;border-radius:50%;
+   border:1.5px solid var(--amber);
+   display:flex;align-items:center;justify-content:center;
+   font-family:'Bebas Neue',sans-serif;font-size:14px;
+   color:var(--amber);margin-bottom:16px;background:var(--bg);
+  }
+  .pflow-step h4{
+   font-size:13px;font-weight:500;color:var(--white);
+   margin-bottom:8px;letter-spacing:.3px;
+  }
+  .pflow-step p{font-size:12px;color:var(--gray);line-height:1.65}
+  .constraint-box{
+   background:var(--bg3);border:1px solid rgba(255,255,255,.06);
+   border-left:3px solid var(--amber);
+   padding:24px 28px;border-radius:0 6px 6px 0;margin-top:32px;
+  }
+  .constraint-label{
+   font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2.5px;
+   text-transform:uppercase;color:var(--amber);margin-bottom:10px;display:block;
+  }
+  .constraint-box p{
+   font-size:14px;color:rgba(240,236,228,.7);line-height:1.8;
+  }
+  .constraint-box strong{color:var(--white);font-weight:500}
+  @media(max-width:1024px){.pflow-steps{grid-template-columns:1fr 1fr}}
+  @media(max-width:900px){.process-section{padding:56px 24px}}
+  @media(max-width:700px){.pflow-steps{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){.pflow-step{opacity:1;transform:none}}
+/* TL;DR BAR */
+.tldr-bar-wrapper{max-width:1200px;margin:32px auto 40px;width:100%;padding:0 0}
+.tldr-bar{
+ background:var(--bg3);border:1px solid var(--border2);
+ padding:28px 32px;
+ opacity:0;animation:fadeUp .6s var(--ease) forwards 650ms;
+ border-radius:6px;
+}
+.tldr-intro{font-size:15px;color:rgba(240,236,228,.7);line-height:1.8;max-width:65ch}
+.tldr-intro strong{color:var(--white);font-weight:500}
+.tldr-intro-wrap{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.tldr-grid{display:flex;gap:0}
+.tldr-item{padding:0 24px 0 0;margin-right:24px;border-right:1px solid var(--border)}
+.tldr-item:last-child{border-right:none;padding-right:0;margin-right:0}
+.tldr-label{
+ font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2.5px;
+ text-transform:uppercase;color:var(--amber2);display:block;margin-bottom:6px;
+}
+.tldr-val{font-size:13px;color:var(--white);line-height:1.55;display:block}
+@media(max-width:900px){
+ .tldr-grid{flex-direction:column;gap:16px}
+ .tldr-item{border-right:none;padding-right:0;margin-right:0;border-bottom:1px solid var(--border);padding-bottom:14px}
+ .tldr-item:last-child{border-bottom:none;padding-bottom:0}
+}
+
+  .embed-view nav[role="navigation"],
 .embed-view .nav-drawer,
 .embed-view footer { display: none !important }
 .embed-view main { padding-top: 0 !important }
@@ -363,13 +505,22 @@ footer p{font-size:12px;color:var(--gray2)}
   <div class="cs-hero-grid" aria-hidden="true"></div>
   <div class="cs-hero-glow" aria-hidden="true"></div>
   <div class="cs-hero-content">
-    <a href="https://play.google.com/store/apps/details?id=com.loksewapro.app" target="_blank" rel="noopener noreferrer" class="visit-hero-link">Visit Site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17l9-9M9 8h7v7"/></svg></a>
-    <div class="cs-hero-meta">
-      <span class="cs-chip">PROJECT</span>
-      <span class="cs-chip amber">LOKSEWA PRO</span>
-      <span class="cs-chip">EDTECH</span>
-      <span class="cs-chip">MOBILE</span>
-      <span class="cs-chip">2024–2025</span>
+  <div class="breadcrumb" style="display:flex;align-items:center;justify-content:space-between;width:100%">
+   <div>
+    <a href="/Portfolio/home" target="_top">Home</a><span class="sep">·</span>
+    <a href="/Portfolio/work#loksewa" target="_top">Work</a><span class="sep">·</span>
+    <span>Loksewa Pro</span>
+   </div>
+  </div>
+    <div class="cs-hero-meta" style="display:flex;align-items:center;justify-content:space-between;width:100%;flex-wrap:wrap;gap:8px">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span class="cs-chip">PROJECT</span>
+        <span class="cs-chip amber">LOKSEWA PRO</span>
+        <span class="cs-chip">EDTECH</span>
+        <span class="cs-chip">MOBILE</span>
+        <span class="cs-chip">2024–2025</span>
+      </div>
+      <a href="https://play.google.com/store/apps/details?id=com.loksewapro.app" target="_blank" rel="noopener noreferrer" class="visit-hero-link">Visit Site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17l9-9M9 8h7v7"/></svg></a>
     </div>
     <h1>NEPAL'S<br/>EXAM PREP<br/><em>REDESIGNED.</em></h1>
     <p class="cs-hero-tagline">Designed Loksewa Pro ,  a mobile app for Nepal's most competitive civil service exam. Achieved 10,000+ downloads, a 4.4-star rating, and became the go-to study companion for aspirants across the country.</p>
@@ -491,29 +642,24 @@ footer p{font-size:12px;color:var(--gray2)}
 <div class="proof-bar" aria-label="App performance metrics">
   <div class="proof-inner">
     <div class="proof-item">
-      <span class="proof-icon" aria-hidden="true"><i data-lucide="smartphone"></i></span>
       <div><span class="proof-label">Downloads</span><span class="proof-val amber">10,000+</span></div>
     </div>
     <div class="proof-divider" aria-hidden="true"></div>
     <div class="proof-item">
-      <span class="proof-icon" aria-hidden="true"><i data-lucide="star"></i></span>
       <div><span class="proof-label">Play Store Rating</span><span class="proof-val amber">4.4 / 5.0</span></div>
     </div>
     <div class="proof-divider" aria-hidden="true"></div>
     <div class="proof-item">
-      <span class="proof-icon" aria-hidden="true"><i data-lucide="message-circle"></i></span>
       <div><span class="proof-label">User Reviews</span><span class="proof-val">28 on Play Store</span></div>
     </div>
     <div class="proof-divider" aria-hidden="true"></div>
     <div class="proof-item">
-      <span class="proof-icon" aria-hidden="true"><i data-lucide="flag"></i></span>
       <div><span class="proof-label">Market</span><span class="proof-val">Nepal ,  Public Sector</span></div>
     </div>
     <div class="proof-divider" aria-hidden="true"></div>
     <div class="proof-item">
-      <span class="proof-icon" aria-hidden="true"><i data-lucide="link"></i></span>
       <div><span class="proof-label">Live App</span>
-        <a href="https://play.google.com/store/apps/details?id=com.loksewapro.app" target="_blank" rel="noopener" style="font-size:15px;color:var(--amber2);text-decoration:none;border-bottom:1px solid rgba(251,191,36,.3)">View on Play Store ↗</a>
+        <a href="https://play.google.com/store/apps/details?id=com.loksewapro.app" target="_blank" rel="noopener" style="font-size:15px;color:var(--amber2);text-decoration:none;border-bottom:1px solid rgba(251,191,36,.3)">View on Play Store</a>
       </div>
     </div>
   </div>
@@ -526,12 +672,107 @@ footer p{font-size:12px;color:var(--gray2)}
   </div>
 </div>
 
+<!-- TL;DR BAR -->
+<div class="tldr-bar-wrapper">
+<div class="tldr-bar">
+ <div class="tldr-intro-wrap"><p class="tldr-intro">Loksewa Pro is Nepal's go-to mobile app for civil service exam preparation, achieving 10,000+ downloads and a 4.4-star rating on the Play Store. I designed the complete app experience from research through delivery. <strong>Every screen designed for both dark and light themes, offline-first, and optimized for rural users with older devices.</strong></p></div>
+ <div class="tldr-grid">
+   <div class="tldr-item">
+    <span class="tldr-label">The problem</span>
+    <span class="tldr-val">Aspiring civil servants had no structured way to prepare, fragmented study resources, no progress tracking, and apps that didn't work offline in rural areas.</span>
+   </div>
+   <div class="tldr-item">
+    <span class="tldr-label">My contribution</span>
+    <span class="tldr-val">End-to-end UI/UX design, user research &amp; competitive audit, dark &amp; light theme system, progress tracking &amp; analytics, component design system</span>
+   </div>
+   <div class="tldr-item">
+    <span class="tldr-label">The outcome</span>
+    <span class="tldr-val">10,000+ downloads · 4.4 star rating · 2-month delivery · Rural-first design</span>
+   </div>
+ </div>
+</div>
+</div>
+
+<!-- MY CONTRIBUTION -->
+<section class="my-role-section" id="my-contribution">
+  <div class="cs-inner">
+    <span class="section-num">1.0</span>
+    <span class="section-kicker">My Contribution</span>
+    <h2 class="cs-h2">WHAT I<br/>PERSONALLY OWNED</h2>
+    <p class="cs-body">Clarity on contribution matters. Here's the exact split between what I owned end-to-end and what the broader team handled.</p>
+    <div class="my-role-grid">
+      <div class="my-role-col owned">
+        <h4 class="owned">I owned this</h4>
+        <div class="role-list"><div class="role-item"><span class="role-item-title">User research &amp; competitive audit</span><span class="role-item-desc">Analysed app store reviews of competing Loksewa apps. Ran surveys with exam aspirants to identify pain points and study behaviour patterns.</span></div>
+<div class="role-item"><span class="role-item-title">End-to-end UI/UX design</span><span class="role-item-desc">Designed every screen of the mobile app — onboarding, quiz flows, progress dashboards, practice sets, audio books, and settings — for both iOS and Android.</span></div>
+<div class="role-item"><span class="role-item-title">Dark &amp; light theme system</span><span class="role-item-desc">Designed both visual themes to accommodate rural users with older devices and city users studying at night — directly referenced in positive Play Store reviews.</span></div>
+<div class="role-item"><span class="role-item-title">Progress tracking &amp; analytics</span><span class="role-item-desc">Designed the subject-level performance reports, mistake review flow, and weekly progress summaries that help aspirants identify weak areas.</span></div>
+<div class="role-item"><span class="role-item-title">Design system</span><span class="role-item-desc">Built a consistent component library for the app ensuring visual coherence across all screens despite a tight 2-month delivery timeline.</span></div>
+</div>
+        <div class="tools-strip"><span class="tool-tag">Figma</span><span class="tool-tag">User surveys</span><span class="tool-tag">Review analysis</span><span class="tool-tag">App Store audit</span></div>
+      </div>
+      <div class="my-role-col team">
+        <h4 class="team">The team handled this</h4>
+        <div class="role-list"><div class="role-item"><span class="role-item-title">Development &amp; backend</span><span class="role-item-desc">The development team implemented all front-end and back-end logic, including offline sync, quiz engine, and content management.</span></div>
+<div class="role-item"><span class="role-item-title">Content &amp; subject matter</span><span class="role-item-desc">Subject matter experts curated and verified the accuracy of all quiz content, practice sets, and current affairs material.</span></div>
+<div class="role-item"><span class="role-item-title">Project management &amp; client</span><span class="role-item-desc">Incube Tech provided business requirements, market insights, and coordinated Play Store publishing and post-launch analytics.</span></div>
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section" id="process">
+ <div class="cs-inner" style="max-width:1200px;margin:0 auto">
+   <span class="section-num">2.0</span>
+   <span class="section-kicker">Design Process</span>
+   <h2 class="cs-h2">HOW I WORKED<br/>THROUGH IT</h2>
+   <div class="pflow-steps">
+     <div class="pflow-step">
+       <div class="step-circle">01</div>
+       <h4>App review analysis</h4>
+       <p>Systematically analysed 1-star and 5-star reviews of competing Loksewa apps</p>
+     </div>
+     <div class="pflow-step">
+       <div class="step-circle">02</div>
+       <h4>Aspirant surveys</h4>
+       <p>Surveys with exam aspirants to study habits, pain points, and preferred learning methods</p>
+     </div>
+     <div class="pflow-step">
+       <div class="step-circle">03</div>
+       <h4>Competitive audit</h4>
+       <p>Mapped gaps across existing Loksewa prep apps and global EdTech benchmarks</p>
+     </div>
+     <div class="pflow-step">
+       <div class="step-circle">04</div>
+       <h4>Mid-fidelity wireframes</h4>
+       <p>Skipped low-fi — jumped to structure and flow using the existing UI kit</p>
+     </div>
+     <div class="pflow-step">
+       <div class="step-circle">05</div>
+       <h4>High-fidelity design</h4>
+       <p>All screens, dark &amp; light themes, component states, and empty states</p>
+     </div>
+     <div class="pflow-step">
+       <div class="step-circle">06</div>
+       <h4>Validation &amp; launch</h4>
+       <p>Stakeholder reviews, Play Store analytics, and real user feedback post-launch</p>
+     </div>
+   </div>
+   <div class="constraint-box">
+     <span class="constraint-label">KEY CONSTRAINT</span>
+     <p>The biggest constraint wasn't design — it was <strong>content accuracy and trust</strong>. In a high-stakes exam prep app, one wrong question can break a user's confidence in the entire product. Every content decision had to communicate reliability, and offline-first thinking was required to make the app usable for rural aspirants with intermittent connectivity.</p>
+   </div>
+ </div>
+</section>
+
 <!-- 01 OVERVIEW -->
 <section class="cs-section" id="overview">
   <div class="cs-inner">
     <div class="two-col">
       <div>
-        <span class="section-num">01</span>
+        <span class="section-num">3.0</span>
         <span class="section-kicker">Project Overview</span>
         <h2 class="cs-h2">ONE APP FOR<br/>NEPAL'S HARDEST<br/>EXAM.</h2>
         <p class="cs-body">The Loksewa Aayog (Public Service Commission) exam is one of the most competitive examinations in Nepal ,  hundreds of thousands of aspirants sit it every year for a limited number of government positions. The stakes are high. The preparation is gruelling.</p>
@@ -559,7 +800,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 02 USER PERSONAS -->
 <section class="cs-section dark" id="personas">
   <div class="cs-inner">
-    <span class="section-num">1.0</span>
+    <span class="section-num">4.0</span>
     <span class="section-kicker">User Understanding</span>
     <h2 class="cs-h2">WHO WE DESIGNED<br/>FOR</h2>
     <p class="cs-body">Through user surveys and review analysis, we identified two distinct user archetypes with different study behaviours but shared core needs around reliability, structure, and motivation.</p>
@@ -599,7 +840,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 03 RESEARCH -->
 <section class="cs-section" id="research">
   <div class="cs-inner">
-    <span class="section-num">1.1</span>
+    <span class="section-num">5.0</span>
     <span class="section-kicker">Research &amp; Discovery</span>
     <h2 class="cs-h2">WHAT THE DATA<br/>TOLD US</h2>
     <p class="cs-body">We ran a three-pronged research process ,  analysing existing apps through user reviews, surveying exam aspirants directly, and studying competitor products to map gaps in the market.</p>
@@ -637,10 +878,46 @@ footer p{font-size:12px;color:var(--gray2)}
   </div>
 </section>
 
+<!-- DESIGN STRATEGY -->
+<section class="cs-section dark" id="dual-impact">
+  <div class="cs-inner">
+    <span class="section-num">6.0</span>
+    <span class="section-kicker">Design Strategy</span>
+    <h2 class="cs-h2">SOLVING FOR BOTH<br/>SIDES OF THE TABLE</h2>
+    <p class="cs-body">Every design decision had to satisfy two audiences at once — the aspirants using the app daily under high-stakes exam pressure, and the business outcomes that justified building it.</p>
+    <div class="impact-split" role="list">
+      <div class="impact-col user" role="listitem">
+        <div class="impact-col-label user">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          USER NEEDS
+        </div>
+        <div class="impact-list">
+          <div class="impact-item"><strong>Structured syllabus with visible progress</strong>aspirants need to see exactly where they stand across every subject, not just a pile of questions.</div>
+          <div class="impact-item"><strong>Offline-first reliability</strong>rural users with intermittent internet can't stream questions — every screen had to work offline seamlessly.</div>
+          <div class="impact-item"><strong>Daily habit, not willpower</strong>the Daily Quiz removes choice paralysis — one tap starts a session, building a study habit without requiring motivation.</div>
+          <div class="impact-item"><strong>Clear performance analytics</strong>subject-level reports and mistake review flows turn data into a study plan, helping aspirants target weak areas efficiently.</div>
+        </div>
+      </div>
+      <div class="impact-col business" role="listitem">
+        <div class="impact-col-label business">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M18.7 8l-5.1 5.1-2.8-2.8L7 14"/></svg>
+          BUSINESS NEEDS
+        </div>
+        <div class="impact-list">
+          <div class="impact-item"><strong>10,000+ downloads with 4.4★ rating</strong>real user validation that the design decisions translated into a product people actually rely on.</div>
+          <div class="impact-item"><strong>Market differentiation through UX</strong>competitors offered fragmented resources; Loksewa Pro's unified, well-designed experience became the core differentiator.</div>
+          <div class="impact-item"><strong>Retention through habit design</strong>the Daily Quiz wasn't just a feature, it was a retention mechanic that kept users coming back every day.</div>
+          <div class="impact-item"><strong>Rural-first design expanded reach</strong>offline mode and dark theme made the app usable across Nepal's varied device and connectivity landscape, not just in cities.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- 04 PAIN POINTS -->
 <section class="cs-section dark" id="painpoints">
   <div class="cs-inner">
-    <span class="section-num">2.0</span>
+    <span class="section-num">7.0</span>
     <span class="section-kicker">Design Phase · Pain Point Analysis</span>
     <h2 class="cs-h2">FOUR PROBLEMS.<br/>FOUR SOLUTIONS.</h2>
     <div class="pain-grid" role="list">
@@ -703,7 +980,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 05 WIREFRAMING -->
 <section class="cs-section" id="wireframing">
   <div class="cs-inner">
-    <span class="section-num">2.1</span>
+    <span class="section-num">8.0</span>
     <span class="section-kicker">Wireframe &amp; Prototyping</span>
     <h2 class="cs-h2">MID-FIDELITY<br/>FROM DAY ONE.</h2>
     <div class="two-col-wide">
@@ -728,7 +1005,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 06 KEY DESIGN DECISIONS -->
 <section class="cs-section dark" id="decisions">
   <div class="cs-inner">
-    <span class="section-num">2.2</span>
+    <span class="section-num">9.0</span>
     <span class="section-kicker">Key Design Decisions</span>
     <h2 class="cs-h2">BEFORE &amp;<br/>AFTER</h2>
     <div class="decision-list" role="list">
@@ -791,7 +1068,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 07 FINAL DESIGN -->
 <section class="cs-section" id="final">
   <div class="cs-inner">
-    <span class="section-num">3.0</span>
+    <span class="section-num">10.0</span>
     <span class="section-kicker">Validating Final Iteration</span>
     <h2 class="cs-h2">THE FINAL<br/>DESIGN</h2>
     <p class="cs-body">Validated through regular stakeholder collaboration, iterative feedback sessions with the client and internal team, and post-launch Play Store analytics.</p>
@@ -806,7 +1083,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 08 REAL USER REVIEWS -->
 <section class="cs-section dark" id="reviews">
   <div class="cs-inner">
-    <span class="section-num">3.1</span>
+    <span class="section-num">11.0</span>
     <span class="section-kicker">Play Store Reviews · Real Users</span>
     <h2 class="cs-h2">WHAT USERS<br/>ARE SAYING</h2>
     <p class="cs-body">4.4 stars across 28 reviews. The patterns in the feedback directly validate every core design decision made during the process.</p>
@@ -833,7 +1110,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 09 METRICS -->
 <section class="cs-section darker" id="outcomes">
   <div class="cs-inner">
-    <span class="section-num">04</span>
+    <span class="section-num">12.0</span>
     <span class="section-kicker orange">Outcomes &amp; Impact</span>
     <h2 class="cs-h2">THE RESULTS</h2>
     <p class="cs-body">Post-launch results tracked through Play Store analytics, user review sentiment, and download milestones.</p>
@@ -861,7 +1138,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 10 REFLECTION -->
 <section class="cs-section dark" id="reflection">
   <div class="cs-inner">
-    <span class="section-num">05</span>
+    <span class="section-num">13.0</span>
     <span class="section-kicker">Reflection</span>
     <h2 class="cs-h2">WHAT I LEARNED</h2>
     <div class="reflection-grid" role="list">
@@ -906,15 +1183,15 @@ footer p{font-size:12px;color:var(--gray2)}
   <p>Let's talk about what we can build together.</p>
   <div class="cta-buttons">
     <a href="mailto:dikshya@email.com" class="btn-primary" onclick="showToast(event)">Get In Touch</a>
-    <a href="/Portfolio/work" class="btn-outline">View All Work</a>
+    <a href="/Portfolio/work" target="_top" class="btn-outline">View All Work</a>
   </div>
 </section>
 </main>
 
 <footer role="contentinfo">
-  <a class="footer-logo" href="/Portfolio/home">DIKSHYA</a>
+  <a class="footer-logo" href="/Portfolio/home" target="_top">DIKSHYA</a>
   <p>© 2026 · UI/UX Designer · Kathmandu, Nepal</p>
-  <a href="/Portfolio/work" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
+  <a href="/Portfolio/work" target="_top" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
 </footer>
 
 <script>
@@ -924,8 +1201,7 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style
 (function anim(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim)})();
 window.addEventListener('scroll',()=>{const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;document.getElementById('progress').style.width=p+'%';},{passive:true});
 const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('revealed')})},{threshold:.07});
-document.querySelectorAll('.pain-item,.research-card,.decision-item,.showcase-card,.metric-item,.reflection-card,.persona-card,.review-card').forEach(el=>obs.observe(el));
-)}
+document.querySelectorAll('.tldr-bar,.pflow-step,.pain-item,.research-card,.decision-item,.showcase-card,.metric-item,.reflection-card,.persona-card,.review-card').forEach(el=>obs.observe(el));
 function showToast(e){e.preventDefault();navigator.clipboard.writeText('dikshya@email.com').catch(()=>{});const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
 </script>
 <script>

@@ -70,16 +70,20 @@ body:has(a:hover) #cursor-ring{width:48px;height:48px;opacity:.35}
 /* Breadcrumb */
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
+.breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:32px;opacity:0;animation:fadeUp .6s var(--ease) forwards 100ms}
+.breadcrumb a,.breadcrumb span{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);text-decoration:none;transition:color var(--dur-fast)}
+.breadcrumb a:hover{color:var(--orange)}
+.breadcrumb .sep{color:var(--gray3)}
 .cs-hero-meta{
   display:flex;align-items:center;gap:12px;margin-bottom:24px;
   opacity:0;animation:fadeUp .6s var(--ease) forwards 200ms;
 }
-.cs-chip{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:2px}
+.cs-chip{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:100px}
 .cs-chip.active{background:rgba(232,82,26,.15);border-color:rgba(232,82,26,.4);color:var(--orange)}
-.visit-hero-link{float:right;margin:10px 20px 0 0;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(232,82,26,.7);text-decoration:none;display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:1px solid rgba(232,82,26,.3);border-radius:3px;transition:background var(--dur-fast),color var(--dur-fast),border-color var(--dur-fast);font-family:'DM Sans',sans-serif;font-weight:400}
-.visit-hero-link:hover{background:rgba(232,82,26,.08);border-color:var(--orange);color:var(--orange)}
-.visit-hero-link svg{width:14px;height:14px;transition:transform var(--dur-mid) var(--ease)}
-.visit-hero-link:hover svg{transform:translateX(3px)}
+.visit-hero-link{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--orange2);text-decoration:none;display:inline-flex;align-items:center;gap:10px;padding:10px 22px;border:1.5px solid rgba(232,82,26,.35);border-radius:4px;background:rgba(232,82,26,.07);transition:background var(--dur-fast),color var(--dur-fast),border-color var(--dur-fast),transform var(--dur-fast);font-family:'DM Sans',sans-serif;font-weight:500}
+.visit-hero-link:hover{background:rgba(232,82,26,.15);border-color:var(--orange2);color:var(--orange2);transform:translateY(-1px)}
+.visit-hero-link svg{width:15px;height:15px;transition:transform var(--dur-mid) var(--ease)}
+.visit-hero-link:hover svg{transform:translateX(4px)}
 
 .cs-hero h1{
   font-family:'Bebas Neue',sans-serif;
@@ -107,7 +111,7 @@ body:has(a:hover) #cursor-ring{width:48px;height:48px;opacity:.35}
 .cs-stat-val{font-size:15px;color:var(--white);font-weight:400}
 
 /* Scroll cue */
-.cs-hero-art{position:absolute;right:-12px;top:10px;z-index:2;pointer-events:none;opacity:0;animation:fadeUp 1s var(--ease) forwards 800ms}.cs-hero-art svg{width:clamp(260px,32vw,420px);height:auto;display:block;filter:drop-shadow(0 0 60px rgba(0,0,0,.5)) contrast(1.6) saturate(2)}
+.cs-hero-art{position:absolute;right:-12px;top:50px;z-index:2;pointer-events:none;opacity:0;animation:fadeUp 1s var(--ease) forwards 800ms}.cs-hero-art svg{width:clamp(260px,32vw,420px);height:auto;display:block;filter:drop-shadow(0 0 60px rgba(0,0,0,.5)) contrast(1.6) saturate(2)}
 @media(max-width:900px){.cs-hero-art{display:none}}
 .cs-scroll-cue{
   position:absolute;bottom:32px;right:48px;z-index:1;
@@ -216,6 +220,64 @@ body:has(a:hover) #cursor-ring{width:48px;height:48px;opacity:.35}
 .highlight-box p{font-size:15px;color:rgba(240,236,228,.7);line-height:1.75;font-weight:300}
 .highlight-box strong{color:var(--white);font-weight:400}
 
+/* MY CONTRIBUTION */
+.my-role-section{padding:80px 48px;border-bottom:1px solid var(--border)}
+.my-role-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:40px}
+.my-role-col{background:var(--bg2);padding:36px 32px}
+.my-role-col h4{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;margin-bottom:20px}
+.my-role-col h4.owned{color:var(--orange)}
+.my-role-col h4.team{color:var(--gray2)}
+.role-list{display:flex;flex-direction:column;gap:20px}
+.role-item{border-bottom:1px solid var(--border);padding-bottom:16px}
+.role-item:last-child{border-bottom:none;padding-bottom:0}
+.role-item-title{display:block;font-size:13px;font-weight:500;color:var(--white);margin-bottom:4px;padding-left:14px;position:relative}
+.role-item-title::before{content:'';position:absolute;left:0;top:5px;width:6px;height:6px;border-radius:50%}
+.my-role-col.owned .role-item-title::before{background:var(--orange)}
+.my-role-col.team .role-item-title::before{background:var(--gray2)}
+.role-item-desc{display:block;font-size:12px;color:var(--gray);line-height:1.6;padding-left:14px}
+.tools-strip{display:flex;gap:6px;flex-wrap:wrap;margin-top:24px}
+.tool-tag{font-size:10px;color:var(--orange);border:1px solid rgba(232,82,26,.25);padding:4px 12px;border-radius:14px}
+
+/* DUAL IMPACT */
+.impact-split{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:48px}
+.impact-col{background:var(--bg2);padding:32px 30px}
+.impact-list{display:flex;flex-direction:column;gap:12px}
+
+/* Impact col labels — more prominent */
+.impact-col-label{font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:.5px;text-transform:uppercase;font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.impact-col-label.user{color:var(--accent2,var(--orange))}
+.impact-col-label.business{color:var(--orange)}
+.impact-col-label svg{width:16px;height:16px;flex-shrink:0}
+
+/* Impact items — stacked layout, dot sits before <strong> */
+.impact-item{display:flex;flex-direction:column;gap:4px;padding-top:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.05)}
+.impact-item:last-child{border-bottom:none;padding-bottom:0}
+.impact-item::before{display:none}
+.impact-item strong{font-size:13px;color:var(--white);font-weight:500;display:flex;align-items:center;gap:7px}
+.impact-item strong::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.impact-col.user .impact-item strong::before{background:var(--accent2,var(--orange))}
+.impact-col.business .impact-item strong::before{background:var(--orange)}
+.impact-col .impact-item{font-size:13px;color:rgba(240,236,228,.6);line-height:1.65}
+
+/* PROCESS SECTION */
+.process-section{padding:80px 48px;border-bottom:1px solid var(--border);background:var(--bg2)}
+.pflow-steps{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--border);margin-top:40px}
+.pflow-step{background:var(--bg);padding:28px 22px;opacity:0;transform:translateY(14px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.pflow-step.revealed{opacity:1;transform:translateY(0)}
+.pflow-step:nth-child(1){transition-delay:0ms}
+.pflow-step:nth-child(2){transition-delay:60ms}
+.pflow-step:nth-child(3){transition-delay:120ms}
+.pflow-step:nth-child(4){transition-delay:180ms}
+.pflow-step:nth-child(5){transition-delay:240ms}
+.pflow-step:nth-child(6){transition-delay:300ms}
+.step-circle{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--orange);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:14px;color:var(--orange);margin-bottom:16px;background:var(--bg)}
+.pflow-step h4{font-size:13px;font-weight:500;color:var(--white);margin-bottom:8px;letter-spacing:.3px}
+.pflow-step p{font-size:12px;color:var(--gray);line-height:1.65}
+.constraint-box{background:var(--bg3);border:1px solid rgba(255,255,255,.06);border-left:3px solid var(--orange);padding:24px 28px;border-radius:0 6px 6px 0;margin-top:32px}
+.constraint-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--orange);margin-bottom:10px;display:block}
+.constraint-box p{font-size:14px;color:rgba(240,236,228,.7);line-height:1.8}
+.constraint-box strong{color:var(--white);font-weight:500}
+
 /* ============================================================
    PROCESS STEPS TIMELINE
    ============================================================ */
@@ -250,7 +312,7 @@ body:has(a:hover) #cursor-ring{width:48px;height:48px;opacity:.35}
 .pain-item:nth-child(2){transition-delay:80ms}
 .pain-item:nth-child(3){transition-delay:160ms}
 .pain-item:nth-child(4){transition-delay:240ms}
-.pain-top{padding:36px 28px 28px;background:var(--bg2);border-bottom:1px solid var(--border)}
+.pain-top{padding:36px 28px 28px;background:var(--bg2);border-bottom:1px solid var(--border);flex:1}
 .pain-num{font-family:'Bebas Neue',sans-serif;font-size:64px;color:rgba(232,82,26,.2);line-height:1;margin-bottom:12px}
 .pain-top h4{font-size:15px;font-weight:400;color:var(--white);line-height:1.4}
 .arrow-down{display:flex;align-items:center;justify-content:center;padding:12px;color:var(--gray2)}
@@ -457,11 +519,17 @@ footer p{font-size:12px;color:var(--gray2)}
   .pain-grid{grid-template-columns:1fr 1fr}
   .metrics-grid{grid-template-columns:1fr 1fr}
   .wireframe-grid{grid-template-columns:repeat(3,1fr)}
+  .pflow-steps{grid-template-columns:1fr 1fr}
+  .impact-split{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+  .pflow-steps{grid-template-columns:1fr}
 }
 @media(max-width:900px){
    .cs-hero{padding:80px 24px 60px}
   .cs-section{padding:60px 24px}
   .two-col,.two-col-wide,.two-col-wide.right{grid-template-columns:1fr;gap:40px}
+  .impact-split{grid-template-columns:1fr}
   .cs-quick-stats{flex-direction:column;width:100%}
   .cs-stat{border-right:none;border-bottom:1px solid var(--border)}
   .cs-stat:last-child{border-bottom:none}
@@ -476,10 +544,13 @@ footer p{font-size:12px;color:var(--gray2)}
   .cta-section{padding:60px 24px}
   .next-project{padding:60px 24px}
   .cs-hero-image{padding:40px 24px}
+  .process-section{padding:56px 24px}
+  .my-role-section{padding:56px 24px}
 }
 
 @media(pointer:coarse){body{cursor:auto}#cursor,#cursor-ring{display:none}}
 @media(max-width:600px){
+  .my-role-grid{grid-template-columns:1fr}
   .pain-grid{grid-template-columns:1fr}
   .metrics-grid{grid-template-columns:1fr 1fr}
   .wireframe-grid{grid-template-columns:1fr 1fr}
@@ -487,6 +558,31 @@ footer p{font-size:12px;color:var(--gray2)}
 }
 </style>
 <style>
+/* TL;DR BAR */
+.tldr-bar-wrapper{max-width:1200px;margin:32px auto 40px;width:100%;padding:0 0}
+.tldr-bar{
+ background:var(--bg3);border:1px solid var(--border2);
+ padding:28px 32px;
+ opacity:0;animation:fadeUp .6s var(--ease) forwards 650ms;
+ border-radius:6px;
+}
+.tldr-intro{font-size:15px;color:rgba(240,236,228,.7);line-height:1.8;max-width:65ch}
+.tldr-intro strong{color:var(--white);font-weight:500}
+.tldr-intro-wrap{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.tldr-grid{display:flex;gap:0}
+.tldr-item{padding:0 24px 0 0;margin-right:24px;border-right:1px solid var(--border)}
+.tldr-item:last-child{border-right:none;padding-right:0;margin-right:0}
+.tldr-label{
+ font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2.5px;
+ text-transform:uppercase;color:var(--orange);display:block;margin-bottom:6px;
+}
+.tldr-val{font-size:13px;color:var(--white);line-height:1.55;display:block}
+@media(max-width:900px){
+ .tldr-grid{flex-direction:column;gap:16px}
+ .tldr-item{border-right:none;padding-right:0;margin-right:0;border-bottom:1px solid var(--border);padding-bottom:14px}
+ .tldr-item:last-child{border-bottom:none;padding-bottom:0}
+}
+
 /* Hide nav, cursor, footer when embedded in portfolio */
 .embed-view nav[role="navigation"],
 .embed-view .nav-drawer,
@@ -518,11 +614,20 @@ footer p{font-size:12px;color:var(--gray2)}
   <div class="cs-hero-glow" aria-hidden="true"></div>
 
   <div class="cs-hero-content">
-    <a href="https://space.raralabs.live/login" target="_blank" rel="noopener noreferrer" class="visit-hero-link">Visit Site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17l9-9M9 8h7v7"/></svg></a>
-    <div class="cs-hero-meta">
-      <span class="cs-chip">PROJECT</span>
-      <span class="cs-chip active">RARASPACE</span>
-      <span class="cs-chip">2022–2024</span>
+  <div class="breadcrumb" style="display:flex;align-items:center;justify-content:space-between;width:100%">
+   <div>
+    <a href="/Portfolio/home" target="_top">Home</a><span class="sep">·</span>
+    <a href="/Portfolio/work#raraspace" target="_top">Work</a><span class="sep">·</span>
+    <span>RaraSpace EMS</span>
+   </div>
+  </div>
+    <div class="cs-hero-meta" style="display:flex;align-items:center;justify-content:space-between;width:100%;flex-wrap:wrap;gap:8px">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span class="cs-chip">PROJECT</span>
+        <span class="cs-chip active">RARASPACE</span>
+        <span class="cs-chip">2022–2024</span>
+      </div>
+      <a href="https://space.raralabs.live/login" target="_blank" rel="noopener noreferrer" class="visit-hero-link">Visit Site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17l9-9M9 8h7v7"/></svg></a>
     </div>
 
     <h1>EMPLOYEE<br/>MANAGEMENT<br/><em>SYSTEM</em></h1>
@@ -686,6 +791,101 @@ footer p{font-size:12px;color:var(--gray2)}
   </div>
 </div>
 
+<!-- TL;DR BAR -->
+<div class="tldr-bar-wrapper">
+<div class="tldr-bar">
+ <div class="tldr-intro-wrap"><p class="tldr-intro">RaraSpace is a comprehensive employee management system designed from scratch to unify HR, task tracking, payroll, and project operations into one seamless platform. I led the full design process from user research through high-fidelity delivery. <strong>Improved operational efficiency by 100%, designed, tested, and validated with 50+ real colleagues.</strong></p></div>
+ <div class="tldr-grid">
+   <div class="tldr-item">
+    <span class="tldr-label">The problem</span>
+    <span class="tldr-val">The organization managed employees across spreadsheets, paper forms, and disconnected tools, no single source of truth for HR, payroll, or project tracking.</span>
+   </div>
+   <div class="tldr-item">
+    <span class="tldr-label">My contribution</span>
+    <span class="tldr-val">User research &amp; surveys, information architecture, wireframing, high-fidelity design, usability testing across 3 rounds, stakeholder alignment</span>
+   </div>
+   <div class="tldr-item">
+    <span class="tldr-label">The outcome</span>
+    <span class="tldr-val">100% ops efficiency improvement · 10+ business functions · 3 rounds of testing · Paper sketches to pixel-perfect UI</span>
+   </div>
+ </div>
+</div>
+</div>
+
+<!-- MY CONTRIBUTION -->
+<section class="my-role-section" id="my-contribution">
+  <div class="cs-inner" style="max-width:1200px;margin:0 auto">
+    <span class="section-num">1.0</span>
+    <span class="section-kicker">My Contribution</span>
+    <h2 class="cs-h2">WHAT I<br/>PERSONALLY OWNED</h2>
+    <p class="cs-body" style="max-width:60ch">Clarity on contribution matters. Here's the exact split between what I owned end-to-end and what the broader team handled.</p>
+    <div class="my-role-grid">
+      <div class="my-role-col owned">
+        <h4 class="owned">I owned this</h4>
+        <div class="role-list"><div class="role-item"><span class="role-item-title">User research</span><span class="role-item-desc">Designed and distributed Google Surveys to colleagues. Ran the competition analysis across Jira, Asana, and BambooHR.</span></div>
+<div class="role-item"><span class="role-item-title">Information architecture</span><span class="role-item-desc">Structured the navigation hierarchy and module groupings across 10+ business functions.</span></div>
+<div class="role-item"><span class="role-item-title">Wireframing</span><span class="role-item-desc">All paper sketches for 8+ core screens before moving to Figma.</span></div>
+<div class="role-item"><span class="role-item-title">High-fidelity design</span><span class="role-item-desc">Every screen in Figma, including components, states, empty states, and notifications.</span></div>
+<div class="role-item"><span class="role-item-title">Usability testing</span><span class="role-item-desc">Facilitated all 3 rounds — paper prototype, Figma prototype, and live build.</span></div>
+<div class="role-item"><span class="role-item-title">Stakeholder alignment</span><span class="role-item-desc">Ran alignment sessions with the product owner to define scope and priorities.</span></div>
+</div>
+        <div class="tools-strip"><span class="tool-tag">Figma</span><span class="tool-tag">FigJam</span><span class="tool-tag">Paper sketches</span><span class="tool-tag">Google Surveys</span><span class="tool-tag">Google Meet</span></div>
+      </div>
+      <div class="my-role-col team">
+        <h4 class="team">The team handled this</h4>
+        <div class="role-list"><div class="role-item"><span class="role-item-title">Product management</span><span class="role-item-desc">PM defined business requirements and prioritized the feature roadmap.</span></div>
+<div class="role-item"><span class="role-item-title">Development</span><span class="role-item-desc">Engineering team implemented the designs and flagged technical constraints.</span></div>
+<div class="role-item"><span class="role-item-title">Content &amp; HR policy</span><span class="role-item-desc">HR team provided leave policies, payroll logic, and document templates.</span></div>
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process-section" id="process">
+ <div class="cs-inner" style="max-width:1200px;margin:0 auto">
+   <span class="section-num">2.0</span>
+   <span class="section-kicker">Design Process</span>
+   <h2 class="cs-h2">HOW I WORKED<br/>THROUGH IT</h2>
+   <div class="pflow-steps">
+     <div class="pflow-step">
+       <div class="step-circle">01</div>
+       <h4>Surveys</h4>
+       <p>Google Survey to all 50+ colleagues</p>
+     </div>
+     <div class="pflow-step">
+       <div class="step-circle">02</div>
+       <h4>Competition</h4>
+       <p>Jira · Asana · BambooHR audit</p>
+     </div>
+     <div class="pflow-step">
+       <div class="step-circle">03</div>
+       <h4>Scope</h4>
+       <p>Stakeholder alignment on 10+ modules</p>
+     </div>
+     <div class="pflow-step">
+       <div class="step-circle">04</div>
+       <h4>Sketches</h4>
+       <p>Paper wireframes for 8 core flows</p>
+     </div>
+     <div class="pflow-step">
+       <div class="step-circle">05</div>
+       <h4>Hi-fi</h4>
+       <p>Figma components and all screen states</p>
+     </div>
+     <div class="pflow-step">
+       <div class="step-circle">06</div>
+       <h4>Testing</h4>
+       <p>3 rounds — paper → Figma → live build</p>
+     </div>
+   </div>
+   <div class="constraint-box">
+     <span class="constraint-label">KEY CONSTRAINT</span>
+     <p>The biggest constraint wasn't design — it was scope. With 10+ modules to design in 9 months for a live company, every prioritization call had a real cost. I learned to <strong>design highest-friction modules first</strong> (tasks, leave, dashboard) and build a shared component library to accelerate the later modules without losing consistency.</p>
+   </div>
+ </div>
+</section>
+
 <!-- ============================================================
      01 , OVERVIEW & PROBLEM
      ============================================================ -->
@@ -693,7 +893,7 @@ footer p{font-size:12px;color:var(--gray2)}
   <div class="cs-inner">
     <div class="two-col">
       <div>
-        <span class="section-num">01</span>
+        <span class="section-num">3.0</span>
         <span class="section-kicker">Project Overview</span>
         <h2 class="cs-h2">ONE PLATFORM.<br/>ALL OPERATIONS.</h2>
         <p class="cs-body">RaraSpace is a comprehensive Employee Management System built to streamline and unify all of Rara Digital Lab's internal business operations  from employee and task management to payroll, leave tracking, project costing, and inventory.</p>
@@ -723,7 +923,7 @@ footer p{font-size:12px;color:var(--gray2)}
      ============================================================ -->
 <section class="cs-section dark" id="research">
   <div class="cs-inner">
-    <span class="section-num">1.0</span>
+    <span class="section-num">4.0</span>
     <span class="section-kicker">Research &amp; Discovery</span>
     <h2 class="cs-h2">UNDERSTANDING<br/>THE PROBLEM SPACE</h2>
     <p class="cs-body">Before designing anything, I needed to understand how the team actually worked , what broke down, where they lost time, and what they needed most. I used three research methods in parallel.</p>
@@ -760,12 +960,52 @@ footer p{font-size:12px;color:var(--gray2)}
   </div>
 </section>
 
+<!-- My Contribution (0.5) moved to before Overview -->
+
+<!-- Process (0.8) moved to before Overview -->
+
+<!-- DUAL IMPACT -->
+<section class="cs-section" id="dual-impact" style="--accent2:var(--orange)">
+  <div class="cs-inner">
+    <span class="section-num">5.0</span>
+    <span class="section-kicker">Design Strategy</span>
+    <h2 class="cs-h2">SOLVING FOR BOTH<br/>SIDES OF THE TABLE</h2>
+    <p class="cs-body">Every design decision here had to satisfy two audiences at once — the people using the product daily, and the business outcomes that justified building it.</p>
+    <div class="impact-split" role="list">
+      <div class="impact-col user" role="listitem">
+        <div class="impact-col-label user">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          USER NEEDS
+        </div>
+        <div class="impact-list">
+          <div class="impact-item"><strong>Single source of truth</strong>employees no longer juggle 6+ disconnected tools just to log hours, request leave, or check payroll.</div>
+          <div class="impact-item"><strong>Faster task visibility</strong>kanban-style boards surface what's due now instead of burying it in email threads.</div>
+          <div class="impact-item"><strong>Reduced cognitive load</strong>consistent design system means every module feels familiar, cutting the learning curve for new hires.</div>
+          <div class="impact-item"><strong>Mobile-friendly access</strong>leave requests and approvals work just as well from a phone as a desktop.</div>
+        </div>
+      </div>
+      <div class="impact-col business" role="listitem">
+        <div class="impact-col-label business">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M18.7 8l-5.1 5.1-2.8-2.8L7 14"/></svg>
+          BUSINESS NEEDS
+        </div>
+        <div class="impact-list">
+          <div class="impact-item"><strong>100% operational efficiency gain</strong>directly tied to consolidating 10+ business functions into one platform, cutting tool-switching overhead.</div>
+          <div class="impact-item"><strong>Lower onboarding cost</strong>a unified design system meant new employees ramp up on one interface, not six separate tools.</div>
+          <div class="impact-item"><strong>Reduced IT overhead</strong>fewer third-party SaaS subscriptions to manage, audit, and secure across the organization.</div>
+          <div class="impact-item"><strong>Scalable foundation</strong>the design system supports adding new modules without starting from scratch each time.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============================================================
      03 , PAIN POINT ANALYSIS
      ============================================================ -->
 <section class="cs-section" id="painpoints">
   <div class="cs-inner">
-    <span class="section-num">2.0</span>
+    <span class="section-num">6.0</span>
     <span class="section-kicker">Design Phase</span>
     <h2 class="cs-h2">PAIN POINT<br/>ANALYSIS</h2>
     <p class="cs-body">Survey results and direct observation revealed four primary pain points. For each, I mapped a concrete design solution.</p>
@@ -832,7 +1072,7 @@ footer p{font-size:12px;color:var(--gray2)}
      ============================================================ -->
 <section class="cs-section dark" id="wireframes">
   <div class="cs-inner">
-    <span class="section-num">2.1</span>
+    <span class="section-num">7.0</span>
     <span class="section-kicker">Wireframe &amp; Prototyping</span>
     <h2 class="cs-h2">FROM SKETCHES<br/>TO SYSTEMS</h2>
     <p class="cs-body">I began with rough paper sketches to move fast and validate structure before committing to high-fidelity. Once the flows were confirmed, I moved into Figma to build the full prototype.</p>
@@ -882,7 +1122,7 @@ footer p{font-size:12px;color:var(--gray2)}
      ============================================================ -->
 <section class="cs-section" id="decisions">
   <div class="cs-inner">
-    <span class="section-num">2.2</span>
+    <span class="section-num">8.0</span>
     <span class="section-kicker">Key Design Decisions</span>
     <h2 class="cs-h2">BEFORE &amp;<br/>AFTER</h2>
     <p class="cs-body">Each design decision was driven by a specific user pain point uncovered in research. Here are the most impactful changes made during the design phase.</p>
@@ -949,7 +1189,7 @@ footer p{font-size:12px;color:var(--gray2)}
      ============================================================ -->
 <section class="cs-section dark" id="final">
   <div class="cs-inner">
-    <span class="section-num">3.0</span>
+    <span class="section-num">9.0</span>
     <span class="section-kicker">Validating · Final Design</span>
     <h2 class="cs-h2">THE FINAL<br/>ITERATION</h2>
     <p class="cs-body">Multiple rounds of usability testing with colleagues refined the design. Continuous iterative testing ensured the final product resonated with real end-users before handoff.</p>
@@ -965,7 +1205,7 @@ footer p{font-size:12px;color:var(--gray2)}
      ============================================================ -->
 <section class="cs-section" id="testing">
   <div class="cs-inner">
-    <span class="section-num">3.1</span>
+    <span class="section-num">10.0</span>
     <span class="section-kicker">Usability Testing</span>
 
     <div class="two-col-wide">
@@ -995,7 +1235,7 @@ footer p{font-size:12px;color:var(--gray2)}
      ============================================================ -->
 <section class="cs-section darker" id="outcomes">
   <div class="cs-inner">
-    <span class="section-num">04</span>
+    <span class="section-num">11.0</span>
     <span class="section-kicker">Outcomes &amp; Impact</span>
     <h2 class="cs-h2">THE RESULTS</h2>
     <p class="cs-body">Measured outcomes from the RaraSpace EMS launch , tracked through team feedback, analytics, and stakeholder review.</p>
@@ -1026,7 +1266,7 @@ footer p{font-size:12px;color:var(--gray2)}
      ============================================================ -->
 <section class="cs-section dark" id="reflection">
   <div class="cs-inner">
-    <span class="section-num">05</span>
+    <span class="section-num">12.0</span>
     <span class="section-kicker">Reflection</span>
     <h2 class="cs-h2">WHAT I LEARNED</h2>
 
@@ -1072,15 +1312,15 @@ footer p{font-size:12px;color:var(--gray2)}
   <p>Let's talk about what we can build together.</p>
   <div class="cta-buttons">
     <a href="mailto:dikshya@email.com" class="btn-primary" onclick="showToast(event)">Get In Touch</a>
-    <a href="/Portfolio/work" class="btn-outline">View All Work</a>
+    <a href="/Portfolio/work" target="_top" class="btn-outline">View All Work</a>
   </div>
 </section>
 </main>
 
 <footer role="contentinfo">
-  <a class="footer-logo" href="/Portfolio/home">DIKSHYA</a>
+  <a class="footer-logo" href="/Portfolio/home" target="_top">DIKSHYA</a>
   <p>© 2026 · UI/UX Designer · Kathmandu, Nepal</p>
-  <a href="/Portfolio/work" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
+  <a href="/Portfolio/work" target="_top" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
 </footer>
 
 <script>
@@ -1100,10 +1340,7 @@ window.addEventListener('scroll',()=>{
 const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed')}})
 },{threshold:.07});
-document.querySelectorAll('.process-step,.pain-item,.research-card,.wf-card,.decision-item,.showcase-card,.metric-item,.reflection-card').forEach(el=>obs.observe(el));
-
-// HAMBURGER
-)}
+document.querySelectorAll('.tldr-bar,.pflow-step,.process-step,.pain-item,.research-card,.wf-card,.decision-item,.showcase-card,.metric-item,.reflection-card,.my-role-col,.impact-item').forEach(el=>obs.observe(el));
 
 // TOAST
 function showToast(e){e.preventDefault();navigator.clipboard.writeText('dikshya@email.com').catch(()=>{});const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}

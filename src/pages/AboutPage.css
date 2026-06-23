@@ -196,7 +196,7 @@
 .skill-group:nth-child(6){transition-delay:300ms}
 .skill-group-title { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:2px; color:var(--white); margin-bottom:16px }
 .skill-items { display:flex; flex-wrap:wrap; gap:6px }
-.skill-item { font-size:var(--text-sm); color:var(--gray); border:1px solid var(--border); padding:5px 14px; border-radius:2px; transition:border-color var(--dur-fast), color var(--dur-fast) }
+.skill-item { font-size:var(--text-sm); color:var(--gray); border:1px solid var(--border); padding:5px 14px; border-radius:100px; transition:border-color var(--dur-fast), color var(--dur-fast) }
 .skill-item:hover { border-color:var(--orange); color:var(--white) }
 
 /* EDUCATION */

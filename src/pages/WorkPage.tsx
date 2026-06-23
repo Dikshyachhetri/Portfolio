@@ -32,7 +32,7 @@ const projects = [
   },
   {
     id: 'myra',
-    title: 'A digital platform connecting cooperatives all over the nation to technology.',
+    title: 'Connecting cooperatives all over the nation to technology.',
     info: 'Fintech · ERP · Web App',
     path: '/case/myra',
     logo: BASE + 'myra-logo.png',

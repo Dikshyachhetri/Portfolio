@@ -24,7 +24,7 @@ export default function Nav() {
           <li><Link to="/work" className={isActive('/work') ? 'active' : ''}>Work</Link></li>
           <li><Link to="/about" className={isActive('/about') ? 'active' : ''}>About</Link></li>
         </ul>
-        <button className="nav-cta" onClick={openGmail}>Hire Me</button>
+        <button className="nav-cta" onClick={openGmail}>Let's Talk</button>
         <button
           className="nav-hamburger"
           id="hamburger"
@@ -46,7 +46,7 @@ export default function Nav() {
         <Link to="/home" onClick={closeDrawer}>Home</Link>
         <Link to="/work" onClick={closeDrawer}>Work</Link>
         <Link to="/about" onClick={closeDrawer}>About</Link>
-        <Link to="/home" onClick={(e) => { e.preventDefault(); closeDrawer(); openGmail() }}>Hire Me →</Link>
+        <Link to="/home" onClick={(e) => { e.preventDefault(); closeDrawer(); openGmail() }}>Let's Talk →</Link>
       </nav>
     </>
   )

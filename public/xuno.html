@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Xuno (R2PX) — Case Study · Dikshya</title>
-<meta name="description" content="Case study: Xuno R2PX cross-border remittance platform — UI/UX design by Dikshya connecting USA and Nepal through transparent, NRB-regulated money transfers."/>
+<title>Xuno (R2PX): Case Study · Dikshya</title>
+<meta name="description" content="Case study: Xuno R2PX cross-border remittance platform. UI/UX design by Dikshya connecting USA and Nepal through transparent, NRB-regulated money transfers."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -62,18 +62,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .cs-hero-content{position:relative;z-index:1;max-width:1200px;margin:0 auto;width:100%}
 .cs-hero-content::before{content:"";position:absolute;right:-20px;top:50%;transform:translateY(-50%);width:380px;height:340px;background:radial-gradient(circle at 55% 45%,rgba(16,185,129,.06) 0%,transparent 50%),radial-gradient(circle at 60% 55%,rgba(16,185,129,.04) 0%,transparent 50%);border-radius:50%;pointer-events:none;z-index:-1}
 
+.breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:32px;opacity:0;animation:fadeUp .6s var(--ease) forwards 100ms}
+.breadcrumb a,.breadcrumb span{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);text-decoration:none;transition:color var(--dur-fast)}
+.breadcrumb a:hover{color:var(--green2)}
+.breadcrumb .sep{color:var(--gray3)}
 .cs-hero-meta{display:flex;align-items:center;gap:12px;margin-bottom:24px;opacity:0;animation:fadeUp .6s var(--ease) forwards 200ms;flex-wrap:wrap}
-.cs-chip{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:2px}
+.cs-chip{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:100px}
 .cs-chip.active{background:var(--green-light);border-color:rgba(10,125,79,.5);color:var(--green2)}
-.visit-hero-link{float:right;margin:10px 20px 0 0;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(16,185,129,.7);text-decoration:none;display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:1px solid rgba(16,185,129,.3);border-radius:3px;transition:background var(--dur-fast),color var(--dur-fast),border-color var(--dur-fast);font-family:'DM Sans',sans-serif;font-weight:400}
-.visit-hero-link:hover{background:rgba(16,185,129,.08);border-color:var(--green2);color:var(--green2)}
-.visit-hero-link svg{width:14px;height:14px;transition:transform var(--dur-mid) var(--ease)}
-.visit-hero-link:hover svg{transform:translateX(3px)}
+.visit-hero-link{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--green2);text-decoration:none;display:inline-flex;align-items:center;gap:10px;padding:10px 22px;border:1.5px solid rgba(16,185,129,.35);border-radius:4px;background:rgba(16,185,129,.07);transition:background var(--dur-fast),color var(--dur-fast),border-color var(--dur-fast),transform var(--dur-fast);font-family:'DM Sans',sans-serif;font-weight:500}
+.visit-hero-link:hover{background:rgba(16,185,129,.15);border-color:var(--green2);color:var(--green2);transform:translateY(-1px)}
+.visit-hero-link svg{width:15px;height:15px;transition:transform var(--dur-mid) var(--ease)}
+.visit-hero-link:hover svg{transform:translateX(4px)}
 .cs-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,9vw,130px);letter-spacing:2px;line-height:.92;color:var(--white);margin-bottom:28px;opacity:0;animation:fadeUp .8s var(--ease) forwards 300ms}
 .cs-hero h1 em{font-style:normal;color:var(--green2)}
 .cs-hero-tagline{font-size:18px;color:rgba(240,236,228,.6);font-weight:300;max-width:560px;line-height:1.75;margin-bottom:48px;opacity:0;animation:fadeUp .6s var(--ease) forwards 450ms}
 
-.cs-hero-art{position:absolute;right:-12px;top:10px;z-index:2;pointer-events:none;opacity:0;animation:fadeUp 1s var(--ease) forwards 800ms}.cs-hero-art svg{width:clamp(260px,32vw,420px);height:auto;display:block;filter:drop-shadow(0 0 60px rgba(0,0,0,.5))}
+.cs-hero-art{position:absolute;right:-12px;top:50px;z-index:2;pointer-events:none;opacity:0;animation:fadeUp 1s var(--ease) forwards 800ms}.cs-hero-art svg{width:clamp(260px,32vw,420px);height:auto;display:block;filter:drop-shadow(0 0 60px rgba(0,0,0,.5))}
 @media(max-width:900px){.cs-hero-art{display:none}}
 
 /* NDA note */
@@ -152,7 +156,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .pain-item{background:var(--bg);opacity:0;transform:translateY(20px);transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease);display:flex;flex-direction:column;height:100%}
 .pain-item.revealed{opacity:1;transform:translateY(0)}
 .pain-item:nth-child(1){transition-delay:0ms}.pain-item:nth-child(2){transition-delay:80ms}.pain-item:nth-child(3){transition-delay:160ms}.pain-item:nth-child(4){transition-delay:240ms}
-.pain-top{padding:36px 28px 28px;background:var(--bg2);border-bottom:1px solid var(--border)}
+.pain-top{padding:36px 28px 28px;background:var(--bg2);border-bottom:1px solid var(--border);flex:1}
 .pain-num{font-family:'Bebas Neue',sans-serif;font-size:64px;color:rgba(10,125,79,.2);line-height:1;margin-bottom:12px}
 .pain-top h4{font-size:15px;font-weight:400;color:var(--white);line-height:1.4}
 .arrow-down{display:flex;align-items:center;justify-content:center;padding:12px;color:var(--gray2)}
@@ -261,6 +265,51 @@ footer p{font-size:12px;color:var(--gray2)}
 .impact-col.business .impact-item::before{background:var(--orange)}
 .impact-item strong{color:var(--white);font-weight:500}
 @media(max-width:900px){.impact-split{grid-template-columns:1fr;gap:1px}}
+
+/* MY CONTRIBUTION */
+.my-role-section{padding:80px 48px;border-bottom:1px solid var(--border);background:var(--bg)}
+.my-role-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:40px}
+.my-role-col{background:var(--bg2);padding:36px 32px}
+.my-role-col h4{font-size:11px;font-family:'DM Mono',monospace;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.my-role-col h4.owned{color:var(--green2)}
+.my-role-col h4.team{color:var(--gray2)}
+.role-list{display:flex;flex-direction:column;gap:20px}
+.role-item{display:flex;flex-direction:column;gap:5px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.role-item:last-child{border-bottom:none;padding-bottom:0}
+.role-item-title{font-size:14px;font-weight:500;color:var(--white);display:flex;align-items:center;gap:8px}
+.role-item-title::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.my-role-col.owned .role-item-title::before{background:var(--green2)}
+.my-role-col.team .role-item-title::before{background:var(--gray2)}
+.role-item-desc{font-size:13px;color:rgba(240,236,228,.55);line-height:1.7;padding-left:14px}
+.tools-strip{margin-top:24px;display:flex;gap:8px;flex-wrap:wrap;padding-top:20px;border-top:1px solid var(--border)}
+.tool-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--gray);border:1px solid var(--border);padding:5px 12px;border-radius:2px}
+@media(max-width:900px){
+}
+
+/* TL;DR BAR */
+.tldr-bar-wrapper{max-width:1200px;margin:32px auto 40px;width:100%;padding:0 0}
+.tldr-bar{
+ background:var(--bg3);border:1px solid var(--border2);
+ padding:28px 32px;
+ opacity:0;animation:fadeUp .6s var(--ease) forwards 650ms;
+ border-radius:6px;
+}
+.tldr-intro{font-size:15px;color:rgba(240,236,228,.7);line-height:1.8;max-width:65ch}
+.tldr-intro strong{color:var(--white);font-weight:500}
+.tldr-intro-wrap{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.tldr-grid{display:flex;gap:0}
+.tldr-item{padding:0 24px 0 0;margin-right:24px;border-right:1px solid var(--border)}
+.tldr-item:last-child{border-right:none;padding-right:0;margin-right:0}
+.tldr-label{
+ font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2.5px;
+ text-transform:uppercase;color:var(--green2);display:block;margin-bottom:6px;
+}
+.tldr-val{font-size:13px;color:var(--white);line-height:1.55;display:block}
+@media(max-width:900px){
+ .tldr-grid{flex-direction:column;gap:16px}
+ .tldr-item{border-right:none;padding-right:0;margin-right:0;border-bottom:1px solid var(--border);padding-bottom:14px}
+ .tldr-item:last-child{border-bottom:none;padding-bottom:0}
+}
 </style>
 </head>
 <body>
@@ -282,16 +331,25 @@ footer p{font-size:12px;color:var(--gray2)}
   <div class="cs-hero-glow" aria-hidden="true"></div>
 
   <div class="cs-hero-content">
-    <a href="https://xuno.co/" target="_blank" rel="noopener noreferrer" class="visit-hero-link">Visit Site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17l9-9M9 8h7v7"/></svg></a>
-    <div class="cs-hero-meta">
-      <span class="cs-chip">PROJECT</span>
-      <span class="cs-chip active">XUNO (R2PX)</span>
-      <span class="cs-chip">FINTECH</span>
+  <div class="breadcrumb" style="display:flex;align-items:center;justify-content:space-between;width:100%">
+   <div>
+    <a href="/Portfolio/home" target="_top">Home</a><span class="sep">·</span>
+    <a href="/Portfolio/work#xuno" target="_top">Work</a><span class="sep">·</span>
+    <span>XUNO (R2PX)</span>
+   </div>
+  </div>
+    <div class="cs-hero-meta" style="display:flex;align-items:center;justify-content:space-between;width:100%;flex-wrap:wrap;gap:8px">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span class="cs-chip">PROJECT</span>
+        <span class="cs-chip active">XUNO (R2PX)</span>
+        <span class="cs-chip">FINTECH</span>
+      </div>
+      <a href="https://xuno.co/" target="_blank" rel="noopener noreferrer" class="visit-hero-link">Visit Site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17l9-9M9 8h7v7"/></svg></a>
     </div>
 
     <h1>BORDERLESS<br/>BANKING,<br/><em>BUILT TRUST.</em></h1>
 
-    <p class="cs-hero-tagline">Designed Request to Pay (r2px) — a cross-border remittance feature empowering individuals and businesses in Nepal to receive money from the USA through transparent, NRB-regulated exchange rates and trusted local payment rails.</p>
+    <p class="cs-hero-tagline">Designed Request to Pay (r2px), a cross-border remittance feature empowering individuals and businesses in Nepal to receive money from the USA through transparent, NRB-regulated exchange rates and trusted local payment rails.</p>
 
     <div class="nda-note">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 9v4M12 17h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
@@ -314,16 +372,16 @@ footer p{font-size:12px;color:var(--gray2)}
         <ellipse cx="170" cy="175" rx="72" ry="28" stroke="rgba(16,185,129,.12)" stroke-width=".5" fill="none"/>
 
         <!-- USA node (left) -->
-        <circle cx="62" cy="112" r="14" stroke="rgba(16,185,129,.5)" stroke-width="1.3" fill="rgba(16,185,129,.12)"/>
-        <text x="62" y="110" font-size="8" fill="rgba(16,185,129,.7)" font-family="DM Sans,sans-serif" font-weight="600" text-anchor="middle">USA</text>
-        <text x="62" y="120" font-size="6" fill="rgba(16,185,129,.5)" font-family="DM Sans,sans-serif" text-anchor="middle">$ Sender</text>
-        <circle cx="62" cy="102" r="3.5" fill="rgba(16,185,129,.35)"/>
+        <circle cx="62" cy="112" r="20" stroke="rgba(16,185,129,.5)" stroke-width="1.3" fill="rgba(16,185,129,.12)"/>
+        <text x="62" y="108" font-size="10" fill="rgba(16,185,129,.8)" font-family="DM Sans,sans-serif" font-weight="700" text-anchor="middle">USA</text>
+        <text x="62" y="122" font-size="7" fill="rgba(16,185,129,.55)" font-family="DM Sans,sans-serif" text-anchor="middle">$ Sender</text>
+        <circle cx="62" cy="98" r="4.5" fill="rgba(16,185,129,.35)"/>
 
         <!-- Nepal node (right) -->
-        <circle cx="280" cy="118" r="14" stroke="rgba(16,185,129,.5)" stroke-width="1.3" fill="rgba(16,185,129,.12)"/>
-        <text x="280" y="116" font-size="8" fill="rgba(16,185,129,.7)" font-family="DM Sans,sans-serif" font-weight="600" text-anchor="middle">NEPAL</text>
-        <text x="280" y="126" font-size="6" fill="rgba(16,185,129,.5)" font-family="DM Sans,sans-serif" text-anchor="middle">रू Receiver</text>
-        <circle cx="280" cy="108" r="3.5" fill="rgba(16,185,129,.35)"/>
+        <circle cx="280" cy="118" r="20" stroke="rgba(16,185,129,.5)" stroke-width="1.3" fill="rgba(16,185,129,.12)"/>
+        <text x="280" y="114" font-size="10" fill="rgba(16,185,129,.8)" font-family="DM Sans,sans-serif" font-weight="700" text-anchor="middle">NEPAL</text>
+        <text x="280" y="128" font-size="7" fill="rgba(16,185,129,.55)" font-family="DM Sans,sans-serif" text-anchor="middle">रू Receiver</text>
+        <circle cx="280" cy="104" r="4.5" fill="rgba(16,185,129,.35)"/>
 
         <!-- Connecting transfer path with animated dot -->
         <path d="M76 108 Q140 60 266 114" stroke="rgba(16,185,129,.35)" stroke-width="1.8" stroke-dasharray="5 4" fill="none"/>
@@ -419,6 +477,56 @@ footer p{font-size:12px;color:var(--gray2)}
   </div>
 </div>
 
+<!-- TL;DR BAR -->
+<div class="tldr-bar-wrapper">
+<div class="tldr-bar">
+ <div class="tldr-intro-wrap"><p class="tldr-intro">XUNO (R2PX) is a cross-border remittance platform connecting the USA and Nepal through transparent, NRB-regulated exchange rates. I designed the complete experience from user flows to pixel-perfect UI. <strong>11 platforms benchmarked, real user testing pre-launch, delivered for web and mobile.</strong></p></div>
+ <div class="tldr-grid">
+   <div class="tldr-item">
+    <span class="tldr-label">The problem</span>
+    <span class="tldr-val">Cross-border payments to Nepal had hidden fees baked into exchange rates, slow transfers, unfamiliar settlement channels, and no visibility into transfer status.</span>
+   </div>
+   <div class="tldr-item">
+    <span class="tldr-label">My contribution</span>
+    <span class="tldr-val">User flow design, competitive benchmarking (11 platforms), end-to-end UI/UX for web &amp; mobile, usability testing</span>
+   </div>
+   <div class="tldr-item">
+    <span class="tldr-label">The outcome</span>
+    <span class="tldr-val">6-month delivery · NRB-regulated rates · IME Pay &amp; connectIPS integration · Web + mobile platforms</span>
+   </div>
+ </div>
+</div>
+</div>
+
+<!-- MY CONTRIBUTION -->
+<section class="my-role-section" id="my-contribution">
+  <div class="cs-inner">
+    <span class="section-num">1.0</span>
+    <span class="section-kicker">My Contribution</span>
+    <h2 class="cs-h2">WHAT I<br/>PERSONALLY OWNED</h2>
+    <p class="cs-body">Clarity on contribution matters. Here's the exact split between what I owned end-to-end and what the broader team handled.</p>
+    <div class="my-role-grid">
+      <div class="my-role-col owned">
+        <h4 class="owned">I owned this</h4>
+        <div class="role-list"><div class="role-item"><span class="role-item-title">User flow design &amp; flow diagrams</span><span class="role-item-desc">Mapped detailed user flows for every major action: sending a request, tracking payment, onboarding, and dispute resolution, creating a clear logical framework before any screen design.</span></div>
+<div class="role-item"><span class="role-item-title">Competitive research &amp; benchmarking</span><span class="role-item-desc">Analysed 11 platforms: Wise, Remitly, Western Union, MoneyGram, Instarem, Panda Remit, eSewa, IME Pay, NEO Money Transfer, connectIPS, and Fonepay, to identify must-have features and interface standards.</span></div>
+<div class="role-item"><span class="role-item-title">End-to-end UI/UX design</span><span class="role-item-desc">Designed every screen for both webapp and mobile: request flows, payment tracking, settlement status, user profiles, and notifications, with a mobile-first mindset.</span></div>
+<div class="role-item"><span class="role-item-title">Real user testing &amp; validation</span><span class="role-item-desc">Conducted pre-launch usability testing sessions to observe pain points, validate intuitiveness, and make data-driven improvements grounded in real user behaviour.</span></div>
+<div class="role-item"><span class="role-item-title">NDA-compliant public screens</span><span class="role-item-desc">Curated and prepared limited public-facing screens of the platform for portfolio presentation while respecting strict confidentiality agreements.</span></div>
+</div>
+        <div class="tools-strip"><span class="tool-tag">Figma</span><span class="tool-tag">Flow diagrams</span><span class="tool-tag">Competitor audit</span><span class="tool-tag">Usability testing</span></div>
+      </div>
+      <div class="my-role-col team">
+        <h4 class="team">The team handled this</h4>
+        <div class="role-list"><div class="role-item"><span class="role-item-title">Product management</span><span class="role-item-desc">Defined business requirements, prioritised the feature roadmap, and coordinated cross-team milestones across 6-month delivery timeline.</span></div>
+<div class="role-item"><span class="role-item-title">Development &amp; engineering</span><span class="role-item-desc">Implemented frontend and backend components, integrated Nepal's National Payment Infrastructure, IME Pay, and connectIPS APIs.</span></div>
+<div class="role-item"><span class="role-item-title">Compliance &amp; regulatory</span><span class="role-item-desc">Ensured NRB regulatory compliance, exchange rate integration, and anti-money laundering safeguards across the platform.</span></div>
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============================================================
      01 — OVERVIEW
      ============================================================ -->
@@ -426,10 +534,10 @@ footer p{font-size:12px;color:var(--gray2)}
   <div class="cs-inner">
     <div class="two-col">
       <div>
-        <span class="section-num">01</span>
+        <span class="section-num">1.0</span>
         <span class="section-kicker">Project Overview</span>
         <h2 class="cs-h2">CROSS-BORDER<br/>PAYMENTS,<br/>REIMAGINED.</h2>
-        <p class="cs-body">Request to Pay (r2px) is a platform designed to revolutionize cross-border payments — empowering individuals and businesses in Nepal to seamlessly receive money from the USA. Unlike traditional remittance methods, r2px allows Nepalese users to send payment requests directly to US contacts through an easy-to-use webapp or mobile interface.</p>
+        <p class="cs-body">Request to Pay (r2px) is a platform designed to revolutionize cross-border payments, empowering individuals and businesses in Nepal to seamlessly receive money from the USA. Unlike traditional remittance methods, r2px allows Nepalese users to send payment requests directly to US contacts through an easy-to-use webapp or mobile interface.</p>
         <p class="cs-body">Integrated with trusted national channels such as <strong>IME Pay and connectIPS</strong>, the platform supports secure transactions, real-time payment tracking, and settlement directly into the recipient's bank account or digital wallet.</p>
         <div class="tag-row">
           <span class="tag">Web Application</span>
@@ -442,9 +550,9 @@ footer p{font-size:12px;color:var(--gray2)}
         <span class="section-num">&nbsp;</span>
         <span class="section-kicker">The Problem</span>
         <h2 class="cs-h2">HIDDEN FEES.<br/>SLOW TRANSFERS.<br/>NO TRUST.</h2>
-        <p class="cs-body">Other cross-border payment platforms often charge high fees baked into the transferred amount — hidden charges like currency conversion markups, bank processing costs, and service commissions. The process is often slow, with unclear exchange rates and limited transparency, causing frustration and uncertainty for recipients in Nepal.</p>
+        <p class="cs-body">Other cross-border payment platforms often charge high fees baked into the transferred amount: hidden charges like currency conversion markups, bank processing costs, and service commissions. The process is often slow, with unclear exchange rates and limited transparency, causing frustration and uncertainty for recipients in Nepal.</p>
         <div class="highlight-box">
-          <p><strong>The opportunity:</strong> R2px leverages Nepal's National Payment Infrastructure and real-time tracking, letting users send requests through familiar local platforms like IME Pay and connectIPS — with NRB-regulated exchange rates and flexible settlement speeds, from instant to standard.</p>
+          <p><strong>The opportunity:</strong> R2px leverages Nepal's National Payment Infrastructure and real-time tracking, letting users send requests through familiar local platforms like IME Pay and connectIPS, with NRB-regulated exchange rates and flexible settlement speeds, from instant to standard.</p>
         </div>
       </div>
     </div>
@@ -456,7 +564,7 @@ footer p{font-size:12px;color:var(--gray2)}
      ============================================================ -->
 <section class="cs-section dark" id="research">
   <div class="cs-inner">
-    <span class="section-num">1.0</span>
+    <span class="section-num">2.0</span>
     <span class="section-kicker">My Role · Research Process</span>
     <h2 class="cs-h2">FLOWS FIRST.<br/>THEN BENCHMARKS.</h2>
     <div class="two-col-wide">
@@ -480,7 +588,7 @@ footer p{font-size:12px;color:var(--gray2)}
       <div class="comp-tag" role="listitem"><span>connectIPS</span></div>
       <div class="comp-tag" role="listitem"><span>Fonepay</span></div>
     </div>
-    <p class="competitor-note">11 PLATFORMS BENCHMARKED — GLOBAL &amp; NEPAL-CENTRIC</p>
+    <p class="competitor-note">11 PLATFORMS BENCHMARKED: GLOBAL &amp; NEPAL-CENTRIC</p>
   </div>
 </section>
 
@@ -489,7 +597,7 @@ footer p{font-size:12px;color:var(--gray2)}
      ============================================================ -->
 <section class="cs-section" id="painpoints">
   <div class="cs-inner">
-    <span class="section-num">2.0</span>
+    <span class="section-num">3.0</span>
     <span class="section-kicker">Design Phase · Pain Point Analysis</span>
     <h2 class="cs-h2">WHAT MAKES<br/>REMITTANCE PAINFUL</h2>
     <div class="pain-grid" role="list">
@@ -501,7 +609,7 @@ footer p{font-size:12px;color:var(--gray2)}
       <div class="pain-item" role="listitem">
         <div class="pain-top"><div class="pain-num">2</div><h4>Unfamiliar Settlement Channels</h4></div>
         <div class="arrow-down" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
-        <div class="pain-solution"><span class="sol-label">Solution</span><p>Integrated with <strong>IME Pay and connectIPS</strong> — settlement directly into bank accounts or wallets already familiar to Nepalese users.</p></div>
+        <div class="pain-solution"><span class="sol-label">Solution</span><p>Integrated with <strong>IME Pay and connectIPS</strong>: settlement directly into bank accounts or wallets already familiar to Nepalese users.</p></div>
       </div>
       <div class="pain-item" role="listitem">
         <div class="pain-top"><div class="pain-num">3</div><h4>No Visibility Into Transfer Status</h4></div>
@@ -522,7 +630,7 @@ footer p{font-size:12px;color:var(--gray2)}
      ============================================================ -->
 <section class="cs-section dark" id="collab">
   <div class="cs-inner">
-    <span class="section-num">3.0</span>
+    <span class="section-num">4.0</span>
     <span class="section-kicker">Cross-Functional Collaboration</span>
     <h2 class="cs-h2">DAILY SYNCS.<br/>MOBILE-FIRST.<br/>REAL TESTING.</h2>
     <div class="research-grid" role="list">
@@ -553,15 +661,15 @@ footer p{font-size:12px;color:var(--gray2)}
      ============================================================ -->
 <section class="cs-section darker" id="outcomes">
   <div class="cs-inner">
-    <span class="section-num">04</span>
+    <span class="section-num">5.0</span>
     <span class="section-kicker orange">Scope &amp; Scale</span>
     <h2 class="cs-h2">THE NUMBERS</h2>
-    <p class="cs-body">Given NDA constraints, detailed performance metrics aren't shareable publicly — but the scope and process rigor speak to the complexity of the work.</p>
+    <p class="cs-body">Given NDA constraints, detailed performance metrics aren't shareable publicly, but the scope and process rigor speak to the complexity of the work.</p>
     <div class="metrics-grid" role="list">
       <div class="metric-item" role="listitem"><span class="metric-num">12</span><span class="metric-label">Person cross-functional team</span></div>
       <div class="metric-item" role="listitem"><span class="metric-num">6<span>mo</span></span><span class="metric-label">Full design &amp; build timeline</span></div>
       <div class="metric-item" role="listitem"><span class="metric-num">11</span><span class="metric-label">Competitor platforms benchmarked</span></div>
-      <div class="metric-item" role="listitem"><span class="metric-num">2<span>×</span></span><span class="metric-label">Platforms — web &amp; mobile</span></div>
+      <div class="metric-item" role="listitem"><span class="metric-num">2<span>×</span></span><span class="metric-label">Platforms: web &amp; mobile</span></div>
     </div>
   </div>
 </section>
@@ -571,7 +679,7 @@ footer p{font-size:12px;color:var(--gray2)}
      ============================================================ -->
 <section class="cs-section dark" id="reflection">
   <div class="cs-inner">
-    <span class="section-num">05</span>
+    <span class="section-num">6.0</span>
     <span class="section-kicker">Reflection</span>
     <h2 class="cs-h2">WHAT I LEARNED</h2>
     <div class="reflection-grid" role="list">
@@ -580,8 +688,8 @@ footer p{font-size:12px;color:var(--gray2)}
         <p>In remittance, showing the bank's buying rate clearly, before a request is even sent, isn't a small UI detail. It's the thing that differentiates a platform from competitors that bury fees in the exchange rate. That shaped how I prioritised every other screen in this project.</p>
       </div>
       <div class="reflection-card" role="listitem">
-        <h4>Designing within NDA constraints sharpens storytelling</h4>
-        <p>Not being able to share every screen or detail meant I had to communicate the process and the thinking behind it clearly, rather than relying on visuals alone to carry the story.</p>
+        <h4>Fintech is a different kind of design challenge</h4>
+        <p>As my first fintech project, I learned that designing for money transfers means every pixel carries weight: a misplaced button or unclear label doesn't just confuse users, it erodes trust in real transactions. This project taught me to balance regulatory constraints with smooth user experience, and why clarity matters more than visual flair in financial products.</p>
       </div>
     </div>
   </div>
@@ -612,15 +720,15 @@ footer p{font-size:12px;color:var(--gray2)}
   <p>Let's talk about what we can build together.</p>
   <div class="cta-buttons">
     <a href="#" class="btn-primary" onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=dikshyabc01@gmail.com','_blank');return false;">Get In Touch</a>
-    <a href="/Portfolio/work" class="btn-outline">View All Work</a>
+    <a href="/Portfolio/work" target="_top" class="btn-outline">View All Work</a>
   </div>
 </section>
 </main>
 
 <footer role="contentinfo">
-  <a class="footer-logo" href="/Portfolio/home">DIKSHYA</a>
+  <a class="footer-logo" href="/Portfolio/home" target="_top">DIKSHYA</a>
   <p>© 2026 · UI/UX Designer · Kathmandu, Nepal</p>
-  <a href="/Portfolio/work" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
+  <a href="/Portfolio/work" target="_top" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
 </footer>
 
 <script>
@@ -630,8 +738,7 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style
 (function anim(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim)})();
 window.addEventListener('scroll',()=>{const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;document.getElementById('progress').style.width=p+'%';},{passive:true});
 const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('revealed')})},{threshold:.07});
-document.querySelectorAll('.pain-item,.research-card,.reflection-card,.metric-item,.comp-tag').forEach(el=>obs.observe(el));
-)}
+document.querySelectorAll('.tldr-bar,.pain-item,.research-card,.reflection-card,.metric-item,.comp-tag').forEach(el=>obs.observe(el));
 function showToast(e){e.preventDefault();navigator.clipboard.writeText('dikshyabc01@gmail.com').catch(()=>{});const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
 </script>
 <script>

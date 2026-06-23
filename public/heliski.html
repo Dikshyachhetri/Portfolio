@@ -51,11 +51,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 .cs-hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:80px 48px 80px;position:relative;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0d0d0d 0%,#0a141d 50%,#0d0d0d 100%);z-index:0}
-.hero-grid{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black,transparent)}
-.hero-glow{position:absolute;top:-60px;right:-80px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(59,158,234,.08) 0%,transparent 65%);pointer-events:none;animation:glow 9s ease-in-out infinite alternate;z-index:0}
+.cs-hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0d0d0d 0%,#0a141d 50%,#0d0d0d 100%);z-index:0}
+.cs-hero-grid{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black,transparent)}
+.cs-hero-glow{position:absolute;top:-60px;right:-80px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(59,158,234,.08) 0%,transparent 65%);pointer-events:none;animation:glow 9s ease-in-out infinite alternate;z-index:0}
 @keyframes glow{from{transform:scale(1)}to{transform:scale(1.3) translate(-30px,20px)}}
-.hero-content{position:relative;z-index:1;max-width:1200px;margin:0 auto;width:100%}
+.cs-hero-content{position:relative;z-index:1;max-width:1200px;margin:0 auto;width:100%}
 .breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:32px;opacity:0;animation:fadeUp .6s var(--ease) forwards 100ms}
 .breadcrumb a,.breadcrumb span{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);text-decoration:none;transition:color var(--dur-fast)}
 .breadcrumb a:hover{color:var(--orange)}
@@ -63,8 +63,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .hero-meta{display:flex;align-items:center;gap:12px;margin-bottom:24px;opacity:0;animation:fadeUp .6s var(--ease) forwards 200ms;flex-wrap:wrap}
 .cs-chip{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:2px}
 .cs-chip.sky{background:var(--sky-light);border-color:rgba(29,111,184,.5);color:var(--sky2)}
-.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,9vw,130px);letter-spacing:2px;line-height:.92;color:var(--white);margin-bottom:28px;opacity:0;animation:fadeUp .8s var(--ease) forwards 300ms}
-.hero h1 em{font-style:normal;color:var(--sky2)}
+.cs-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,9vw,130px);letter-spacing:2px;line-height:.92;color:var(--white);margin-bottom:28px;opacity:0;animation:fadeUp .8s var(--ease) forwards 300ms}
+.cs-hero h1 em{font-style:normal;color:var(--sky2)}
 .hero-tagline{font-size:18px;color:rgba(240,236,228,.6);font-weight:300;max-width:600px;line-height:1.75;margin-bottom:48px;opacity:0;animation:fadeUp .6s var(--ease) forwards 450ms}
 .hero-stats{display:flex;gap:0;border:1px solid var(--border);width:fit-content;flex-wrap:wrap;opacity:0;animation:fadeUp .6s var(--ease) forwards 600ms}
 .hs{padding:16px 32px;border-right:1px solid var(--border)}
@@ -79,7 +79,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 /* HERO ILLUSTRATION LAYOUT */
 .hero-split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;max-width:1200px;margin:0 auto;width:100%;position:relative;z-index:1}
 .hero-split-left{width:100%}
-.hero-split-left .hero-content{max-width:none;margin:0}
+.hero-split-left .cs-hero-content{max-width:none;margin:0}
 .hero-illus{position:relative;display:flex;align-items:center;justify-content:center;opacity:0;animation:heroDrift .9s cubic-bezier(.16,1,.3,1) forwards 700ms}
 @keyframes heroDrift{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .hero-illus svg{width:100%;max-width:520px;height:auto;filter:drop-shadow(0 16px 40px rgba(0,0,0,.35))}
@@ -229,9 +229,9 @@ footer p{font-size:12px;color:var(--gray2)}
  .cs-hero{padding:80px 24px 60px}.cs-section{padding:60px 24px}
  .two-col,.two-col-wide,.impact-split{grid-template-columns:1fr;gap:40px}
  .impact-split{gap:1px}
- .hero-stats{flex-direction:column;width:100%}
- .hs{border-right:none;border-bottom:1px solid var(--border)}
- .hs:last-child{border-bottom:none}
+ .cs-quick-stats{flex-direction:column;width:100%}
+ .cs-stat{border-right:none;border-bottom:1px solid var(--border)}
+ .cs-stat:last-child{border-bottom:none}
  .showcase-grid,.reflection-grid{grid-template-columns:1fr}
  .decision-item{grid-template-columns:1fr}
  .decision-arrow-col{display:none}
@@ -441,30 +441,30 @@ footer p{font-size:12px;color:var(--gray2)}
 
 <!-- HERO -->
 <section class="cs-hero" aria-label="Project introduction">
- <div class="hero-bg" aria-hidden="true"></div>
- <div class="hero-grid" aria-hidden="true"></div>
- <div class="hero-glow" aria-hidden="true"></div>
+ <div class="cs-hero-bg" aria-hidden="true"></div>
+ <div class="cs-hero-grid" aria-hidden="true"></div>
+ <div class="cs-hero-glow" aria-hidden="true"></div>
  <div class="hero-split">
   <div class="hero-split-left">
-   <div class="hero-content">
+   <div class="cs-hero-content">
     <div class="breadcrumb">
      <a href="index.html">Home</a><span class="sep">·</span>
      <a href="projects.html">Work</a><span class="sep">·</span>
      <span>Heliski International</span>
     </div>
-    <div class="hero-meta">
+    <div class="cs-hero-meta">
      <span class="cs-chip">PROJECT</span>
      <span class="cs-chip sky">HELISKI INTERNATIONAL</span>
      <span class="cs-chip">TRAVEL</span>
      <span class="cs-chip">MARKETPLACE</span>
     </div>
     <h1>GATEWAY TO<br/>EXHILARATING<br/><em>ADVENTURE.</em></h1>
-    <p class="hero-tagline">Designed the global hub for heliski adventure seekers and experience providers a booking marketplace connecting travelers with curated heliski trips, plus the full tour operator and admin systems behind it.</p>
-    <div class="hero-stats" role="list">
-     <div class="hs" role="listitem"><span class="hs-label">My Role</span><span class="hs-val">UI/UX Designer</span></div>
-     <div class="hs" role="listitem"><span class="hs-label">Platform</span><span class="hs-val">Website · Admin Portal</span></div>
-     <div class="hs" role="listitem"><span class="hs-label">Team Size</span><span class="hs-val">8 people</span></div>
-     <div class="hs" role="listitem"><span class="hs-label">Duration</span><span class="hs-val">4 Months</span></div>
+    <p class="cs-hero-tagline">Designed the global hub for heliski adventure seekers and experience providers a booking marketplace connecting travelers with curated heliski trips, plus the full tour operator and admin systems behind it.</p>
+    <div class="cs-quick-stats" role="list">
+     <div class="cs-stat" role="listitem"><span class="cs-stat-label">My Role</span><span class="cs-stat-val">UI/UX Designer</span></div>
+     <div class="cs-stat" role="listitem"><span class="cs-stat-label">Platform</span><span class="cs-stat-val">Website · Admin Portal</span></div>
+     <div class="cs-stat" role="listitem"><span class="cs-stat-label">Team Size</span><span class="cs-stat-val">8 people</span></div>
+     <div class="cs-stat" role="listitem"><span class="cs-stat-label">Duration</span><span class="cs-stat-val">4 Months</span></div>
     </div>
    </div>
   </div>
@@ -493,9 +493,9 @@ footer p{font-size:12px;color:var(--gray2)}
    </div>
  </div>
 </div>
-<div class="scroll-cue" aria-hidden="true">
+<div class="cs-scroll-cue" aria-hidden="true">
   <span>scroll to explore</span>
-  <div class="scroll-btn">
+  <div class="cs-scroll-btn">
    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
   </div>
  </div>

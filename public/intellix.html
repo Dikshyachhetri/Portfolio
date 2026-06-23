@@ -33,24 +33,6 @@ body:has(a:hover) #cursor-ring{width:48px;height:48px;opacity:.35}
 #progress{position:fixed;top:60px;left:0;height:2px;background:var(--teal2);z-index:99;width:0%;transition:width .1s linear}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:60px;border-bottom:1px solid var(--border);background:rgba(14,14,14,.9);backdrop-filter:blur(18px)}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:10px}
-.nav-logo-dot{width:9px;height:9px;background:var(--orange);border-radius:50%;animation:navpulse 3s ease-in-out infinite}
-@keyframes navpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
-.nav-links{display:flex;align-items:center;gap:36px;list-style:none}
-.nav-links a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color var(--dur-fast);position:relative;padding-bottom:4px}.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--orange);transition:width var(--dur-mid) var(--ease);border-radius:1px}
-
-.nav-links a:hover{color:var(--white)}
-.nav-links a:hover{color:var(--white)}.nav-links a:hover::after{width:100%}.nav-links a.active{color:var(--white)}.nav-links a.active::after{width:100%}
-.nav-cta{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);border:1px solid var(--orange);padding:8px 22px;border-radius:2px;text-decoration:none;transition:background var(--dur-fast),color var(--dur-fast),box-shadow var(--dur-fast)}
-.nav-cta:hover{background:var(--orange);color:#fff;box-shadow:0 0 20px rgba(232,82,26,.25)}
-.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:8px}
-.nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:transform var(--dur-mid) var(--ease),opacity var(--dur-fast)}
-.nav-drawer{display:none;position:fixed;top:60px;left:0;right:0;height:400px;background:var(--bg);border-bottom:1px solid var(--border);padding:48px;flex-direction:column;gap:24px;z-index:99;overflow-y:auto}
-.nav-drawer a{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:3px;color:var(--gray);text-decoration:none;transition:color var(--dur-fast)}
-.nav-drawer a:hover{color:var(--orange)}
-.nav-drawer.open{display:flex}
-
 /* HERO */
 .cs-hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:80px 48px 80px;position:relative;overflow:hidden}
 .cs-hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0d0d0d 0%,#0a1512 50%,#0e0e0e 100%);z-index:0}
@@ -65,6 +47,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .cs-hero-meta{display:flex;align-items:center;gap:12px;margin-bottom:24px;opacity:0;animation:fadeUp .6s var(--ease) forwards 200ms}
 .cs-chip{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);border:1px solid rgba(255,255,255,.2);padding:5px 14px;border-radius:2px}
 .cs-chip.teal{background:var(--teal-light);border-color:rgba(13,107,94,.5);color:var(--teal2)}
+.visit-hero-link{float:right;margin:10px 20px 0 0;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(13,107,94,.7);text-decoration:none;display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:1px solid rgba(13,107,94,.3);border-radius:3px;transition:background var(--dur-fast),color var(--dur-fast),border-color var(--dur-fast);font-family:'DM Sans',sans-serif;font-weight:400}
+.visit-hero-link:hover{background:rgba(13,107,94,.08);border-color:var(--teal);color:var(--teal)}
+.visit-hero-link svg{width:14px;height:14px;transition:transform var(--dur-mid) var(--ease)}
+.visit-hero-link:hover svg{transform:translateX(3px)}
 .cs-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,9vw,130px);letter-spacing:2px;line-height:.92;color:var(--white);margin-bottom:28px;opacity:0;animation:fadeUp .8s var(--ease) forwards 300ms}
 .cs-hero h1 em{font-style:normal;color:var(--teal2)}
 .cs-hero-tagline{font-size:18px;color:rgba(240,236,228,.6);font-weight:300;max-width:560px;line-height:1.75;margin-bottom:48px;opacity:0;animation:fadeUp .6s var(--ease) forwards 450ms}
@@ -73,7 +59,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .cs-stat:last-child{border-right:none}
 .cs-stat-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2);display:block;margin-bottom:4px}
 .cs-stat-val{font-size:15px;color:var(--white);font-weight:400}
-.cs-hero-art{position:absolute;right:-12px;top:10px;z-index:2;pointer-events:none;opacity:0;animation:fadeUp 1s var(--ease) forwards 800ms}.cs-hero-art svg{width:clamp(260px,32vw,420px);height:auto;display:block;filter:drop-shadow(0 0 60px rgba(0,0,0,.5))}
+.cs-hero-art{position:absolute;right:-12px;top:10px;z-index:2;pointer-events:none;opacity:0;animation:fadeUp 1s var(--ease) forwards 800ms}.cs-hero-art svg{width:clamp(260px,32vw,420px);height:auto;display:block;filter:drop-shadow(0 0 60px rgba(0,0,0,.5)) contrast(1.6) saturate(2)}
 @media(max-width:900px){.cs-hero-art{display:none}}
 .cs-scroll-cue{position:absolute;bottom:32px;right:48px;z-index:1;display:flex;align-items:center;gap:10px;opacity:0;animation:fadeUp .6s var(--ease) forwards 700ms}
 .cs-scroll-cue span{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray2)}
@@ -301,8 +287,7 @@ footer p{font-size:12px;color:var(--gray2)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.cs-hero-meta,.cs-hero h1,.cs-hero-tagline,.cs-quick-stats,.cs-scroll-cue{opacity:1;transform:none}}
 @media(max-width:1024px){.pain-grid,.research-grid{grid-template-columns:1fr 1fr}.metrics-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:900px){
-  nav{padding:0 24px}.nav-links{display:none}.nav-hamburger{display:flex}
-  .cs-hero{padding:80px 24px 60px}.cs-section{padding:60px 24px}
+   .cs-hero{padding:80px 24px 60px}.cs-section{padding:60px 24px}
   .two-col,.two-col-wide{grid-template-columns:1fr;gap:40px}
   .cs-quick-stats{flex-direction:column;width:100%}
   .cs-stat{border-right:none;border-bottom:1px solid var(--border)}
@@ -341,24 +326,6 @@ footer p{font-size:12px;color:var(--gray2)}
 <div id="progress" aria-hidden="true"></div>
 <div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-dot"></span>Opening Gmail...</div>
 
-<nav role="navigation" aria-label="Main navigation">
-  <a class="nav-logo" href="/Portfolio/home" aria-label="Dikshya Home"><span class="nav-logo-dot" aria-hidden="true"></span>DIKSHYA</a>
-  <ul class="nav-links" role="list">
-    <li><a href="/Portfolio/home">Home</a></li>
-    <li><a href="/Portfolio/work" class="active">Work</a></li>
-    <li><a href="/Portfolio/about">About</a></li>
-  </ul>
-  <a class="nav-cta" href="#" onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=dikshyabc01@gmail.com','_blank');return false;">Hire Me</a>
-  <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<nav class="nav-drawer" id="navDrawer" aria-label="Mobile navigation">
-  <a href="/Portfolio/home" onclick="closeDrawer()">Home</a>
-  <a href="/Portfolio/work" onclick="closeDrawer()">Work</a>
-  <a href="/Portfolio/about" onclick="closeDrawer()">About</a>
-  <a href="#" onclick="closeDrawer();window.open('https://mail.google.com/mail/?view=cm&fs=1&to=dikshyabc01@gmail.com','_blank');return false;">Hire Me →</a>
-</nav>
 
 <main id="main">
 
@@ -368,6 +335,7 @@ footer p{font-size:12px;color:var(--gray2)}
   <div class="cs-hero-grid" aria-hidden="true"></div>
   <div class="cs-hero-glow" aria-hidden="true"></div>
   <div class="cs-hero-content">
+    <a href="https://www.intellix.com/healthcare#improving-healthcare" target="_blank" rel="noopener noreferrer" class="visit-hero-link">Visit Site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17l9-9M9 8h7v7"/></svg></a>
     <div class="cs-hero-meta">
       <span class="cs-chip">PROJECT</span>
       <span class="cs-chip teal">INTELLIX</span>
@@ -386,59 +354,105 @@ footer p{font-size:12px;color:var(--gray2)}
 
             <!-- Hero illustration — Medical patient monitor (heartbeat, vitals, patient card) -->
     <div class="cs-hero-art" aria-hidden="true">
-      <svg viewBox="0 0 320 320" fill="none" width="320" height="320">
-        <!-- Medical monitor frame -->
-        <rect x="60" y="30" width="200" height="180" rx="6" stroke="rgba(13,107,94,.3)" stroke-width="1" fill="rgba(13,107,94,.04)"/>
-        <!-- Monitor screen inner -->
-        <rect x="68" y="38" width="184" height="164" rx="3" fill="rgba(13,107,94,.02)"/>
-        <!-- Medical cross in top-right of screen -->
-        <rect x="222" y="44" width="10" height="26" rx="1.5" fill="rgba(13,107,94,.12)"/>
-        <rect x="212" y="54" width="30" height="6" rx="1.5" fill="rgba(13,107,94,.12)"/>
-        <!-- Patient info bar -->
-        <rect x="76" y="44" width="80" height="4" rx=".8" fill="rgba(13,107,94,.1)"/>
-        <rect x="76" y="52" width="56" height="3" rx=".5" fill="rgba(13,107,94,.06)"/>
-        <!-- Heartbeat/ECG waveform (large, prominent) -->
-        <path d="M70 120 L96 120 L104 108 L112 136 L122 98 L132 134 L142 88 L152 132 L162 106 L174 120 L200 120" stroke="rgba(13,107,94,.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <!-- ECG glow line (behind) -->
-        <path d="M70 120 L96 120 L104 108 L112 136 L122 98 L132 134 L142 88 L152 132 L162 106 L174 120 L200 120" stroke="rgba(13,107,94,.15)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <!-- Vitals grid (bottom of monitor) -->
-        <rect x="76" y="154" width="56" height="36" rx="2" stroke="rgba(13,107,94,.1)" stroke-width=".4" fill="rgba(13,107,94,.03)"/>
-        <rect x="82" y="158" width="20" height="3" rx=".5" fill="rgba(13,107,94,.08)"/>
-        <rect x="82" y="164" width="14" height="4" rx=".5" fill="rgba(13,107,94,.15)"/>
-        <rect x="82" y="172" width="10" height="2" rx=".3" fill="rgba(13,107,94,.06)"/>
-        <rect x="138" y="154" width="56" height="36" rx="2" stroke="rgba(13,107,94,.1)" stroke-width=".4" fill="rgba(13,107,94,.03)"/>
-        <rect x="144" y="158" width="20" height="3" rx=".5" fill="rgba(13,107,94,.08)"/>
-        <rect x="144" y="164" width="12" height="4" rx=".5" fill="rgba(13,107,94,.15)"/>
-        <rect x="144" y="172" width="10" height="2" rx=".3" fill="rgba(13,107,94,.06)"/>
-        <rect x="200" y="154" width="44" height="36" rx="2" stroke="rgba(13,107,94,.1)" stroke-width=".4" fill="rgba(13,107,94,.03)"/>
-        <rect x="206" y="158" width="16" height="3" rx=".5" fill="rgba(13,107,94,.08)"/>
-        <rect x="206" y="164" width="10" height="4" rx=".5" fill="rgba(13,107,94,.15)"/>
-        <rect x="206" y="172" width="10" height="2" rx=".3" fill="rgba(13,107,94,.06)"/>
-        <!-- Monitor stand -->
-        <rect x="152" y="210" width="16" height="14" rx="1" fill="rgba(13,107,94,.06)"/>
-        <rect x="132" y="224" width="56" height="4" rx="1" fill="rgba(13,107,94,.08)"/>
-        <!-- Floating pill (left) -->
-        <rect x="24" y="80" width="28" height="12" rx="6" stroke="rgba(13,107,94,.15)" stroke-width=".5" fill="rgba(13,107,94,.06)"/>
-        <rect x="38" y="80" width="14" height="12" rx="6" fill="rgba(13,107,94,.12)"/>
-        <!-- Floating pill (right) -->
-        <rect x="268" y="70" width="28" height="12" rx="6" stroke="rgba(13,107,94,.15)" stroke-width=".5" fill="rgba(13,107,94,.06)"/>
-        <rect x="268" y="70" width="14" height="12" rx="6" fill="rgba(13,107,94,.12)"/>
-        <!-- Patient card floating (right) -->
-        <rect x="254" y="124" width="56" height="40" rx="3" stroke="rgba(13,107,94,.12)" stroke-width=".5" fill="rgba(13,107,94,.04)"/>
-        <circle cx="268" cy="136" r="5" stroke="rgba(13,107,94,.1)" stroke-width=".4" fill="rgba(13,107,94,.06)"/>
-        <rect x="278" y="132" width="24" height="2" rx=".3" fill="rgba(13,107,94,.08)"/>
-        <rect x="278" y="138" width="16" height="2" rx=".3" fill="rgba(13,107,94,.06)"/>
-        <rect x="258" y="148" width="40" height="2" rx=".3" fill="rgba(13,107,94,.06)"/>
-        <rect x="258" y="154" width="32" height="2" rx=".3" fill="rgba(13,107,94,.06)"/>
-        <!-- Status badge -->
-        <rect x="68" y="240" width="52" height="18" rx="9" stroke="rgba(13,107,94,.12)" stroke-width=".5" fill="rgba(13,107,94,.05)"/>
-        <circle cx="78" cy="249" r="3" fill="rgba(13,107,94,.25)"/>
-        <rect x="86" y="247" width="26" height="2.5" rx=".5" fill="rgba(13,107,94,.1)"/>
+      <svg viewBox="0 0 340 330" fill="none" width="340" height="330">
+        <!-- Medical monitor background frame -->
+        <rect x="30" y="20" width="280" height="220" rx="8" stroke="rgba(13,107,94,.45)" stroke-width="1" fill="rgba(13,107,94,.08)"/>
+        <rect x="40" y="30" width="260" height="200" rx="4" fill="rgba(13,107,94,.04)"/>
+
+        <!-- Top bar: patient info + medical cross -->
+        <rect x="50" y="38" width="100" height="5" rx=".6" fill="rgba(13,107,94,.25)"/>
+        <rect x="50" y="46" width="70" height="4" rx=".5" fill="rgba(13,107,94,.18)"/>
+        <!-- Medical cross (top right) -->
+        <rect x="270" y="38" width="10" height="28" rx="1.5" fill="rgba(13,107,94,.35)"/>
+        <rect x="260" y="48" width="30" height="8" rx="1.5" fill="rgba(13,107,94,.35)"/>
+
+        <!-- Animated ECG / Heartbeat line -->
+        <path d="M46 120 L80 120 L90 106 L100 138 L112 94 L124 136 L136 88 L148 134 L160 104 L174 120 L240 120" stroke="rgba(13,107,94,.7)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <animate attributeName="stroke-dashoffset" values="800;0" dur="1.5s" repeatCount="indefinite"/>
+          <animate attributeName="stroke" values="rgba(13,107,94,.7);rgba(34,197,94,.8);rgba(13,107,94,.7)" dur="1.5s" repeatCount="indefinite"/>
+        </path>
+        <!-- ECG glow -->
+        <path d="M46 120 L80 120 L90 106 L100 138 L112 94 L124 136 L136 88 L148 134 L160 104 L174 120 L240 120" stroke="rgba(13,107,94,.25)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-dasharray="800" stroke-dashoffset="800">
+          <animate attributeName="stroke-dashoffset" values="800;0" dur="1.5s" repeatCount="indefinite"/>
+        </path>
+
+        <!-- Vitals grid -->
+        <!-- Heart Rate -->
+        <rect x="46" y="160" width="76" height="44" rx="4" stroke="rgba(13,107,94,.25)" stroke-width=".6" fill="rgba(13,107,94,.06)"/>
+        <text x="54" y="172" font-family="'DM Sans',sans-serif" font-size="6" fill="rgba(13,107,94,.5)" font-weight="500">Heart Rate</text>
+        <text x="54" y="190" font-family="'DM Sans',sans-serif" font-size="16" fill="rgba(13,107,94,.7)" font-weight="600">72</text>
+        <text x="84" y="190" font-family="'DM Sans',sans-serif" font-size="8" fill="rgba(13,107,94,.4)">bpm</text>
+        <circle cx="112" cy="166" r="5" fill="rgba(13,107,94,.3)">
+          <animate attributeName="r" values="3.5;6;3.5" dur="0.8s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Blood Pressure -->
+        <rect x="132" y="160" width="76" height="44" rx="4" stroke="rgba(13,107,94,.25)" stroke-width=".6" fill="rgba(13,107,94,.06)"/>
+        <text x="140" y="172" font-family="'DM Sans',sans-serif" font-size="6" fill="rgba(13,107,94,.5)" font-weight="500">Blood Press.</text>
+        <text x="140" y="190" font-family="'DM Sans',sans-serif" font-size="16" fill="rgba(13,107,94,.7)" font-weight="600">120/80</text>
+        <text x="188" y="190" font-family="'DM Sans',sans-serif" font-size="7" fill="rgba(13,107,94,.4)">mmHg</text>
+
+        <!-- SpO2 -->
+        <rect x="218" y="160" width="76" height="44" rx="4" stroke="rgba(13,107,94,.25)" stroke-width=".6" fill="rgba(13,107,94,.06)"/>
+        <text x="226" y="172" font-family="'DM Sans',sans-serif" font-size="6" fill="rgba(13,107,94,.5)" font-weight="500">SpO₂</text>
+        <text x="226" y="190" font-family="'DM Sans',sans-serif" font-size="16" fill="rgba(13,107,94,.7)" font-weight="600">98</text>
+        <text x="260" y="190" font-family="'DM Sans',sans-serif" font-size="8" fill="rgba(13,107,94,.4)">%</text>
+
+        <!-- Bottom status bar with animated badge -->
+        <rect x="46" y="214" width="248" height="1.5" fill="rgba(13,107,94,.12)"/>
+        <rect x="46" y="222" width="60" height="20" rx="3" stroke="rgba(13,107,94,.3)" stroke-width=".5" fill="rgba(13,107,94,.08)"/>
+        <circle cx="56" cy="232" r="4" fill="rgba(34,197,94,.55)">
+          <animate attributeName="opacity" values="0.3;0.7;0.3" dur="1.5s" repeatCount="indefinite"/>
+        </circle>
+        <text x="66" y="235" font-family="'DM Sans',sans-serif" font-size="6" fill="rgba(13,107,94,.45)" font-weight="500">MONITORING</text>
+
+        <rect x="118" y="222" width="70" height="20" rx="3" stroke="rgba(13,107,94,.3)" stroke-width=".5" fill="rgba(13,107,94,.08)"/>
+        <text x="128" y="235" font-family="'DM Sans',sans-serif" font-size="6" fill="rgba(13,107,94,.45)" font-weight="500">CHECKLIST: 6/8</text>
+        <rect x="166" y="231" width="14" height="3" rx=".5" fill="rgba(13,107,94,.3)"/>
+
+        <rect x="200" y="222" width="94" height="20" rx="3" stroke="rgba(13,107,94,.3)" stroke-width=".5" fill="rgba(13,107,94,.08)"/>
+        <text x="210" y="235" font-family="'DM Sans',sans-serif" font-size="6" fill="rgba(13,107,94,.45)" font-weight="500">LENGTH OF STAY: 4d</text>
+
+        <!-- KPI mini chart (bottom) -->
+        <rect x="46" y="252" width="80" height="16" rx="2" stroke="rgba(13,107,94,.18)" stroke-width=".4" fill="rgba(13,107,94,.05)"/>
+        <rect x="50" y="256" width="36" height="3" rx=".3" fill="rgba(13,107,94,.18)"/>
+        <rect x="50" y="261" width="60" height="3" rx=".3" fill="rgba(13,107,94,.12)"/>
+
+        <!-- Animated bar chart -->
+        <rect x="142" y="255" width="10" height="11" rx="1.5" fill="rgba(13,107,94,.3)">
+          <animate attributeName="height" values="7;13;7" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="259;253;259" dur="2s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="156" y="250" width="10" height="16" rx="1.5" fill="rgba(13,107,94,.35)">
+          <animate attributeName="height" values="11;16;11" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="255;250;255" dur="2s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="170" y="252" width="10" height="14" rx="1.5" fill="rgba(13,107,94,.3)">
+          <animate attributeName="height" values="9;14;9" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="257;252;257" dur="2s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="184" y="258" width="10" height="8" rx="1.5" fill="rgba(13,107,94,.2)">
+          <animate attributeName="height" values="5;10;5" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="261;256;261" dur="2s" repeatCount="indefinite"/>
+        </rect>
+        <rect x="198" y="248" width="10" height="18" rx="1.5" fill="rgba(13,107,94,.35)">
+          <animate attributeName="height" values="13;18;13" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="253;248;253" dur="2s" repeatCount="indefinite"/>
+        </rect>
+
+        <!-- Patient card floating on right -->
+        <rect x="246" y="44" width="48" height="36" rx="3" stroke="rgba(13,107,94,.25)" stroke-width=".5" fill="rgba(13,107,94,.07)"/>
+        <circle cx="260" cy="56" r="6" stroke="rgba(13,107,94,.2)" stroke-width=".4" fill="rgba(13,107,94,.1)"/>
+        <rect x="270" y="52" width="18" height="3" rx=".3" fill="rgba(13,107,94,.18)"/>
+        <rect x="270" y="58" width="12" height="3" rx=".3" fill="rgba(13,107,94,.12)"/>
+        <rect x="250" y="68" width="36" height="3" rx=".3" fill="rgba(13,107,94,.15)"/>
+        <rect x="250" y="73" width="28" height="3" rx=".3" fill="rgba(13,107,94,.15)"/>
+
         <!-- Decorative dots -->
-        <circle cx="290" cy="40" r="2" fill="rgba(13,107,94,.08)"/>
-        <circle cx="30" cy="40" r="1.5" fill="rgba(13,107,94,.08)"/>
-        <circle cx="20" cy="180" r="2" fill="rgba(13,107,94,.06)"/>
-        <circle cx="300" cy="180" r="1.5" fill="rgba(13,107,94,.06)"/>
+        <circle cx="20" cy="50" r="2" fill="rgba(13,107,94,.2)"/>
+        <circle cx="320" cy="80" r="2" fill="rgba(13,107,94,.15)"/>
+        <circle cx="20" cy="280" r="2.5" fill="rgba(13,107,94,.15)"/>
+        <circle cx="320" cy="220" r="2" fill="rgba(13,107,94,.15)"/>
       </svg>
     </div>
   </div>
@@ -832,9 +846,7 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style
 window.addEventListener('scroll',()=>{const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;document.getElementById('progress').style.width=p+'%';},{passive:true});
 const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('revealed')})},{threshold:.07});
 document.querySelectorAll('.pain-item,.research-card,.decision-item,.showcase-card,.metric-item,.reflection-card').forEach(el=>obs.observe(el));
-const hamburger=document.getElementById('hamburger'),drawer=document.getElementById('navDrawer');
-hamburger.addEventListener('click',()=>{const open=drawer.classList.toggle('open');hamburger.setAttribute('aria-expanded',open);const spans=hamburger.querySelectorAll('span');if(open){spans[0].style.transform='translateY(6.5px) rotate(45deg)';spans[1].style.opacity='0';spans[2].style.transform='translateY(-6.5px) rotate(-45deg)'}else{spans.forEach(s=>{s.style.transform='';s.style.opacity=''})}});
-function closeDrawer(){drawer.classList.remove('open');hamburger.setAttribute('aria-expanded','false');hamburger.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity=''})}
+)}
 function showToast(e){e.preventDefault();navigator.clipboard.writeText('dikshya@email.com').catch(()=>{});const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
 </script>
 <script>

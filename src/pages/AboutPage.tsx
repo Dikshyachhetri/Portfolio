@@ -56,7 +56,7 @@ export default function AboutPage() {
                 <path d="M220 220 Q 340 340 320 380" stroke="rgba(232,82,26,.04)" stroke-width="1" fill="none" stroke-dasharray="3 5"/>
               </svg>
 
-              {/* 1. Figma logo — isometric 3D — top */}
+              {/* 1. Figma logo  isometric 3D  top */}
               <div className="orb-art orb-art-figma" aria-hidden="true">
                 <svg viewBox="0 0 48 48" fill="none" width="44" height="44">
                   {/* Shadow */}
@@ -72,7 +72,7 @@ export default function AboutPage() {
                 </svg>
               </div>
 
-              {/* 2. Wireframe frame — UI screen with grids — top-right */}
+              {/* 2. Wireframe frame  UI screen with grids  top-right */}
               <div className="orb-art orb-art-wireframe" aria-hidden="true">
                 <svg viewBox="0 0 48 48" fill="none" width="48" height="48">
                   {/* Device frame */}
@@ -90,7 +90,7 @@ export default function AboutPage() {
                 </svg>
               </div>
 
-              {/* 3. Component grid — design system — right */}
+              {/* 3. Component grid  design system  right */}
               <div className="orb-art orb-art-components" aria-hidden="true">
                 <svg viewBox="0 0 48 48" fill="none" width="46" height="46">
                   {/* Grid box */}
@@ -108,7 +108,7 @@ export default function AboutPage() {
                 </svg>
               </div>
 
-              {/* 4. Color swatches + design tokens — bottom-right */}
+              {/* 4. Color swatches + design tokens  bottom-right */}
               <div className="orb-art orb-art-tokens" aria-hidden="true">
                 <svg viewBox="0 0 48 48" fill="none" width="44" height="44">
                   {/* Main palette */}
@@ -124,7 +124,7 @@ export default function AboutPage() {
                 </svg>
               </div>
 
-              {/* 5. Mobile + desktop device frames — bottom */}
+              {/* 5. Mobile + desktop device frames  bottom */}
               <div className="orb-art orb-art-devices" aria-hidden="true">
                 <svg viewBox="0 0 52 48" fill="none" width="48" height="44">
                   {/* Laptop */}
@@ -142,7 +142,7 @@ export default function AboutPage() {
                 </svg>
               </div>
 
-              {/* 6. Auto-layout brackets + cursor — bottom-left */}
+              {/* 6. Auto-layout brackets + cursor  bottom-left */}
               <div className="orb-art orb-art-layout" aria-hidden="true">
                 <svg viewBox="0 0 48 48" fill="none" width="46" height="46">
                   {/* Auto-layout brackets */}
@@ -159,7 +159,7 @@ export default function AboutPage() {
                 </svg>
               </div>
 
-              {/* 7. Accessibility icons — left */}
+              {/* 7. Accessibility icons  left */}
               <div className="orb-art orb-art-a11y" aria-hidden="true">
                 <svg viewBox="0 0 48 48" fill="none" width="42" height="42">
                   {/* Universal access circle */}
@@ -174,7 +174,7 @@ export default function AboutPage() {
                 </svg>
               </div>
 
-              {/* 8. Prototype connection nodes — top-left */}
+              {/* 8. Prototype connection nodes  top-left */}
               <div className="orb-art orb-art-prototype" aria-hidden="true">
                 <svg viewBox="0 0 48 48" fill="none" width="44" height="44">
                   {/* Connection lines */}
@@ -233,7 +233,7 @@ export default function AboutPage() {
           <h2 className="section-title" id="exp-title">EXPERIENCE</h2>
           <div className="exp-list" role="list" aria-label="Work experience">
             {[
-              { role:'Senior UI/UX Designer', company:'Invicta PTE LTD', period:'2025–Present', desc:'I design the end-to-end web application for one of the world&rsquo;s largest product tanker operators, working across voyage performance dashboards, financial estimate workflows, pool segmentation interfaces, and RBAC systems that serve complex operational user types at enterprise scale.', link:null, url:'https://invicta.global/' },
+              { role:'Senior UI/UX Designer', company:'Stealth Startup', period:'2025–Present', desc:'I design the end-to-end web application for a maritime voyage intelligence platform, working across voyage performance dashboards, financial estimate workflows, pool segmentation interfaces, and RBAC systems that serve complex operational user types at enterprise scale.', link:null, url:null },
               { role:'UI/UX Designer', company:'Freelancing', period:'2024–2025', desc:'Independently served global clients across AI, Cybersecurity, and EdTech. Projects include an AI-powered financial intelligence platform, Sky Leap Cybersecurity (a Zero Trust browser security application), and Loksewa Pro, a Nepal PSC exam preparation mobile app that reached 10,000+ downloads.', link:null, url:null },
               { role:'UI/UX Designer', company:'Life Management Science Labs', period:'2024–2025', desc:'LMSL is a B2B and B2C product company operating across wellness, lifestyle, and education verticals. I designed across their full product ecosystem including a personal wellness mobile app, the LERERO EdTech platform, and the Aegenda fashion e-commerce experience while building and scaling their centralized Figma design system from the ground up.', link:null, url:'https://lifemanagementsciencelabs.com/' },
               { role:'UI/UX Designer', company:'Rara Digital Lab Pvt. Ltd.', period:'2022–2024', desc:'Rara Digital Labs is a software agency delivering custom digital products across enterprise, healthcare, fintech, and government sectors. I designed 9+ distinct products during my tenure including Myra ERP, Rara EMS, XUNO Fintech, NAC GSE inventory system, Heliski International booking marketplace, and a healthcare platform spanning web apps, mobile apps, PWAs, and admin panels across industries.', link:'/case/raraspace', url:'https://raralabs.com/' },

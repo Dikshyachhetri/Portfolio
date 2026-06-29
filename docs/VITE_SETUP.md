@@ -3,7 +3,7 @@
 
 ---
 
-## Option A — Keep as Static HTML (Simplest)
+## Option A  Keep as Static HTML (Simplest)
 
 You don't need Vite at all. GitHub Pages serves static files directly.
 
@@ -29,12 +29,12 @@ git push origin main
 
 # 5. Go to GitHub repo → Settings → Pages
 #    Source: Deploy from a branch → main → / (root)
-#    Save — your site is live at https://yourusername.github.io
+#    Save  your site is live at https://yourusername.github.io
 ```
 
 ---
 
-## Option B — Vite + React Wrapper (If you want a build pipeline)
+## Option B  Vite + React Wrapper (If you want a build pipeline)
 
 Use this if you want hot module replacement during development, want to add React components later, or prefer a modern build setup.
 
@@ -44,19 +44,19 @@ node --version   # needs v18+
 npm --version    # needs v9+
 ```
 
-### Step 1 — Scaffold the Vite project
+### Step 1  Scaffold the Vite project
 ```bash
 npm create vite@latest dikshya-portfolio-vite -- --template react
 cd dikshya-portfolio-vite
 npm install
 ```
 
-### Step 2 — Install gh-pages deploy tool
+### Step 2  Install gh-pages deploy tool
 ```bash
 npm install --save-dev gh-pages
 ```
 
-### Step 3 — Configure vite.config.js
+### Step 3  Configure vite.config.js
 Open `vite.config.js` and add your repo name as the base:
 ```js
 import { defineConfig } from 'vite'
@@ -69,7 +69,7 @@ export default defineConfig({
 })
 ```
 
-### Step 4 — Update package.json
+### Step 4  Update package.json
 Add these fields to your `package.json`:
 ```json
 {
@@ -84,7 +84,7 @@ Add these fields to your `package.json`:
 }
 ```
 
-### Step 5 — Move HTML files into public/
+### Step 5  Move HTML files into public/
 Vite serves files in `public/` as static assets at the root path.
 
 ```bash
@@ -104,7 +104,7 @@ cp path/to/dikshya.jpg public/assets/
 cp path/to/resume.pdf public/assets/
 ```
 
-### Step 6 — Update asset paths in HTML files
+### Step 6  Update asset paths in HTML files
 Since files are in `public/`, asset paths in your HTML become root-relative.
 In `about.html`, update the photo-frame to:
 ```html
@@ -121,16 +121,16 @@ All resume links update to:
 <a href="/assets/resume.pdf" download>Download Resume</a>
 ```
 
-### Step 7 — Test locally
+### Step 7  Test locally
 ```bash
 npm run dev
 # Opens at http://localhost:5173
 # Navigate to http://localhost:5173/projects.html etc.
 ```
 
-### Step 8 — Deploy to GitHub Pages
+### Step 8  Deploy to GitHub Pages
 ```bash
-# First time only — connect to your GitHub repo
+# First time only  connect to your GitHub repo
 git remote add origin https://github.com/yourusername/yourusername.github.io.git
 
 # Deploy
@@ -139,7 +139,7 @@ npm run deploy
 # Pushes the dist/ folder to a gh-pages branch
 ```
 
-### Step 9 — Enable GitHub Pages
+### Step 9  Enable GitHub Pages
 1. Go to your GitHub repo → **Settings → Pages**
 2. Source: **Deploy from a branch**
 3. Branch: **gh-pages** → **/ (root)**
@@ -148,7 +148,7 @@ npm run deploy
 
 ---
 
-## Option C — GitHub Actions (Auto-deploy on push)
+## Option C  GitHub Actions (Auto-deploy on push)
 
 Create `.github/workflows/deploy.yml` in your repo:
 
@@ -222,7 +222,7 @@ dikshya-portfolio-vite/
 │       ├── dikshya.jpg
 │       └── resume.pdf
 ├── src/
-│   ├── main.jsx          (Vite entry — leave as-is)
+│   ├── main.jsx          (Vite entry  leave as-is)
 │   └── App.jsx           (not used for static HTML approach)
 ├── .github/
 │   └── workflows/
@@ -235,7 +235,7 @@ dikshya-portfolio-vite/
 
 ---
 
-## Quick Reference — Commands
+## Quick Reference  Commands
 
 ```bash
 npm run dev        # Start local dev server (http://localhost:5173)
@@ -255,7 +255,7 @@ Vite's dev server handles this, but GitHub Pages doesn't support client-side rou
 Check that `base` in `vite.config.js` matches your repo structure. For `yourusername.github.io` use `base: '/'`. For a project repo at `github.com/user/portfolio` use `base: '/portfolio/'`.
 
 **Google Fonts not loading?**
-The fonts are loaded via `<link>` tags in each HTML file — they load directly from Google CDN. No changes needed.
+The fonts are loaded via `<link>` tags in each HTML file  they load directly from Google CDN. No changes needed.
 
 **Custom cursor not working on mobile?**
-Correct — the cursor is hidden on mobile (requires pointer device). Touch devices fall back to the default cursor. This is intentional behaviour.
+Correct  the cursor is hidden on mobile (requires pointer device). Touch devices fall back to the default cursor. This is intentional behaviour.

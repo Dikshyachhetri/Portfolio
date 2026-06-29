@@ -1,8 +1,8 @@
-# Frontend Digest — Operating Contract
+# Frontend Digest  Operating Contract
 
 ## Purpose
 
-This folder contains the frontend-skill digest for the Dikshya Portfolio — a
+This folder contains the frontend-skill digest for the Dikshya Portfolio  a
 React SPA portfolio for a UI/UX designer, built with Vite and React Router.
 `project-digest.md` is the authoritative fingerprint of the repo; this file
 governs trust, freshness, and re-check rules for all frontend lanes.

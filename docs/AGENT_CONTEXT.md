@@ -1,4 +1,4 @@
-# Agent Context — Dikshya Portfolio
+# Agent Context  Dikshya Portfolio
 **For AI agents continuing work on this project**
 
 ---
@@ -20,9 +20,9 @@
 
 | Company | Role | Period | Notes |
 |---------|------|--------|-------|
-| Invicta PTE LTD | Senior UI/UX Designer | 2025–Present | Current role. Likely NDA — no screenshots available. Maritime voyage intelligence platform. |
+| Stealth Startup | Senior UI/UX Designer | 2025–Present | Current role. NDA  no screenshots available. Maritime voyage intelligence platform. |
 | Pisces Moon | UI/UX Designer | 2024–2025 | Loksewa Pro app. Has full case study. |
-| Freelancing | UI/UX Designer | 2024–2025 | Multiple clients — AI fintech, Zero Trust security. No screenshots. |
+| Freelancing | UI/UX Designer | 2024–2025 | Multiple clients  AI fintech, Zero Trust security. No screenshots. |
 | Life Management Science Labs | UI/UX Designer | 2024–2025 | Wellness app, EdTech. No dedicated case study built. |
 | Rara Digital Lab Pvt. Ltd. | UI/UX Designer | 2022–2024 | RaraSpace EMS + Intellix Healthcare. Both have full case studies. |
 | Smart Acre Media Solutions | Designer & Marketing Analyst | 2021–2022 | Email design. No case study needed. |
@@ -42,10 +42,10 @@ Selected based on: visual assets available, depth of process, measurable outcome
 | 3 | Loksewa Pro | `loksewa.html` | EdTech / Mobile | 10,000+ downloads · 4.4★ |
 
 ### Projects NOT in portfolio (and why)
-- **Invicta / Maritime** — Current role, NDA, no ownable screenshots
-- **AI Fintech Platform** — No screenshots, no metrics
-- **Zero Trust Security** — No screenshots, niche domain
-- **LMSL Wellness App** — No screenshots provided
+- **Stealth Startup / Maritime**  Current role, NDA, no ownable screenshots
+- **AI Fintech Platform**  No screenshots, no metrics
+- **Zero Trust Security**  No screenshots, niche domain
+- **LMSL Wellness App**  No screenshots provided
 
 ---
 
@@ -56,7 +56,7 @@ Selected based on: visual assets available, depth of process, measurable outcome
 --bg:      #0e0e0e   Primary background
 --bg2:     #161616   Secondary background / section alternates
 --bg3:     #1e1e1e   Card surface
---orange:  #e8521a   Brand accent — ALL interactive elements
+--orange:  #e8521a   Brand accent  ALL interactive elements
 --orange2: #ff6b35   Hover state
 --white:   #f0ece4   Body text (warm white, not pure #fff)
 --gray:    #999      Secondary text
@@ -67,7 +67,7 @@ Selected based on: visual assets available, depth of process, measurable outcome
 
 ### Per-case-study accent colours
 ```
-raraspace.html → --orange (#e8521a) — matches global brand
+raraspace.html → --orange (#e8521a)  matches global brand
 intellix.html  → --teal (#0d6b5e) / --teal2 (#1a9b8a)
 loksewa.html   → --amber (#f59e0b) / --amber2 (#fbbf24)
 ```
@@ -108,7 +108,7 @@ Three-line icon animates to X on open. Drawer slides down from nav. `aria-expand
 
 ### Critical (before going live)
 - [ ] Replace `dikshya@email.com` with real email in all 6 files
-- [ ] Add real photo to `about.html` (`.photo-frame` div — see HANDOFF.md)
+- [ ] Add real photo to `about.html` (`.photo-frame` div  see HANDOFF.md)
 - [ ] Update social links in `index.html` `.social-strip` (LinkedIn, Dribbble, Behance)
 - [ ] Add `assets/resume.pdf` and update download buttons
 
@@ -154,13 +154,13 @@ In each case study, the project visuals are CSS mockups. To replace with real sc
 This portfolio was built across a long conversation session in June 2026. Key decisions made:
 
 1. **Dark editorial theme** kept from Dikshya's original Figma portfolio (black bg, orange accent, Bebas Neue for display text)
-2. **No hamburger on desktop** — nav links always visible (UX principle: Visibility/Findability)
-3. **3 projects only** — Maritime (Invicta, current role) was intentionally excluded due to NDA risk. Fintech and Zero Trust excluded due to no visual assets.
-4. **Case study depth** — Each case study follows: Hero → Research → Pain points → Design decisions (Before/After) → Final design → Metrics → Reflection. Matches the structure of Dikshya's original Figma case studies.
-5. **UX principles applied** throughout — from the GFG article on UI/UX principles: Simplicity, Visibility, Consistency, Feedback, Clarity, Accessibility, Usability, Efficiency, Delight, User-centered design.
+2. **No hamburger on desktop**  nav links always visible (UX principle: Visibility/Findability)
+3. **3 projects only**  Maritime (Stealth Startup, current role) was intentionally excluded due to NDA risk. Fintech and Zero Trust excluded due to no visual assets.
+4. **Case study depth**  Each case study follows: Hero → Research → Pain points → Design decisions (Before/After) → Final design → Metrics → Reflection. Matches the structure of Dikshya's original Figma case studies.
+5. **UX principles applied** throughout  from the GFG article on UI/UX principles: Simplicity, Visibility, Consistency, Feedback, Clarity, Accessibility, Usability, Efficiency, Delight, User-centered design.
 6. **Scramble text effect** added to hero based on a screen recording Dikshya shared showing this transition style.
 7. **Reading progress bar** added to all case study pages for depth feedback.
-8. **Toast notification** replaces direct mailto links — copies email to clipboard (more professional UX in 2026).
+8. **Toast notification** replaces direct mailto links  copies email to clipboard (more professional UX in 2026).
 
 ---
 
@@ -180,4 +180,4 @@ This portfolio was built across a long conversation session in June 2026. Key de
 6. Update "next project" links to form a new chain
 
 ### Tone & voice
-Content is written in **confident, modern, non-desperate** voice. Third-person is avoided. Active voice throughout. Technical details are included but not jargon-heavy. Metrics are cited where real — never fabricated.
+Content is written in **confident, modern, non-desperate** voice. Third-person is avoided. Active voice throughout. Technical details are included but not jargon-heavy. Metrics are cited where real  never fabricated.

@@ -1,4 +1,4 @@
-# Dikshya Portfolio — Agent Handoff Document
+# Dikshya Portfolio  Agent Handoff Document
 **Version:** 1.0  
 **Built:** June 2026  
 **Status:** Production-ready, deploy-ready  
@@ -7,7 +7,7 @@
 
 ## Project Overview
 
-A 6-page static HTML/CSS/JS portfolio for **Dikshya**, a UI/UX Designer based in Kathmandu, Nepal. Built with no frameworks — pure HTML, CSS, and vanilla JS. Designed to deploy on GitHub Pages as-is, or be wrapped in a Vite + React shell (see `VITE_SETUP.md`).
+A 6-page static HTML/CSS/JS portfolio for **Dikshya**, a UI/UX Designer based in Kathmandu, Nepal. Built with no frameworks  pure HTML, CSS, and vanilla JS. Designed to deploy on GitHub Pages as-is, or be wrapped in a Vite + React shell (see `VITE_SETUP.md`).
 
 ---
 
@@ -15,13 +15,13 @@ A 6-page static HTML/CSS/JS portfolio for **Dikshya**, a UI/UX Designer based in
 
 ```
 dikshya-portfolio/
-├── index.html          # Home — hero, AI workflow, project list, stats, CTA
-├── projects.html       # Work — 3 full project preview cards
-├── about.html          # About — bio, experience, skills, education
-├── raraspace.html      # Case study — RaraSpace EMS (Rara Digital Lab)
-├── intellix.html       # Case study — Intellix Healthcare KPI (Rara Digital Lab)
-├── loksewa.html        # Case study — Loksewa Pro mobile app (Pisces Moon)
-├── assets/             # (CREATE THIS) — add photo + resume here
+├── index.html          # Home  hero, AI workflow, project list, stats, CTA
+├── projects.html       # Work  3 full project preview cards
+├── about.html          # About  bio, experience, skills, education
+├── raraspace.html      # Case study  RaraSpace EMS (Rara Digital Lab)
+├── intellix.html       # Case study  Intellix Healthcare KPI (Rara Digital Lab)
+├── loksewa.html        # Case study  Loksewa Pro mobile app (Pisces Moon)
+├── assets/             # (CREATE THIS)  add photo + resume here
 │   ├── dikshya.jpg     # Profile photo (replace emoji placeholder in about.html)
 │   └── resume.pdf      # CV download
 ├── HANDOFF.md          # This file
@@ -58,14 +58,14 @@ All pages share identical CSS custom properties defined in `:root`:
 ## Features Implemented
 
 ### Global (all pages)
-- [x] Custom cursor — orange dot + lagging ring
-- [x] Fixed navigation — logo, links, "Hire Me" CTA
+- [x] Custom cursor  orange dot + lagging ring
+- [x] Fixed navigation  logo, links, "Hire Me" CTA
 - [x] Mobile hamburger drawer with X animation
 - [x] Email copy toast notification (on all CTA buttons)
 - [x] Skip-to-content link (accessibility)
 - [x] Focus-visible styles (keyboard navigation)
 - [x] `prefers-reduced-motion` media query (all animations disabled for accessibility)
-- [x] Fully responsive — tested at 1200px, 900px, 600px, 375px
+- [x] Fully responsive  tested at 1200px, 900px, 600px, 375px
 
 ### index.html
 - [x] Character scramble animation on hero text (RESEARCH. / DESIGN. / EXPERIENCE.)
@@ -156,7 +156,7 @@ loksewa.html   → intellix.html  (next project loop)
 
 ## Case Study Project Summary
 
-### 01 — RaraSpace EMS (`raraspace.html`)
+### 01  RaraSpace EMS (`raraspace.html`)
 - **Client:** Rara Digital Lab Pvt. Ltd.
 - **Role:** UI/UX Designer · 2022–2024
 - **Platform:** Web App
@@ -164,7 +164,7 @@ loksewa.html   → intellix.html  (next project loop)
 - **Outcome:** 100% operational efficiency improvement, 10+ modules unified
 - **Product accent color:** `#e8521a` (orange)
 
-### 02 — Intellix Healthcare KPI (`intellix.html`)
+### 02  Intellix Healthcare KPI (`intellix.html`)
 - **Client:** Rara Digital Lab Pvt. Ltd.
 - **Role:** UI/UX Designer · 2022–2024
 - **Platform:** Web App + Mobile
@@ -172,7 +172,7 @@ loksewa.html   → intellix.html  (next project loop)
 - **Outcome:** 30% user satisfaction improvement, reduced clinical cognitive load
 - **Product accent color:** `#0d6b5e` (teal) / `#1a9b8a`
 
-### 03 — Loksewa Pro (`loksewa.html`)
+### 03  Loksewa Pro (`loksewa.html`)
 - **Client:** Pisces Moon
 - **Role:** UI/UX Designer · 2024–2025
 - **Platform:** Mobile App (iOS + Android)

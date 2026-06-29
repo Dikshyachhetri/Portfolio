@@ -32,7 +32,7 @@ export default function CaseStudy({ htmlFile }: { htmlFile: string }) {
   const navigate = useNavigate()
   const src = BASE + htmlFile + '?embed=1'
 
-  // Disable custom cursor on case study pages — iframe blocks mousemove events
+  // Disable custom cursor on case study pages  iframe blocks mousemove events
   useEffect(() => {
     const cursor = document.getElementById('cursor')
     const ring = document.getElementById('cursor-ring')

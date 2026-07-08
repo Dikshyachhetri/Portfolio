@@ -23,6 +23,7 @@ export default function Nav() {
           <li><Link to="/home" className={isActive('/home') ? 'active' : ''}>Home</Link></li>
           <li><Link to="/work" className={isActive('/work') ? 'active' : ''}>Work</Link></li>
           <li><Link to="/about" className={isActive('/about') ? 'active' : ''}>About</Link></li>
+          <li><Link to="/contact" className={isActive('/contact') ? 'active' : ''}>Contact</Link></li>
         </ul>
         <button className="nav-cta" onClick={openGmail}>Let's Talk</button>
         <button
@@ -46,6 +47,7 @@ export default function Nav() {
         <Link to="/home" onClick={closeDrawer}>Home</Link>
         <Link to="/work" onClick={closeDrawer}>Work</Link>
         <Link to="/about" onClick={closeDrawer}>About</Link>
+        <Link to="/contact" onClick={closeDrawer}>Contact</Link>
         <Link to="/home" onClick={(e) => { e.preventDefault(); closeDrawer(); openGmail() }}>Let's Talk →</Link>
       </nav>
     </>

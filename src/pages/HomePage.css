@@ -107,35 +107,35 @@
 .blob {
   position: absolute;
   pointer-events: none;
-  border: 10px solid #fff;
+  border: 12px solid #fff;
   border-radius: 2px;
-  filter: blur(60px);
+  filter: blur(50px);
   z-index: 0;
 }
-.blob-dark { background: #475A0B; opacity: .5 }
-.blob-sage { background: #B4BD9B; opacity: .6 }
-.blob-a { /* behind heading */
+.blob-dark { background: #475A0B; opacity: .55 }
+.blob-sage { background: #B4BD9B; opacity: .65 }
+.blob-a { /* behind heading — svg: rect at (688,213) rot 180 */
   width: clamp(200px, 24vw, 410px);
   height: clamp(260px, 31vw, 532px);
   left: 50%;
   top: 43%;
   transform: translate(-50%, -50%) rotate(180deg);
 }
-.blob-b { /* hero right edge */
+.blob-b { /* hero upper-right — svg: rect at (1572,692) rot -90, blurred y 182-792 */
   width: clamp(200px, 24vw, 410px);
   height: clamp(260px, 31vw, 532px);
   right: -7%;
-  top: 86%;
+  top: 42%;
   transform: rotate(-90deg);
 }
-.blob-c { /* statement left */
+.blob-c { /* statement left — svg: rect at (223,1058) rot 90 */
   width: clamp(170px, 21vw, 360px);
   height: clamp(220px, 27vw, 460px);
   left: 12%;
   top: 2%;
   transform: rotate(90deg);
 }
-.blob-d { /* statement right edge */
+.blob-d { /* statement right edge — svg: rect at (1537,1170) */
   width: clamp(170px, 21vw, 360px);
   height: clamp(220px, 27vw, 460px);
   right: -9%;
@@ -145,7 +145,7 @@
 /* ---------- STATEMENT ---------- */
 .statement {
   position: relative;
-  padding: 150px 32px 370px;
+  padding: 85px 32px 220px;
   text-align: center;
   overflow: hidden;
 }

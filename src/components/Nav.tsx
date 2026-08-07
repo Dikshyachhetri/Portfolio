@@ -5,6 +5,12 @@ function openGmail() {
   window.open('https://mail.google.com/mail/?view=cm&fs=1&to=dikshyabc01@gmail.com', '_blank')
 }
 
+const links = [
+  { to: '/about', label: 'About' },
+  { to: '/work', label: 'Work' },
+  { to: '/contact', label: 'Contact' },
+]
+
 export default function Nav() {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const location = useLocation()
@@ -16,16 +22,16 @@ export default function Nav() {
   return (
     <>
       <nav role="navigation" aria-label="Main navigation">
-        <Link className="nav-logo" to="/home" aria-label="Dikshya  Home">
-          <span className="nav-logo-dot" aria-hidden="true"></span>DIKSHYA
+        <Link className="nav-logo" to="/home" aria-label="Dikshya — Home">
+          Dikshya
         </Link>
         <ul className="nav-links" role="list">
-          <li><Link to="/home" className={isActive('/home') ? 'active' : ''}>Home</Link></li>
-          <li><Link to="/work" className={isActive('/work') ? 'active' : ''}>Work</Link></li>
-          <li><Link to="/about" className={isActive('/about') ? 'active' : ''}>About</Link></li>
-          <li><Link to="/contact" className={isActive('/contact') ? 'active' : ''}>Contact</Link></li>
+          {links.map(l => (
+            <li key={l.to}>
+              <Link to={l.to} className={isActive(l.to) ? 'active' : ''}>{l.label}</Link>
+            </li>
+          ))}
         </ul>
-        <button className="nav-cta" onClick={openGmail}>Let's Talk</button>
         <button
           className="nav-hamburger"
           id="hamburger"
@@ -45,10 +51,10 @@ export default function Nav() {
         aria-label="Mobile navigation"
       >
         <Link to="/home" onClick={closeDrawer}>Home</Link>
-        <Link to="/work" onClick={closeDrawer}>Work</Link>
-        <Link to="/about" onClick={closeDrawer}>About</Link>
-        <Link to="/contact" onClick={closeDrawer}>Contact</Link>
-        <Link to="/home" onClick={(e) => { e.preventDefault(); closeDrawer(); openGmail() }}>Let's Talk →</Link>
+        {links.map(l => (
+          <Link to={l.to} key={l.to} onClick={closeDrawer}>{l.label}</Link>
+        ))}
+        <Link to="/home" onClick={(e) => { e.preventDefault(); closeDrawer(); openGmail() }}>Email me →</Link>
       </nav>
     </>
   )

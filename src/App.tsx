@@ -1,5 +1,6 @@
 import React from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import CustomCursor from './components/CustomCursor'
 import Nav from './components/Nav'
 
@@ -12,7 +13,18 @@ import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
 import CaseStudy from './pages/CaseStudy'
 
+const LIGHT_ROUTES = ['/home', '/about', '/contact']
+
 export default function App() {
+  const location = useLocation()
+
+  // New cream/olive design applies to Home, About, Contact.
+  // Work + case studies keep the legacy dark theme for now.
+  useEffect(() => {
+    const light = location.pathname === '/' || LIGHT_ROUTES.includes(location.pathname)
+    document.documentElement.setAttribute('data-theme', light ? 'light' : 'dark')
+  }, [location.pathname])
+
   return (
     <>
       <CustomCursor />

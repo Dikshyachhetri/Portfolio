@@ -18,6 +18,10 @@
   --success:   #22c55e;
   --border:    rgba(255,255,255,0.08);
   --border2:   rgba(255,255,255,0.14);
+  --green:     #495a07;
+  --sage:      #c0c7ab;
+  --cream:     #f4f2ea;
+  --orange-soft: rgba(232,82,26,.45);
   --sp-xs:  8px;
   --sp-sm:  16px;
   --sp-md:  24px;
@@ -45,6 +49,28 @@
   --fs-small:  12px;
   --fs-xs:     10px;
   --fs-meta:   9px;
+}
+
+/* =====================================================
+   LIGHT THEME (new cream + olive design)
+   Activated per-route by App.tsx via data-theme on <html>
+   ===================================================== */
+:root[data-theme="light"] {
+  --bg:        #f4f2ea;
+  --bg2:       #efede5;
+  --bg3:       #e9e7de;
+  --bg4:       #dadbc9;
+  --orange:    #586b0a;
+  --orange2:   #495a07;
+  --white:     #1c2410;
+  --gray:      #5a5f4e;
+  --gray2:     #8a8f7c;
+  --green:     #495a07;
+  --sage:      #c0c7ab;
+  --cream:     #f4f2ea;
+  --border:    rgba(28,36,16,0.10);
+  --border2:   rgba(28,36,16,0.18);
+  --orange-soft: rgba(88,107,10,.45);
 }
 
 *,*::before,*::after { box-sizing:border-box; margin:0; padding:0 }
@@ -91,7 +117,7 @@ body {
 }
 #cursor-ring {
   position:fixed; width:32px; height:32px;
-  border:1px solid rgba(232,82,26,.45); border-radius:50%;
+  border:1px solid var(--orange-soft); border-radius:50%;
   pointer-events:none; z-index:9998;
   transform:translate(-50%,-50%);
   transition: width var(--dur-mid) var(--ease), height var(--dur-mid) var(--ease), opacity var(--dur-mid);
@@ -116,19 +142,14 @@ nav {
   backdrop-filter: blur(18px);
 }
 .nav-logo {
-  font-family: var(--font-body); font-size:16px; font-weight:600; letter-spacing:2px;
+  font-family: var(--font-body); font-size:18px; font-weight:600; letter-spacing:-0.01em;
   color:var(--white); text-decoration:none;
-  display:flex; align-items:center; gap:10px;
+  display:flex; align-items:center;
 }
-.nav-logo-dot {
-  width:9px; height:9px; background:var(--orange); border-radius:50%;
-  animation: navpulse 3s ease-in-out infinite;
-}
-@keyframes navpulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
 
 .nav-links { display:flex; align-items:center; gap:36px; list-style:none; }
 .nav-links a {
-  font-size:11px; letter-spacing:2px; text-transform:uppercase;
+  font-size:13px; letter-spacing:0; text-transform:none;
   color:var(--gray); text-decoration:none;
   transition: color var(--dur-fast);
   position:relative; padding-bottom:3px;
@@ -142,15 +163,6 @@ nav {
 .nav-links a:hover::after { width:100% }
 .nav-links a.active { color:var(--white) }
 .nav-links a.active::after { width:100% }
-
-.nav-cta {
-  font-size:11px; letter-spacing:2px; text-transform:uppercase;
-  color:var(--orange); border:1px solid var(--orange);
-  padding:8px 20px; border-radius:2px; text-decoration:none;
-  transition: background var(--dur-fast), color var(--dur-fast);
-  cursor: pointer; background: none;
-}
-.nav-cta:hover { background:var(--orange); color:#fff }
 
 .nav-hamburger {
   display:none; flex-direction:column; gap:5px;
@@ -176,6 +188,87 @@ nav {
 .nav-drawer a:hover { color:var(--orange) }
 .nav-drawer.open { display:flex }
 
+/* Light-theme nav (Home / About / Contact) */
+:root[data-theme="light"] nav {
+  background: rgba(244,242,234,.88);
+  border-bottom-color: rgba(28,36,16,.08);
+}
+:root[data-theme="light"] .nav-drawer {
+  background: rgba(244,242,234,.97);
+  border-bottom-color: rgba(28,36,16,.08);
+}
+:root[data-theme="light"] .nav-hamburger span { background: var(--white) }
+
+
+/* =====================================================
+   FOOTER BAND (new design: dark olive CTA band)
+   Used on Home + About. Contact page renders its own.
+   ===================================================== */
+.footer-band {
+  background: var(--green, #495a07);
+  color: rgba(244,242,234,.85);
+  text-align: center;
+  padding: 96px 24px 56px;
+  margin-top: 32px;
+}
+.footer-band .fb-cta {
+  display: inline-block;
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #f4f2ea;
+  text-decoration: none;
+  border-bottom: 2px solid rgba(244,242,234,.35);
+  padding-bottom: 10px;
+  transition: border-color var(--dur-mid) var(--ease), color var(--dur-mid);
+}
+.footer-band .fb-cta:hover { border-color: #f4f2ea }
+.footer-band .fb-sub {
+  margin: 28px auto 0;
+  max-width: 560px;
+  color: rgba(244,242,234,.7);
+  font-size: 16px;
+  line-height: 1.6;
+}
+.footer-band .fb-meta {
+  margin-top: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  font-size: 14px;
+  color: rgba(244,242,234,.8);
+}
+.footer-band .fb-meta a {
+  color: #f4f2ea;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(244,242,234,.4);
+  padding-bottom: 2px;
+  transition: border-color var(--dur-fast);
+}
+.footer-band .fb-meta a:hover { border-color: #f4f2ea }
+.footer-band .fb-dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: rgba(244,242,234,.5);
+}
+.footer-band .fb-socials {
+  margin-top: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.footer-band .fb-socials a {
+  color: rgba(244,242,234,.75);
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: .5px;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 3px;
+  transition: color var(--dur-fast), border-color var(--dur-fast);
+}
+.footer-band .fb-socials a:hover { color: #f4f2ea; border-bottom-color: rgba(244,242,234,.5) }
 
 /* =====================================================
    TOAST

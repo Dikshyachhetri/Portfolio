@@ -1,15 +1,15 @@
 /* =====================================================
-   HOME — cream/olive design (Figma-accurate)
+   HOME — cream/olive design (PDF-accurate, 1728px canvas)
    ===================================================== */
 .home {
-  background: #F2EFE5;
+  background: #F3F2EA;
   color: #2C2C2C;
 }
 
-/* ---------- HERO ---------- */
+/* ---------- HERO (1117px on 1728 canvas = 64.6vw) ---------- */
 .hero {
   position: relative;
-  min-height: 92vh;
+  min-height: clamp(640px, 64.6vw, 1117px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,7 +19,7 @@
 .hero-center {
   position: relative;
   z-index: 1;
-  max-width: 620px;
+  max-width: 555px;
   width: 100%;
   margin: 0 auto;
   text-align: left;
@@ -38,12 +38,12 @@
   font-family: var(--font-inter);
   font-size: 20px;
   color: #000;
-  margin-top: 8px;
+  margin-top: -28px;
   transform: translateX(clamp(-28px, -6.4vw, -108px));
 }
 .hero-quote {
   max-width: 553px;
-  margin: 30px 0 0;
+  margin: 44px 0 0;
   font-size: clamp(16px, 1.6vw, 24px);
   line-height: 1.6;
   color: #2C2C2C;
@@ -54,7 +54,7 @@
 .hero-chips {
   position: absolute;
   left: clamp(20px, 4.3vw, 75px);
-  bottom: clamp(120px, 28vh, 265px);
+  bottom: clamp(110px, 23%, 260px);
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -81,7 +81,7 @@
 .open-for-work {
   position: absolute;
   right: clamp(20px, 3.9vw, 67px);
-  bottom: clamp(120px, 28vh, 265px);
+  bottom: clamp(110px, 23%, 260px);
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -114,38 +114,38 @@
 }
 .blob-dark { background: #475A0B; opacity: .5 }
 .blob-sage { background: #B4BD9B; opacity: .6 }
-.blob-a {
+.blob-a { /* behind heading */
   width: clamp(200px, 24vw, 410px);
   height: clamp(260px, 31vw, 532px);
   left: 50%;
-  top: 42%;
+  top: 43%;
   transform: translate(-50%, -50%) rotate(180deg);
 }
-.blob-b {
+.blob-b { /* hero right edge */
   width: clamp(200px, 24vw, 410px);
   height: clamp(260px, 31vw, 532px);
   right: -7%;
-  top: 74%;
+  top: 86%;
   transform: rotate(-90deg);
 }
-.blob-c {
+.blob-c { /* statement left */
   width: clamp(170px, 21vw, 360px);
   height: clamp(220px, 27vw, 460px);
   left: 12%;
   top: 2%;
   transform: rotate(90deg);
 }
-.blob-d {
+.blob-d { /* statement right edge */
   width: clamp(170px, 21vw, 360px);
   height: clamp(220px, 27vw, 460px);
   right: -9%;
-  top: 24%;
+  top: 60%;
 }
 
 /* ---------- STATEMENT ---------- */
 .statement {
   position: relative;
-  padding: 150px 32px 130px;
+  padding: 150px 32px 370px;
   text-align: center;
   overflow: hidden;
 }
@@ -164,24 +164,26 @@
 /* ---------- PROCESS ---------- */
 .process {
   position: relative;
-  padding: 40px 32px 190px;
+  padding: 0 32px 220px;
 }
 .process-grid {
   position: relative;
   z-index: 1;
-  max-width: 1240px;
+  max-width: 1728px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 160px 0;
+  min-height: 780px;
 }
 .process-card {
+  position: absolute;
   width: 230px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-.process-card.right { justify-self: end }
+.process-card:nth-child(1) { left: 21.4%; top: 0 }
+.process-card:nth-child(2) { right: 21.4%; top: 0 }
+.process-card:nth-child(3) { left: 21.4%; top: 673px }
+.process-card:nth-child(4) { right: 21.4%; top: 673px }
 .pc-title {
   font-family: var(--font-playfair);
   font-weight: 400;
@@ -205,14 +207,14 @@
 }
 .doodle-1 { width: 154px; height: 179px; transform: rotate(-9deg);   left: 56%; top: 2% }
 .doodle-2 { width: 154px; height: 151px; transform: rotate(-109deg); left: 27%; top: 36% }
-.doodle-3 { width: 110px; height: 121px; transform: rotate(-174deg); left: 42%; top: 74% }
-.doodle-4 { width: 204px; height: 109px; transform: rotate(60deg);   left: 69%; top: 44% }
+.doodle-3 { width: 110px; height: 121px; transform: rotate(-174deg); left: 42%; top: 88% }
+.doodle-4 { width: 204px; height: 109px; transform: rotate(60deg);   left: 69%; top: 55% }
 
 /* ---------- ROTATED BAR CLUSTER (between card rows) ---------- */
 .rect-cluster {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 55%;
   width: 0;
   height: 0;
   z-index: 0;
@@ -249,8 +251,8 @@
   .hero-chips { position: static; max-width: 100%; margin-top: 44px; justify-content: center; align-self: center }
   .open-for-work { position: static; margin-top: 26px; justify-content: center; align-self: center }
   .hero-chips, .open-for-work { display: flex }
-  .process-grid { grid-template-columns: 1fr; gap: 64px }
-  .process-card, .process-card.right { justify-self: start; width: 100%; max-width: 300px }
+  .process-grid { grid-template-columns: 1fr; grid-template-rows: none; row-gap: 64px; min-height: 0 }
+  .process-card, .process-card:nth-child(n) { position: static; grid-column: auto; grid-row: auto; justify-self: start; width: 100%; max-width: 300px; left: auto; right: auto; top: auto }
   .blob, .doodle, .rect-cluster { display: none }
   .statement-title br { display: none }
   .statement { padding: 100px 24px 90px }

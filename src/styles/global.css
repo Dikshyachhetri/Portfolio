@@ -59,7 +59,7 @@
    Activated per-route by App.tsx via data-theme on <html>
    ===================================================== */
 :root[data-theme="light"] {
-  --bg:        #f2efe5;
+  --bg:        #f3f2ea;
   --bg2:       #eae8dd;
   --bg3:       #e4e2d7;
   --bg4:       #dadbc9;
@@ -68,9 +68,9 @@
   --white:     #2c2c2c;
   --gray:      #535353;
   --gray2:     #8a8f7c;
-  --green:     #3a4a09;
+  --green:     #4d5a1c;
   --sage:      #b4bd9b;
-  --cream:     #f2efe5;
+  --cream:     #f3f2ea;
   --border:    rgba(65,86,0,0.20);
   --border2:   rgba(65,86,0,0.30);
   --orange-soft: rgba(123,161,12,.35);
@@ -213,7 +213,7 @@ nav {
    Used on Home + About. Contact page renders its own.
    ===================================================== */
 .footer-band {
-  background: #3a4a09;
+  background: #4D5A1C;
   color: #d3d3d3;
   text-align: center;
   padding: 110px 24px;

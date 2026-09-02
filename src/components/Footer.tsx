@@ -1,10 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+import { showToast } from './Toast'
+
+const GMAIL = 'https://mail.google.com/mail/?view=cm&fs=1&to=dikshyabc01@gmail.com'
 
 const socials = [
   {
     label: 'Email',
-    href: 'https://mail.google.com/mail/?view=cm&fs=1&to=dikshyabc01@gmail.com',
+    href: GMAIL,
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="4" width="20" height="16" rx="2"/>
@@ -46,7 +49,8 @@ const socials = [
   },
 ]
 
-export default function Footer() {
+/** Legacy footer for pages still on the dark theme (Work, case studies) */
+function LegacyFooter() {
   return (
     <footer
       role="contentinfo"
@@ -60,7 +64,6 @@ export default function Footer() {
         background: 'var(--bg)'
       }}
     >
-      {/* Social icons */}
       <div style={{ display: 'flex', gap: '20px' }}>
         {socials.map(s => (
           <a
@@ -83,7 +86,7 @@ export default function Footer() {
               transition: 'color var(--dur-fast), border-color var(--dur-fast), background var(--dur-fast)',
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.color = 'var(--orange)'
+              ;(e.currentTarget as HTMLElement).style.color = 'var(--orange)'
               ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(232,82,26,.3)'
             }}
             onMouseLeave={(e) => {
@@ -95,9 +98,6 @@ export default function Footer() {
           </a>
         ))}
       </div>
-
-
-
       <p style={{
         fontSize: '11px',
         color: 'var(--gray2)',
@@ -107,4 +107,42 @@ export default function Footer() {
       </p>
     </footer>
   )
+}
+
+/** New dark-olive CTA band from the redesigned Home/About pages */
+function BandFooter() {
+  return (
+    <footer role="contentinfo" className="footer-band">
+      <a className="fb-cta" href={GMAIL} target="_blank" rel="noopener noreferrer">
+        Work with me
+      </a>
+      <p className="fb-sub">
+        Open to full-time, contract, and freelance opportunities. Based in Kathmandu, working globally.
+      </p>
+      <div className="fb-meta">
+        <span>Dikshya BC</span>
+        <span className="fb-dot" aria-hidden="true"></span>
+        <a href="mailto:dikshyabc01@gmail.com" onClick={showToast}>dikshyabc01@gmail.com</a>
+      </div>
+      <div className="fb-socials">
+        <a href={GMAIL} target="_blank" rel="noopener noreferrer">Email</a>
+        <a href="https://www.linkedin.com/in/dikshya-chhetri/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://dribbble.com/Dikshya_B" target="_blank" rel="noopener noreferrer">Dribbble</a>
+        <a href="https://wa.me/9779868168977" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+    </footer>
+  )
+}
+
+export default function Footer() {
+  const location = useLocation()
+  const path = location.pathname
+
+  // Contact page is a full dark-olive screen — no extra footer band.
+  if (path === '/contact') return null
+
+  // New cream/olive design covers Home, About, Work + case-study shells.
+  if (path === '/home' || path === '/about' || path === '/work' || path.startsWith('/case/')) return <BandFooter />
+
+  return <LegacyFooter />
 }

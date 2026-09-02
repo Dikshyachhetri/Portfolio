@@ -5,6 +5,13 @@ function openGmail() {
   window.open('https://mail.google.com/mail/?view=cm&fs=1&to=dikshyabc01@gmail.com', '_blank')
 }
 
+const links = [
+  { to: '/home', label: 'Home' },
+  { to: '/about', label: 'About' },
+  { to: '/work', label: 'Work' },
+  { to: '/contact', label: 'Contact' },
+]
+
 export default function Nav() {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const location = useLocation()
@@ -16,28 +23,44 @@ export default function Nav() {
   return (
     <>
       <nav role="navigation" aria-label="Main navigation">
-        <Link className="nav-logo" to="/home" aria-label="Dikshya  Home">
-          <span className="nav-logo-dot" aria-hidden="true"></span>DIKSHYA
-        </Link>
-        <ul className="nav-links" role="list">
-          <li><Link to="/home" className={isActive('/home') ? 'active' : ''}>Home</Link></li>
-          <li><Link to="/work" className={isActive('/work') ? 'active' : ''}>Work</Link></li>
-          <li><Link to="/about" className={isActive('/about') ? 'active' : ''}>About</Link></li>
-          <li><Link to="/contact" className={isActive('/contact') ? 'active' : ''}>Contact</Link></li>
-        </ul>
-        <button className="nav-cta" onClick={openGmail}>Let's Talk</button>
-        <button
-          className="nav-hamburger"
-          id="hamburger"
-          aria-label={drawerOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={drawerOpen}
-          aria-controls="navDrawer"
-          onClick={() => setDrawerOpen(!drawerOpen)}
-        >
-          <span style={drawerOpen ? { transform: 'translateY(6.5px) rotate(45deg)' } : {}}></span>
-          <span style={drawerOpen ? { opacity: 0 } : {}}></span>
-          <span style={drawerOpen ? { transform: 'translateY(-6.5px) rotate(-45deg)' } : {}}></span>
-        </button>
+        <div className="nav-inner">
+          <Link className="nav-logo" to="/home" aria-label="Dikshya — Home">
+            Dikshya
+            {/* Logo accent — happy sun rising over Kathmandu hills */}
+            <svg className="logo-mark" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M2.8 20.2 C5.2 16.8 8 16.8 10.4 20.2 M9.8 20.2 C12.6 15.6 16.4 15.6 19.4 20.2"
+                stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"
+              />
+              <circle cx="16.7" cy="8.6" r="3.9" fill="var(--logo-sun)" />
+              <circle cx="15.5" cy="8.2" r="0.62" fill="var(--logo-sun-cutout)" />
+              <circle cx="17.9" cy="8.2" r="0.62" fill="var(--logo-sun-cutout)" />
+              <path
+                d="M15.7 10 a1.5 1.5 0 0 0 2 0"
+                stroke="var(--logo-sun-cutout)" strokeWidth="0.75" strokeLinecap="round"
+              />
+            </svg>
+          </Link>
+          <ul className="nav-links" role="list">
+            {links.map(l => (
+              <li key={l.to}>
+                <Link to={l.to} className={isActive(l.to) ? 'active' : ''}>{l.label}</Link>
+              </li>
+            ))}
+          </ul>
+          <button
+            className="nav-hamburger"
+            id="hamburger"
+            aria-label={drawerOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={drawerOpen}
+            aria-controls="navDrawer"
+            onClick={() => setDrawerOpen(!drawerOpen)}
+          >
+            <span style={drawerOpen ? { transform: 'translateY(6.5px) rotate(45deg)' } : {}}></span>
+            <span style={drawerOpen ? { opacity: 0 } : {}}></span>
+            <span style={drawerOpen ? { transform: 'translateY(-6.5px) rotate(-45deg)' } : {}}></span>
+          </button>
+        </div>
       </nav>
       <nav
         className={`nav-drawer${drawerOpen ? ' open' : ''}`}
@@ -45,10 +68,10 @@ export default function Nav() {
         aria-label="Mobile navigation"
       >
         <Link to="/home" onClick={closeDrawer}>Home</Link>
-        <Link to="/work" onClick={closeDrawer}>Work</Link>
-        <Link to="/about" onClick={closeDrawer}>About</Link>
-        <Link to="/contact" onClick={closeDrawer}>Contact</Link>
-        <Link to="/home" onClick={(e) => { e.preventDefault(); closeDrawer(); openGmail() }}>Let's Talk →</Link>
+        {links.map(l => (
+          <Link to={l.to} key={l.to} onClick={closeDrawer}>{l.label}</Link>
+        ))}
+        <Link to="/home" onClick={(e) => { e.preventDefault(); closeDrawer(); openGmail() }}>Email me →</Link>
       </nav>
     </>
   )

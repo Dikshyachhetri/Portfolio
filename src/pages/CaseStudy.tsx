@@ -13,18 +13,19 @@ const backBtnStyle: React.CSSProperties = {
   alignItems: 'center',
   gap: '8px',
   padding: '8px 16px',
-  background: 'rgba(14,14,14,.85)',
+  background: 'rgba(30, 38, 5, 0.72)',
   backdropFilter: 'blur(12px)',
-  border: '1px solid rgba(255,255,255,.1)',
-  borderRadius: '6px',
-  color: 'rgba(240,236,228,.7)',
+  border: '1px solid rgba(246, 244, 234, 0.28)',
+  borderRadius: '999px',
+  color: '#f4f2ea',
   fontSize: '12px',
   letterSpacing: '1px',
   textTransform: 'uppercase',
   textDecoration: 'none',
   cursor: 'pointer',
   fontFamily: 'DM Sans, sans-serif',
-  transition: 'background .18s, color .18s',
+  boxShadow: '0 6px 18px -8px rgba(20, 26, 4, 0.55)',
+  transition: 'background .18s, color .18s, border-color .18s',
 }
 
 export default function CaseStudy({ htmlFile }: { htmlFile: string }) {
@@ -51,8 +52,8 @@ export default function CaseStudy({ htmlFile }: { htmlFile: string }) {
       <button
         onClick={() => navigate(-1)}
         style={backBtnStyle}
-        onMouseEnter={e => { e.currentTarget.style.color = '#f0ece4'; e.currentTarget.style.background = 'rgba(232,82,26,.2)' }}
-        onMouseLeave={e => { e.currentTarget.style.color = 'rgba(240,236,228,.7)'; e.currentTarget.style.background = 'rgba(14,14,14,.85)' }}
+        onMouseEnter={e => { e.currentTarget.style.color = '#2c2c2c'; e.currentTarget.style.background = 'rgba(246,244,234,.96)' }}
+        onMouseLeave={e => { e.currentTarget.style.color = '#f4f2ea'; e.currentTarget.style.background = 'rgba(30,38,5,.72)' }}
         aria-label="Go back"
       >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -73,6 +74,7 @@ export default function CaseStudy({ htmlFile }: { htmlFile: string }) {
           left: 0,
           zIndex: 1,
           background: 'var(--bg)',
+          boxShadow: 'inset 0 1px 0 rgba(65,86,0,.06)'
         }}
       />
     </>

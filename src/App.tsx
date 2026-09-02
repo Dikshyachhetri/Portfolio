@@ -1,5 +1,6 @@
 import React from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import CustomCursor from './components/CustomCursor'
 import Nav from './components/Nav'
 
@@ -12,7 +13,20 @@ import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
 import CaseStudy from './pages/CaseStudy'
 
+const LIGHT_ROUTES = ['/home', '/about', '/contact', '/work']
+
 export default function App() {
+  const location = useLocation()
+
+  // New cream/olive design covers Home, About, Contact, Work and the
+  // case-study shells. The embedded case docs carry their own palette.
+  useEffect(() => {
+    const p = location.pathname
+    const light =
+      p === '/' || p === '/home' || p === '/about' || p === '/contact' || p === '/work' || p.startsWith('/case/')
+    document.documentElement.setAttribute('data-theme', light ? 'light' : 'dark')
+  }, [location.pathname])
+
   return (
     <>
       <CustomCursor />

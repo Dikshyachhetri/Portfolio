@@ -1,75 +1,175 @@
 /* =====================================================
-   ABOUT — new cream/olive design
+   ABOUT — cream/olive design
+   Same full-bleed graph-paper background as Home & Work
    ===================================================== */
 .about-page {
-  background: var(--bg);
-  color: var(--white);
+  /* graph-paper grid — #555555 at 10% opacity, full-bleed */
+  background-color: #F2EFE5;
+  background-image:
+    linear-gradient(to right, rgba(85, 85, 85, 0.10) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(85, 85, 85, 0.10) 1px, transparent 1px);
+  background-size: 96px 96px;
+  color: #2C2C2C;
 }
 
-/* ---------- STORY ---------- */
+/* ---------- HERO: heading + story text | ID card ---------- */
 .story-section {
-  padding: 140px 32px 0;
+  padding: 150px 32px 0;
 }
-.about-title {
-  text-align: center;
-  font-size: clamp(38px, 5.2vw, 66px);
-  font-weight: 600;
-  letter-spacing: -0.025em;
-}
+
+/* hero grid: ID card (left, 300px) and heading + story text (right, 676px)
+   separated by a fixed 140px gap on desktop */
 .story-grid {
-  max-width: 1000px;
-  margin: 60px auto 0;
+  max-width: 1180px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 60px;
+  grid-template-areas: 'rail text';
+  grid-template-columns: 300px minmax(0, 676px);
+  gap: 140px;
+  justify-content: center;
   align-items: start;
 }
-.story-photo {
-  margin: 0;
+
+.story-col {
+  grid-area: text;
+  min-width: 0;
 }
-.photo-wrap {
-  border-radius: 18px;
-  overflow: hidden;
-  background: var(--bg2);
-  border: 1px solid var(--border);
+
+/* Page title — signature style used across pages
+   (Playfair italic, olive, weight 500) */
+.about-title {
+  font-family: var(--font-playfair);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(36px, 4.8vw, 68px);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: #4A5C14;
+  margin-bottom: 30px;
 }
-.photo-wrap img {
-  width: 100%;
-  display: block;
-}
-.story-photo figcaption {
-  margin-top: 16px;
-  text-align: center;
-}
-.cap-name {
-  display: block;
-  font-weight: 600;
-  font-size: 16px;
-}
-.cap-role {
-  display: block;
-  margin-top: 3px;
-  font-size: 10.5px;
-  letter-spacing: 2.5px;
-  color: var(--orange2);
-}
-.cap-loc {
-  display: block;
-  margin-top: 3px;
-  font-size: 10.5px;
-  letter-spacing: 2.5px;
-  color: var(--gray2);
-}
+
 .story-text p {
-  color: var(--gray);
+  color: #535353;
   font-size: 16px;
+  font-weight: 400;
   line-height: 1.78;
   margin-bottom: 24px;
 }
-.story-text p:first-child {
-  color: var(--white);
-  font-size: 18px;
-  font-weight: 500;
+
+/* the only emphasis in the story — three key phrases */
+.story-text .em {
+  font-weight: 600;
+  color: #2c2c2c;
+}
+
+/* ---------- ID CARD COLUMN (left) ---------- */
+.story-rail {
+  grid-area: rail;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* drop the rail so the long strap clears the fixed nav and the
+     card photo roughly aligns with the heading in the text column */
+  padding-top: 86px;
+}
+
+/* ── ID card — green lanyard strap on top, swings very slowly ── */
+.id-card {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 34px 14px 22px;
+  background: #fdfcf7;
+  border: 1px solid rgba(65, 86, 0, 0.18);
+  border-radius: 18px;
+  box-shadow: 0 18px 34px -22px rgba(58, 74, 9, 0.4);
+
+  /* pendulum pivot: top of the long green strap, above the card */
+  transform-origin: 50% -132px;
+  animation: id-swing 9s ease-in-out infinite alternate;
+  will-change: transform;
+}
+.id-card:hover {
+  animation-play-state: paused;
+}
+
+/* long green lanyard strap (130px) — passes behind the metal ring */
+.id-strap {
+  position: absolute;
+  top: -132px;
+  left: 50%;
+  width: 22px;
+  height: 130px;
+  margin-left: -11px;
+  z-index: 3;
+  background: linear-gradient(90deg, #7d9829 0%, #5d7714 45%, #41560c 100%);
+  border-radius: 6px;
+  box-shadow: inset 2px 0 3px rgba(255, 255, 255, 0.22), inset -3px 0 5px rgba(0, 0, 0, 0.22);
+}
+/* metal clip ring */
+.id-ring {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 26px;
+  height: 26px;
+  margin-left: -13px;
+  border-radius: 50%;
+  border: 3.5px solid #b6b29e;
+  background: rgba(242, 239, 229, 0.45);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.6);
+  z-index: 2;
+}
+/* punched hole through the card, under the ring */
+.id-punch {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  border-radius: 50%;
+  background: #F2EFE5; /* page cream shows through like a real punch */
+  box-shadow: inset 0 0 0 1px rgba(65, 86, 0, 0.25);
+  z-index: 1;
+}
+
+@keyframes id-swing {
+  from { transform: rotate(-2.8deg) }
+  to   { transform: rotate(2.8deg) }
+}
+
+.id-face {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #eae8dd;
+}
+.id-face img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 18%;
+  user-select: none;
+}
+
+.id-info {
+  padding: 16px 4px 0;
+  text-align: center;
+}
+.id-name {
+  display: block;
+  font-weight: 600;
+  font-size: 17px;
+  color: #2c2c2c;
+}
+.id-role {
+  display: block;
+  margin-top: 6px;
+  font-size: 10.5px;
+  letter-spacing: 2.6px;
+  color: #4a5c14;
+  text-transform: uppercase;
 }
 
 /* ---------- SHARED SECTION SHELL ---------- */
@@ -77,10 +177,16 @@
   max-width: 1000px;
   margin: 0 auto;
 }
+
+/* Section headings — Playfair, olive, same weight as the page titles */
 .section-heading {
-  font-size: clamp(30px, 4vw, 48px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-family: var(--font-playfair);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(30px, 3.8vw, 54px);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: #4A5C14;
 }
 
 /* ---------- EXPERIENCE ---------- */
@@ -96,7 +202,7 @@
   justify-content: space-between;
   gap: 28px;
   padding: 24px 0;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(65, 86, 0, 0.2);
 }
 .exp-info {
   display: flex;
@@ -106,13 +212,14 @@
 .exp-role {
   font-size: 17px;
   font-weight: 600;
+  color: #2c2c2c;
 }
 .exp-company {
   font-size: 14px;
-  color: var(--gray);
+  color: #535353;
 }
 .exp-period {
-  color: var(--gray2);
+  color: #8a8f7c;
   font-size: 14px;
   white-space: nowrap;
 }
@@ -123,7 +230,7 @@
 .btn-resume {
   display: inline-block;
   color: #f4f2ea;
-  background: var(--orange2);
+  background: #4d640a;
   padding: 12px 26px;
   border-radius: 999px;
   font-size: 14px;
@@ -132,7 +239,7 @@
   transition: background var(--dur-mid) var(--ease), transform var(--dur-mid) var(--ease);
 }
 .btn-resume:hover {
-  background: var(--orange);
+  background: #3a4a09;
   transform: translateY(-1px);
 }
 
@@ -150,12 +257,13 @@
   align-items: center;
   gap: 16px;
   padding: 17px 0;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(65, 86, 0, 0.2);
   font-size: 17px;
+  color: #2c2c2c;
 }
 .hobby-list li::before {
   content: '\2022';
-  color: var(--orange);
+  color: #7ba10c;
   font-size: 20px;
   line-height: 1;
 }
@@ -169,14 +277,14 @@
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 27px;
-  color: var(--orange2);
+  color: #4d640a;
   text-decoration: none;
   border-bottom: 1px solid currentColor;
   padding-bottom: 4px;
   transition: color var(--dur-fast);
 }
 .still-here-link:hover {
-  color: var(--orange);
+  color: #3a4a09;
 }
 
 /* ---------- REVEAL ---------- */
@@ -191,10 +299,32 @@
 }
 
 /* ---------- RESPONSIVE ---------- */
+@media (max-width: 1150px) {
+  /* tighter gap so the text column keeps ~676px on smaller desktops */
+  .story-grid {
+    gap: clamp(56px, 8vw, 100px);
+  }
+}
+
 @media (max-width: 860px) {
-  .story-section { padding-top: 110px }
-  .story-grid { grid-template-columns: 1fr; gap: 40px }
-  .story-photo { max-width: 300px; margin: 0 auto }
+  .story-section { padding-top: 120px }
+  .story-grid {
+    grid-template-areas: 'text' 'rail';
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .story-col {
+    justify-self: center;
+    width: min(100%, 676px);
+  }
+  .about-title {
+    font-size: clamp(32px, 7vw, 46px);
+  }
+  .story-rail {
+    padding-top: 0;
+    width: min(100%, 300px);
+    margin: 0 auto;
+  }
   .exp-row { flex-direction: column; gap: 8px; align-items: flex-start }
   .exp-actions { text-align: left }
   .still-here { padding-top: 72px }

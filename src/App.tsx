@@ -13,15 +13,17 @@ import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
 import CaseStudy from './pages/CaseStudy'
 
-const LIGHT_ROUTES = ['/home', '/about', '/contact']
+const LIGHT_ROUTES = ['/home', '/about', '/contact', '/work']
 
 export default function App() {
   const location = useLocation()
 
-  // New cream/olive design applies to Home, About, Contact.
-  // Work + case studies keep the legacy dark theme for now.
+  // New cream/olive design covers Home, About, Contact, Work and the
+  // case-study shells. The embedded case docs carry their own palette.
   useEffect(() => {
-    const light = location.pathname === '/' || LIGHT_ROUTES.includes(location.pathname)
+    const p = location.pathname
+    const light =
+      p === '/' || p === '/home' || p === '/about' || p === '/contact' || p === '/work' || p.startsWith('/case/')
     document.documentElement.setAttribute('data-theme', light ? 'light' : 'dark')
   }, [location.pathname])
 

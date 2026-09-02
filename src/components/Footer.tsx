@@ -141,8 +141,8 @@ export default function Footer() {
   // Contact page is a full dark-olive screen — no extra footer band.
   if (path === '/contact') return null
 
-  // New design covers Home + About. Work + case studies keep the legacy footer.
-  if (path === '/home' || path === '/about') return <BandFooter />
+  // New cream/olive design covers Home, About, Work + case-study shells.
+  if (path === '/home' || path === '/about' || path === '/work' || path.startsWith('/case/')) return <BandFooter />
 
   return <LegacyFooter />
 }

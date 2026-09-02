@@ -25,6 +25,8 @@
   --sage:      #c0c7ab;
   --cream:     #f4f2ea;
   --orange-soft: rgba(232,82,26,.45);
+  --logo-sun:        #e8521a;   /* smiley-sun fill (dark nav) */
+  --logo-sun-cutout: #0e0e0e;   /* face punches (dark nav) */
   --sp-xs:  8px;
   --sp-sm:  16px;
   --sp-md:  24px;
@@ -59,7 +61,7 @@
    Activated per-route by App.tsx via data-theme on <html>
    ===================================================== */
 :root[data-theme="light"] {
-  --bg:        #f3f2ea;
+  --bg:        #f2efe5;
   --bg2:       #eae8dd;
   --bg3:       #e4e2d7;
   --bg4:       #dadbc9;
@@ -70,10 +72,12 @@
   --gray2:     #8a8f7c;
   --green:     #3a4a09;
   --sage:      #b4bd9b;
-  --cream:     #f3f2ea;
+  --cream:     #f2efe5;
   --border:    rgba(65,86,0,0.20);
   --border2:   rgba(65,86,0,0.30);
   --orange-soft: rgba(123,161,12,.35);
+  --logo-sun:        #7ba10c;   /* smiley-sun fill (light nav) */
+  --logo-sun-cutout: #f2efe5;   /* face punches (light nav) */
 }
 
 *,*::before,*::after { box-sizing:border-box; margin:0; padding:0 }
@@ -135,25 +139,53 @@ body:has(button:hover) #cursor-ring { width:48px; height:48px; opacity:.35 }
    ===================================================== */
 nav {
   position: fixed; top:0; left:0; right:0; z-index:100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 48px;
-  height: 60px;
   border-bottom: 1px solid var(--border);
   background: rgba(14,14,14,.9);
   backdrop-filter: blur(18px);
 }
+/* nav content rides full-bleed; the 1440px rule is for
+   content blocks only, not chrome or backgrounds */
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1440px;  /* nav content aligns with the 1440px content zone */
+  margin: 0 auto;
+  padding: 0 48px;
+  height: 60px;
+}
 .nav-logo {
-  font-family: var(--font-annai); font-size:24px; font-weight:400; letter-spacing:0;
-  color:var(--white); text-decoration:none;
-  display:flex; align-items:center;
+  font-family: 'Caveat', var(--font-annai), cursive;
+  font-size: 27px; font-weight: 600; letter-spacing: 0;
+  color: var(--white); text-decoration: none;
+  display: flex; align-items: center;
+  line-height: 1;
+  padding-bottom: 2px;
+}
+/* Logo accent — sun rises over hills. Wakes up on hover. */
+.nav-logo .logo-mark {
+  margin-left: 5px;
+  flex: none;
+  transform-origin: 68% 36%; /* sun centre */
+  transition: transform var(--dur-mid) var(--ease);
+}
+.nav-logo:hover .logo-mark {
+  animation: logo-sun-wave 650ms var(--ease);
+}
+@keyframes logo-sun-wave {
+  0%   { transform: rotate(0deg) scale(1) }
+  25%  { transform: rotate(-11deg) scale(1.12) }
+  50%  { transform: rotate(9deg) scale(1.06) }
+  75%  { transform: rotate(-5deg) scale(1) }
+  100% { transform: rotate(0deg) scale(1) }
 }
 
 .nav-links { display:flex; align-items:center; gap:36px; list-style:none; }
 .nav-links a {
   font-family: var(--font-annai);
-  font-size:16px; letter-spacing:0; text-transform:none;
+  font-size:16px; font-weight:400; font-style:normal;
+  letter-spacing:0; text-transform:none;
   color:var(--gray); text-decoration:none;
   transition: color var(--dur-fast);
   position:relative; padding-bottom:3px;
@@ -180,12 +212,14 @@ nav {
   display:none; position:fixed; top:60px; left:0; right:0;
   background:rgba(14,14,14,.97); backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
-  padding:48px;
-  flex-direction:column; gap:24px;
+  padding:32px 48px;
+  flex-direction:column; gap:18px;
   z-index:99;
 }
 .nav-drawer a {
-  font-family:'Bebas Neue',sans-serif; font-size:36px; letter-spacing:3px;
+  font-family: var(--font-annai);
+  font-size:16px; font-weight:400; font-style:normal;
+  letter-spacing:0; text-transform:none;
   color:var(--gray); text-decoration:none;
   transition: color var(--dur-fast);
 }
@@ -307,8 +341,15 @@ nav {
 }
 
 
+/* =====================================================
+   1440px is a CONTENT constraint only — backgrounds and
+   patterns run full-bleed; each content block carries its
+   own max-width (hero column, statement title, puzzle…).
+   ===================================================== */
+
 @media(max-width:900px){
-  nav{padding:0 24px}
+  nav { padding: 0 }
+  .nav-inner { padding:0 24px }
   .nav-links{display:none}
   .nav-hamburger{display:flex}
 }

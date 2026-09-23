@@ -73,7 +73,7 @@
   padding-top: 86px;
 }
 
-/* ── ID card — green lanyard strap on top, swings very slowly ── */
+/* ── ID card — green lanyard strap on top, swings at a gentle pace ── */
 .id-card {
   position: relative;
   width: 100%;
@@ -84,22 +84,27 @@
   border-radius: 18px;
   box-shadow: 0 18px 34px -22px rgba(58, 74, 9, 0.4);
 
-  /* pendulum pivot: top of the long green strap, above the card */
-  transform-origin: 50% -132px;
-  animation: id-swing 9s ease-in-out infinite alternate;
+  /* pendulum pivot: top of the long green strap, up at the nav bar */
+  transform-origin: 50% -176px;
+  /* alternate = one iteration per direction, so 2.5s per pass
+     gives a full back-and-forth cycle of 5s */
+  animation: id-swing 2.5s ease-in-out infinite alternate;
   will-change: transform;
 }
 .id-card:hover {
   animation-play-state: paused;
 }
 
-/* long green lanyard strap (130px) — passes behind the metal ring */
+/* long green lanyard strap — runs from the nav bar down behind the
+   metal ring. Card top sits 236px from the viewport top (150px section
+   + 86px rail); +1px card border = 237px padding edge, so 237 - 61px
+   nav = 176px of strap */
 .id-strap {
   position: absolute;
-  top: -132px;
+  top: -176px;
   left: 50%;
   width: 22px;
-  height: 130px;
+  height: 174px;
   margin-left: -11px;
   z-index: 3;
   background: linear-gradient(90deg, #7d9829 0%, #5d7714 45%, #41560c 100%);
@@ -325,6 +330,9 @@
     width: min(100%, 300px);
     margin: 0 auto;
   }
+  /* rail now sits below the story — strap hangs short from the card */
+  .id-card { transform-origin: 50% -132px }
+  .id-strap { top: -132px; height: 130px }
   .exp-row { flex-direction: column; gap: 8px; align-items: flex-start }
   .exp-actions { text-align: left }
   .still-here { padding-top: 72px }

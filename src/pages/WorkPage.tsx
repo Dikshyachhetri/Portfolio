@@ -13,7 +13,7 @@ const projects = [
   { id: 'nac', title: 'NAC GSE System', tag: 'Aviation · Inventory', path: '/case/nac', card: 'nac-card.png' },
   { id: 'xuno', title: 'XUNO Payments', tag: 'Fintech · Payments', path: '/case/xuno', card: 'xuno-card.png' },
   { id: 'heliski', title: 'Heliski International', tag: 'Travel · Marketplace', path: '/case/heliski', card: 'heliski-card.png' },
-  { id: 'passion', title: 'Passion Projects', tag: 'UI Exploration · Concept', path: '/case/passion', card: 'passion-card.png' },
+  { id: 'passion', title: 'Passion Projects', tag: 'Freelance · Graphic · Branding', path: '/case/passion', card: 'passion-card.png' },
 ]
 
 export default function WorkPage() {

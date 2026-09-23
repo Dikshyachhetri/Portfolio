@@ -67,7 +67,6 @@ export default function Nav() {
         id="navDrawer"
         aria-label="Mobile navigation"
       >
-        <Link to="/home" onClick={closeDrawer}>Home</Link>
         {links.map(l => (
           <Link to={l.to} key={l.to} onClick={closeDrawer}>{l.label}</Link>
         ))}

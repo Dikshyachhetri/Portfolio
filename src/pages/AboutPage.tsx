@@ -38,12 +38,12 @@ export default function AboutPage() {
   ]
 
   const experience = [
-    { role: 'Senior UI/UX Designer', company: 'Stealth Startup', period: '2025\u2013Present' },
-    { role: 'UI/UX Designer', company: 'Life Management Science Labs', period: '2024\u20132025' },
-    { role: 'UI/UX Designer', company: 'Freelancing', period: '2024\u20132025' },
-    { role: 'UI/UX Designer', company: 'Rara Digital Lab Pvt. Ltd.', period: '2022\u20132024' },
-    { role: 'Designer & Marketing Analyst', company: 'Smart Acre Media Solutions', period: '2021\u20132022' },
-    { role: 'Frontend Developer (Internship)', company: 'Featherwebs', period: '2021' },
+    { role: 'Senior UI/UX Designer', company: 'Freelance | Self-Employed', period: 'Sep 2025 \u2013 Present' },
+    { role: 'UI/UX Designer', company: 'Life Management Science Labs', period: 'Mar 2024 \u2013 Sep 2025' },
+    { role: 'Freelance UI/UX Designer', company: 'Skyleap, Inductiv and Incube Tech', period: 'Dec 2023 \u2013 Feb 2024' },
+    { role: 'UI/UX Designer', company: 'Rara Digital Lab Pvt. Ltd.', period: 'May 2022 \u2013 Dec 2023' },
+    { role: 'Designer & Marketing Analyst', company: 'Smart Acre Media Solutions', period: 'Sep 2021 \u2013 Apr 2022' },
+    { role: 'Frontend Developer (Internship)', company: 'Featherwebs', period: 'Apr 2021 \u2013 Sep 2021' },
   ]
 
   const hobbies = [

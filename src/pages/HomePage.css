@@ -2,6 +2,7 @@
    HOME — cream/olive design
    ===================================================== */
 .home {
+  position: relative;
   /* graph-paper grid — #555555 at 10% opacity */
   background-color: #F2EFE5;
   background-image:
@@ -46,7 +47,7 @@
   font-size: 20px;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  color: #000;
+  color: inherit;
   margin-right: 0.35em;
   white-space: nowrap;
 }
@@ -60,6 +61,51 @@
   color: #2C2C2C;
 }
 .quote-smile { display: inline-block; margin-left: 3px }
+
+/* Blurred green leaves floating behind the hero copy — the soft one
+   still reads as a leaf, the super-blurred one is only an ambient
+   green glow in the page corner. */
+.hero-leaf {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  line-height: 0;
+  --rot: 0deg;
+  transform: rotate(var(--rot));
+  animation: hero-leaf-drift 16s ease-in-out infinite alternate;
+}
+.hero-leaf svg { width: 100%; height: 100%; display: block }
+.hero-leaf svg path { fill: currentColor }
+
+/* green leaf, upper left — light blur */
+.hero-leaf-soft {
+  left: -4%;
+  top: 10%;
+  width: 340px;
+  height: 340px;
+  color: #7BA10C;
+  opacity: .38;
+  filter: blur(26px);
+  --rot: -24deg;
+  animation-duration: 15s;
+}
+/* super-blurred leaf, lower right — a big quiet glow */
+.hero-leaf-blur {
+  right: -9%;
+  bottom: 4%;
+  width: 560px;
+  height: 560px;
+  color: #8AA31C;
+  opacity: .5;
+  filter: blur(85px);
+  --rot: 18deg;
+  animation-duration: 21s;
+  animation-direction: alternate-reverse;
+}
+@keyframes hero-leaf-drift {
+  from { transform: translate3d(0, 0, 0) rotate(var(--rot)) }
+  to   { transform: translate3d(0, -26px, 0) rotate(calc(var(--rot) + 12deg)) }
+}
 
 /* Left rail of discipline chips — stays aligned to the 1440px
    content zone, even when the full-bleed background is wider */
@@ -130,116 +176,81 @@
   50%      { transform: scale(1.22); opacity: .5 }
 }
 
-/* ---------- BLURRED BACKGROUND LEAVES (abstract, airy) ---------- */
-.leaf {
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-  line-height: 0;
-  filter: blur(30px);
-}
-.leaf svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-  animation: leaf-drift 18s var(--ease) infinite alternate;
-}
-.leaf svg path {
-  fill: currentColor;
-}
-
-/* hero — top-right accent */
-.lf-1 { left: -2%;  top: 50%; width: 200px; height: 200px; color: #B4BD9B; opacity: .38; filter: blur(36px); transform: rotate(-30deg) }
-.lf-2 { right: 3%;  top: 7%;  width: 140px; height: 140px; color: #7BA10C; opacity: .28; filter: blur(34px); transform: rotate(25deg) }
-.lf-2 svg { animation-duration: 21s; animation-delay: -9s; animation-direction: alternate-reverse }
-/* hero — lower right, soft */
-.lf-3 { right: 16%; bottom: 16%; width: 160px; height: 160px; color: #C0C7AB; opacity: .45; filter: blur(42px); transform: rotate(12deg) }
-.lf-3 svg { animation-duration: 15s; animation-delay: -3s }
-/* statement leaves removed — the section stays clean; leaves live in the hero */
-
-@keyframes leaf-drift {
-  from { transform: translateY(0) rotate(0deg) }
-  to   { transform: translateY(-14px) rotate(7deg) }
-}
-
-/* =====================================================
-   ABSTRACT LIGHT BLUR ILLUSTRATIONS — pale glows that
-   drift behind the hero content
-   ===================================================== */
-.hero-blurs {
+/* ---------- AUTUMN LEAVES FALLING DOWN THE PAGE ---------- */
+/* field spans the whole home page (hero + statement) and clips the
+   leaves right where the "Work with me" band begins */
+.leaf-field {
   position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
 }
-.bl {
+.leaf {
   position: absolute;
-  border-radius: 50%;
+  top: 0;
+  z-index: 0;
+  pointer-events: none;
+  line-height: 0;
+  filter: blur(10px);
   will-change: transform;
-  animation: blur-drift 22s var(--ease) infinite alternate;
+  /* ease-in-out per segment makes the descent flutter rather than slide */
+  animation: leaf-fall 18s linear infinite;
+}
+.leaf svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  animation: leaf-spin 10s ease-in-out infinite;
+}
+.leaf svg path {
+  fill: currentColor;
 }
 
-/* large cream-white glow, top-left */
-.bl-1 {
-  left: -160px;
-  top: -190px;
-  width: 540px;
-  height: 540px;
-  background: radial-gradient(circle at 42% 42%, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0) 62%);
-  filter: blur(14px);
+/* lanes — natural autumn shades, sizes and wind. All five leaves share
+   the same 45s fall and launch 9s apart (45s / 5 leaves), so they stay
+   evenly spread down the page and the scene stays calm */
+.lf-1 { --wind: 150px;   left: 8%;  width: 285px; height: 285px; color: #B44E14; opacity: .78; animation-duration: 45s; animation-delay: 0s }
+.lf-1 svg { animation-duration: 12s }
+.lf-2 { --wind: -115px;  left: 27%; width: 360px; height: 360px; color: #B99A25; opacity: .72; animation-duration: 45s; animation-delay: -9s }
+.lf-2 svg { animation-duration: 17s; animation-name: leaf-flutter }
+.lf-3 { --wind: 100px;   left: 52%; width: 240px; height: 240px; color: #94401C; opacity: .80; animation-duration: 45s; animation-delay: -18s }
+.lf-3 svg { animation-duration: 14s }
+.lf-4 { --wind: -180px; left: 71%; width: 375px; height: 375px; color: #7E8C3E; opacity: .70; animation-duration: 45s; animation-delay: -27s }
+.lf-4 svg { animation-duration: 20s; animation-direction: reverse }
+.lf-5 { --wind: 130px;   left: 88%; width: 300px; height: 300px; color: #B57A0E; opacity: .75; animation-duration: 45s; animation-delay: -36s }
+.lf-5 svg { animation-duration: 16s; animation-name: leaf-flutter }
+
+/* fall = steady, constant-speed descent with a wind sway; the vertical
+   progress is linear in time so the leaf never pauses mid-air */
+@keyframes leaf-fall {
+  0%   { transform: translate3d(0, calc(var(--fall-dist, 120vh) * -0.06), 0) }
+  12%  { transform: translate3d(calc(var(--wind, 40px) * 0.30), calc(var(--fall-dist, 120vh) * 0.07), 0) }
+  26%  { transform: translate3d(calc(var(--wind, 40px) * -0.25), calc(var(--fall-dist, 120vh) * 0.22), 0) }
+  42%  { transform: translate3d(calc(var(--wind, 40px) * 0.55), calc(var(--fall-dist, 120vh) * 0.39), 0) }
+  55%  { transform: translate3d(calc(var(--wind, 40px) * 0.90), calc(var(--fall-dist, 120vh) * 0.52), 0) }
+  70%  { transform: translate3d(calc(var(--wind, 40px) * 0.55), calc(var(--fall-dist, 120vh) * 0.68), 0) }
+  85%  { transform: translate3d(calc(var(--wind, 40px) * 1.15), calc(var(--fall-dist, 120vh) * 0.84), 0) }
+  100% { transform: translate3d(calc(var(--wind, 40px) * 0.80), var(--fall-dist, 120vh), 0) }
 }
-/* pale sage wash, upper right */
-.bl-2 {
-  right: -130px;
-  top: 6%;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(180, 189, 155, 0.5), rgba(180, 189, 155, 0) 66%);
-  filter: blur(52px);
-  animation-duration: 27s;
-  animation-delay: -8s;
+/* slower leaves tumble; others flutter side to side instead */
+@keyframes leaf-spin {
+  from { transform: rotate(0deg) }
+  to   { transform: rotate(360deg) }
 }
-/* soft olive bloom, lower left */
-.bl-3 {
-  left: 4%;
-  bottom: 4%;
-  width: 340px;
-  height: 340px;
-  background: radial-gradient(circle, rgba(123, 161, 12, 0.22), rgba(123, 161, 12, 0) 68%);
-  filter: blur(58px);
-  animation-duration: 25s;
-  animation-delay: -4s;
-}
-/* faint amber breath, lower right */
-.bl-4 {
-  right: 14%;
-  bottom: 10%;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(224, 161, 0, 0.16), rgba(224, 161, 0, 0) 70%);
-  filter: blur(56px);
-  animation-duration: 30s;
-  animation-delay: -14s;
-}
-/* blurred ring accent, top centre-right */
-.bl-ring {
-  right: 9%;
-  top: -90px;
-  width: 210px;
-  height: 210px;
-  border: 48px solid rgba(74, 92, 20, 0.1);
-  filter: blur(12px);
-  animation: ring-float 38s linear infinite;
+@keyframes leaf-flutter {
+  0%   { transform: rotate(0deg) }
+  22%  { transform: rotate(38deg) }
+  47%  { transform: rotate(-18deg) }
+  71%  { transform: rotate(30deg) }
+  100% { transform: rotate(0deg) }
 }
 
-@keyframes blur-drift {
-  from { transform: translate3d(0, 0, 0) }
-  to   { transform: translate3d(0, -26px, 0) }
-}
-@keyframes ring-float {
-  from { transform: rotate(0deg) translate3d(0, 0, 0) }
-  to   { transform: rotate(360deg) translate3d(0, -12px, 0) }
+/* keep the leaves static for reduced-motion visitors */
+@media (prefers-reduced-motion: reduce) {
+  .leaf { animation: none; top: 30vh }
+  .leaf svg { animation: none }
+  .hero-leaf { animation: none }
 }
 
 /* =====================================================
@@ -247,6 +258,7 @@
    ===================================================== */
 .statement {
   position: relative;
+  z-index: 1;
   padding: clamp(32px, 3.2vw, 56px) 32px clamp(96px, 8vw, 140px);
   text-align: center;
   overflow: hidden;
@@ -416,7 +428,9 @@
   .hero-chips { position: static; max-width: 100%; margin-top: 44px; justify-content: center; align-self: center }
   .open-for-work { position: static; margin-top: 26px; justify-content: center; align-self: center }
   .hero-chips, .open-for-work { display: flex }
-  .leaf, .hero-blurs { display: none }
+  .leaf { display: none }
+  .hero-leaf-soft { width: 210px; height: 210px; opacity: .3 }
+  .hero-leaf-blur { width: 320px; height: 320px; opacity: .4 }
   .statement { padding: 36px 20px 96px }
   .statement-title { font-size: clamp(18px, 5.2vw, 34px) }
   .puzzle-wrap { margin-top: 44px }

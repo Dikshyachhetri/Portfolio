@@ -229,23 +229,49 @@
   white-space: nowrap;
 }
 .exp-actions {
-  margin-top: 36px;
+  margin-top: 52px;
   text-align: right;
 }
 .btn-resume {
-  display: inline-block;
-  color: #f4f2ea;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #fdfcf7;
   background: #4d640a;
-  padding: 12px 26px;
+  padding: 18px 38px;
   border-radius: 999px;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
   text-decoration: none;
-  transition: background var(--dur-mid) var(--ease), transform var(--dur-mid) var(--ease);
+  box-shadow:
+    0 16px 32px -14px rgba(58, 74, 9, 0.6),
+    0 0 0 1px rgba(65, 86, 0, 0.12);
+  transition:
+    background var(--dur-mid) var(--ease),
+    transform var(--dur-mid) var(--ease),
+    box-shadow var(--dur-mid) var(--ease);
 }
 .btn-resume:hover {
   background: #3a4a09;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow:
+    0 22px 40px -16px rgba(58, 74, 9, 0.65),
+    0 0 0 1px rgba(65, 86, 0, 0.12);
+}
+.btn-resume svg {
+  transition: transform var(--dur-mid) var(--ease);
+}
+.btn-resume:hover svg {
+  transform: translate(2px, -2px);
+}
+.btn-resume:focus-visible {
+  outline: 3px solid rgba(123, 161, 12, 0.5);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-resume:hover { transform: none }
 }
 
 /* ---------- HOBBIES ---------- */
@@ -260,17 +286,35 @@
 .hobby-list li {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 17px 0;
+  gap: 18px;
+  padding: 13px 0;
   border-bottom: 1px solid rgba(65, 86, 0, 0.2);
   font-size: 17px;
   color: #2c2c2c;
 }
-.hobby-list li::before {
-  content: '\2022';
-  color: #7ba10c;
-  font-size: 20px;
-  line-height: 1;
+/* cute little illustration sticker next to each hobby */
+.hobby-icon {
+  flex: none;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  padding: 3px;
+  border-radius: 14px;
+  background: #e9edd8;
+  border: 1px solid rgba(65, 86, 0, 0.16);
+  box-shadow: 0 8px 16px -10px rgba(58, 74, 9, 0.45);
+  transition: transform var(--dur-mid) var(--ease);
+}
+.hobby-icon svg {
+  width: 100%;
+  height: 100%;
+}
+.hobby-list li:hover .hobby-icon {
+  transform: rotate(-6deg) scale(1.06);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hobby-list li:hover .hobby-icon { transform: none }
 }
 
 /* ---------- STILL HERE ---------- */
@@ -335,5 +379,7 @@
   .id-strap { top: -132px; height: 130px }
   .exp-row { flex-direction: column; gap: 8px; align-items: flex-start }
   .exp-actions { text-align: left }
+  .btn-resume { padding: 15px 30px; font-size: 16px }
+  .hobby-icon { width: 40px; height: 40px; border-radius: 12px }
   .still-here { padding-top: 72px }
 }

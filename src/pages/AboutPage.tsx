@@ -1,5 +1,13 @@
 import React, { useEffect } from 'react'
 import { showToast } from '../components/Toast'
+import {
+  HikingIcon,
+  GymYogaIcon,
+  AnimalsIcon,
+  OutdoorGamesIcon,
+  FoodieIcon,
+  ScreenTimeIcon,
+} from '../components/HobbyIcons'
 import './AboutPage.css'
 
 const BASE = import.meta.env.BASE_URL || '/'
@@ -38,7 +46,7 @@ export default function AboutPage() {
   ]
 
   const experience = [
-    { role: 'Senior UI/UX Designer', company: 'Freelance | Self-Employed', period: 'Sep 2025 \u2013 Present' },
+    { role: 'Senior UI/UX Designer', company: 'Invicta Pte Ltd', period: 'Sep 2025 \u2013 Present' },
     { role: 'UI/UX Designer', company: 'Life Management Science Labs', period: 'Mar 2024 \u2013 Sep 2025' },
     { role: 'Freelance UI/UX Designer', company: 'Skyleap, Inductiv and Incube Tech', period: 'Dec 2023 \u2013 Feb 2024' },
     { role: 'UI/UX Designer', company: 'Rara Digital Lab Pvt. Ltd.', period: 'May 2022 \u2013 Dec 2023' },
@@ -47,12 +55,12 @@ export default function AboutPage() {
   ]
 
   const hobbies = [
-    'Trekking and hiking whenever I can get out',
-    'Gym and yoga',
-    'A genuine soft spot for animals <3',
-    'Outdoor games, anything with a bit of competition',
-    'Certified foodie',
-    'Boardgames, good movies, and TV shows',
+    { label: 'Trekking and hiking whenever I can get out', Icon: HikingIcon },
+    { label: 'Gym and yoga', Icon: GymYogaIcon },
+    { label: 'A genuine soft spot for animals <3', Icon: AnimalsIcon },
+    { label: 'Outdoor games, anything with a bit of competition', Icon: OutdoorGamesIcon },
+    { label: 'Certified foodie', Icon: FoodieIcon },
+    { label: 'Boardgames, good movies, and TV shows', Icon: ScreenTimeIcon },
   ]
 
   return (
@@ -109,6 +117,20 @@ export default function AboutPage() {
               rel="noopener noreferrer"
             >
               View Resume
+              <svg
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M7 17 17 7" />
+                <path d="M8 7h9v9" />
+              </svg>
             </a>
           </div>
         </div>
@@ -119,8 +141,11 @@ export default function AboutPage() {
         <div className="section-inner">
           <h2 className="section-heading reveal" id="hobbies-title">Beyond the screen</h2>
           <ul className="hobby-list">
-            {hobbies.map(h => (
-              <li className="reveal" key={h}>{h}</li>
+            {hobbies.map(({ label, Icon }) => (
+              <li className="reveal" key={label}>
+                <span className="hobby-icon" aria-hidden="true"><Icon /></span>
+                {label}
+              </li>
             ))}
           </ul>
         </div>

@@ -1,445 +1,146 @@
 /* =====================================================
-   HOME — cream/olive design
+   HOME: editorial layout on warm paper
    ===================================================== */
 .home {
-  position: relative;
-  /* graph-paper grid — #555555 at 10% opacity */
-  background-color: #F2EFE5;
-  background-image:
-    linear-gradient(to right, rgba(85,85,85,0.10) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(85,85,85,0.10) 1px, transparent 1px);
-  background-size: 96px 96px;
-  color: #2C2C2C;
+  /* lined surface comes from .lined-surface in global.css */
+  color: var(--ink);
 }
 
 /* ---------- HERO ---------- */
+/* No imagery: a full-width headline anchors the composition, and a ruled
+   band below splits the copy from the actions so nothing dangles on one
+   side. Hero fills the first fold. */
 .hero {
-  position: relative;
+  box-sizing: border-box;
   min-height: 100vh;
+  min-height: 100svh;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: calc(var(--nav-h) + 64px) 40px 80px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 150px 32px 100px;
-  overflow: hidden;
 }
-.hero-center {
-  position: relative;
-  z-index: 1;
-  max-width: 860px;
+.hero-grid {
   width: 100%;
-  margin: 0 auto 120px;
-  text-align: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: center;
 }
 .hero-title {
-  font-family: var(--font-playfair);
-  font-style: italic;
-  font-weight: 500;
-  font-size: clamp(40px, 5.5vw, 80px);
-  line-height: 1.12;
-  letter-spacing: -0.01em;
-  color: #4A5C14;
-  white-space: nowrap;
-}
-.hero-pre {
-  font-family: var(--font-inter);
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-  color: inherit;
-  margin-right: 0.35em;
-  white-space: nowrap;
-}
-.hero-quote {
-  max-width: 640px;
-  margin: 22px auto 0;
-  font-family: 'Mali', var(--font-body), sans-serif;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 1.6;
-  color: #2C2C2C;
-}
-.quote-smile { display: inline-block; margin-left: 3px }
-
-/* Blurred green leaves floating behind the hero copy — the soft one
-   still reads as a leaf, the super-blurred one is only an ambient
-   green glow in the page corner. */
-.hero-leaf {
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-  line-height: 0;
-  --rot: 0deg;
-  transform: rotate(var(--rot));
-  animation: hero-leaf-drift 16s ease-in-out infinite alternate;
-}
-.hero-leaf svg { width: 100%; height: 100%; display: block }
-.hero-leaf svg path { fill: currentColor }
-
-/* green leaf, upper left — light blur */
-.hero-leaf-soft {
-  left: -4%;
-  top: 10%;
-  width: 340px;
-  height: 340px;
-  color: #7BA10C;
-  opacity: .38;
-  filter: blur(26px);
-  --rot: -24deg;
-  animation-duration: 15s;
-}
-/* super-blurred leaf, lower right — a big quiet glow */
-.hero-leaf-blur {
-  right: -9%;
-  bottom: 4%;
-  width: 560px;
-  height: 560px;
-  color: #8AA31C;
-  opacity: .5;
-  filter: blur(85px);
-  --rot: 18deg;
-  animation-duration: 21s;
-  animation-direction: alternate-reverse;
-}
-@keyframes hero-leaf-drift {
-  from { transform: translate3d(0, 0, 0) rotate(var(--rot)) }
-  to   { transform: translate3d(0, -26px, 0) rotate(calc(var(--rot) + 12deg)) }
+  margin-top: 24px;
+  font-size: clamp(40px, 6.2vw, 88px);
+  line-height: 1.02;
+  max-width: 20ch;
 }
 
-/* Left rail of discipline chips — stays aligned to the 1440px
-   content zone, even when the full-bleed background is wider */
-.hero-chips {
-  position: absolute;
-  left: max(clamp(20px, 4.3vw, 75px), calc((100vw - 1440px) / 2 + 75px));
-  bottom: clamp(20px, calc(16% - 40px), 140px);
+/* Lower band: lede left, actions right, shared top rule */
+.hero-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+  gap: clamp(40px, 5vw, 80px);
+  margin-top: clamp(40px, 4vw, 56px);
+  padding-top: 36px;
+  border-top: 1px solid var(--line);
+  align-items: start;
+}
+.hero-lede {
+  max-width: 56ch;
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+.hero-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  max-width: 301px;
-  z-index: 1;
+  gap: 12px;
 }
-.chip {
-  font-family: var(--font-annai);
-  font-size: 13px;
-  color: #353C1D;
-  padding: 4px 16px;
-  border-radius: 100px;
-  outline: 1px solid rgba(65, 86, 0, 0.20);
-  outline-offset: -1px;
-  white-space: nowrap;
-}
-.chip-filled {
-  background: #4D640A;
-  outline-color: #415600;
-  color: #fff;
-}
-
-/* Open for work status light, bottom right */
-.open-for-work {
-  position: absolute;
-  right: max(clamp(20px, 3.9vw, 67px), calc((100vw - 1440px) / 2 + 67px));
-  bottom: clamp(20px, calc(16% - 40px), 140px);
+.hero-note {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-family: var(--font-inter);
-  font-size: 16px;
-  color: #62722F;
-  z-index: 1;
-}
-.ofw-light {
-  position: relative;
-  width: 26px;
-  height: 26px;
-  flex: none;
-}
-.ofw-ring {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: rgba(123, 161, 12, 0.22);
-  animation: ofw-breathe 2.8s var(--ease-out) infinite;
-}
-.ofw-dot {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: #7BA10C;
-  box-shadow: 0 0 0 5px rgba(123, 161, 12, 0.12);
-}
-@keyframes ofw-breathe {
-  0%, 100% { transform: scale(1); opacity: .95 }
-  50%      { transform: scale(1.22); opacity: .5 }
+  margin-top: 24px;
+  font-size: 12.5px;
+  letter-spacing: .01em;
+  color: var(--muted);
 }
 
-/* ---------- AUTUMN LEAVES FALLING DOWN THE PAGE ---------- */
-/* field spans the whole home page (hero + statement) and clips the
-   leaves right where the "Work with me" band begins */
-.leaf-field {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-.leaf {
-  position: absolute;
-  top: 0;
-  z-index: 0;
-  pointer-events: none;
-  line-height: 0;
-  filter: blur(10px);
-  will-change: transform;
-  /* ease-in-out per segment makes the descent flutter rather than slide */
-  animation: leaf-fall 18s linear infinite;
-}
-.leaf svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-  animation: leaf-spin 10s ease-in-out infinite;
-}
-.leaf svg path {
-  fill: currentColor;
-}
-
-/* lanes — natural autumn shades, sizes and wind. All five leaves share
-   the same 45s fall and launch 9s apart (45s / 5 leaves), so they stay
-   evenly spread down the page and the scene stays calm */
-.lf-1 { --wind: 150px;   left: 8%;  width: 285px; height: 285px; color: #B44E14; opacity: .78; animation-duration: 45s; animation-delay: 0s }
-.lf-1 svg { animation-duration: 12s }
-.lf-2 { --wind: -115px;  left: 27%; width: 360px; height: 360px; color: #B99A25; opacity: .72; animation-duration: 45s; animation-delay: -9s }
-.lf-2 svg { animation-duration: 17s; animation-name: leaf-flutter }
-.lf-3 { --wind: 100px;   left: 52%; width: 240px; height: 240px; color: #94401C; opacity: .80; animation-duration: 45s; animation-delay: -18s }
-.lf-3 svg { animation-duration: 14s }
-.lf-4 { --wind: -180px; left: 71%; width: 375px; height: 375px; color: #7E8C3E; opacity: .70; animation-duration: 45s; animation-delay: -27s }
-.lf-4 svg { animation-duration: 20s; animation-direction: reverse }
-.lf-5 { --wind: 130px;   left: 88%; width: 300px; height: 300px; color: #B57A0E; opacity: .75; animation-duration: 45s; animation-delay: -36s }
-.lf-5 svg { animation-duration: 16s; animation-name: leaf-flutter }
-
-/* fall = steady, constant-speed descent with a wind sway; the vertical
-   progress is linear in time so the leaf never pauses mid-air */
-@keyframes leaf-fall {
-  0%   { transform: translate3d(0, calc(var(--fall-dist, 120vh) * -0.06), 0) }
-  12%  { transform: translate3d(calc(var(--wind, 40px) * 0.30), calc(var(--fall-dist, 120vh) * 0.07), 0) }
-  26%  { transform: translate3d(calc(var(--wind, 40px) * -0.25), calc(var(--fall-dist, 120vh) * 0.22), 0) }
-  42%  { transform: translate3d(calc(var(--wind, 40px) * 0.55), calc(var(--fall-dist, 120vh) * 0.39), 0) }
-  55%  { transform: translate3d(calc(var(--wind, 40px) * 0.90), calc(var(--fall-dist, 120vh) * 0.52), 0) }
-  70%  { transform: translate3d(calc(var(--wind, 40px) * 0.55), calc(var(--fall-dist, 120vh) * 0.68), 0) }
-  85%  { transform: translate3d(calc(var(--wind, 40px) * 1.15), calc(var(--fall-dist, 120vh) * 0.84), 0) }
-  100% { transform: translate3d(calc(var(--wind, 40px) * 0.80), var(--fall-dist, 120vh), 0) }
-}
-/* slower leaves tumble; others flutter side to side instead */
-@keyframes leaf-spin {
-  from { transform: rotate(0deg) }
-  to   { transform: rotate(360deg) }
-}
-@keyframes leaf-flutter {
-  0%   { transform: rotate(0deg) }
-  22%  { transform: rotate(38deg) }
-  47%  { transform: rotate(-18deg) }
-  71%  { transform: rotate(30deg) }
-  100% { transform: rotate(0deg) }
-}
-
-/* keep the leaves static for reduced-motion visitors */
-@media (prefers-reduced-motion: reduce) {
-  .leaf { animation: none; top: 30vh }
-  .leaf svg { animation: none }
-  .hero-leaf { animation: none }
-}
-
-/* =====================================================
-   STATEMENT — four layers as puzzle pieces
-   ===================================================== */
-.statement {
-  position: relative;
-  z-index: 1;
-  padding: clamp(32px, 3.2vw, 56px) 32px clamp(96px, 8vw, 140px);
-  text-align: center;
-  overflow: hidden;
-}
-.statement-title {
-  position: relative;
-  z-index: 1;
-  font-family: var(--font-playfair);
-  font-weight: 400;
-  font-size: clamp(32px, 4.2vw, 60px);
-  line-height: 1.22;
-  color: #4A5C14;
-  max-width: 1160px;
+/* ---------- SHARED SECTION ---------- */
+.section {
+  max-width: 1280px;
   margin: 0 auto;
+  padding: 96px 40px;
+  border-top: 1px solid var(--line);
 }
+.section-last { padding-bottom: 136px }
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 52px;
+}
+.section-head h2 {
+  margin-top: 16px;
+  font-size: var(--fs-h2);
+  max-width: 22ch;
+}
+.section-head .text-link { flex: none; margin-bottom: 6px }
 
-/* ---------- PUZZLE ---------- */
-.puzzle-wrap {
-  position: relative;
-  z-index: 1;
-  margin: clamp(52px, 5vw, 84px) auto 0;
-  max-width: 860px;
-  width: 100%;
+/* ---------- APPROACH ---------- */
+.approach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
 }
-.puzzle {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
+.approach-item {
+  border-top: 1px solid var(--line-strong);
+  padding-top: 24px;
 }
-.pz-svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  overflow: visible; /* scattered pieces fly outside the box without clipping */
-}
-.pz-svg {
-  filter: drop-shadow(0 10px 18px rgba(58, 74, 9, 0.1));
-}
-
-/* Pieces are white tiles on the cream page; each piece strokes its own
-   boundary in page-cream, which draws the wavy seams as fine cut-lines
-   between the four individual puzzle pieces. */
-.pz-fill {
-  fill: #ffffff;
-  stroke: #F2EFE5; /* page cream — seam line between pieces */
-  stroke-width: 3.5;
-}
-.pz-ink {
-  fill: none;
-  stroke: rgba(74, 92, 20, 0.34);
-  stroke-width: 1.4;
-  stroke-linejoin: round;
-  stroke-linecap: round;
-  transition: opacity 0.5s ease 0.5s;
-}
-.puzzle-wrap:not(.revealed) .pz-ink {
-  opacity: 0; /* outer contour draws in as the pieces land */
-}
-.puzzle-wrap.revealed .pz-ink {
-  opacity: 1;
-}
-
-/* puzzle pieces — start scattered, assemble on reveal; each piece
-   reacts individually on hover */
-.pz {
-  transform-box: fill-box;
-  transform-origin: 0% 0%;
-  transition: transform 0.6s var(--ease), filter var(--dur-mid) var(--ease);
-}
-.puzzle-wrap.revealed .pz {
-  filter: none;
-}
-.puzzle-wrap.revealed .pz:hover {
-  transition: transform 0.4s var(--ease), filter 0.25s ease;
-  transform: translateY(-9px);
-  filter: drop-shadow(0 18px 26px rgba(58, 74, 9, 0.22));
-  z-index: 5;
-}
-.pz:hover {
-  cursor: pointer;
-}
-.pz-tl { transform-origin: 0% 0% }
-.pz-tr { transform-origin: 100% 0% }
-.pz-bl { transform-origin: 0% 100% }
-.pz-br { transform-origin: 100% 100% }
-
-.puzzle-wrap:not(.revealed) .pz-tl { transform: translate(-90px, -90px) rotate(-9deg) }
-.puzzle-wrap:not(.revealed) .pz-tr { transform: translate(90px, -90px) rotate(9deg) }
-.puzzle-wrap:not(.revealed) .pz-bl { transform: translate(-90px, 90px) rotate(9deg) }
-.puzzle-wrap:not(.revealed) .pz-br { transform: translate(90px, 90px) rotate(-9deg) }
-
-.puzzle-wrap.revealed .pz { transform: translate(0, 0) rotate(0deg) }
-.puzzle-wrap.revealed .pz-tl { transition-delay: 40ms }
-.puzzle-wrap.revealed .pz-tr { transition-delay: 140ms }
-.puzzle-wrap.revealed .pz-bl { transition-delay: 240ms }
-.puzzle-wrap.revealed .pz-br { transition-delay: 340ms }
-
-/* piece labels */
-.pz-label {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 46%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  opacity: 0;
-  pointer-events: none;
-}
-.puzzle-wrap.revealed .pz-label {
-  opacity: 1;
-  transition: opacity 500ms ease 750ms;
-}
-.pz-label-tl { left: 27.5%; top: 27.5% }
-.pz-label-tr { left: 72.5%; top: 27.5% }
-.pz-label-bl { left: 27.5%; top: 72.5% }
-.pz-label-br { left: 72.5%; top: 72.5% }
-
-.pz-num {
-  display: inline-grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 999px;
-  background: #4D640A;
-  color: #fff;
-  font-family: var(--font-inter);
+.approach-num {
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.5px;
-  line-height: 1;
-  margin-bottom: 14px;
+  letter-spacing: .12em;
+  color: var(--faint);
 }
-.pz-title {
-  font-family: var(--font-playfair);
-  font-style: italic;
-  font-weight: 500;
-  font-size: clamp(18px, 1.9vw, 26px);
-  line-height: 1.15;
-  color: #4A5C14;
+.approach-item h3 {
+  margin-top: 14px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  color: var(--ink);
 }
-.pz-desc {
-  margin: 10px auto 0;
-  max-width: 250px;
-  font-size: clamp(12.5px, 1.05vw, 14px);
-  line-height: 1.55;
-  color: #6a695c;
-}
-
-/* ---------- REVEAL ---------- */
-.reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity var(--dur-slow) var(--ease), transform var(--dur-slow) var(--ease);
-}
-.reveal.revealed {
-  opacity: 1;
-  transform: none;
+.approach-item p {
+  margin-top: 10px;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--muted);
 }
 
 /* ---------- RESPONSIVE ---------- */
+@media (max-width: 1060px) {
+  .hero-body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+  .hero-title { max-width: 22ch }
+  .hero-lede { max-width: 64ch }
+}
 @media (max-width: 900px) {
-  .hero { min-height: 0; padding: 130px 24px 40px; flex-direction: column; align-items: flex-start }
-  .hero-title { font-size: clamp(22px, 5.6vw, 44px) }
-  .hero-pre { font-size: 14px }
-  .hero-quote { font-size: 17px }
-  .hero-center { margin-bottom: 0 }
-  .hero-chips { position: static; max-width: 100%; margin-top: 44px; justify-content: center; align-self: center }
-  .open-for-work { position: static; margin-top: 26px; justify-content: center; align-self: center }
-  .hero-chips, .open-for-work { display: flex }
-  .leaf { display: none }
-  .hero-leaf-soft { width: 210px; height: 210px; opacity: .3 }
-  .hero-leaf-blur { width: 320px; height: 320px; opacity: .4 }
-  .statement { padding: 36px 20px 96px }
-  .statement-title { font-size: clamp(18px, 5.2vw, 34px) }
-  .puzzle-wrap { margin-top: 44px }
-
-  /* scatter distances shrink on small screens */
-  .puzzle-wrap:not(.revealed) .pz-tl { transform: translate(-46px, -46px) rotate(-7deg) }
-  .puzzle-wrap:not(.revealed) .pz-tr { transform: translate(46px, -46px) rotate(7deg) }
-  .puzzle-wrap:not(.revealed) .pz-bl { transform: translate(-46px, 46px) rotate(7deg) }
-  .puzzle-wrap:not(.revealed) .pz-br { transform: translate(46px, 46px) rotate(-7deg) }
-
-  .pz-label { width: 46% }
+  .hero { padding: calc(var(--nav-h) + 56px) 24px 72px; min-height: 0 }
+  .section { padding: 72px 24px }
+  .section-last { padding-bottom: 96px }
+  .section-head { flex-direction: column; align-items: flex-start; gap: 20px }
+  .section-head h2 { max-width: 100% }
+  .approach-grid { grid-template-columns: 1fr; gap: 28px }
+}
+@media (max-width: 700px) {
+  .hero-title { max-width: 100% }
+}@media (max-width: 520px) {
+  .hero-actions { flex-direction: column; align-items: stretch }
+  .hero-actions .btn { width: 100% }
 }

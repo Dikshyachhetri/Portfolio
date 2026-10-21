@@ -19,18 +19,13 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);line-height:1.6;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
+body{font-family:'DM Sans',sans-serif;background-color:var(--bg);background-image:linear-gradient(to right,rgba(65,86,0,.07) 1px,transparent 1px),linear-gradient(to bottom,rgba(65,86,0,.07) 1px,transparent 1px);background-size:96px 96px;color:var(--white);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 .skip-link{position:fixed;top:-100px;left:16px;z-index:10000;background:var(--orange);color:#fff;padding:10px 18px;border-radius:2px;font-size:11px;text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:top .2s}
 .skip-link:focus{top:16px}
 :focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:2px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 /* CURSOR */
-#cursor{position:fixed;width:10px;height:10px;background:var(--orange);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease)}
-#cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(77,100,10,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease),opacity .3s}
-body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:18px;height:18px}
-body:has(a:hover) #cursor-ring{width:48px;height:48px;opacity:.35}
-
 /* NAV */
 /* PROGRESS BAR , reading indicator */
 #progress{position:fixed;top:60px;left:0;height:2px;background:var(--orange);z-index:99;width:0%;transition:width .1s linear}
@@ -552,7 +547,6 @@ footer p{font-size:12px;color:var(--gray2)}
   .my-role-section{padding:56px 24px}
 }
 
-@media(pointer:coarse){body{cursor:auto}#cursor,#cursor-ring{display:none}}
 @media(max-width:600px){
   .my-role-grid{grid-template-columns:1fr}
   .pain-grid{grid-template-columns:1fr}
@@ -560,6 +554,39 @@ footer p{font-size:12px;color:var(--gray2)}
   .wireframe-grid{grid-template-columns:1fr 1fr}
   .research-grid{grid-template-columns:1fr}
 }
+
+/* CTA: one-line heading, three-line description */
+#cta-title{white-space:nowrap}
+.cta-section p,.cta-section>p{max-width:620px;margin-left:auto;margin-right:auto;line-height:1.65}
+@media (max-width:520px){#cta-title{font-size:30px;letter-spacing:0}}
+
+
+/* ===== CTA / closing section ===== */
+.cta-section{padding:0;background:var(--bg);text-align:left;overflow:visible}
+.cta-section::before{content:none}
+.cta-inner{max-width:1200px;margin:0 auto;padding:96px 48px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:80px;align-items:start}
+.cta-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gray2)}
+.cta-head h2{margin:18px 0 0;font-family:'Playfair Display',Georgia,serif;font-weight:400;font-style:normal;font-size:clamp(40px,5.4vw,72px);line-height:1.02;letter-spacing:-.02em;color:var(--white)}
+.cta-body{padding-top:6px}
+.cta-body p{margin:0;max-width:520px;font-size:16px;line-height:1.7;color:var(--gray)}
+.cta-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:30px}
+.cta-section .btn-primary{display:inline-flex;align-items:center;height:46px;padding:0 24px;border-radius:999px;background:var(--orange);color:#fff;font-size:13.5px;font-weight:500;letter-spacing:0;text-transform:none;text-decoration:none;min-height:46px;transition:background .2s}
+.cta-section .btn-primary:hover{background:var(--orange2)}
+.cta-link{font-size:13.5px;font-weight:500;color:var(--white);text-decoration:none;border-bottom:1px solid var(--border2);padding-bottom:3px;transition:color .2s,border-color .2s}
+.cta-link:hover{color:var(--orange);border-color:var(--orange)}
+.cta-link span{display:inline-block;transition:transform .2s}
+.cta-link:hover span{transform:translateX(3px)}
+@media(max-width:900px){.cta-inner{grid-template-columns:1fr;gap:36px;padding:72px 24px}.cta-body{padding-top:0}}
+
+
+/* mobile metrics: keep the two-up grid inside the viewport */
+@media(max-width:600px){
+  .metrics-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .metric-item{min-width:0;padding:28px 12px}
+  .metric-num{font-size:40px;letter-spacing:1px}
+  .metric-label{font-size:9.5px;letter-spacing:1.2px}
+}
+
 </style>
 <style>
 /* TL;DR BAR */
@@ -647,8 +674,6 @@ footer p{font-size:12px;color:var(--gray2)}
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
-<div id="cursor" aria-hidden="true"></div>
-<div id="cursor-ring" aria-hidden="true"></div>
 <div id="progress" aria-hidden="true"></div>
 <div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-dot"></span>Opening Gmail...</div>
 
@@ -667,8 +692,8 @@ footer p{font-size:12px;color:var(--gray2)}
   <div class="cs-hero-content">
   <div class="breadcrumb">
    <div>
-    <a href="/Portfolio/home" target="_top">Home</a><span class="sep">·</span>
-    <a href="/Portfolio/work#raraspace" target="_top">Work</a><span class="sep">·</span>
+    <a href="home" target="_top">Home</a><span class="sep">·</span>
+    <a href="work#raraspace" target="_top">Work</a><span class="sep">·</span>
     <span>RaraSpace EMS</span>
    </div>
   </div>
@@ -676,13 +701,13 @@ footer p{font-size:12px;color:var(--gray2)}
       <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
         <span class="cs-chip">PROJECT</span>
         <span class="cs-chip active">RARASPACE</span>
-        <span class="cs-chip">2022–2024</span>
+        <span class="cs-chip">2022-2024</span>
       </div>
       <a href="https://space.raralabs.live/login" target="_blank" rel="noopener noreferrer" class="visit-hero-link">Visit Site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17l9-9M9 8h7v7"/></svg></a>
     </div>
 
     <h1>Employee<br/>Management<br/><em>System</em></h1>
-    <p class="cs-hero-tagline">A comprehensive web application designed from scratch that unified employee management, task tracking, payroll, and project operations into one seamless platform, improving operational efficiency by 100%.</p>
+    <p class="cs-hero-tagline">An employee management platform built from scratch: 10+ business functions, one source of truth, and 50+ colleagues off spreadsheets and paper forms.</p>
 
     <div class="cs-quick-stats" role="list" aria-label="Project overview">
       <div class="cs-stat" role="listitem">
@@ -845,7 +870,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- TL;DR BAR -->
 <div class="tldr-bar-wrapper">
 <div class="tldr-bar">
- <div class="tldr-intro-wrap"><p class="tldr-intro">RaraSpace is a comprehensive employee management system designed from scratch to unify HR, task tracking, payroll, and project operations into one seamless platform. I led the full design process from user research through high-fidelity delivery. <strong>Improved operational efficiency by 100%, designed, tested, and validated with 50+ real colleagues.</strong></p></div>
+ <div class="tldr-intro-wrap"><p class="tldr-intro">A 10-module internal platform, designed end-to-end and shipped into a live company.</p></div>
  <div class="tldr-grid">
    <div class="tldr-item">
     <span class="tldr-label">The problem</span>
@@ -869,7 +894,7 @@ footer p{font-size:12px;color:var(--gray2)}
     <span class="section-num">1.0</span>
     <span class="section-kicker">My Contribution</span>
     <h2 class="cs-h2">What I<br/>personally owned</h2>
-    <p class="cs-body" style="max-width:60ch">Clarity on contribution matters. Here's the exact split between what I owned end-to-end and what the broader team handled.</p>
+    <p class="cs-body" style="max-width:60ch">I owned the design end-to-end. Here&rsquo;s the split between my work and the broader team&rsquo;s.</p>
     <div class="my-role-grid">
       <div class="my-role-col owned">
         <h4 class="owned">I owned this</h4>
@@ -894,58 +919,14 @@ footer p{font-size:12px;color:var(--gray2)}
   </div>
 </section>
 
-<section class="process-section" id="process">
- <div class="cs-inner" style="max-width:1200px;margin:0 auto">
-   <span class="section-num">2.0</span>
-   <span class="section-kicker">Design Process</span>
-   <h2 class="cs-h2">How I worked<br/>through it</h2>
-   <div class="pflow-steps">
-     <div class="pflow-step">
-       <div class="step-circle">01</div>
-       <h4>Surveys</h4>
-       <p>Google Survey to all 50+ colleagues</p>
-     </div>
-     <div class="pflow-step">
-       <div class="step-circle">02</div>
-       <h4>Competition</h4>
-       <p>Jira · Asana · BambooHR audit</p>
-     </div>
-     <div class="pflow-step">
-       <div class="step-circle">03</div>
-       <h4>Scope</h4>
-       <p>Stakeholder alignment on 10+ modules</p>
-     </div>
-     <div class="pflow-step">
-       <div class="step-circle">04</div>
-       <h4>Sketches</h4>
-       <p>Paper wireframes for 8 core flows</p>
-     </div>
-     <div class="pflow-step">
-       <div class="step-circle">05</div>
-       <h4>Hi-fi</h4>
-       <p>Figma components and all screen states</p>
-     </div>
-     <div class="pflow-step">
-       <div class="step-circle">06</div>
-       <h4>Testing</h4>
-       <p>3 rounds  paper → Figma → live build</p>
-     </div>
-   </div>
-   <div class="constraint-box">
-     <span class="constraint-label">KEY CONSTRAINT</span>
-     <p>The biggest constraint wasn't design  it was scope. With 10+ modules to design in 9 months for a live company, every prioritization call had a real cost. I learned to <strong>design highest-friction modules first</strong> (tasks, leave, dashboard) and build a shared component library to accelerate the later modules without losing consistency.</p>
-   </div>
- </div>
-</section>
-
 <!-- ============================================================
-     01 , OVERVIEW & PROBLEM
+     01, OVERVIEW & PROBLEM
      ============================================================ -->
 <section class="cs-section" id="overview">
   <div class="cs-inner">
     <div class="two-col">
       <div>
-        <span class="section-num">3.0</span>
+        <span class="section-num">2.0</span>
         <span class="section-kicker">Project Overview</span>
         <h2 class="cs-h2">One platform.<br/>All operations.</h2>
         <p class="cs-body">RaraSpace is a comprehensive Employee Management System built to streamline and unify all of Rara Digital Lab's internal business operations  from employee and task management to payroll, leave tracking, project costing, and inventory.</p>
@@ -963,49 +944,7 @@ footer p{font-size:12px;color:var(--gray2)}
         <h2 class="cs-h2">Fragmented.<br/>Inefficient.<br/>Frustrating.</h2>
         <p class="cs-body">The company faced challenges managing employee activity, task tracking, document handling, and project management  all across disparate, disconnected tools. Teams lost time, made errors, and had no unified view of what was happening across the organisation.</p>
         <div class="highlight-box">
-          <p><strong>Core challenge:</strong> Build a user-friendly, all-in-one EMS that reduces operational friction for a cross-functional team  without overwhelming users with feature complexity.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     02 , RESEARCH & DISCOVERY
-     ============================================================ -->
-<section class="cs-section dark" id="research">
-  <div class="cs-inner">
-    <span class="section-num">4.0</span>
-    <span class="section-kicker">Research &amp; Discovery</span>
-    <h2 class="cs-h2">Understanding<br/>the problem space</h2>
-    <p class="cs-body">Before designing anything, I needed to understand how the team actually worked , what broke down, where they lost time, and what they needed most. I used three research methods in parallel.</p>
-
-    <div class="research-grid" role="list">
-      <div class="research-card" role="listitem">
-        <div class="research-icon" aria-hidden="true"><i data-lucide="clipboard-list"></i></div>
-        <h4>Google Surveys</h4>
-        <p>Distributed surveys to colleagues to identify pain points in existing systems. Key findings: navigation confusion, empty state errors, and notification overload.</p>
-      </div>
-      <div class="research-card" role="listitem">
-        <div class="research-icon" aria-hidden="true"><i data-lucide="search"></i></div>
-        <h4>Competition Analysis</h4>
-        <p>Analysed existing EMS tools (Jira, Asana, BambooHR). Found a clear gap: no solution covered the full operational scope , most focused on just one area like tasks or HR.</p>
-      </div>
-      <div class="research-card" role="listitem">
-        <div class="research-icon" aria-hidden="true"><i data-lucide="target"></i></div>
-        <h4>Stakeholder Alignment</h4>
-        <p>Worked with the product owner to define the solution scope: a unified platform covering 10+ business functions, prioritised by team impact and development feasibility.</p>
-      </div>
-    </div>
-
-    <div style="margin-top:64px">
-      <div class="two-col-wide">
-        <div class="cs-label-col">
-          <h3 class="cs-h3">Targeted Solution &amp; Goal</h3>
-        </div>
-        <div>
-          <p class="cs-body">The goal was to develop a robust EMS that integrates seamlessly across all business aspects , <strong>employee management, task tracking, meeting booking, document management, project management, payroll logs, WFH policy tracking, activity logs, room management, notifications, project costing &amp; analysis, and inventory management</strong> , all within a single, user-friendly interface.</p>
-          <p class="cs-body" style="margin-top:16px">The software aimed to provide a one-stop solution for managing diverse business functions efficiently, eliminating the need to switch between disconnected tools.</p>
+          <p><strong>The real constraint:</strong> 10+ modules, 9 months, one live company. The work was less about designing screens and more about sequencing what to build first, and creating a component system that let every later module ship without breaking consistency.</p>
         </div>
       </div>
     </div>
@@ -1016,168 +955,15 @@ footer p{font-size:12px;color:var(--gray2)}
 
 <!-- Process (0.8) moved to before Overview -->
 
-<!-- DUAL IMPACT -->
-<section class="cs-section" id="dual-impact" style="--accent2:var(--orange)">
-  <div class="cs-inner">
-    <span class="section-num">5.0</span>
-    <span class="section-kicker">Design Strategy</span>
-    <h2 class="cs-h2">Solving for both<br/>sides of the table</h2>
-    <p class="cs-body">Every design decision here had to satisfy two audiences at once  the people using the product daily, and the business outcomes that justified building it.</p>
-    <div class="impact-split" role="list">
-      <div class="impact-col user" role="listitem">
-        <div class="impact-col-label user">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          USER NEEDS
-        </div>
-        <div class="impact-list">
-          <div class="impact-item"><strong>Single source of truth</strong>employees no longer juggle 6+ disconnected tools just to log hours, request leave, or check payroll.</div>
-          <div class="impact-item"><strong>Faster task visibility</strong>kanban-style boards surface what's due now instead of burying it in email threads.</div>
-          <div class="impact-item"><strong>Reduced cognitive load</strong>consistent design system means every module feels familiar, cutting the learning curve for new hires.</div>
-          <div class="impact-item"><strong>Mobile-friendly access</strong>leave requests and approvals work just as well from a phone as a desktop.</div>
-        </div>
-      </div>
-      <div class="impact-col business" role="listitem">
-        <div class="impact-col-label business">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M18.7 8l-5.1 5.1-2.8-2.8L7 14"/></svg>
-          BUSINESS NEEDS
-        </div>
-        <div class="impact-list">
-          <div class="impact-item"><strong>100% operational efficiency gain</strong>directly tied to consolidating 10+ business functions into one platform, cutting tool-switching overhead.</div>
-          <div class="impact-item"><strong>Lower onboarding cost</strong>a unified design system meant new employees ramp up on one interface, not six separate tools.</div>
-          <div class="impact-item"><strong>Reduced IT overhead</strong>fewer third-party SaaS subscriptions to manage, audit, and secure across the organization.</div>
-          <div class="impact-item"><strong>Scalable foundation</strong>the design system supports adding new modules without starting from scratch each time.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============================================================
-     03 , PAIN POINT ANALYSIS
-     ============================================================ -->
-<section class="cs-section" id="painpoints">
-  <div class="cs-inner">
-    <span class="section-num">6.0</span>
-    <span class="section-kicker">Design Phase</span>
-    <h2 class="cs-h2">Pain point<br/>analysis</h2>
-    <p class="cs-body">Survey results and direct observation revealed four primary pain points. For each, I mapped a concrete design solution.</p>
-
-    <div class="pain-grid" role="list">
-      <div class="pain-item" role="listitem">
-        <div class="pain-top">
-          <div class="pain-num" aria-hidden="true">1</div>
-          <h4>Complex User Interface</h4>
-        </div>
-        <div class="arrow-down" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-        </div>
-        <div class="pain-solution">
-          <span class="sol-label">Solution</span>
-          <p>Implemented <strong>clear labels and intuitive icons</strong> throughout. Simplified navigation hierarchy and reduced visual noise.</p>
-        </div>
-      </div>
-      <div class="pain-item" role="listitem">
-        <div class="pain-top">
-          <div class="pain-num" aria-hidden="true">2</div>
-          <h4>Lack of Guidance in Empty States</h4>
-        </div>
-        <div class="arrow-down" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-        </div>
-        <div class="pain-solution">
-          <span class="sol-label">Solution</span>
-          <p>Updated all empty states with <strong>contextual messages, tooltips, and onboarding pop-ups</strong> to guide users through first actions.</p>
-        </div>
-      </div>
-      <div class="pain-item" role="listitem">
-        <div class="pain-top">
-          <div class="pain-num" aria-hidden="true">3</div>
-          <h4>Navigation Issues</h4>
-        </div>
-        <div class="arrow-down" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-        </div>
-        <div class="pain-solution">
-          <span class="sol-label">Solution</span>
-          <p>Updated to clear and intuitive <strong>Breadcrumb navigation</strong> across all pages, giving users persistent context of where they are.</p>
-        </div>
-      </div>
-      <div class="pain-item" role="listitem">
-        <div class="pain-top">
-          <div class="pain-num" aria-hidden="true">4</div>
-          <h4>Ineffective Notification Mechanism</h4>
-        </div>
-        <div class="arrow-down" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-        </div>
-        <div class="pain-solution">
-          <span class="sol-label">Solution</span>
-          <p>Implemented tiered <strong>in-app alerts, email notifications, and push notifications</strong> with priority levels and user-controlled preferences.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     04 , WIREFRAMES
-     ============================================================ -->
-<section class="cs-section dark" id="wireframes">
-  <div class="cs-inner">
-    <span class="section-num">7.0</span>
-    <span class="section-kicker">Wireframe &amp; Prototyping</span>
-    <h2 class="cs-h2">From sketches<br/>to systems</h2>
-    <p class="cs-body">I began with rough paper sketches to move fast and validate structure before committing to high-fidelity. Once the flows were confirmed, I moved into Figma to build the full prototype.</p>
-
-    <div class="wireframe-note">
-      <div class="wi" aria-hidden="true">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-      </div>
-      <p>Paper sketches covered 8+ screens including Dashboard, Employee list, Projects, Tasks, Leave management, Leave application, Leave history, and Leave response flows. Each sketch was reviewed with the dev team before moving to Figma.</p>
-    </div>
-
-    <!-- Wireframe images grid -->
-    <div class="wireframe-image-grid">
-      <div class="wf-image-card">
-        <img src="rara-wireframe-1.png" alt="Wireframe 1 - Dashboard" />
-      </div>
-      <div class="wf-image-card">
-        <img src="rara-wireframe-2.png" alt="Wireframe 2" />
-      </div>
-      <div class="wf-image-card">
-        <img src="rara-wireframe-3.png" alt="Wireframe 3" />
-      </div>
-      <div class="wf-image-card">
-        <img src="rara-wireframe-4.png" alt="Wireframe 4" />
-      </div>
-      <div class="wf-image-card">
-        <img src="rara-wireframe-5.png" alt="Wireframe 5" />
-      </div>
-      <div class="wf-image-card">
-        <img src="rara-wireframe-6.png" alt="Wireframe 6" />
-      </div>
-      <div class="wf-image-card">
-        <img src="rara-wireframe-7.png" alt="Wireframe 7" />
-      </div>
-      <div class="wf-image-card">
-        <img src="rara-wireframe-8.png" alt="Wireframe 8" />
-      </div>
-      <div class="wf-image-card">
-        <img src="rara-wireframe-9.png" alt="Wireframe 9" />
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     05 , KEY DESIGN DECISIONS
+     05, KEY DESIGN DECISIONS
      ============================================================ -->
 <section class="cs-section" id="decisions">
   <div class="cs-inner">
-    <span class="section-num">8.0</span>
+    <span class="section-num">3.0</span>
     <span class="section-kicker">Key Design Decisions</span>
-    <h2 class="cs-h2">Before Before &amp;<br/>Afteramp;<br/>After</h2>
-    <p class="cs-body">Each design decision was driven by a specific user pain point uncovered in research. Here are the most impactful changes made during the design phase.</p>
+    <h2 class="cs-h2">The decisions<br/>that mattered</h2>
+    <p class="cs-body">Four decisions shaped the product. Each one came from a specific failure we saw in testing and changed how the product was used.</p>
 
     <div class="decision-list" role="list">
       <div class="decision-item" role="listitem">
@@ -1197,13 +983,13 @@ footer p{font-size:12px;color:var(--gray2)}
         <div class="decision-before">
           <span class="dec-label">Before</span>
           <h4>Blank empty states</h4>
-          <p>When users landed on a section with no data, they saw a blank white area with no instructions , leaving them stranded.</p>
+          <p>When users landed on a section with no data, they saw a blank white area with no instructions, leaving them stranded.</p>
         </div>
         <div class="decision-arrow" aria-hidden="true">→</div>
         <div class="decision-after">
           <span class="dec-label after">After</span>
           <h4>Guided empty states with CTAs</h4>
-          <p>Each empty state now includes an illustration, a friendly message, and a clear action button , turning confusion into momentum.</p>
+          <p>Each empty state now includes an illustration, a friendly message, and a clear action button, turning confusion into momentum.</p>
         </div>
       </div>
       <div class="decision-item" role="listitem">
@@ -1223,13 +1009,13 @@ footer p{font-size:12px;color:var(--gray2)}
         <div class="decision-before">
           <span class="dec-label">Before</span>
           <h4>Single notification channel</h4>
-          <p>All notifications fired the same way regardless of urgency , causing alert fatigue and missed critical updates.</p>
+          <p>All notifications fired the same way regardless of urgency, causing alert fatigue and missed critical updates.</p>
         </div>
         <div class="decision-arrow" aria-hidden="true">→</div>
         <div class="decision-after">
           <span class="dec-label after">After</span>
           <h4>Tiered notification system</h4>
-          <p>Notifications segmented into in-app alerts, email digests, and push notifications , each with configurable user preferences and priority levels.</p>
+          <p>Notifications segmented into in-app alerts, email digests, and push notifications, each with configurable user preferences and priority levels.</p>
         </div>
       </div>
     </div>
@@ -1237,11 +1023,11 @@ footer p{font-size:12px;color:var(--gray2)}
 </section>
 
 <!-- ============================================================
-     06 , FINAL DESIGN
+     06, FINAL DESIGN
      ============================================================ -->
 <section class="cs-section dark" id="final">
   <div class="cs-inner">
-    <span class="section-num">9.0</span>
+    <span class="section-num">4.0</span>
     <span class="section-kicker">Validating · Final Design</span>
     <h2 class="cs-h2">The final<br/>iteration</h2>
     <p class="cs-body">Multiple rounds of usability testing with colleagues refined the design. Continuous iterative testing ensured the final product resonated with real end-users before handoff.</p>
@@ -1253,49 +1039,19 @@ footer p{font-size:12px;color:var(--gray2)}
 </section>
 
 <!-- ============================================================
-     07 , USABILITY TESTING
-     ============================================================ -->
-<section class="cs-section" id="testing">
-  <div class="cs-inner">
-    <span class="section-num">10.0</span>
-    <span class="section-kicker">Usability Testing</span>
-
-    <div class="two-col-wide">
-      <div class="cs-label-col">
-        <h2 class="cs-h2">Testing<br/>with real<br/>users</h2>
-      </div>
-      <div>
-        <p class="cs-body">Multiple rounds of user testing were conducted to validate the design changes. This involved collecting feedback from colleagues and refining the UI/UX based on their insights. Continuous testing allowed for iterative improvements and ensured the final design resonated well with end-users.</p>
-        <div style="display:flex;flex-direction:column;gap:12px;margin-top:32px">
-          <div class="highlight-box">
-            <p><strong>Round 1:</strong> Paper prototype walkthroughs with 4 colleagues. Identified navigation confusion and empty state issues , both added to the pain point backlog.</p>
-          </div>
-          <div class="highlight-box">
-            <p><strong>Round 2:</strong> Figma prototype testing with 6 users. Validated breadcrumb navigation improvement. Discovered notification preferences needed more granular control.</p>
-          </div>
-          <div class="highlight-box">
-            <p><strong>Round 3:</strong> Live build testing before launch. Final iteration confirmed improved task discoverability and a significant reduction in navigation errors.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     08 , OUTCOMES
+     08, OUTCOMES
      ============================================================ -->
 <section class="cs-section darker" id="outcomes">
   <div class="cs-inner">
-    <span class="section-num">11.0</span>
+    <span class="section-num">5.0</span>
     <span class="section-kicker">Outcomes &amp; Impact</span>
     <h2 class="cs-h2">The results</h2>
-    <p class="cs-body">Measured outcomes from the RaraSpace EMS launch , tracked through team feedback, analytics, and stakeholder review.</p>
+    <p class="cs-body">The platform replaced the spreadsheets, paper forms, and disconnected tools the team relied on, consolidating 10+ business functions into a single source of truth.</p>
 
     <div class="metrics-grid" role="list">
       <div class="metric-item" role="listitem">
-        <span class="metric-num">100<span>%</span></span>
-        <span class="metric-label">Operational efficiency improvement</span>
+        <span class="metric-num">50<span>+</span></span>
+        <span class="metric-label">Colleagues onboarded</span>
       </div>
       <div class="metric-item" role="listitem">
         <span class="metric-num">10<span>+</span></span>
@@ -1303,7 +1059,7 @@ footer p{font-size:12px;color:var(--gray2)}
       </div>
       <div class="metric-item" role="listitem">
         <span class="metric-num">9<span>mo</span></span>
-        <span class="metric-label">Project team of 8</span>
+        <span class="metric-label">Design &amp; rollout timeline</span>
       </div>
       <div class="metric-item" role="listitem">
         <span class="metric-num">3<span>×</span></span>
@@ -1314,30 +1070,22 @@ footer p{font-size:12px;color:var(--gray2)}
 </section>
 
 <!-- ============================================================
-     09 , REFLECTION
+     09, REFLECTION
      ============================================================ -->
 <section class="cs-section dark" id="reflection">
   <div class="cs-inner">
-    <span class="section-num">12.0</span>
+    <span class="section-num">6.0</span>
     <span class="section-kicker">Reflection</span>
     <h2 class="cs-h2">What I learned</h2>
 
     <div class="reflection-grid" role="list">
-      <div class="reflection-card" role="listitem">
+<div class="reflection-card" role="listitem">
         <h4>Cross-functional collaboration</h4>
         <p>The handoff process included working with stakeholders, development teams, and key participants. I expanded my experience collaborating with cross-functional members and learned which design decisions are technically feasible and which require early engineering alignment.</p>
       </div>
-      <div class="reflection-card" role="listitem">
-        <h4>Impact on user experience</h4>
-        <p>The design decisions made had a measurable positive impact on the overall user experience. Analysing user interactions and feedback post-implementation validated the effectiveness of the design in creating a genuinely user-friendly interface.</p>
-      </div>
-      <div class="reflection-card" role="listitem">
+<div class="reflection-card" role="listitem">
         <h4>Designing for cognitive load</h4>
         <p>With 10+ modules in a single platform, the biggest challenge wasn't adding features , it was knowing what to hide. Progressive disclosure and clear information hierarchy became the most critical design tools throughout the project.</p>
-      </div>
-      <div class="reflection-card" role="listitem">
-        <h4>The value of early paper sketching</h4>
-        <p>Starting with rough paper wireframes , even for a complex enterprise product , allowed me to move faster in the early stages and get team alignment before investing time in Figma. A habit I carry into every project now.</p>
       </div>
     </div>
   </div>
@@ -1360,28 +1108,29 @@ footer p{font-size:12px;color:var(--gray2)}
 
 <!-- CTA -->
 <section class="cta-section" aria-labelledby="cta-title">
-  <h2 id="cta-title">Like what<br/>you see?</h2>
-  <p>Let's talk about what we can build together.</p>
-  <div class="cta-buttons">
-    <a href="mailto:dikshyabc01@gmail.com" class="btn-primary" onclick="showToast(event)">Get In Touch</a>
-    <a href="/Portfolio/work" target="_top" class="btn-outline">View All Work</a>
+  <div class="cta-inner">
+    <div class="cta-head">
+      <span class="cta-eyebrow">Next step</span>
+      <h2 id="cta-title">Want the full story?</h2>
+    </div>
+    <div class="cta-body">
+      <p>The outcome is only half of it. The trade-offs, the rejected directions, and the decisions behind this project are where the real work lives. I&rsquo;m happy to walk you through them.</p>
+      <div class="cta-actions">
+        <a href="mailto:dikshyabc01@gmail.com" class="btn-primary" onclick="showToast(event)">Let&rsquo;s connect</a>
+        <a href="work" target="_top" class="cta-link">View all work <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
   </div>
 </section>
 </main>
 
 <footer role="contentinfo">
-  <a class="footer-logo" href="/Portfolio/home" target="_top">DIKSHYA</a>
-  <p>© 2026 · UI/UX Designer · Kathmandu, Nepal</p>
-  <a href="/Portfolio/work" target="_top" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
+  <a class="footer-logo" href="home" target="_top">Dikshya BC</a>
+  <p>© 2026 · UI/UX Designer</p>
+  <a href="work" target="_top" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
 </footer>
 
 <script>
-// CURSOR
-const cursor=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
-(function anim(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim)})();
-
 // SCROLL PROGRESS BAR
 window.addEventListener('scroll',()=>{
   const pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;

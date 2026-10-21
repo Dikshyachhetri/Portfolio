@@ -1,136 +1,152 @@
 /* =====================================================
-   WORK — cream/olive theme
-   Same full-bleed graph-paper background as the home page
-   (no width cap on backgrounds), content capped at 1440px.
+   WORK: index of selected projects
+   Lined surface comes from .lined-surface in global.css.
    ===================================================== */
 .work-main {
-  /* graph-paper grid — #555555 at 10% opacity, full-bleed */
-  background-color: #F2EFE5;
-  background-image:
-    linear-gradient(to right, rgba(85, 85, 85, 0.10) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(85, 85, 85, 0.10) 1px, transparent 1px);
-  background-size: 96px 96px;
-  color: #2C2C2C;
+  color: var(--ink);
+  padding-bottom: 40px;
 }
 
-/* =====================================================
-   HEADER — centered, content capped at 1440px
-   ===================================================== */
+/* ---------- HEADER ---------- */
 .work-header {
-  max-width: 1440px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 170px 48px 0;
-  text-align: center;
-  animation: fadeUp 0.8s var(--ease) forwards 100ms;
-  opacity: 0;
+  padding: 156px 40px 64px;
 }
 .work-title {
-  font-family: var(--font-playfair);
-  font-style: italic;
-  font-weight: 500;
-  font-size: clamp(36px, 7.5vw, 96px);
-  letter-spacing: -0.01em;
-  line-height: 1.02;
-  color: #4a5c14;
-  white-space: nowrap;
+  margin-top: 22px;
+  font-size: clamp(52px, 7.4vw, 104px);
 }
-.work-sub {
-  max-width: 780px;
-  margin: 26px auto 0;
-  font-size: 18px;
+.work-head-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 56px;
+  margin-top: 36px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+.work-intro {
+  max-width: 560px;
+  font-size: 17px;
   line-height: 1.75;
-  color: #535353;
-  text-wrap: pretty;
+  color: var(--muted);
 }
-.work-spark {
-  color: #7BA10C;
-  margin-left: 9px;
-  vertical-align: -2px;
-  animation: spark-pulse 2.6s ease-in-out infinite;
+.work-stats {
+  display: flex;
+  gap: 44px;
 }
-@keyframes spark-pulse {
-  0%, 100% { transform: scale(1) rotate(0deg); opacity: .85 }
-  50%      { transform: scale(1.18) rotate(12deg); opacity: 1 }
+.work-stats div { display: flex; flex-direction: column; gap: 6px }
+.work-stats dt {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.work-stats dd {
+  font-family: var(--font-playfair);
+  font-size: 24px;
+  line-height: 1;
+  color: var(--ink);
 }
 
-/* =====================================================
-   PROJECT CARDS
-   ===================================================== */
-.work-cards-wrap {
-  max-width: 1440px;
+/* ---------- POSTER CARD GRID ---------- */
+.work-grid-wrap {
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 60px 48px 140px;
+  padding: 24px 40px 120px;
 }
-.work-cards {
+.work-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 34px 30px;
 }
-.work-card {
+
+.project-card {
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
   border-radius: 16px;
   overflow: hidden;
-  background: #eae8dd;
-  border: 1px solid rgba(65, 86, 0, 0.12);
-  text-decoration: none;
-  opacity: 0;
-  animation: fadeUp 0.7s var(--ease) forwards;
-  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+  transition:
+    transform 350ms var(--ease),
+    box-shadow 350ms var(--ease),
+    border-color 350ms var(--ease);
 }
-.work-card img {
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--line-strong);
+  box-shadow: 0 26px 50px -24px rgba(47, 61, 10, 0.34);
+}
+
+/* media — portrait poster, 5:7 to match source art */
+.project-media {
+  position: relative;
+  aspect-ratio: 5 / 7;
+  overflow: hidden;
+  background: var(--paper-3);
+}
+.project-media img {
   display: block;
   width: 100%;
-  height: auto;
-  transition: transform 0.6s var(--ease);
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 700ms var(--ease);
 }
-.work-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 26px 50px -24px rgba(74, 92, 20, 0.35);
-}
-.work-card:hover img {
-  transform: scale(1.04);
-}
-.work-card-overlay {
+.project-card:hover .project-media img { transform: scale(1.04) }
+
+/* hover scrim + pill */
+.project-overlay {
   position: absolute;
   inset: 0;
   display: grid;
   place-items: center;
-  background: rgba(28, 24, 30, 0);
+  background: rgba(27, 32, 20, 0);
   opacity: 0;
-  transition: opacity 0.3s ease, background 0.3s ease;
+  transition: opacity 300ms ease, background 300ms ease;
 }
-.work-card:hover .work-card-overlay {
+.project-card:hover .project-overlay {
   opacity: 1;
-  background: rgba(28, 24, 30, 0.25);
+  background: rgba(27, 32, 20, 0.28);
 }
-.work-card-view {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #fff;
+.project-overlay-pill {
   padding: 10px 20px;
   border-radius: 999px;
-  background: rgba(44, 44, 44, 0.55);
+  background: rgba(251, 250, 244, 0.92);
   backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--olive-deep);
   transform: translateY(8px);
-  transition: transform 0.3s var(--ease);
+  transition: transform 300ms var(--ease);
 }
-.work-card:hover .work-card-view {
-  transform: translateY(0);
-}
+.project-card:hover .project-overlay-pill { transform: translateY(0) }
 
-/* ---------- Responsive ---------- */
-@media (max-width: 1180px) {
-  .work-cards { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1100px) {
+  .work-head-row { grid-template-columns: 1fr; align-items: start; gap: 32px }
+  .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) }
 }
-@media (max-width: 700px) {
-  .work-cards { grid-template-columns: 1fr; gap: 22px; }
-  .work-cards-wrap { padding: 40px 20px 100px; }
-  .work-header { padding: 130px 20px 0; }
-  .work-sub { font-size: 16px; }
+@media (max-width: 860px) {
+  .work-header { padding: 128px 24px 48px }
+  .work-grid-wrap { padding: 16px 24px 96px }
+  .work-stats { gap: 32px }
 }
-@media (max-width: 480px) {
-  .work-title { white-space: normal }
+@media (max-width: 620px) {
+  .work-grid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 400px;
+    margin: 0 auto;
+    gap: 28px;
+  }
+  .work-stats { flex-wrap: wrap; gap: 20px 32px }
 }

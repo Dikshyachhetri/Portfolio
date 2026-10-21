@@ -18,16 +18,11 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);line-height:1.6;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
+body{font-family:'DM Sans',sans-serif;background-color:var(--bg);background-image:linear-gradient(to right,rgba(65,86,0,.07) 1px,transparent 1px),linear-gradient(to bottom,rgba(65,86,0,.07) 1px,transparent 1px);background-size:96px 96px;color:var(--white);line-height:1.6;overflow-x:hidden;cursor:auto;-webkit-font-smoothing:antialiased}
 .skip-link{position:fixed;top:-100px;left:16px;z-index:10000;background:var(--orange);color:#fff;padding:10px 18px;border-radius:2px;font-size:11px;text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:top .2s}
 .skip-link:focus{top:16px}
 :focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:2px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-
-#cursor{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease)}
-#cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(251,191,36,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease),opacity .3s}
-body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:18px;height:18px}
-body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring{width:48px;height:48px;opacity:.35}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .page-header{padding:80px 48px 56px;border-bottom:1px solid var(--border);opacity:0;animation:fadeUp .8s var(--ease) forwards 100ms}
@@ -113,21 +108,52 @@ footer p{font-size:12px;color:var(--gray2)}
 .impact-col .impact-item{line-height:1.7}
 .cs-body{letter-spacing:.01em}
 
+
+/* ===== Editorial alignment with the 2026 portfolio ===== */
+.page-header{padding:72px 48px 48px;border-bottom:1px solid var(--border);opacity:1;animation:none}
+.breadcrumb{font-size:10.5px;letter-spacing:.14em;color:var(--gray2);margin-bottom:28px}
+.breadcrumb a:hover{color:var(--orange)}
+.page-header h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(52px,7.4vw,104px);font-weight:400;letter-spacing:-.02em;line-height:1.02;color:var(--white);margin-bottom:22px}
+.page-header .sub{font-size:17px;line-height:1.75;color:var(--gray);max-width:620px;font-weight:400;margin-bottom:26px}
+.page-tags{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray2)}
+.page-tag{display:inline;border:0;border-radius:0;padding:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray2)}
+.page-tag + .page-tag::before{content:'·';margin:0 9px;color:var(--gray3)}
+.gallery-wrap{max-width:1280px;padding:56px 48px 88px}
+.gallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px;column-count:auto}
+.gallery-card{margin:0;border-radius:0;background:var(--bg2);border:1px solid var(--border);opacity:1;transform:none;transition:border-color .2s}
+.gallery-card:hover{transform:none;border-color:var(--border2)}
+.gallery-card img.gv{width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;padding:22px;background:var(--bg2);border-radius:0}
+.gallery-caption{padding:15px 2px;border-top:1px solid var(--border);background:transparent}
+.gallery-title{font-family:'Playfair Display',Georgia,serif;font-size:17px;font-weight:500;color:var(--white)}
+.gallery-title em{font-family:'DM Sans',sans-serif;font-style:normal;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray2);margin-left:8px}
+.more-cta{padding:72px 48px;text-align:left;max-width:1280px;margin:0 auto;border-top:1px solid var(--border)}
+.more-cta h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(32px,4.4vw,56px);font-weight:400;letter-spacing:-.02em;margin-bottom:12px}
+.more-cta p{max-width:520px;margin-bottom:28px}
+.btn-primary{font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:0;text-transform:none;background:var(--orange);color:#fff;padding:12px 22px;border-radius:999px;min-height:44px}
+.btn-primary:hover{background:var(--orange2)}
+footer{padding:28px 48px;background:transparent}
+.footer-logo{font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:.02em;color:var(--white)}
+@media(max-width:800px){
+  .page-header{padding:64px 24px 40px}
+  .gallery-wrap{padding:40px 24px 64px}
+  .gallery-grid{grid-template-columns:1fr;gap:28px}
+  .more-cta{padding:56px 24px}
+  footer{padding:24px;flex-direction:column;align-items:flex-start;gap:10px}
+}
+
 </style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
-<div id="cursor" aria-hidden="true"></div>
-<div id="cursor-ring" aria-hidden="true"></div>
 <div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-dot"></span>Email copied!</div>
 
 
 
 <main id="main">
 <header class="page-header">
-  <div class="breadcrumb"><a href="/Portfolio/home" target="_top">Home</a><span>→</span><a href="/Portfolio/work" target="_top">Work</a><span>→</span><span>Passion Projects</span></div>
-  <h1>Passion Projects <span class="sparkle" aria-hidden="true">✨</span></h1>
-  <p class="sub">A collection of freelance projects and self-directed work made outside client briefs, where I explore craft for its own sake. Digital design, video editing, graphic design, mockups, social media&nbsp;content, logo design, and branding.</p>
+  <div class="breadcrumb"><a href="home" target="_top">Home</a><span>→</span><a href="work" target="_top">Work</a><span>→</span><span>Passion Projects</span></div>
+  <h1>Passion projects.</h1>
+  <p class="sub">A curated archive of personal and freelance work made outside client briefs: branding, mockups, illustration, video, and social campaigns. The work I do to keep the craft sharp.</p>
   <div class="page-tags">
     <span class="page-tag">Digital Design</span>
     <span class="page-tag">Video Editing</span>
@@ -210,23 +236,19 @@ footer p{font-size:12px;color:var(--gray2)}
 </div>
 
 <div class="more-cta">
-  <h2>Want to see more?</h2>
-  <p>This is just a slice of what I make for fun, more on request.</p>
+  <h2>More where that came from.</h2>
+  <p>This is a small slice of the personal work. Happy to share the rest, or talk about a project.</p>
   <a href="mailto:dikshyabc01@gmail.com" class="btn-primary" onclick="showToast(event)">Get In Touch</a>
 </div>
 </main>
 
 <footer role="contentinfo">
-  <a class="footer-logo" href="/Portfolio/home" target="_top">DIKSHYA</a>
-  <p>© 2026 · UI/UX Designer · Kathmandu, Nepal</p>
-  <a href="/Portfolio/work" target="_top" class="back-link">← Back to Work</a>
+  <a class="footer-logo" href="home" target="_top">Dikshya BC</a>
+  <p>© 2026 · UI/UX Designer</p>
+  <a href="work" target="_top" class="back-link">← Back to Work</a>
 </footer>
 
 <script>
-const cursor=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
-(function anim(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim)})();
 
 const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('revealed')})},{threshold:.06});
 document.querySelectorAll('.gallery-card').forEach(el=>obs.observe(el));

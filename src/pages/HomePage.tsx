@@ -1,23 +1,25 @@
-import React from 'react'
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import './HomePage.css'
 
+const BASE = import.meta.env.BASE_URL || '/'
+
+const capabilities = [
+  {
+    title: 'Make complexity legible',
+    desc: 'Information architecture, workflow mapping, and interface systems that hold up under real operational pressure, not just in a happy-path prototype.',
+  },
+  {
+    title: 'Design for decisions',
+    desc: 'Research, prototyping, and usability testing focused on the moments where users hesitate, compare, or lose trust.',
+  },
+  {
+    title: 'Ship with engineering',
+    desc: 'Component libraries, complete states, and close collaboration from first sketch to release, so the built product matches the design.',
+  },
+]
+
 export default function HomePage() {
-  const homeRef = useRef<HTMLElement>(null)
-
-  // measure the home page height so the leaves fall all the way from the
-  // hero down to the "Work with me" band, then loop
-  useLayoutEffect(() => {
-    const el = homeRef.current
-    if (!el) return
-    const setDist = () => el.style.setProperty('--fall-dist', `${el.offsetHeight}px`)
-    setDist()
-    const ro = new ResizeObserver(setDist)
-    ro.observe(el)
-    window.addEventListener('resize', setDist)
-    return () => { ro.disconnect(); window.removeEventListener('resize', setDist) }
-  }, [])
-
   useEffect(() => {
     const obs = new IntersectionObserver(
       entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed') }),
@@ -27,126 +29,68 @@ export default function HomePage() {
     return () => obs.disconnect()
   }, [])
 
-  const chips = [
-    { label: 'UI/UX', filled: true },
-    { label: 'Vibe Coding', filled: false },
-    { label: 'Product', filled: false },
-    { label: 'Branding', filled: false },
-    { label: 'Graphic', filled: false },
-    { label: 'Illustration', filled: false },
-    { label: 'Frontend', filled: true },
-  ]
-
-  const layers = [
-    { title: 'Strategy & plan', desc: 'Mapping the path so design decisions have a reason behind them.' },
-    { title: 'Listen & define', desc: 'Understanding the real problem before touching a single pixel.' },
-    { title: 'Design & refine', desc: 'Shaping the experience, then sharpening it until it feels obvious.' },
-    { title: 'Build & test', desc: 'Shipping, and see how it holds up with real users.' },
-  ]
-
-  // Puzzle piece geometry — four real interlocking pieces (480×480 canvas).
-  // Each piece owns a rounded tab (bump) on one or two inner seams; the
-  // neighbour traces the same arc as its matching dent, so the four fills
-  // tile perfectly while the seam ink shows the interlock.
-  const piecePos = ['tl', 'tr', 'bl', 'br']
-  const piecePath = [
-    // top-left: tab right (into TR) + tab down (into BL); square seam corner at the left edge
-    'M44 24 H240 V104 a16 16 0 0 1 0 32 V240 H148 a16 16 0 0 1 -32 0 H24 V44 a20 20 0 0 1 20 -20 Z',
-    // top-right: tab down (into BR) + dent left (for the TL tab)
-    'M240 24 H436 a20 20 0 0 1 20 20 V240 H364 a16 16 0 0 1 -32 0 H240 V136 a16 16 0 0 0 0 -32 V24 Z',
-    // bottom-left: tab right (into BR) + dent top (for the TL tab)
-    'M24 240 H116 a16 16 0 0 0 32 0 H240 V344 a16 16 0 0 1 0 32 V456 H44 a20 20 0 0 1 -20 -20 V240 Z',
-    // bottom-right: dent top (for the TR tab) + dent left (for the BL tab);
-    // straight outer edges, rounded only at the canvas corner
-    'M240 240 H332 a16 16 0 0 0 32 0 H456 V436 a20 20 0 0 1 -20 20 H240 V376 a16 16 0 0 0 0 -32 V240 Z',
-  ]
-  // Outer contour only — the wavy seams are drawn by each piece's own
-  // cream stroke, so the four pieces stay visible as individuals.
-  const contour = 'M44 24 H436 a20 20 0 0 1 20 20 V436 a20 20 0 0 1 -20 20 H44 a20 20 0 0 1 -20 -20 V44 a20 20 0 0 1 20 -20 Z'
-
-  // the only leaf shape — a lobed maple/sycamore silhouette reads as autumn
-  const LEAF_PATH =
-    'M50 4 C56 20 62 24 74 20 C68 32 72 38 86 40 C74 48 74 54 82 64 C68 62 62 66 62 78 C56 68 50 68 44 78 C44 66 38 62 24 66 C32 56 32 50 20 42 C34 40 38 34 32 22 C44 24 48 20 50 4 Z'
-  const LEAVES = ['lf-1', 'lf-2', 'lf-3', 'lf-4', 'lf-5']
-
   return (
-    <main id="main" className="home" ref={homeRef}>
-      {/* autumn maple leaves falling down the whole page */}
-      <div className="leaf-field" aria-hidden="true">
-        {LEAVES.map(cls => (
-          <span className={`leaf ${cls}`} key={cls}>
-            <svg viewBox="0 0 100 100"><path d={LEAF_PATH} /></svg>
-          </span>
-        ))}
-      </div>
-
+    <main id="main" className="home lined-surface">
       {/* ========== HERO ========== */}
-      <section className="hero" aria-label="Introduction">
-        {/* blurred green leaves floating behind the hero copy */}
-        <span className="hero-leaf hero-leaf-soft" aria-hidden="true">
-          <svg viewBox="0 0 100 100"><path d={LEAF_PATH} /></svg>
-        </span>
-        <span className="hero-leaf hero-leaf-blur" aria-hidden="true">
-          <svg viewBox="0 0 100 100"><path d={LEAF_PATH} /></svg>
-        </span>
-
-        <div className="hero-center">
-          <h1 className="hero-title">
-            <span className="hero-pre">I am a </span>
-            Product Designer
+      <section className="hero" aria-labelledby="hero-title">
+        <div className="hero-grid">
+          <p className="eyebrow">UI/UX Designer</p>
+          <h1 id="hero-title" className="display hero-title">
+            Designing <em>clarity</em> into complex products.
           </h1>
-          <p className="hero-quote">
-            I care about how clearly things communicate, how well they handle edge
-            cases, and whether they build trust. I&rsquo;m always curious, learning and
-            exploring, whether that&rsquo;s a new tool, a new industry, or a problem
-            I&rsquo;ve never touched before <span className="quote-smile" aria-hidden="true">ツ</span>
-          </p>
-        </div>
 
-        <div className="hero-chips" aria-label="Disciplines">
-          {chips.map(c => (
-            <span className={`chip${c.filled ? ' chip-filled' : ''}`} key={c.label}>{c.label}</span>
-          ))}
-        </div>
+          {/* Lower band: lede left, actions right, shared top rule */}
+          <div className="hero-body">
+            <p className="hero-lede">
+              I&rsquo;m Dikshya BC, a UI/UX designer with 5+ years turning dense,
+              high-stakes workflows into products people can use with confidence.
+              Experience spans healthcare, fintech, ERP, aviation, edtech,
+              cybersecurity, maritime, AI and ecommerce, across B2B, B2C and
+              DTC products.
+            </p>
 
-        <div className="open-for-work">
-          <span className="ofw-light" aria-hidden="true">
-            <span className="ofw-ring"></span>
-            <span className="ofw-dot"></span>
-          </span>
-          Open for work
-        </div>
-      </section>
-
-      {/* ========== STATEMENT — four layers as puzzle pieces coming together ========== */}
-      <section className="statement" aria-labelledby="statement-title">
-        <h2 className="statement-title reveal" id="statement-title">
-          Designing, building, and refining as<br /> one continuous process
-        </h2>
-
-        <div className="puzzle-wrap reveal">
-          <div className="puzzle">
-            <svg className="pz-svg" viewBox="0 0 480 480" role="img" aria-label="Four working layers coming together like puzzle pieces">
-              {piecePos.map((p, i) => (
-                <g className={`pz pz-${p}`} key={p}>
-                  <path className="pz-fill" d={piecePath[i]} fillRule="evenodd" />
-                </g>
-              ))}
-              <g className="pz-ink" aria-hidden="true">
-                <path d={contour} />
-              </g>
-            </svg>
-
-            {layers.map((l, i) => (
-              <div className={`pz-label pz-label-${piecePos[i]}`} key={l.title} aria-hidden="true">
-                <span className="pz-num">{String(i + 1).padStart(2, '0')}</span>
-                <h3 className="pz-title">{l.title}</h3>
-                <p className="pz-desc">{l.desc}</p>
+            <div className="hero-side">
+              <div className="hero-actions">
+                <Link className="btn btn-primary" to="/work">View selected work</Link>
+                <a
+                  className="btn btn-outline"
+                  href={BASE + 'resume.pdf'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Résumé
+                </a>
               </div>
-            ))}
+
+              <p className="hero-note">
+                <span className="status-dot" aria-hidden="true" />
+                Currently designing at Invicta · Open to select projects
+              </p>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* ========== APPROACH ========== */}
+      <section className="section section-last" aria-labelledby="approach-title">
+        <header className="section-head reveal">
+          <div>
+            <p className="eyebrow">How I work</p>
+            <h2 id="approach-title" className="display">From ambiguity to a shipped product.</h2>
+          </div>
+        </header>
+
+        <div className="approach-grid">
+          {capabilities.map((c, i) => (
+            <article className="approach-item reveal" key={c.title} style={{ transitionDelay: `${i * 80}ms` }}>
+              <span className="approach-num">0{i + 1}</span>
+              <h3>{c.title}</h3>
+              <p>{c.desc}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
     </main>
   )
 }

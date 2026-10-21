@@ -1,53 +1,109 @@
-import React from 'react'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './WorkPage.css'
 
 const BASE = import.meta.env.BASE_URL || '/'
 
 const projects = [
-  { id: 'raraspace', title: 'RaraSpace EMS', tag: 'ERP · Web App · PWA', path: '/case/raraspace', card: 'rara-card.png' },
-  { id: 'intellix', title: 'Intellix Diagnostics', tag: 'Healthcare · KPI Dashboard', path: '/case/intellix', card: 'intellix-card.png' },
-  { id: 'loksewa', title: 'Loksewa Pro', tag: 'EdTech · Mobile App', path: '/case/loksewa', card: 'loksewa-card.png' },
-  { id: 'myra', title: 'Myra Cooperative', tag: 'Fintech · ERP · Web App', path: '/case/myra', card: 'myra-card.png' },
-  { id: 'nac', title: 'NAC GSE System', tag: 'Aviation · Inventory', path: '/case/nac', card: 'nac-card.png' },
-  { id: 'xuno', title: 'XUNO Payments', tag: 'Fintech · Payments', path: '/case/xuno', card: 'xuno-card.png' },
-  { id: 'heliski', title: 'Heliski International', tag: 'Travel · Marketplace', path: '/case/heliski', card: 'heliski-card.png' },
-  { id: 'passion', title: 'Passion Projects', tag: 'Freelance · Graphic · Branding', path: '/case/passion', card: 'passion-card.png' },
+  {
+    id: 'raraspace',
+    title: 'RaraSpace EMS',
+    card: 'rara-card.png',
+    path: '/case/raraspace',
+  },
+  {
+    id: 'intellix',
+    title: 'Intellix Diagnostics',
+    card: 'intellix-card.png',
+    path: '/case/intellix',
+  },
+  {
+    id: 'loksewa',
+    title: 'Loksewa Pro',
+    card: 'loksewa-card.png',
+    path: '/case/loksewa',
+  },
+  {
+    id: 'myra',
+    title: 'Myra Cooperative ERP',
+    card: 'myra-card.png',
+    path: '/case/myra',
+  },
+  {
+    id: 'nac',
+    title: 'NAC Ground Support',
+    card: 'nac-card.png',
+    path: '/case/nac',
+  },
+  {
+    id: 'xuno',
+    title: 'XUNO Payments',
+    card: 'xuno-card.png',
+    path: '/case/xuno',
+  },
+  {
+    id: 'heliski',
+    title: 'Heliski International',
+    card: 'heliski-card.png',
+    path: '/case/heliski',
+  },
+  {
+    id: 'passion',
+    title: 'Passion Projects',
+    card: 'passion-card.png',
+    path: '/case/passion',
+  },
 ]
 
 export default function WorkPage() {
-  useEffect(() => { window.scrollTo(0, 0) }, [])
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    const obs = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed') }),
+      { threshold: 0.08 }
+    )
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el))
+    return () => obs.disconnect()
+  }, [])
 
   return (
-    <main id="main" className="work-main">
-      {/* ========== HEADER ========== */}
+    <main id="main" className="work-main lined-surface">
       <header className="work-header">
-        <h1 className="work-title">Selected Projects</h1>
-        <p className="work-sub">
-          I turn ambiguity into clear product design direction and ship with
-          cross-functional teams at speed. I build with AI, prototyping ideas and
-          exploring the edge of design and technology.
-          <svg className="work-spark" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 1.4 C13.3 7.6 16.4 10.7 22.6 12 C16.4 13.3 13.3 16.4 12 22.6 C10.7 16.4 7.6 13.3 1.4 12 C7.6 10.7 10.7 7.6 12 1.4 Z" fill="currentColor" />
-          </svg>
-        </p>
+        <p className="eyebrow">Portfolio · 2022–2026</p>
+        <h1 className="display work-title">Selected <em>work</em>.</h1>
+        <div className="work-head-row">
+          <p className="work-intro">
+            Eight products across enterprise, fintech, healthcare, aviation,
+            travel, and edtech. Each case study focuses on the decisions that
+            changed the outcome, not the process theatre around them.
+          </p>
+          <dl className="work-stats">
+            <div><dt>Projects</dt><dd>08</dd></div>
+            <div><dt>Industries</dt><dd>06</dd></div>
+            <div><dt>Experience</dt><dd>5+ yrs</dd></div>
+          </dl>
+        </div>
       </header>
 
-      {/* ========== PROJECT CARDS ========== */}
-      <section className="work-cards-wrap" aria-label="Projects">
-        <div className="work-cards">
+      <section className="work-grid-wrap" aria-label="Projects">
+        <div className="work-grid">
           {projects.map((p, i) => (
             <Link
               to={p.path}
-              className="work-card"
+              className="project-card reveal"
               key={p.id}
-              style={{ animationDelay: `${100 + i * 60}ms` }}
+              style={{ transitionDelay: `${Math.min(i, 5) * 70}ms` }}
             >
-              <img src={BASE + 'project-cards/' + p.card} alt={p.title} loading="lazy" />
-              <span className="work-card-overlay" aria-hidden="true">
-                <span className="work-card-view">View project</span>
-              </span>
+              <div className="project-media">
+                <img
+                  src={BASE + 'project-cards/' + p.card}
+                  alt={`${p.title} project cover`}
+                  loading={i < 3 ? 'eager' : 'lazy'}
+                />
+                <span className="project-overlay" aria-hidden="true">
+                  <span className="project-overlay-pill">View case study</span>
+                </span>
+              </div>
             </Link>
           ))}
         </div>

@@ -1,9 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
-import CustomCursor from './components/CustomCursor'
 import Nav from './components/Nav'
-
 import ScrollToTop from './components/ScrollToTop'
 import Footer from './components/Footer'
 import Toast from './components/Toast'
@@ -13,23 +11,26 @@ import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
 import CaseStudy from './pages/CaseStudy'
 
-const LIGHT_ROUTES = ['/home', '/about', '/contact', '/work']
-
 export default function App() {
   const location = useLocation()
 
-  // New cream/olive design covers Home, About, Contact, Work and the
-  // case-study shells. The embedded case docs carry their own palette.
+  // Every route now uses the warm-paper palette. Case studies are
+  // iframes with their own embedded palettes.
   useEffect(() => {
+    document.documentElement.setAttribute('data-theme', 'light')
+
     const p = location.pathname
-    const light =
-      p === '/' || p === '/home' || p === '/about' || p === '/contact' || p === '/work' || p.startsWith('/case/')
-    document.documentElement.setAttribute('data-theme', light ? 'light' : 'dark')
+    const titles: Record<string, string> = {
+      '/home': 'Dikshya BC · UI/UX Designer',
+      '/work': 'Selected work · Dikshya BC',
+      '/about': 'About · Dikshya BC',
+      '/contact': 'Contact · Dikshya BC',
+    }
+    document.title = titles[p] ?? (p.startsWith('/case/') ? 'Case study · Dikshya BC' : 'Dikshya BC · UI/UX Designer')
   }, [location.pathname])
 
   return (
     <>
-      <CustomCursor />
       <ScrollToTop />
       <Nav />
       <Routes>

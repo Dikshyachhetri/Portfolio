@@ -20,16 +20,12 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);line-height:1.6;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
+body{font-family:'DM Sans',sans-serif;background-color:var(--bg);background-image:linear-gradient(to right,rgba(65,86,0,.07) 1px,transparent 1px),linear-gradient(to bottom,rgba(65,86,0,.07) 1px,transparent 1px);background-size:96px 96px;color:var(--white);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 .skip-link{position:fixed;top:-100px;left:16px;z-index:10000;background:var(--orange);color:#fff;padding:10px 18px;border-radius:2px;font-size:11px;text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:top .2s}
 .skip-link:focus{top:16px}
 :focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:2px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-#cursor{position:fixed;width:10px;height:10px;background:var(--orange);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease)}
-#cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(74,92,20,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease),opacity .3s}
-body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:18px;height:18px}
-body:has(a:hover) #cursor-ring{width:48px;height:48px;opacity:.35}
 #progress{position:fixed;top:60px;left:0;height:2px;background:var(--green2);z-index:99;width:0%;transition:width .1s linear}
 
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 48px;height:60px;border-bottom:1px solid var(--border);background:rgba(243,242,234,.88);backdrop-filter:blur(18px)}
@@ -41,7 +37,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .nav-links a:hover{color:var(--white)}.nav-links a:hover::after{width:100%}.nav-links a.active{color:var(--white)}.nav-links a.active::after{width:100%}
 .nav-cta{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);border:1px solid var(--orange);padding:8px 22px;border-radius:2px;text-decoration:none;transition:background var(--dur-fast),color var(--dur-fast),box-shadow var(--dur-fast)}
 .nav-cta:hover{background:var(--orange);color:#fff;box-shadow:0 0 20px rgba(74,92,20,.25)}
-.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:8px}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
 .nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:transform var(--dur-mid) var(--ease),opacity var(--dur-fast)}
 .nav-right{display:flex;align-items:center;gap:12px;justify-self:end}
 .nav-drawer{display:none;position:fixed;top:60px;left:0;right:0;height:400px;background:var(--bg);border-bottom:1px solid var(--border);padding:48px;flex-direction:column;gap:24px;z-index:99;overflow-y:auto}
@@ -248,8 +244,40 @@ footer p{font-size:12px;color:var(--gray2)}
   footer{flex-direction:column;gap:12px;text-align:center;padding:24px}
   .cta-section,.next-project{padding:60px 24px}
 }
-@media(pointer:coarse){body{cursor:auto}#cursor,#cursor-ring{display:none}}
 @media(max-width:600px){.pain-grid,.research-grid{grid-template-columns:1fr}.metrics-grid{grid-template-columns:1fr 1fr}.competitor-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* CTA: one-line heading, three-line description */
+#cta-title{white-space:nowrap}
+.cta-section p,.cta-section>p{max-width:620px;margin-left:auto;margin-right:auto;line-height:1.65}
+@media (max-width:520px){#cta-title{font-size:30px;letter-spacing:0}}
+
+
+/* ===== CTA / closing section ===== */
+.cta-section{padding:0;background:var(--bg);text-align:left;overflow:visible}
+.cta-section::before{content:none}
+.cta-inner{max-width:1200px;margin:0 auto;padding:96px 48px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:80px;align-items:start}
+.cta-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gray2)}
+.cta-head h2{margin:18px 0 0;font-family:'Playfair Display',Georgia,serif;font-weight:400;font-style:normal;font-size:clamp(40px,5.4vw,72px);line-height:1.02;letter-spacing:-.02em;color:var(--white)}
+.cta-body{padding-top:6px}
+.cta-body p{margin:0;max-width:520px;font-size:16px;line-height:1.7;color:var(--gray)}
+.cta-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:30px}
+.cta-section .btn-primary{display:inline-flex;align-items:center;height:46px;padding:0 24px;border-radius:999px;background:var(--orange);color:#fff;font-size:13.5px;font-weight:500;letter-spacing:0;text-transform:none;text-decoration:none;min-height:46px;transition:background .2s}
+.cta-section .btn-primary:hover{background:var(--orange2)}
+.cta-link{font-size:13.5px;font-weight:500;color:var(--white);text-decoration:none;border-bottom:1px solid var(--border2);padding-bottom:3px;transition:color .2s,border-color .2s}
+.cta-link:hover{color:var(--orange);border-color:var(--orange)}
+.cta-link span{display:inline-block;transition:transform .2s}
+.cta-link:hover span{transform:translateX(3px)}
+@media(max-width:900px){.cta-inner{grid-template-columns:1fr;gap:36px;padding:72px 24px}.cta-body{padding-top:0}}
+
+
+/* mobile metrics: keep the two-up grid inside the viewport */
+@media(max-width:600px){
+  .metrics-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .metric-item{min-width:0;padding:28px 12px}
+  .metric-num{font-size:40px;letter-spacing:1px}
+  .metric-label{font-size:9.5px;letter-spacing:1.2px}
+}
+
 </style>
 <style>
 /* Impact split (consistent with other portfolio projects) */
@@ -361,8 +389,6 @@ footer p{font-size:12px;color:var(--gray2)}
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
-<div id="cursor" aria-hidden="true"></div>
-<div id="cursor-ring" aria-hidden="true"></div>
 <div id="progress" aria-hidden="true"></div>
 <div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-dot"></span>Opening Gmail...</div>
 
@@ -380,8 +406,8 @@ footer p{font-size:12px;color:var(--gray2)}
   <div class="cs-hero-content">
   <div class="breadcrumb">
    <div>
-    <a href="/Portfolio/home" target="_top">Home</a><span class="sep">·</span>
-    <a href="/Portfolio/work#xuno" target="_top">Work</a><span class="sep">·</span>
+    <a href="home" target="_top">Home</a><span class="sep">·</span>
+    <a href="work#xuno" target="_top">Work</a><span class="sep">·</span>
     <span>XUNO (R2PX)</span>
    </div>
   </div>
@@ -396,7 +422,7 @@ footer p{font-size:12px;color:var(--gray2)}
 
     <h1>Borderless<br/>Banking,<br/><em>Built Trust.</em></h1>
 
-    <p class="cs-hero-tagline">Designed Request to Pay (r2px), a cross-border remittance feature empowering individuals and businesses in Nepal to receive money from the USA through transparent, NRB-regulated exchange rates and trusted local payment rails.</p>
+    <p class="cs-hero-tagline">A cross-border remittance experience built around one trust problem: showing the exchange rate, the settlement path, and the status before money moves. NDA: public screens only.</p>
 
     <div class="nda-note">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 9v4M12 17h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
@@ -527,7 +553,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- TL;DR BAR -->
 <div class="tldr-bar-wrapper">
 <div class="tldr-bar">
- <div class="tldr-intro-wrap"><p class="tldr-intro">XUNO (R2PX) is a cross-border remittance platform connecting the USA and Nepal through transparent, NRB-regulated exchange rates. I designed the complete experience from user flows to pixel-perfect UI. <strong>11 platforms benchmarked, real user testing pre-launch, delivered for web and mobile.</strong></p></div>
+ <div class="tldr-intro-wrap"><p class="tldr-intro">A remittance flow built on transparency: rate, route, and status before money moves.</p></div>
  <div class="tldr-grid">
    <div class="tldr-item">
     <span class="tldr-label">The problem</span>
@@ -551,7 +577,7 @@ footer p{font-size:12px;color:var(--gray2)}
     <span class="section-num">1.0</span>
     <span class="section-kicker">My Contribution</span>
     <h2 class="cs-h2">What I<br/>personally owned</h2>
-    <p class="cs-body">Clarity on contribution matters. Here's the exact split between what I owned end-to-end and what the broader team handled.</p>
+    <p class="cs-body">I owned the design end-to-end. Here&rsquo;s the split between my work and the broader team&rsquo;s.</p>
     <div class="my-role-grid">
       <div class="my-role-col owned">
         <h4 class="owned">I owned this</h4>
@@ -581,7 +607,7 @@ footer p{font-size:12px;color:var(--gray2)}
   <div class="cs-inner">
     <div class="two-col">
       <div>
-        <span class="section-num">1.0</span>
+        <span class="section-num">2.0</span>
         <span class="section-kicker">Project Overview</span>
         <h2 class="cs-h2">Cross-border<br/>payments,<br/>reimagined.</h2>
         <p class="cs-body">Request to Pay (r2px) is a platform designed to revolutionize cross-border payments, empowering individuals and businesses in Nepal to seamlessly receive money from the USA. Unlike traditional remittance methods, r2px allows Nepalese users to send payment requests directly to US contacts through an easy-to-use webapp or mobile interface.</p>
@@ -603,39 +629,6 @@ footer p{font-size:12px;color:var(--gray2)}
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     1.0  RESEARCH
-     ============================================================ -->
-<section class="cs-section dark" id="research">
-  <div class="cs-inner">
-    <span class="section-num">2.0</span>
-    <span class="section-kicker">My Role · Research Process</span>
-    <h2 class="cs-h2">Flows first.<br/>Then benchmarks.</h2>
-    <div class="two-col-wide">
-      <div><h3 class="cs-h3" style="color:rgba(240,236,228,.45)">UI/UX DESIGN<br/>PROCESS</h3></div>
-      <div>
-        <p class="cs-body">I began the design process by mapping detailed user flows and creating flow diagrams to ensure a clear, logical journey for every major action. This step provided the team with a solid framework before moving into actual interface design.</p>
-        <p class="cs-body">To create a best-in-class user experience, I conducted extensive competitor research, examining platforms like Wise, Remitly, Western Union, MoneyGram, Instarem, and Panda Remit, but also focusing on Nepal-centric platforms such as eSewa Money Transfer, IME Pay, NEO Money Transfer, connectIPS, and Fonepay. This helped us identify user expectations, must-have features, and interface standards for seamless, transparent money transfers.</p>
-      </div>
-    </div>
-
-    <div class="competitor-grid" role="list">
-      <div class="comp-tag" role="listitem"><span>Wise</span></div>
-      <div class="comp-tag" role="listitem"><span>Remitly</span></div>
-      <div class="comp-tag" role="listitem"><span>Western Union</span></div>
-      <div class="comp-tag" role="listitem"><span>MoneyGram</span></div>
-      <div class="comp-tag" role="listitem"><span>Instarem</span></div>
-      <div class="comp-tag" role="listitem"><span>Panda Remit</span></div>
-      <div class="comp-tag" role="listitem"><span>eSewa Money Transfer</span></div>
-      <div class="comp-tag" role="listitem"><span>IME Pay</span></div>
-      <div class="comp-tag" role="listitem"><span>NEO Money Transfer</span></div>
-      <div class="comp-tag" role="listitem"><span>connectIPS</span></div>
-      <div class="comp-tag" role="listitem"><span>Fonepay</span></div>
-    </div>
-    <p class="competitor-note">11 PLATFORMS BENCHMARKED: GLOBAL &amp; NEPAL-CENTRIC</p>
   </div>
 </section>
 
@@ -673,45 +666,14 @@ footer p{font-size:12px;color:var(--gray2)}
 </section>
 
 <!-- ============================================================
-     3.0  COLLABORATION & VALIDATION
-     ============================================================ -->
-<section class="cs-section dark" id="collab">
-  <div class="cs-inner">
-    <span class="section-num">4.0</span>
-    <span class="section-kicker">Cross-Functional Collaboration</span>
-    <h2 class="cs-h2">Daily syncs.<br/>Mobile-first.<br/>Real testing.</h2>
-    <div class="research-grid" role="list">
-      <div class="research-card" role="listitem">
-        <div class="research-icon" aria-hidden="true"><i data-lucide="refresh-cw"></i></div>
-        <h4>Daily sync with dev &amp; product</h4>
-        <p>Throughout the project, I actively collaborated with the development and product teams, holding daily sync meetings to review flows, address challenges, and refine designs based on real-time feedback.</p>
-      </div>
-      <div class="research-card" role="listitem">
-        <div class="research-icon" aria-hidden="true"><i data-lucide="smartphone"></i></div>
-        <h4>Mobile-first by default</h4>
-        <p>All screens were designed with a mobile-first mindset, ensuring a responsive and accessible experience for users on any device.</p>
-      </div>
-      <div class="research-card" role="listitem">
-        <div class="research-icon" aria-hidden="true"><i data-lucide="beaker"></i></div>
-        <h4>Real user testing pre-launch</h4>
-        <p>Before launch, we conducted real user testing to observe pain points, validate the intuitiveness of our design, and make data-driven improvements grounded in actual user behaviour.</p>
-      </div>
-    </div>
-    <div class="highlight-box" style="margin-top:32px">
-      <p><strong>Outcome of this process:</strong> A user-centered, research-driven design process that resulted in a cross-border payment platform that is not only visually appealing, but intuitive, efficient, and grounded in real user needs.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
      04  METRICS
      ============================================================ -->
 <section class="cs-section darker" id="outcomes">
   <div class="cs-inner">
-    <span class="section-num">5.0</span>
+    <span class="section-num">4.0</span>
     <span class="section-kicker orange">Scope &amp; Scale</span>
     <h2 class="cs-h2">The numbers</h2>
-    <p class="cs-body">Given NDA constraints, detailed performance metrics aren't shareable publicly, but the scope and process rigor speak to the complexity of the work.</p>
+    <p class="cs-body">NDA constraints limit what I can show, but the outcome is public: a live remittance platform with NRB-regulated rates, IME Pay and connectIPS settlement, and real-time tracking.</p>
     <div class="metrics-grid" role="list">
       <div class="metric-item" role="listitem"><span class="metric-num">12</span><span class="metric-label">Person cross-functional team</span></div>
       <div class="metric-item" role="listitem"><span class="metric-num">6<span>mo</span></span><span class="metric-label">Full design &amp; build timeline</span></div>
@@ -726,15 +688,16 @@ footer p{font-size:12px;color:var(--gray2)}
      ============================================================ -->
 <section class="cs-section dark" id="reflection">
   <div class="cs-inner">
-    <span class="section-num">6.0</span>
+    <span class="section-num">5.0</span>
     <span class="section-kicker">Reflection</span>
     <h2 class="cs-h2">What I learned</h2>
+
     <div class="reflection-grid" role="list">
-      <div class="reflection-card" role="listitem">
+<div class="reflection-card" role="listitem">
         <h4>Rate transparency is the product, not decoration</h4>
         <p>In remittance, showing the bank's buying rate clearly, before a request is even sent, isn't a small UI detail. It's the thing that differentiates a platform from competitors that bury fees in the exchange rate. That shaped how I prioritised every other screen in this project.</p>
       </div>
-      <div class="reflection-card" role="listitem">
+<div class="reflection-card" role="listitem">
         <h4>Fintech is a different kind of design challenge</h4>
         <p>As my first fintech project, I learned that designing for money transfers means every pixel carries weight: a misplaced button or unclear label doesn't just confuse users, it erodes trust in real transactions. This project taught me to balance regulatory constraints with smooth user experience, and why clarity matters more than visual flair in financial products.</p>
       </div>
@@ -763,26 +726,29 @@ footer p{font-size:12px;color:var(--gray2)}
      CTA
      ============================================================ -->
 <section class="cta-section" aria-labelledby="cta-title">
-  <h2 id="cta-title">Like what<br/>you see?</h2>
-  <p>Let's talk about what we can build together.</p>
-  <div class="cta-buttons">
-    <a href="#" class="btn-primary" onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=dikshyabc01@gmail.com','_blank');return false;">Get In Touch</a>
-    <a href="/Portfolio/work" target="_top" class="btn-outline">View All Work</a>
+  <div class="cta-inner">
+    <div class="cta-head">
+      <span class="cta-eyebrow">Next step</span>
+      <h2 id="cta-title">Want the full story?</h2>
+    </div>
+    <div class="cta-body">
+      <p>The outcome is only half of it. The trade-offs, the rejected directions, and the decisions behind this project are where the real work lives. I&rsquo;m happy to walk you through them.</p>
+      <div class="cta-actions">
+        <a href="mailto:dikshyabc01@gmail.com" class="btn-primary" onclick="showToast(event)">Let&rsquo;s connect</a>
+        <a href="work" target="_top" class="cta-link">View all work <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
   </div>
 </section>
 </main>
 
 <footer role="contentinfo">
-  <a class="footer-logo" href="/Portfolio/home" target="_top">DIKSHYA</a>
-  <p>© 2026 · UI/UX Designer · Kathmandu, Nepal</p>
-  <a href="/Portfolio/work" target="_top" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
+  <a class="footer-logo" href="home" target="_top">Dikshya BC</a>
+  <p>© 2026 · UI/UX Designer</p>
+  <a href="work" target="_top" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
 </footer>
 
 <script>
-const cursor=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
-(function anim(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim)})();
 window.addEventListener('scroll',()=>{const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;document.getElementById('progress').style.width=p+'%';},{passive:true});
 const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('revealed')})},{threshold:.07});
 document.querySelectorAll('.tldr-bar,.pain-item,.research-card,.reflection-card,.metric-item,.comp-tag').forEach(el=>obs.observe(el));

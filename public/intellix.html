@@ -20,16 +20,12 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);line-height:1.6;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
+body{font-family:'DM Sans',sans-serif;background-color:var(--bg);background-image:linear-gradient(to right,rgba(65,86,0,.07) 1px,transparent 1px),linear-gradient(to bottom,rgba(65,86,0,.07) 1px,transparent 1px);background-size:96px 96px;color:var(--white);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 .skip-link{position:fixed;top:-100px;left:16px;z-index:10000;background:var(--orange);color:#fff;padding:10px 18px;border-radius:2px;font-size:11px;text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:top .2s}
 .skip-link:focus{top:16px}
 :focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:2px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-#cursor{position:fixed;width:10px;height:10px;background:var(--orange);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease)}
-#cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(77,100,10,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease),opacity .3s}
-body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:18px;height:18px}
-body:has(a:hover) #cursor-ring{width:48px;height:48px;opacity:.35}
 #progress{position:fixed;top:60px;left:0;height:2px;background:var(--teal2);z-index:99;width:0%;transition:width .1s linear}
 
 /* NAV */
@@ -377,8 +373,40 @@ footer p{font-size:12px;color:var(--gray2)}
   .cs-hero-image{padding:40px 24px}
 }
 
-@media(pointer:coarse){body{cursor:auto}#cursor,#cursor-ring{display:none}}
 @media(max-width:600px){.pain-grid,.research-grid,.stakeholder-grid{grid-template-columns:1fr}.metrics-grid{grid-template-columns:1fr 1fr}.my-role-grid{grid-template-columns:1fr}.pflow-steps{grid-template-columns:1fr}}
+
+/* CTA: one-line heading, three-line description */
+#cta-title{white-space:nowrap}
+.cta-section p,.cta-section>p{max-width:620px;margin-left:auto;margin-right:auto;line-height:1.65}
+@media (max-width:520px){#cta-title{font-size:30px;letter-spacing:0}}
+
+
+/* ===== CTA / closing section ===== */
+.cta-section{padding:0;background:var(--bg);text-align:left;overflow:visible}
+.cta-section::before{content:none}
+.cta-inner{max-width:1200px;margin:0 auto;padding:96px 48px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:80px;align-items:start}
+.cta-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gray2)}
+.cta-head h2{margin:18px 0 0;font-family:'Playfair Display',Georgia,serif;font-weight:400;font-style:normal;font-size:clamp(40px,5.4vw,72px);line-height:1.02;letter-spacing:-.02em;color:var(--white)}
+.cta-body{padding-top:6px}
+.cta-body p{margin:0;max-width:520px;font-size:16px;line-height:1.7;color:var(--gray)}
+.cta-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:30px}
+.cta-section .btn-primary{display:inline-flex;align-items:center;height:46px;padding:0 24px;border-radius:999px;background:var(--orange);color:#fff;font-size:13.5px;font-weight:500;letter-spacing:0;text-transform:none;text-decoration:none;min-height:46px;transition:background .2s}
+.cta-section .btn-primary:hover{background:var(--orange2)}
+.cta-link{font-size:13.5px;font-weight:500;color:var(--white);text-decoration:none;border-bottom:1px solid var(--border2);padding-bottom:3px;transition:color .2s,border-color .2s}
+.cta-link:hover{color:var(--orange);border-color:var(--orange)}
+.cta-link span{display:inline-block;transition:transform .2s}
+.cta-link:hover span{transform:translateX(3px)}
+@media(max-width:900px){.cta-inner{grid-template-columns:1fr;gap:36px;padding:72px 24px}.cta-body{padding-top:0}}
+
+
+/* mobile metrics: keep the two-up grid inside the viewport */
+@media(max-width:600px){
+  .metrics-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .metric-item{min-width:0;padding:28px 12px}
+  .metric-num{font-size:40px;letter-spacing:1px}
+  .metric-label{font-size:9.5px;letter-spacing:1.2px}
+}
+
 </style>
 <style>
 /* TL;DR BAR */
@@ -466,8 +494,6 @@ footer p{font-size:12px;color:var(--gray2)}
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
-<div id="cursor" aria-hidden="true"></div>
-<div id="cursor-ring" aria-hidden="true"></div>
 <div id="progress" aria-hidden="true"></div>
 <div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-dot"></span>Opening Gmail...</div>
 
@@ -482,8 +508,8 @@ footer p{font-size:12px;color:var(--gray2)}
   <div class="cs-hero-content">
   <div class="breadcrumb">
    <div>
-    <a href="/Portfolio/home" target="_top">Home</a><span class="sep">·</span>
-    <a href="/Portfolio/work#intellix" target="_top">Work</a><span class="sep">·</span>
+    <a href="home" target="_top">Home</a><span class="sep">·</span>
+    <a href="work#intellix" target="_top">Work</a><span class="sep">·</span>
     <span>Intellix Healthcare</span>
    </div>
   </div>
@@ -492,12 +518,12 @@ footer p{font-size:12px;color:var(--gray2)}
         <span class="cs-chip">PROJECT</span>
         <span class="cs-chip teal">INTELLIX</span>
         <span class="cs-chip">HEALTHCARE</span>
-        <span class="cs-chip">2022–2024</span>
+        <span class="cs-chip">2022-2024</span>
       </div>
       <a href="https://www.intellix.com/healthcare#improving-healthcare" target="_blank" rel="noopener noreferrer" class="visit-hero-link">Visit Site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17l9-9M9 8h7v7"/></svg></a>
     </div>
     <h1>Improving<br/>Patient<br/><em>Diagnostics</em></h1>
-    <p class="cs-hero-tagline">Designed the KPI module and Patient Dashboard for Intellix , a healthcare intelligence platform helping clinical teams transform complex medical data into clear, actionable insights. Used daily by doctors and nurses in live hospital settings.</p>
+    <p class="cs-hero-tagline">A clinical intelligence platform that turned fragmented hospital data into two focused dashboards, giving administrators, nurses, and doctors the same operational picture.</p>
     <div class="cs-quick-stats" role="list">
       <div class="cs-stat" role="listitem"><span class="cs-stat-label">My Role</span><span class="cs-stat-val">UI/UX Designer</span></div>
       <div class="cs-stat" role="listitem"><span class="cs-stat-label">Company</span><span class="cs-stat-val">Rara Digital Lab Pvt. Ltd.</span></div>
@@ -628,7 +654,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- TL;DR BAR -->
 <div class="tldr-bar-wrapper">
 <div class="tldr-bar">
- <div class="tldr-intro-wrap"><p class="tldr-intro">Intellix is a healthcare intelligence platform used daily by doctors and nurses in live hospital settings. I designed the KPI module and Patient Dashboard to transform complex medical data into clear, actionable insights. <strong>Validated through real clinical feedback and usability testing with hospital staff.</strong></p></div>
+ <div class="tldr-intro-wrap"><p class="tldr-intro">Two clinical dashboards, designed to turn fragmented hospital data into decisions.</p></div>
  <div class="tldr-grid">
    <div class="tldr-item">
     <span class="tldr-label">The problem</span>
@@ -652,16 +678,16 @@ footer p{font-size:12px;color:var(--gray2)}
     <span class="section-num">1.0</span>
     <span class="section-kicker">My Contribution</span>
     <h2 class="cs-h2">What I<br/>personally owned</h2>
-    <p class="cs-body">Clarity on contribution matters. Here's the exact split between what I owned end-to-end and what the broader team handled.</p>
+    <p class="cs-body">I owned the design end-to-end. Here&rsquo;s the split between my work and the broader team&rsquo;s.</p>
     <div class="my-role-grid">
       <div class="my-role-col owned">
         <h4 class="owned">I owned this</h4>
         <div class="role-list"><div class="role-item"><span class="role-item-title">User research &amp; competitive analysis</span><span class="role-item-desc">Conducted secondary research across healthcare and analytics platforms. Analysed usability reports and case studies focused on clinical workflow tools.</span></div>
-<div class="role-item"><span class="role-item-title">Direct user feedback sessions</span><span class="role-item-desc">Connected with hospital doctors and nurses to gather insights on how the KPI module aligned with daily routines , identifying improvements grounded in real clinical needs.</span></div>
-<div class="role-item"><span class="role-item-title">KPI module design</span><span class="role-item-desc">Designed the complete KPI module from wireframes to high-fidelity , covering 14 screens across two flow branches with multiple data states.</span></div>
+<div class="role-item"><span class="role-item-title">Direct user feedback sessions</span><span class="role-item-desc">Connected with hospital doctors and nurses to gather insights on how the KPI module aligned with daily routines, identifying improvements grounded in real clinical needs.</span></div>
+<div class="role-item"><span class="role-item-title">KPI module design</span><span class="role-item-desc">Designed the complete KPI module from wireframes to high-fidelity, covering 14 screens across two flow branches with multiple data states.</span></div>
 <div class="role-item"><span class="role-item-title">Patient Dashboard redesign</span><span class="role-item-desc">Revamped the Patient Dashboard to surface vitals, tasks, round history, and discharge options on a single scannable page.</span></div>
 <div class="role-item"><span class="role-item-title">Configurable checklist system</span><span class="role-item-desc">Designed a flexible task template system allowing department heads to define specialty-specific checklists while nurses see a clean unified view.</span></div>
-<div class="role-item"><span class="role-item-title">Design system extension</span><span class="role-item-desc">Extended the existing healthcare design system components without introducing visual inconsistency , maintaining a cohesive experience across the platform.</span></div>
+<div class="role-item"><span class="role-item-title">Design system extension</span><span class="role-item-desc">Extended the existing healthcare design system components without introducing visual inconsistency, maintaining a cohesive experience across the platform.</span></div>
 </div>
         <div class="tools-strip"><span class="tool-tag">Figma</span><span class="tool-tag">User interviews</span><span class="tool-tag">Usability testing</span><span class="tool-tag">Healthcare UX research</span></div>
       </div>
@@ -676,60 +702,15 @@ footer p{font-size:12px;color:var(--gray2)}
   </div>
 </section>
 
-<!-- PROCESS -->
-<section class="process-section" id="process">
- <div class="cs-inner" style="max-width:1200px;margin:0 auto">
-   <span class="section-num">2.0</span>
-   <span class="section-kicker">Research Methods</span>
-   <h2 class="cs-h2">How I worked<br/>through it</h2>
-   <div class="pflow-steps">
-     <div class="pflow-step">
-       <div class="step-circle">01</div>
-       <h4>Secondary research</h4>
-       <p>Healthcare UI patterns + clinical workflow analysis</p>
-     </div>
-     <div class="pflow-step">
-       <div class="step-circle">02</div>
-       <h4>Competition audit</h4>
-       <p>EHR systems · analytics platforms · usability reports</p>
-     </div>
-     <div class="pflow-step">
-       <div class="step-circle">03</div>
-       <h4>User feedback</h4>
-       <p>Interviews with doctors and nurses in hospital settings</p>
-     </div>
-     <div class="pflow-step">
-       <div class="step-circle">04</div>
-       <h4>Briefs &amp; IA</h4>
-       <p>Data field briefs approved before any pixel was designed</p>
-     </div>
-     <div class="pflow-step">
-       <div class="step-circle">05</div>
-       <h4>High-fidelity</h4>
-       <p>14 screens across 2 flows with all data states</p>
-     </div>
-     <div class="pflow-step">
-       <div class="step-circle">06</div>
-       <h4>Validation</h4>
-       <p>Stakeholder reviews + live clinical staff feedback</p>
-     </div>
-   </div>
-   <div class="constraint-box">
-     <span class="constraint-label">KEY CONSTRAINT</span>
-     <p>The biggest constraint wasn't design complexity  it was clinical context. Every flow had to work under real hospital conditions: time pressure, information overload, and staff with varying technical comfort. I learned to <strong>design for the most stressed user first</strong> and simplify relentlessly, preserving progressive disclosure for power users who wanted deeper data.</p>
-   </div>
- </div>
-</section>
-
 <!-- 01 OVERVIEW -->
 <section class="cs-section" id="overview">
   <div class="cs-inner">
     <div class="two-col">
       <div>
-        <span class="section-num">3.0</span>
+        <span class="section-num">2.0</span>
         <span class="section-kicker">Project Overview</span>
         <h2 class="cs-h2">Clinical data,<br/>made clear.</h2>
-        <p class="cs-body">Intellix is an advanced healthcare intelligence platform designed to help clinical teams transform complex, fragmented medical data into clear, actionable insights , supporting better decisions for both patient care and hospital operations.</p>
+        <p class="cs-body">Intellix is an advanced healthcare intelligence platform designed to help clinical teams transform complex, fragmented medical data into clear, actionable insights, supporting better decisions for both patient care and hospital operations.</p>
         <p class="cs-body">My work focused on two critical modules: the <strong>KPI Dashboard</strong> (enabling admin teams to monitor key performance indicators across hospitals) and the <strong>Patient Dashboard</strong> (giving nurses and doctors a clean, structured view of each patient's care plan, vitals, and task status).</p>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:24px">
           <span style="font-size:11px;color:var(--gray2);border:1px solid var(--border);padding:4px 12px;border-radius:2px">Health Tech</span>
@@ -742,55 +723,9 @@ footer p{font-size:12px;color:var(--gray2)}
         <span class="section-num">&nbsp;</span>
         <span class="section-kicker">The Problem</span>
         <h2 class="cs-h2">No centralized<br/>way to track<br/>what matters.</h2>
-        <p class="cs-body">The Intellix Admin Dashboard lacked a dedicated feature for monitoring and managing key performance indicators. Users had no centralized way to view or track critical metrics , patient length of stay, checklist completion rates, or operational safety data.</p>
+        <p class="cs-body">The Intellix Admin Dashboard lacked a dedicated feature for monitoring and managing key performance indicators. Users had no centralized way to view or track critical metrics, patient length of stay, checklist completion rates, or operational safety data.</p>
         <div class="highlight-box">
-          <p><strong>Impact:</strong> This gap made it difficult for healthcare administrators to quickly assess performance trends, identify issues, or make timely, data-driven decisions , directly affecting patient outcomes.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 02 RESEARCH -->
-<section class="cs-section dark" id="research">
-  <div class="cs-inner">
-    <span class="section-num">4.0</span>
-    <span class="section-kicker">Research &amp; Discovery</span>
-    <h2 class="cs-h2">Understanding<br/>clinical workflows</h2>
-    <p class="cs-body">Healthcare UX requires a deeper layer of empathy than most domains , the users are time-pressured, the stakes are high, and information overload can directly impact patient safety. I used four research methods to ground every design decision in reality.</p>
-
-    <div class="research-grid" role="list">
-      <div class="research-card" role="listitem">
-        <div class="research-icon" aria-hidden="true"><i data-lucide="building-2"></i></div>
-        <h4>Secondary research</h4>
-        <p>Reviewed best practices and UI patterns from leading healthcare and analytics platforms. Analysed usability reports, case studies, and public design documentation focused on clinical workflow tools.</p>
-      </div>
-      <div class="research-card" role="listitem">
-        <div class="research-icon" aria-hidden="true"><i data-lucide="search"></i></div>
-        <h4>Competition analysis</h4>
-        <p>Healthcare teams demand flexible platforms that reduce cognitive overload without multi-year deployments. Intellix was positioned as a focused, modern alternative to heavy legacy EHR systems.</p>
-      </div>
-      <div class="research-card" role="listitem">
-        <div class="research-icon" aria-hidden="true"><i data-lucide="stethoscope"></i></div>
-        <h4>Direct user feedback</h4>
-        <p>Connected directly with hospital doctors and nurses to gather insights on how the KPI module's workflow aligned with daily routines , identifying practical improvements grounded in real clinical needs.</p>
-      </div>
-      <div class="research-card" role="listitem">
-        <div class="research-icon" aria-hidden="true"><i data-lucide="bar-chart-3"></i></div>
-        <h4>Analytics &amp; monitoring</h4>
-        <p>Leveraged user analytics and direct feedback mechanisms to continuously monitor how the KPI module was used in real clinical settings , tracking adoption rates and usability issues post-launch.</p>
-      </div>
-    </div>
-
-    <div style="margin-top:60px">
-      <div class="two-col-wide">
-        <div>
-          <h3 class="cs-h3">TARGETED GOAL</h3>
-          <p class="cs-body" style="color:rgba(240,236,228,.4)">Centralized KPI tracking + revamped Patient Dashboard</p>
-        </div>
-        <div>
-          <p class="cs-body">The goal was to address the lack of centralized KPI tracking and the inefficiencies of the previous patient view. I designed a comprehensive <strong>KPI module as a core feature of the Intellix Admin Dashboard</strong>, alongside a revamped Patient Dashboard , both tailored to the specific workflows of healthcare teams.</p>
-          <p class="cs-body" style="margin-top:14px">The software aimed to provide a user-friendly interface that reduced cognitive load on clinical staff while surfacing the performance data that actually drives hospital decisions.</p>
+          <p><strong>The gap:</strong> administrators had no live view of length of stay, checklist completion, or safety data, so issues surfaced after they became incidents, not before.</p>
         </div>
       </div>
     </div>
@@ -801,219 +736,26 @@ footer p{font-size:12px;color:var(--gray2)}
 
 <!-- Process (0.8) moved to before Overview -->
 
-<!-- STAKEHOLDER MAPPING -->
-<section class="cs-section" id="stakeholders">
-  <div class="cs-inner">
-    <span class="section-num">5.0</span>
-    <span class="section-kicker">Stakeholder Mapping</span>
-    <h2 class="cs-h2">Four groups.<br/>One system.</h2>
-    <p class="cs-body">The Intellix platform served four distinct stakeholder groups across the hospital ecosystem  each with fundamentally different roles, technical literacy levels, and operational priorities. Designing for all of them within a single KPI module was one of the most complex aspects of this project.</p>
-    <div class="stakeholder-grid" role="list">
-      <div class="sh-card" role="listitem">
-        <div class="sh-icon" aria-hidden="true"><i data-lucide="building-2"></i></div>
-        <span class="sh-role">Primary Users</span>
-        <h4>Nurses &amp; Clinical Staff</h4>
-        <p>Frontline caregivers managing daily patient checklists, vitals monitoring, and task completion. Needed: fast, clear, error-tolerant interactions with minimal clicks.</p>
-      </div>
-      <div class="sh-card" role="listitem">
-        <div class="sh-icon" aria-hidden="true"><i data-lucide="stethoscope"></i></div>
-        <span class="sh-role">Clinical Users</span>
-        <h4>Doctors &amp; Medical Teams</h4>
-        <p>Physicians reviewing patient data, round history, and department-specific KPIs. Needed: at-a-glance patient summaries and configurable performance views.</p>
-      </div>
-      <div class="sh-card" role="listitem">
-        <div class="sh-icon" aria-hidden="true"><i data-lucide="bar-chart-3"></i></div>
-        <span class="sh-role">Management</span>
-        <h4>Hospital Administrators</h4>
-        <p>Overseeing operational KPIs across departments  length of stay, checklist completion rates, and safety metrics. Needed: real-time dashboards and drill-down analytics.</p>
-      </div>
-      <div class="sh-card" role="listitem">
-        <div class="sh-icon" aria-hidden="true"><i data-lucide="shield"></i></div>
-        <span class="sh-role">Leadership</span>
-        <h4>IT &amp; Compliance</h4>
-        <p>Managing system access, data security, and regulatory compliance. Needed: role-based access control, audit trails, and integration with existing hospital systems.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 03 DESIGN CHALLENGE -->
-<section class="cs-section" id="challenge">
-  <div class="cs-inner">
-    <span class="section-num">6.0</span>
-    <span class="section-kicker">The Core Design Challenge</span>
-    <h2 class="cs-h2">One checklist.<br/>Dozens of<br/>specialties.</h2>
-    <div class="challenge-card">
-      <div>
-        <span class="challenge-label">The problem within the problem</span>
-        <p class="cs-body">A significant challenge emerged when designing the daily goals checklist flow within Intellix. Hospital care involves numerous specialties , each using different medical terms, protocols, and daily objectives for patients.</p>
-        <p class="cs-body" style="margin-top:14px">This diversity made it extremely difficult to design a unified checklist system <strong>flexible enough to capture the nuances of each department</strong> while still being intuitive and efficient for all users , from ICU nurses to administrative staff.</p>
-        <div class="highlight-box" style="margin-top:20px">
-          <p><strong>Solution approach:</strong> Designed a configurable task template system , allowing department heads to define their own checklist structures, while nurses and doctors interact with a clean, standardised task view that hides the underlying complexity.</p>
-        </div>
-      </div>
-      <div style="text-align:center">
-        <div style="text-align:center" aria-hidden="true"><i data-lucide="building-2" style="width:56px;height:56px;color:var(--teal2)"></i></div>
-        <div style="display:flex;flex-direction:column;gap:8px;text-align:left">
-          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:10px 14px">
-            <div style="font-size:10px;color:var(--teal2);font-family:'DM Sans',sans-serif;letter-spacing:1px;margin-bottom:3px">ICU TEAM</div>
-            <div style="font-size:13px;color:var(--white)">Measure H3PO · BP · Vitals</div>
-          </div>
-          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:10px 14px">
-            <div style="font-size:10px;color:var(--orange);font-family:'DM Sans',sans-serif;letter-spacing:1px;margin-bottom:3px">SURGICAL TEAM</div>
-            <div style="font-size:13px;color:var(--white)">Post-op Penicillin Checklist</div>
-          </div>
-          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:10px 14px">
-            <div style="font-size:10px;color:var(--gray2);font-family:'DM Sans',sans-serif;letter-spacing:1px;margin-bottom:3px">ADMIN</div>
-            <div style="font-size:13px;color:var(--white)">KPI Review · Discharge Docs</div>
-          </div>
-          <div style="text-align:center;padding:8px;background:var(--teal-light);border-radius:4px;margin-top:4px">
-            <div style="font-size:11px;color:var(--teal2)">→ One unified view for all</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DUAL IMPACT -->
-<section class="cs-section" id="dual-impact" style="--accent2:var(--teal2)">
-  <div class="cs-inner">
-    <span class="section-num">7.0</span>
-    <span class="section-kicker">Design Strategy</span>
-    <h2 class="cs-h2">Solving for both<br/>sides of the table</h2>
-    <p class="cs-body">Every design decision here had to satisfy two audiences at once  the clinical staff using the product daily under time pressure, and the business outcomes that justified building it.</p>
-    <div class="impact-split" role="list">
-      <div class="impact-col user" role="listitem">
-        <div class="impact-col-label user">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          USER NEEDS
-        </div>
-        <div class="impact-list">
-          <div class="impact-item"><strong>Reduced cognitive load at the bedside</strong>nurses see only the most critical information first, with progressive disclosure for details they can access when needed.</div>
-          <div class="impact-item"><strong>Specialty-appropriate views</strong>ICU, surgical, and admin teams each see checklists and KPIs relevant to their workflow, eliminating irrelevant clutter.</div>
-          <div class="impact-item"><strong>Clear task status at a glance</strong>colour-coded badges (Completed · Incomplete · Missed · Ready) mean nurses know what needs attention without scanning through text.</div>
-          <div class="impact-item"><strong>Everything on one screen</strong>patient vitals, today's tasks, round history, and discharge options unified into a single scannable patient dashboard.</div>
-        </div>
-      </div>
-      <div class="impact-col business" role="listitem">
-        <div class="impact-col-label business">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M18.7 8l-5.1 5.1-2.8-2.8L7 14"/></svg>
-          BUSINESS NEEDS
-        </div>
-        <div class="impact-list">
-          <div class="impact-item"><strong>30% user satisfaction improvement</strong>measured through direct feedback from hospital staff, doctors, and nurses using the system in live clinical settings.</div>
-          <div class="impact-item"><strong>Centralized KPI tracking replaces spreadsheets</strong>administrators no longer export raw data to Excel; they get real-time dashboards with configurable views and trend visibility.</div>
-          <div class="impact-item"><strong>Reduced clinical cognitive load</strong>streamlined interfaces and progressive disclosure reduce decision fatigue for time-pressured healthcare staff.</div>
-          <div class="impact-item"><strong>Scalable foundation for future modules</strong>the design system and configurable template approach support adding new specialties and departments without starting from scratch.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 04 PAIN POINTS -->
-<section class="cs-section dark" id="painpoints">
-  <div class="cs-inner">
-    <span class="section-num">8.0</span>
-    <span class="section-kicker">Design Phase · Pain Point Analysis</span>
-    <h2 class="cs-h2">Four problems.<br/>Four solutions.</h2>
-    <p class="cs-body">Research revealed four primary pain points affecting both clinical staff and administrators. Each was mapped to a concrete design decision.</p>
-
-    <div class="pain-grid" role="list">
-      <div class="pain-item" role="listitem">
-        <div class="pain-top">
-          <div class="pain-num" aria-hidden="true">1</div>
-          <h4>Information Overload &amp; Cognitive Fatigue</h4>
-        </div>
-        <div class="arrow-down" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-        </div>
-        <div class="pain-solution">
-          <span class="sol-label">Solution</span>
-          <p>Implemented <strong>clear data hierarchy and adaptive dashboards</strong> , surfacing the most critical information first, with progressive disclosure for detail.</p>
-        </div>
-      </div>
-      <div class="pain-item" role="listitem">
-        <div class="pain-top">
-          <div class="pain-num" aria-hidden="true">2</div>
-          <h4>Subpar Task and Checklist Management</h4>
-        </div>
-        <div class="arrow-down" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-        </div>
-        <div class="pain-solution">
-          <span class="sol-label">Solution</span>
-          <p>Created an <strong>intuitive task configuration and checklist system</strong> , flexible enough for any specialty, clean enough for any user level.</p>
-        </div>
-      </div>
-      <div class="pain-item" role="listitem">
-        <div class="pain-top">
-          <div class="pain-num" aria-hidden="true">3</div>
-          <h4>No Effective Way to Track or Act on Vital Performance Data</h4>
-        </div>
-        <div class="arrow-down" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-        </div>
-        <div class="pain-solution">
-          <span class="sol-label">Solution</span>
-          <p>Built a <strong>Key Performance Indicator module</strong> , centralizing length-of-stay, checklist completion, and operational metrics in one configurable view.</p>
-        </div>
-      </div>
-      <div class="pain-item" role="listitem">
-        <div class="pain-top">
-          <div class="pain-num" aria-hidden="true">4</div>
-          <h4>Fragmented Workflows Across Departments</h4>
-        </div>
-        <div class="arrow-down" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-        </div>
-        <div class="pain-solution">
-          <span class="sol-label">Solution</span>
-          <p>Implemented <strong>dynamic, context-aware KPI alerts</strong> , notifying the right people at the right time without adding noise to already overloaded teams.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 05 PROTOTYPING -->
-<section class="cs-section" id="prototyping">
-  <div class="cs-inner">
-    <span class="section-num">9.0</span>
-    <span class="section-kicker">Wireframe &amp; Prototyping</span>
-    <h2 class="cs-h2">Straight to<br/>high fidelity.</h2>
-
-    <div class="proto-note">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-      <p>I moved directly to high-fidelity design because all layout structures, design components, and the core visual system had already been defined and documented by a co-designer on the team. This let me focus entirely on interaction design and information hierarchy from the start.</p>
-    </div>
-
-    <img src="intellix-wireframes.png" alt="Intellix wireframes" style="width:100%;display:block;border-radius:8px;box-shadow:0 16px 48px rgba(0,0,0,.4);margin-bottom:24px;" />
-
-    <p class="cs-body" style="margin-bottom:32px">The KPI module required designing 14 connected screens across two flow branches , the hospital-level aggregate view and the individual KPI detail views. Each screen needed to handle multiple data states: loading, empty, populated, and error.</p>
-</section>
-
 <!-- 06 DESIGN DECISIONS -->
 <section class="cs-section dark" id="decisions">
   <div class="cs-inner">
-    <span class="section-num">10.0</span>
+    <span class="section-num">3.0</span>
     <span class="section-kicker">Key Design Decisions</span>
-    <h2 class="cs-h2">Before &amp;<br/>After</h2>
-    <p class="cs-body">Every decision was grounded in a specific clinical workflow pain point. Here are the four most impactful changes made during the design process.</p>
+    <h2 class="cs-h2">The decisions<br/>that mattered</h2>
+    <p class="cs-body">Four decisions shaped the clinical workflow. Each came from a specific pain point and changed how care teams worked day to day.</p>
 
     <div class="decision-list" role="list">
       <div class="decision-item" role="listitem">
         <div class="decision-before">
           <span class="dec-label">Before</span>
           <h4>Flat task list with no priority signals</h4>
-          <p>All tasks shown in a plain list with no visual differentiation , completed, missed, and urgent tasks looked identical, causing nurses to miss critical items.</p>
+          <p>All tasks shown in a plain list with no visual differentiation, completed, missed, and urgent tasks looked identical, causing nurses to miss critical items.</p>
         </div>
         <div class="decision-arrow-col" aria-hidden="true">→</div>
         <div class="decision-after">
           <span class="dec-label after">After</span>
           <h4>Status-coded task list with clear visual hierarchy</h4>
-          <p>Each task now has a colour-coded status badge (Completed · Incomplete · Missed · Ready) and a progress indicator , critical tasks surface immediately without scanning.</p>
+          <p>Each task now has a colour-coded status badge (Completed · Incomplete · Missed · Ready) and a progress indicator, critical tasks surface immediately without scanning.</p>
         </div>
       </div>
       <div class="decision-item" role="listitem">
@@ -1033,12 +775,12 @@ footer p{font-size:12px;color:var(--gray2)}
         <div class="decision-before">
           <span class="dec-label">Before</span>
           <h4>Patient profile required multiple screens to understand</h4>
-          <p>Basic info, vitals, tasks, and round history lived on separate pages , nurses had to navigate back and forth during a round, losing precious time.</p>
+          <p>Basic info, vitals, tasks, and round history lived on separate pages, nurses had to navigate back and forth during a round, losing precious time.</p>
         </div>
         <div class="decision-arrow-col" aria-hidden="true">→</div>
         <div class="decision-after">
           <span class="dec-label after">After</span>
-          <h4>Unified patient dashboard , everything on one screen</h4>
+          <h4>Unified patient dashboard, everything on one screen</h4>
           <p>Patient vitals, today's tasks, round history, and discharge options all visible on a single, scannable page. Nurses get full context at a glance without leaving the view.</p>
         </div>
       </div>
@@ -1046,7 +788,7 @@ footer p{font-size:12px;color:var(--gray2)}
         <div class="decision-before">
           <span class="dec-label">Before</span>
           <h4>Checklist system was one-size-fits-all</h4>
-          <p>A single fixed checklist template applied to all departments , useless for specialties with unique protocols and terminology.</p>
+          <p>A single fixed checklist template applied to all departments, useless for specialties with unique protocols and terminology.</p>
         </div>
         <div class="decision-arrow-col" aria-hidden="true">→</div>
         <div class="decision-after">
@@ -1062,7 +804,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 07 FINAL DESIGN -->
 <section class="cs-section dark" id="final">
   <div class="cs-inner">
-    <span class="section-num">11.0</span>
+    <span class="section-num">4.0</span>
     <span class="section-kicker">Validating Final Design</span>
     <h2 class="cs-h2">The final<br/>iteration</h2>
     <p class="cs-body">Validated through multiple rounds of stakeholder reviews and direct feedback from hospital staff, doctors and nurses using the system in real clinical settings.</p>
@@ -1080,10 +822,10 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 08 OUTCOMES -->
 <section class="cs-section darker" id="outcomes">
   <div class="cs-inner">
-    <span class="section-num">12.0</span>
+    <span class="section-num">5.0</span>
     <span class="section-kicker orange">Outcomes &amp; Impact</span>
     <h2 class="cs-h2">The results</h2>
-    <p class="cs-body">Measured through direct user feedback from hospital staff, stakeholder reviews, and post-launch analytics monitoring in real clinical environments.</p>
+    <p class="cs-body">The KPI and patient dashboards gave clinical teams a single, configurable view of performance and care, validated with hospital staff across two high-stakes workflows.</p>
     <div class="metrics-grid" role="list">
       <div class="metric-item" role="listitem">
         <span class="metric-num"><i data-lucide="trending-up" style="width:32px;height:32px"></i>30<span>%</span></span>
@@ -1098,8 +840,8 @@ footer p{font-size:12px;color:var(--gray2)}
         <span class="metric-label">Full design timeline</span>
       </div>
       <div class="metric-item" role="listitem">
-        <span class="metric-num"><span>↓</span>Cog<span>Load</span></span>
-        <span class="metric-label">Reduced clinical cognitive load</span>
+        <span class="metric-num">4</span>
+        <span class="metric-label">Clinical user groups served</span>
       </div>
     </div>
   </div>
@@ -1108,23 +850,16 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 09 REFLECTION -->
 <section class="cs-section dark" id="reflection">
   <div class="cs-inner">
-    <span class="section-num">13.0</span>
+    <span class="section-num">6.0</span>
     <span class="section-kicker">Reflection</span>
     <h2 class="cs-h2">What I learned</h2>
+
     <div class="reflection-grid" role="list">
-      <div class="reflection-card" role="listitem">
+<div class="reflection-card" role="listitem">
         <h4>Designing for high-stakes users</h4>
         <p>Nurses and doctors are under pressure, time-constrained, and can't afford confusion. Every interaction needed to be obvious , not clever. This project taught me that the best healthcare UX is the UX you don't notice.</p>
       </div>
-      <div class="reflection-card" role="listitem">
-        <h4>Cross-functional collaboration</h4>
-        <p>Handing off the KPI module required close work with stakeholders, developers, and clinical domain experts. I learned which design decisions need early engineering alignment versus which can be iterated post-launch.</p>
-      </div>
-      <div class="reflection-card" role="listitem">
-        <h4>Building on an existing design system</h4>
-        <p>Working within a pre-established component library required disciplined restraint. The skill wasn't creating new patterns , it was knowing when to extend the system and when to strictly follow it.</p>
-      </div>
-      <div class="reflection-card" role="listitem">
+<div class="reflection-card" role="listitem">
         <h4>The KPI module expanded my scope</h4>
         <p>This was my first experience designing a data visualisation module , turning complex performance data into clear charts that administrators could act on. It significantly sharpened my data UX skills and opened a new direction in my career.</p>
       </div>
@@ -1149,26 +884,29 @@ footer p{font-size:12px;color:var(--gray2)}
 
 <!-- CTA -->
 <section class="cta-section" aria-labelledby="cta-title">
-  <h2 id="cta-title">Like what<br/>you see?</h2>
-  <p>Let's talk about what we can build together.</p>
-  <div class="cta-buttons">
-    <a href="mailto:dikshyabc01@gmail.com" class="btn-primary" onclick="showToast(event)">Get In Touch</a>
-    <a href="/Portfolio/work" target="_top" class="btn-outline">View All Work</a>
+  <div class="cta-inner">
+    <div class="cta-head">
+      <span class="cta-eyebrow">Next step</span>
+      <h2 id="cta-title">Want the full story?</h2>
+    </div>
+    <div class="cta-body">
+      <p>The outcome is only half of it. The trade-offs, the rejected directions, and the decisions behind this project are where the real work lives. I&rsquo;m happy to walk you through them.</p>
+      <div class="cta-actions">
+        <a href="mailto:dikshyabc01@gmail.com" class="btn-primary" onclick="showToast(event)">Let&rsquo;s connect</a>
+        <a href="work" target="_top" class="cta-link">View all work <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
   </div>
 </section>
 </main>
 
 <footer role="contentinfo">
-  <a class="footer-logo" href="/Portfolio/home" target="_top">DIKSHYA</a>
-  <p>© 2026 · UI/UX Designer · Kathmandu, Nepal</p>
-  <a href="/Portfolio/work" target="_top" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
+  <a class="footer-logo" href="home" target="_top">Dikshya BC</a>
+  <p>© 2026 · UI/UX Designer</p>
+  <a href="work" target="_top" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
 </footer>
 
 <script>
-const cursor=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
-(function anim(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim)})();
 window.addEventListener('scroll',()=>{const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;document.getElementById('progress').style.width=p+'%';},{passive:true});
 const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('revealed')})},{threshold:.07});
 document.querySelectorAll('.tldr-bar,.pain-item,.research-card,.sh-card,.pflow-step,.decision-item,.showcase-card,.metric-item,.reflection-card').forEach(el=>obs.observe(el));

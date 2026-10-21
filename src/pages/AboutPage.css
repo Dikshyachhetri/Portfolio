@@ -1,385 +1,225 @@
 /* =====================================================
-   ABOUT — cream/olive design
-   Same full-bleed graph-paper background as Home & Work
+   ABOUT: editorial profile on warm paper
    ===================================================== */
 .about-page {
-  /* graph-paper grid — #555555 at 10% opacity, full-bleed */
-  background-color: #F2EFE5;
-  background-image:
-    linear-gradient(to right, rgba(85, 85, 85, 0.10) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(85, 85, 85, 0.10) 1px, transparent 1px);
-  background-size: 96px 96px;
-  color: #2C2C2C;
+  /* lined surface comes from .lined-surface in global.css */
+  color: var(--ink);
 }
 
-/* ---------- HERO: heading + story text | ID card ---------- */
-.story-section {
-  padding: 150px 32px 0;
-}
-
-/* hero grid: ID card (left, 300px) and heading + story text (right, 676px)
-   separated by a fixed 140px gap on desktop */
-.story-grid {
-  max-width: 1180px;
+/* ---------- HERO ---------- */
+.about-hero {
+  max-width: 1280px;
   margin: 0 auto;
+  padding: 156px 40px 100px;
   display: grid;
-  grid-template-areas: 'rail text';
-  grid-template-columns: 300px minmax(0, 676px);
-  gap: 140px;
-  justify-content: center;
-  align-items: start;
-}
-
-.story-col {
-  grid-area: text;
-  min-width: 0;
-}
-
-/* Page title — signature style used across pages
-   (Playfair italic, olive, weight 500) */
-.about-title {
-  font-family: var(--font-playfair);
-  font-style: italic;
-  font-weight: 500;
-  font-size: clamp(36px, 4.8vw, 68px);
-  line-height: 1.08;
-  letter-spacing: -0.01em;
-  color: #4A5C14;
-  margin-bottom: 30px;
-}
-
-.story-text p {
-  color: #535353;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.78;
-  margin-bottom: 24px;
-}
-
-/* the only emphasis in the story — three key phrases */
-.story-text .em {
-  font-weight: 600;
-  color: #2c2c2c;
-}
-
-/* ---------- ID CARD COLUMN (left) ---------- */
-.story-rail {
-  grid-area: rail;
-  display: flex;
-  flex-direction: column;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(48px, 6vw, 96px);
   align-items: center;
-  /* drop the rail so the long strap clears the fixed nav and the
-     card photo roughly aligns with the heading in the text column */
-  padding-top: 86px;
 }
-
-/* ── ID card — green lanyard strap on top, swings at a gentle pace ── */
-.id-card {
+.about-portrait {
+  width: 100%;
+  max-width: 400px;
+}
+.about-portrait-frame {
   position: relative;
-  width: 100%;
-  margin: 0;
-  padding: 34px 14px 22px;
-  background: #fdfcf7;
-  border: 1px solid rgba(65, 86, 0, 0.18);
-  border-radius: 18px;
-  box-shadow: 0 18px 34px -22px rgba(58, 74, 9, 0.4);
-
-  /* pendulum pivot: top of the long green strap, up at the nav bar */
-  transform-origin: 50% -176px;
-  /* alternate = one iteration per direction, so 2.5s per pass
-     gives a full back-and-forth cycle of 5s */
-  animation: id-swing 2.5s ease-in-out infinite alternate;
-  will-change: transform;
+  padding: 10px;
+  background: var(--paper-2);
+  border: 1px solid var(--line-strong);
 }
-.id-card:hover {
-  animation-play-state: paused;
-}
-
-/* long green lanyard strap — runs from the nav bar down behind the
-   metal ring. Card top sits 236px from the viewport top (150px section
-   + 86px rail); +1px card border = 237px padding edge, so 237 - 61px
-   nav = 176px of strap */
-.id-strap {
+.about-portrait-frame::before {
+  content: '';
   position: absolute;
-  top: -176px;
-  left: 50%;
-  width: 22px;
-  height: 174px;
-  margin-left: -11px;
-  z-index: 3;
-  background: linear-gradient(90deg, #7d9829 0%, #5d7714 45%, #41560c 100%);
-  border-radius: 6px;
-  box-shadow: inset 2px 0 3px rgba(255, 255, 255, 0.22), inset -3px 0 5px rgba(0, 0, 0, 0.22);
+  inset: 22px -22px -22px 22px;
+  border: 1px solid var(--line);
+  z-index: -1;
 }
-/* metal clip ring */
-.id-ring {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  width: 26px;
-  height: 26px;
-  margin-left: -13px;
-  border-radius: 50%;
-  border: 3.5px solid #b6b29e;
-  background: rgba(242, 239, 229, 0.45);
-  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.6);
-  z-index: 2;
-}
-/* punched hole through the card, under the ring */
-.id-punch {
-  position: absolute;
-  top: 12px;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  margin-left: -10px;
-  border-radius: 50%;
-  background: #F2EFE5; /* page cream shows through like a real punch */
-  box-shadow: inset 0 0 0 1px rgba(65, 86, 0, 0.25);
-  z-index: 1;
-}
-
-@keyframes id-swing {
-  from { transform: rotate(-2.8deg) }
-  to   { transform: rotate(2.8deg) }
-}
-
-.id-face {
-  border-radius: 12px;
-  overflow: hidden;
-  background: #eae8dd;
-}
-.id-face img {
-  width: 100%;
+.about-portrait img {
   display: block;
+  width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center 20%;
+  filter: grayscale(1) contrast(1.02);
   user-select: none;
 }
-
-.id-info {
-  padding: 16px 4px 0;
-  text-align: center;
-}
-.id-name {
-  display: block;
-  font-weight: 600;
-  font-size: 17px;
-  color: #2c2c2c;
-}
-.id-role {
-  display: block;
-  margin-top: 6px;
+.about-portrait figcaption {
+  margin-top: 16px;
   font-size: 10.5px;
-  letter-spacing: 2.6px;
-  color: #4a5c14;
+  letter-spacing: .16em;
   text-transform: uppercase;
+  color: var(--faint);
 }
 
-/* ---------- SHARED SECTION SHELL ---------- */
-.section-inner {
-  max-width: 1000px;
-  margin: 0 auto;
+.about-intro { max-width: 660px }
+.about-title {
+  margin-top: 22px;
+  font-size: clamp(54px, 7vw, 96px);
 }
-
-/* Section headings — Playfair, olive, same weight as the page titles */
-.section-heading {
-  font-family: var(--font-playfair);
-  font-style: italic;
+.about-lede {
+  margin-top: 26px;
+  max-width: 580px;
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+.about-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 36px;
+}
+.about-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+.about-facts dt {
+  font-size: 10px;
   font-weight: 500;
-  font-size: clamp(30px, 3.8vw, 54px);
-  line-height: 1.12;
-  letter-spacing: -0.01em;
-  color: #4A5C14;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 7px;
+}
+.about-facts dd { font-size: 14px; color: var(--ink) }
+
+/* ---------- SECTIONS ---------- */
+.about-section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 96px 40px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.38fr);
+  gap: clamp(40px, 6vw, 96px);
+}
+.about-section-head {
+  align-self: start;
+  position: sticky;
+  top: 112px;
+}
+.about-section-head h2 {
+  margin-top: 16px;
+  font-size: var(--fs-h2);
+  max-width: 12ch;
+}
+
+/* ---------- STORY ---------- */
+.story-column { max-width: 700px }
+.story-column > p {
+  font-size: 16.5px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+.story-column .em { color: var(--ink); font-weight: 600 }
+.story-more { margin-top: 4px }
+.story-more summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--olive);
+  border-bottom: 1px solid rgba(69, 87, 15, .35);
+  padding-bottom: 2px;
+}
+.story-more summary::-webkit-details-marker { display: none }
+.story-more summary::after {
+  content: '+';
+  font-size: 15px;
+  line-height: 1;
+  transition: transform var(--dur-fast);
+}
+.story-more[open] summary::after { transform: rotate(45deg) }
+.story-more p {
+  font-size: 16.5px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-top: 22px;
 }
 
 /* ---------- EXPERIENCE ---------- */
-.exp-section {
-  padding: 120px 32px 0;
-}
-.exp-list {
-  margin-top: 42px;
-}
+.exp-list { border-top: 1px solid var(--line) }
 .exp-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 28px;
-  padding: 24px 0;
-  border-bottom: 1px solid rgba(65, 86, 0, 0.2);
-}
-.exp-info {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-.exp-role {
-  font-size: 17px;
-  font-weight: 600;
-  color: #2c2c2c;
-}
-.exp-company {
-  font-size: 14px;
-  color: #535353;
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 24px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
 }
 .exp-period {
-  color: #8a8f7c;
-  font-size: 14px;
-  white-space: nowrap;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--faint);
+  padding-top: 3px;
 }
-.exp-actions {
-  margin-top: 52px;
-  text-align: right;
-}
-.btn-resume {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  color: #fdfcf7;
-  background: #4d640a;
-  padding: 18px 38px;
-  border-radius: 999px;
-  font-size: 17px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  text-decoration: none;
-  box-shadow:
-    0 16px 32px -14px rgba(58, 74, 9, 0.6),
-    0 0 0 1px rgba(65, 86, 0, 0.12);
-  transition:
-    background var(--dur-mid) var(--ease),
-    transform var(--dur-mid) var(--ease),
-    box-shadow var(--dur-mid) var(--ease);
-}
-.btn-resume:hover {
-  background: #3a4a09;
-  transform: translateY(-2px);
-  box-shadow:
-    0 22px 40px -16px rgba(58, 74, 9, 0.65),
-    0 0 0 1px rgba(65, 86, 0, 0.12);
-}
-.btn-resume svg {
-  transition: transform var(--dur-mid) var(--ease);
-}
-.btn-resume:hover svg {
-  transform: translate(2px, -2px);
-}
-.btn-resume:focus-visible {
-  outline: 3px solid rgba(123, 161, 12, 0.5);
-  outline-offset: 3px;
-}
+.exp-info { display: flex; flex-direction: column; gap: 4px }
+.exp-role { font-size: 16px; font-weight: 600; color: var(--ink) }
+.exp-company { font-size: 14px; color: var(--muted) }
 
-@media (prefers-reduced-motion: reduce) {
-  .btn-resume:hover { transform: none }
+/* ---------- BEYOND ---------- */
+.beyond-content { max-width: 700px }
+.beyond-copy {
+  font-size: 16.5px;
+  line-height: 1.8;
+  color: var(--muted);
 }
-
-/* ---------- HOBBIES ---------- */
-.hobbies-section {
-  padding: 120px 32px 0;
-}
-.hobby-list {
+.beyond-list {
   list-style: none;
-  margin-top: 40px;
-  max-width: 740px;
+  margin-top: 32px;
+  border-top: 1px solid var(--line);
 }
-.hobby-list li {
+.beyond-list li {
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--ink);
+}
+.about-cta {
   display: flex;
   align-items: center;
-  gap: 18px;
-  padding: 13px 0;
-  border-bottom: 1px solid rgba(65, 86, 0, 0.2);
-  font-size: 17px;
-  color: #2c2c2c;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 56px;
+  padding-top: 30px;
+  border-top: 1px solid var(--line-strong);
 }
-/* cute little illustration sticker next to each hobby */
-.hobby-icon {
-  flex: none;
-  width: 46px;
-  height: 46px;
-  display: grid;
-  place-items: center;
-  padding: 3px;
-  border-radius: 14px;
-  background: #e9edd8;
-  border: 1px solid rgba(65, 86, 0, 0.16);
-  box-shadow: 0 8px 16px -10px rgba(58, 74, 9, 0.45);
-  transition: transform var(--dur-mid) var(--ease);
-}
-.hobby-icon svg {
-  width: 100%;
-  height: 100%;
-}
-.hobby-list li:hover .hobby-icon {
-  transform: rotate(-6deg) scale(1.06);
-}
-@media (prefers-reduced-motion: reduce) {
-  .hobby-list li:hover .hobby-icon { transform: none }
-}
-
-/* ---------- STILL HERE ---------- */
-.still-here {
-  text-align: center;
-  padding: 96px 32px 40px;
-}
-.still-here-link {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 27px;
-  color: #4d640a;
-  text-decoration: none;
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 4px;
-  transition: color var(--dur-fast);
-}
-.still-here-link:hover {
-  color: #3a4a09;
-}
-
-/* ---------- REVEAL ---------- */
-.reveal {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity var(--dur-slow) var(--ease), transform var(--dur-slow) var(--ease);
-}
-.reveal.revealed {
-  opacity: 1;
-  transform: none;
+.about-cta p {
+  font-family: var(--font-playfair);
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.25;
+  letter-spacing: -.01em;
+  color: var(--ink);
+  max-width: 28ch;
 }
 
 /* ---------- RESPONSIVE ---------- */
-@media (max-width: 1150px) {
-  /* tighter gap so the text column keeps ~676px on smaller desktops */
-  .story-grid {
-    gap: clamp(56px, 8vw, 100px);
-  }
-}
-
-@media (max-width: 860px) {
-  .story-section { padding-top: 120px }
-  .story-grid {
-    grid-template-areas: 'text' 'rail';
+@media (max-width: 1024px) {
+  .about-hero {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 52px;
+    padding: 128px 24px 72px;
   }
-  .story-col {
-    justify-self: center;
-    width: min(100%, 676px);
+  .about-portrait { max-width: 340px }
+  .about-section {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 72px 24px;
   }
-  .about-title {
-    font-size: clamp(32px, 7vw, 46px);
-  }
-  .story-rail {
-    padding-top: 0;
-    width: min(100%, 300px);
-    margin: 0 auto;
-  }
-  /* rail now sits below the story — strap hangs short from the card */
-  .id-card { transform-origin: 50% -132px }
-  .id-strap { top: -132px; height: 130px }
-  .exp-row { flex-direction: column; gap: 8px; align-items: flex-start }
-  .exp-actions { text-align: left }
-  .btn-resume { padding: 15px 30px; font-size: 16px }
-  .hobby-icon { width: 40px; height: 40px; border-radius: 12px }
-  .still-here { padding-top: 72px }
+  .about-section-head { position: static }
+  .about-section-head h2 { max-width: 100% }
+}
+@media (max-width: 700px) {
+  .about-facts { grid-template-columns: 1fr; gap: 18px }
+  .exp-row { grid-template-columns: 1fr; gap: 6px }
+  .exp-period { padding-top: 0 }
+  .about-cta { flex-direction: column; align-items: flex-start; gap: 16px }
 }

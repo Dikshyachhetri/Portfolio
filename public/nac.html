@@ -20,16 +20,12 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);line-height:1.6;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
+body{font-family:'DM Sans',sans-serif;background-color:var(--bg);background-image:linear-gradient(to right,rgba(65,86,0,.07) 1px,transparent 1px),linear-gradient(to bottom,rgba(65,86,0,.07) 1px,transparent 1px);background-size:96px 96px;color:var(--white);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 .skip-link{position:fixed;top:-100px;left:16px;z-index:10000;background:var(--orange);color:#fff;padding:10px 18px;border-radius:2px;font-size:11px;text-decoration:none;letter-spacing:1px;text-transform:uppercase;transition:top .2s}
 .skip-link:focus{top:16px}
 :focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:2px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-#cursor{position:fixed;width:10px;height:10px;background:var(--orange);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease)}
-#cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(74,92,20,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s var(--ease),opacity .3s}
-body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:18px;height:18px}
-body:has(a:hover) #cursor-ring{width:48px;height:48px;opacity:.35}
 #progress{position:fixed;top:60px;left:0;height:2px;background:var(--blue3);z-index:99;width:0%;transition:width .1s linear}
 
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 48px;height:60px;border-bottom:1px solid var(--border);background:rgba(243,242,234,.88);backdrop-filter:blur(18px)}
@@ -41,7 +37,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-c
 .nav-links a:hover{color:var(--white)}.nav-links a:hover::after{width:100%}.nav-links a.active{color:var(--white)}.nav-links a.active::after{width:100%}
 .nav-cta{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);border:1px solid var(--orange);padding:8px 22px;border-radius:2px;text-decoration:none;transition:background var(--dur-fast),color var(--dur-fast),box-shadow var(--dur-fast)}
 .nav-cta:hover{background:var(--orange);color:#fff;box-shadow:0 0 20px rgba(74,92,20,.25)}
-.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:8px}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
 .nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:transform var(--dur-mid) var(--ease),opacity var(--dur-fast)}
 .nav-right{display:flex;align-items:center;gap:12px;justify-self:end}
 .nav-drawer{display:none;position:fixed;top:60px;left:0;right:0;height:400px;background:var(--bg);border-bottom:1px solid var(--border);padding:48px;flex-direction:column;gap:24px;z-index:99;overflow-y:auto}
@@ -238,8 +234,40 @@ footer p{font-size:12px;color:var(--gray2)}
   footer{flex-direction:column;gap:12px;text-align:center;padding:24px}
   .cta-section,.next-project{padding:60px 24px}
 }
-@media(pointer:coarse){body{cursor:auto}#cursor,#cursor-ring{display:none}}
 @media(max-width:600px){.pain-grid,.stakeholder-grid{grid-template-columns:1fr}.metrics-grid{grid-template-columns:1fr 1fr}}
+
+/* CTA: one-line heading, three-line description */
+#cta-title{white-space:nowrap}
+.cta-section p,.cta-section>p{max-width:620px;margin-left:auto;margin-right:auto;line-height:1.65}
+@media (max-width:520px){#cta-title{font-size:30px;letter-spacing:0}}
+
+
+/* ===== CTA / closing section ===== */
+.cta-section{padding:0;background:var(--bg);text-align:left;overflow:visible}
+.cta-section::before{content:none}
+.cta-inner{max-width:1200px;margin:0 auto;padding:96px 48px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:80px;align-items:start}
+.cta-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gray2)}
+.cta-head h2{margin:18px 0 0;font-family:'Playfair Display',Georgia,serif;font-weight:400;font-style:normal;font-size:clamp(40px,5.4vw,72px);line-height:1.02;letter-spacing:-.02em;color:var(--white)}
+.cta-body{padding-top:6px}
+.cta-body p{margin:0;max-width:520px;font-size:16px;line-height:1.7;color:var(--gray)}
+.cta-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:30px}
+.cta-section .btn-primary{display:inline-flex;align-items:center;height:46px;padding:0 24px;border-radius:999px;background:var(--orange);color:#fff;font-size:13.5px;font-weight:500;letter-spacing:0;text-transform:none;text-decoration:none;min-height:46px;transition:background .2s}
+.cta-section .btn-primary:hover{background:var(--orange2)}
+.cta-link{font-size:13.5px;font-weight:500;color:var(--white);text-decoration:none;border-bottom:1px solid var(--border2);padding-bottom:3px;transition:color .2s,border-color .2s}
+.cta-link:hover{color:var(--orange);border-color:var(--orange)}
+.cta-link span{display:inline-block;transition:transform .2s}
+.cta-link:hover span{transform:translateX(3px)}
+@media(max-width:900px){.cta-inner{grid-template-columns:1fr;gap:36px;padding:72px 24px}.cta-body{padding-top:0}}
+
+
+/* mobile metrics: keep the two-up grid inside the viewport */
+@media(max-width:600px){
+  .metrics-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .metric-item{min-width:0;padding:28px 12px}
+  .metric-num{font-size:40px;letter-spacing:1px}
+  .metric-label{font-size:9.5px;letter-spacing:1.2px}
+}
+
 </style>
 <style>
 /* MY CONTRIBUTION */
@@ -367,8 +395,6 @@ footer p{font-size:12px;color:var(--gray2)}
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
-<div id="cursor" aria-hidden="true"></div>
-<div id="cursor-ring" aria-hidden="true"></div>
 <div id="progress" aria-hidden="true"></div>
 <div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-dot"></span>Email copied!</div>
 
@@ -383,8 +409,8 @@ footer p{font-size:12px;color:var(--gray2)}
   <div class="cs-hero-content">
   <div class="breadcrumb">
    <div>
-    <a href="/Portfolio/home" target="_top">Home</a><span class="sep">·</span>
-    <a href="/Portfolio/work#nac" target="_top">Work</a><span class="sep">·</span>
+    <a href="home" target="_top">Home</a><span class="sep">·</span>
+    <a href="work#nac" target="_top">Work</a><span class="sep">·</span>
     <span>NAC GSE System</span>
    </div>
   </div>
@@ -393,12 +419,12 @@ footer p{font-size:12px;color:var(--gray2)}
         <span class="cs-chip">PROJECT</span>
         <span class="cs-chip blue">NAC</span>
         <span class="cs-chip">AVIATION</span>
-        <span class="cs-chip">2022–2024</span>
+        <span class="cs-chip">2022-2024</span>
       </div>
       <a href="https://www.nepalairlines.com.np/" target="_blank" rel="noopener noreferrer" class="visit-hero-link">Visit Site <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17l9-9M9 8h7v7"/></svg></a>
     </div>
     <h1>Nepal Airlines<br/>GSE Inventory<br/><em>System</em></h1>
-    <p class="cs-hero-tagline">Designed a Ground Support Equipment inventory management system for Nepal Airlines Corporation (NAC)  a comprehensive web application that digitised the tracking, maintenance scheduling, and lifecycle management of aviation ground equipment across multiple airport locations.</p>
+    <p class="cs-hero-tagline">A ground-support equipment inventory system for Nepal Airlines, replacing paper logbooks and wall-calendar maintenance across multiple airport stations.</p>
     <div class="cs-quick-stats" role="list">
       <div class="cs-stat" role="listitem"><span class="cs-stat-label">My Role</span><span class="cs-stat-val">UI/UX Designer</span></div>
       <div class="cs-stat" role="listitem"><span class="cs-stat-label">Client</span><span class="cs-stat-val">Nepal Airlines Corporation</span></div>
@@ -600,7 +626,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- TL;DR BAR -->
 <div class="tldr-bar-wrapper">
 <div class="tldr-bar">
- <div class="tldr-intro-wrap"><p class="tldr-intro">NAC GSE is a Ground Support Equipment inventory management system for Nepal Airlines Corporation. I designed a comprehensive web application that digitised equipment tracking, maintenance scheduling, and lifecycle management across multiple airport locations. <strong>Brief-first approach aligned 4 distinct stakeholder groups before a single screen was designed.</strong></p></div>
+ <div class="tldr-intro-wrap"><p class="tldr-intro">A single system of record for every piece of ground equipment across airport stations.</p></div>
  <div class="tldr-grid">
    <div class="tldr-item">
     <span class="tldr-label">The problem</span>
@@ -656,8 +682,8 @@ footer p{font-size:12px;color:var(--gray2)}
         <span class="section-num">2.0</span>
         <span class="section-kicker">Project Overview</span>
         <h2 class="cs-h2">Ground support.<br/>Digitally tracked.<br/>Every asset.</h2>
-        <p class="cs-body">Nepal Airlines Corporation (NAC), the national flag carrier of Nepal, manages a large fleet of Ground Support Equipment (GSE)  tow tractors, baggage carts, ground power units, air stairs, belt loaders, and more ,  essential for airport ground operations across multiple locations.</p>
-        <p class="cs-body">The GSE inventory management system was built to digitise and streamline the tracking, maintenance scheduling, lifecycle management, and compliance reporting of all ground equipment ,  replacing paper-based logs and fragmented spreadsheets with a single unified platform.</p>
+        <p class="cs-body">Nepal Airlines Corporation (NAC), the national flag carrier of Nepal, manages a large fleet of Ground Support Equipment (GSE)  tow tractors, baggage carts, ground power units, air stairs, belt loaders, and more, essential for airport ground operations across multiple locations.</p>
+        <p class="cs-body">The GSE inventory management system was built to digitise and streamline the tracking, maintenance scheduling, lifecycle management, and compliance reporting of all ground equipment, replacing paper-based logs and fragmented spreadsheets with a single unified platform.</p>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:24px">
           <span style="font-size:11px;color:var(--gray2);border:1px solid var(--border);padding:4px 12px;border-radius:2px">Aviation</span>
           <span style="font-size:11px;color:var(--gray2);border:1px solid var(--border);padding:4px 12px;border-radius:2px">Enterprise</span>
@@ -671,115 +697,7 @@ footer p{font-size:12px;color:var(--gray2)}
         <h2 class="cs-h2">Paper logs<br/>and spreadsheets<br/>at 30,000 feet.</h2>
         <p class="cs-body">NAC's ground operations team relied on paper-based logs and manual spreadsheets to track equipment inventory, maintenance schedules, and equipment status across multiple airport stations. This caused data discrepancies, delayed maintenance responses, compliance risks, and significant operational inefficiencies.</p>
         <div class="highlight-box">
-          <p><strong>Core challenge:</strong> Design an intuitive inventory management system that aviation ground staff with varying levels of computer literacy could adopt quickly ,  while providing powerful reporting and compliance tracking for management at the national airline's headquarters.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 02 RESEARCH -->
-<section class="cs-section dark" id="research">
-  <div class="cs-inner">
-    <span class="section-num">3.0</span>
-    <span class="section-kicker">Research &amp; Discovery</span>
-    <h2 class="cs-h2">Understanding<br/>ground operations</h2>
-    <p class="cs-body">Aviation ground operations have unique workflow constraints  equipment is spread across multiple airport locations, maintenance schedules are regulated by aviation authorities, and equipment downtime directly impacts flight turnaround times and operational costs.</p>
-    <div class="research-grid" role="list">
-      <div class="research-card" role="listitem">
-        <div class="research-icon" aria-hidden="true"><i data-lucide="users"></i></div>
-        <h4>Ground staff interviews</h4>
-        <p>Conducted interviews with NAC ground operations staff and supervisors to understand how equipment was currently tracked, maintained, and reported ,  mapping every step of the existing paper-based workflow.</p>
-      </div>
-      <div class="research-card" role="listitem">
-        <div class="research-icon" aria-hidden="true"><i data-lucide="search"></i></div>
-        <h4>Equipment lifecycle audit</h4>
-        <p>Audited the full GSE lifecycle: procurement → deployment → maintenance → repair → decommissioning. Identified gaps in maintenance history tracking, spare parts management, and regulatory compliance documentation.</p>
-      </div>
-      <div class="research-card" role="listitem">
-        <div class="research-icon" aria-hidden="true"><i data-lucide="bar-chart-3"></i></div>
-        <h4>Stakeholder requirements</h4>
-        <p>Worked with NAC management and the Rara Digital Lab team to define core requirements: real-time equipment status, maintenance scheduling, location tracking, compliance reporting, and user role management for different airport stations.</p>
-      </div>
-    </div>
-    <div style="margin-top:60px">
-      <div class="two-col-wide">
-        <div><h3 class="cs-h3">TARGETED GOAL</h3><p class="cs-body" style="color:rgba(240,236,228,.4)">Centralised GSE inventory + maintenance scheduling</p></div>
-        <div>
-          <p class="cs-body">The goal was a unified system where every piece of ground equipment had a digital record capturing its location, status, maintenance history, and compliance documentation ,  accessible in real-time by ground staff at any airport station and by management at headquarters.</p>
-          <p class="cs-body" style="margin-top:14px">The system needed to support multiple user roles (ground staff, supervisors, maintenance engineers, management) with appropriate data access and action permissions for each role.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STAKEHOLDER MAPPING -->
-<section class="cs-section" id="stakeholders">
-  <div class="cs-inner">
-    <span class="section-num">4.0</span>
-    <span class="section-kicker">Stakeholder Mapping</span>
-    <h2 class="cs-h2">Four groups.<br/>One system.</h2>
-    <p class="cs-body">The system served four distinct stakeholder groups, each with fundamentally different roles, technical literacy levels, and operational needs. Designing for all of them simultaneously was one of the most complex parts of this project.</p>
-    <div class="stakeholder-grid" role="list">
-      <div class="sh-card" role="listitem">
-        <div class="sh-icon" aria-hidden="true"><i data-lucide="building-2" width="24" height="24"></i></div>
-        <span class="sh-role">Primary Users</span>
-        <h4>Ground Operations Staff</h4>
-        <p>Frontline crew managing day-to-day equipment check-in/out, maintenance logging, and stock movements. Needed: fast, simple, error-tolerant interactions.</p>
-      </div>
-      <div class="sh-card" role="listitem">
-        <div class="sh-icon" aria-hidden="true"><i data-lucide="wrench" width="24" height="24"></i></div>
-        <span class="sh-role">Technical Users</span>
-        <h4>Maintenance &amp; Technical Team</h4>
-        <p>Engineers responsible for scheduling and recording equipment maintenance. Needed: detailed maintenance history, automated reminders, and compliance-ready reports.</p>
-      </div>
-      <div class="sh-card" role="listitem">
-        <div class="sh-icon" aria-hidden="true"><i data-lucide="clipboard-list" width="24" height="24"></i></div>
-        <span class="sh-role">Management</span>
-        <h4>Inventory &amp; Store Managers</h4>
-        <p>Overseeing stock levels, procurement, and reporting. Needed: real-time inventory dashboards, low-stock alerts, and audit-ready documentation.</p>
-      </div>
-      <div class="sh-card" role="listitem">
-        <div class="sh-icon" aria-hidden="true"><i data-lucide="landmark" width="24" height="24"></i></div>
-        <span class="sh-role">Leadership</span>
-        <h4>NAC Administration &amp; IT</h4>
-        <p>Setting policy, managing access, and ensuring compliance with aviation regulatory requirements. Needed: role-based access control and high-level operational summaries.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DUAL IMPACT -->
-<section class="cs-section" id="dual-impact" style="--accent2:var(--blue3)">
-  <div class="cs-inner">
-    <span class="section-num">5.0</span>
-    <span class="section-kicker">Design Strategy</span>
-    <h2 class="cs-h2">Solving for both<br/>sides of the table</h2>
-    <p class="cs-body">Every design decision here had to satisfy two audiences at once: the people using the product daily, and the business outcomes that justified building it.</p>
-    <div class="impact-split" role="list">
-      <div class="impact-col user" role="listitem">
-        <div class="impact-col-label user">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          USER NEEDS
-        </div>
-        <div class="impact-list">
-          <div class="impact-item"><strong>Trust over manual methods</strong>ground staff resistant to change adopted the system because it was genuinely faster than paper.</div>
-          <div class="impact-item"><strong>Role-appropriate views</strong>ground crew, engineers, and managers each see only what's relevant to their job, reducing confusion.</div>
-          <div class="impact-item"><strong>Clear equipment status at a glance</strong>colour-coded badges mean no more asking around to find out if equipment is available.</div>
-          <div class="impact-item"><strong>Maintenance that doesn't get missed</strong>automated priority alerts replace the informal email/memo system that caused delays.</div>
-        </div>
-      </div>
-      <div class="impact-col business" role="listitem">
-        <div class="impact-col-label business">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M18.7 8l-5.1 5.1-2.8-2.8L7 14"/></svg>
-          BUSINESS NEEDS
-        </div>
-        <div class="impact-list">
-          <div class="impact-item"><strong>100% data accuracy improvement</strong>eliminating paper-based transcription errors across all GSE tracking.</div>
-          <div class="impact-item"><strong>50% reduction in operational errors</strong>directly reducing safety risk and operational delays for a national airline.</div>
-          <div class="impact-item"><strong>Audit and compliance ready</strong>one-click standardized reports replace a multi-day manual compilation process.</div>
-          <div class="impact-item"><strong>Validated institutional adoption</strong>three-phase stakeholder validation (pre/during/post-deployment) ensured the system was actually used, not just delivered.</div>
+          <p><strong>Core challenge:</strong> Design an intuitive inventory management system that aviation ground staff with varying levels of computer literacy could adopt quickly, while providing powerful reporting and compliance tracking for management at the national airline's headquarters.</p>
         </div>
       </div>
     </div>
@@ -790,64 +708,12 @@ footer p{font-size:12px;color:var(--gray2)}
   <img src="nac-wireframe.png" alt="NAC GSE wireframes" style="width:100%;display:block;border-radius:8px;box-shadow:0 16px 48px rgba(0,0,0,.4);margin-bottom:24px;" />
 </div>
 
-<!-- 03 PAIN POINTS -->
-<section class="cs-section" id="painpoints">
-  <div class="cs-inner">
-    <span class="section-num">6.0</span>
-    <span class="section-kicker">Design Phase · Pain Point Analysis</span>
-    <h2 class="cs-h2">Four problems.<br/>Four solutions.</h2>
-    <div class="pain-grid" role="list">
-      <div class="pain-item" role="listitem">
-        <div class="pain-top"><div class="pain-num" aria-hidden="true">1</div><h4>Paper Logs Made Data Unreliable</h4></div>
-        <div class="arrow-down" aria-hidden="true"><i data-lucide="chevron-down" width="16" height="16"></i></div>
-        <div class="pain-solution"><span class="sol-label">Solution</span><p>Replaced paper logs with <strong>digital equipment records</strong> with mandatory fields, validation, and real-time sync across all airport stations.</p></div>
-      </div>
-      <div class="pain-item" role="listitem">
-        <div class="pain-top"><div class="pain-num" aria-hidden="true">2</div><h4>No Visibility into Maintenance Schedules</h4></div>
-        <div class="arrow-down" aria-hidden="true"><i data-lucide="chevron-down" width="16" height="16"></i></div>
-        <div class="pain-solution"><span class="sol-label">Solution</span><p>Built a <strong>maintenance scheduling dashboard</strong> with automated reminders, overdue alerts, and a calendar view for planned vs. completed maintenance.</p></div>
-      </div>
-      <div class="pain-item" role="listitem">
-        <div class="pain-top"><div class="pain-num" aria-hidden="true">3</div><h4>Equipment Location Was Unknown</h4></div>
-        <div class="arrow-down" aria-hidden="true"><i data-lucide="chevron-down" width="16" height="16"></i></div>
-        <div class="pain-solution"><span class="sol-label">Solution</span><p>Implemented <strong>location tracking per equipment item</strong> with check-in/check-out workflow and station-level inventory views.</p></div>
-      </div>
-      <div class="pain-item" role="listitem">
-        <div class="pain-top"><div class="pain-num" aria-hidden="true">4</div><h4>Compliance Reporting Was Manual</h4></div>
-        <div class="arrow-down" aria-hidden="true"><i data-lucide="chevron-down" width="16" height="16"></i></div>
-        <div class="pain-solution"><span class="sol-label">Solution</span><p>Automated compliance reporting with <strong>one-click report generation</strong> for aviation authority requirements ,  reducing reporting time from days to minutes.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROTOTYPING -->
-<section class="cs-section" id="prototyping">
-  <div class="cs-inner">
-    <span class="section-num">7.0</span>
-    <span class="section-kicker">Wireframe &amp; Prototyping</span>
-    <h2 class="cs-h2">Briefs first.<br/>Pixels second.</h2>
-    <div class="two-col-wide">
-      <div><h3 style="font-family:'Playfair Display',Georgia,serif;font-size:28px;letter-spacing:1.5px;color:rgba(240,236,228,.35)">ALIGNED BEFORE<br/>DESIGNED</h3></div>
-      <div>
-        <p class="cs-body">My process began with drafting <strong>detailed briefs outlining the key elements and data fields for each form</strong>, the content and functionality of detailed pages, and the key metrics or summaries to be displayed on the dashboard and main overview screens. These briefs served as a foundational blueprint, ensuring alignment with stakeholders before moving forward.</p>
-        <p class="cs-body">Once the briefs were approved, I proceeded directly to high-fidelity designs, leveraging an already established design system that streamlined consistency without starting from scratch. This approach enabled a rapid transition from concept to pixel-perfect UI.</p>
-        <div class="highlight-box">
-          <p><strong>Why this mattered at NAC:</strong> With 4 distinct stakeholder groups and cross-departmental workflows, misalignment in the design phase would have caused cascading problems. Brief-first forced all teams to agree on data structure and workflow logic before a single screen was designed.</p>
-        </div>
-      </div>
-    </div>
-
-
-  </div>
-</section>
-
 <!-- 04 DESIGN DECISIONS -->
 <section class="cs-section dark" id="decisions">
   <div class="cs-inner">
-    <span class="section-num">8.0</span>
+    <span class="section-num">3.0</span>
     <span class="section-kicker">Key Design Decisions</span>
-    <h2 class="cs-h2">Before &amp;<br/>After</h2>
+    <h2 class="cs-h2">The decisions<br/>that mattered</h2>
     <div class="decision-list" role="list">
       <div class="decision-item" role="listitem">
         <div class="decision-before"><span class="dec-label">Before</span><h4>Physical logbooks with handwritten entries</h4><p>Each airport station maintained separate paper logbooks. Entries were inconsistent, handwriting was illegible, and cross-station comparisons required physically collecting logbooks.</p></div>
@@ -865,7 +731,7 @@ footer p{font-size:12px;color:var(--gray2)}
         <div class="decision-after"><span class="dec-label after">After</span><h4>Real-time location with check-in/out</h4><p>Staff check equipment in and out of locations using a simple interface. The system maintains a full movement history for every asset.</p></div>
       </div>
       <div class="decision-item" role="listitem">
-        <div class="decision-before"><span class="dec-label">Before</span><h4>Reports took days to compile</h4><p>Aviation authority compliance reports required manually collecting data from multiple logbooks, cross-referencing, and formatting ,  taking up to a week per report.</p></div>
+        <div class="decision-before"><span class="dec-label">Before</span><h4>Reports took days to compile</h4><p>Aviation authority compliance reports required manually collecting data from multiple logbooks, cross-referencing, and formatting, taking up to a week per report.</p></div>
         <div class="decision-arrow-col" aria-hidden="true">→</div>
         <div class="decision-after"><span class="dec-label after">After</span><h4>One-click compliance reports</h4><p>Pre-configured report templates pull real-time data from the system. Reports are generated in seconds with accurate, auditable data.</p></div>
       </div>
@@ -876,7 +742,7 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 05 FINAL DESIGN -->
 <section class="cs-section" id="final">
   <div class="cs-inner">
-    <span class="section-num">9.0</span>
+    <span class="section-num">4.0</span>
     <span class="section-kicker">Validating Final Iteration</span>
     <h2 class="cs-h2">The final<br/>design</h2>
     <p class="cs-body">Validated through prototype walkthroughs with NAC ground operations supervisors and management. Iterated based on real-world scenarios like equipment breakdown during turnaround, end-of-month reporting, and multi-station inventory reconciliation.</p>
@@ -894,10 +760,10 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 06 METRICS -->
 <section class="cs-section darker" id="outcomes">
   <div class="cs-inner">
-    <span class="section-num">10.0</span>
+    <span class="section-num">5.0</span>
     <span class="section-kicker orange">Outcomes &amp; Impact</span>
     <h2 class="cs-h2">The results</h2>
-    <p class="cs-body">Measured through pilot deployment feedback and comparison with baseline paper-based processes.</p>
+    <p class="cs-body">The system moved paper logbooks and wall-calendar maintenance into one searchable record, giving every station the same operational picture.</p>
     <div class="metrics-grid" role="list">
       <div class="metric-item" role="listitem"><span class="metric-num">100<span>%</span></span><span class="metric-label">Paper-based logs eliminated</span></div>
       <div class="metric-item" role="listitem"><span class="metric-num">5<span>×</span></span><span class="metric-label">Faster equipment location</span></div>
@@ -910,14 +776,13 @@ footer p{font-size:12px;color:var(--gray2)}
 <!-- 07 REFLECTION -->
 <section class="cs-section dark" id="reflection">
   <div class="cs-inner">
-    <span class="section-num">11.0</span>
+    <span class="section-num">6.0</span>
     <span class="section-kicker">Reflection</span>
     <h2 class="cs-h2">What I learned</h2>
+
     <div class="reflection-grid" role="list">
-      <div class="reflection-card" role="listitem"><h4>Design for varied digital literacy</h4><p>NAC's ground staff included users with very different levels of computer experience. I learned that simplicity ,  large touch targets, clear visual cues, minimal text ,  wasn't a compromise; it was a requirement. The system had to work for everyone on day one.</p></div>
-      <div class="reflection-card" role="listitem"><h4>Aviation has unique UX constraints</h4><p>From tarmac environmental conditions (screen glare, gloves) to the criticality of uptime (every minute of equipment downtime affects flight schedules), designing for aviation operations taught me to consider physical context as seriously as digital context.</p></div>
-      <div class="reflection-card" role="listitem"><h4>Replacing paper requires trust-building</h4><p>Staff who had used paper logs for decades were naturally skeptical of digital systems. I learned that the adoption strategy was as important as the design itself ,  including training sessions, paper-to-digital transition workflows, and visible quick wins in the first week.</p></div>
-      <div class="reflection-card" role="listitem"><h4>Government projects require extra rigour</h4><p>Working with a state-owned enterprise meant additional compliance, procurement, and stakeholder alignment processes. I learned to build extra buffer for reviews and approvals into the timeline, and to document every design decision thoroughly.</p></div>
+<div class="reflection-card" role="listitem"><h4>Design for varied digital literacy</h4><p>NAC's ground staff included users with very different levels of computer experience. I learned that simplicity ,  large touch targets, clear visual cues, minimal text ,  wasn't a compromise; it was a requirement. The system had to work for everyone on day one.</p></div>
+<div class="reflection-card" role="listitem"><h4>Aviation has unique UX constraints</h4><p>From tarmac environmental conditions (screen glare, gloves) to the criticality of uptime (every minute of equipment downtime affects flight schedules), designing for aviation operations taught me to consider physical context as seriously as digital context.</p></div>
     </div>
   </div>
 </section>
@@ -938,26 +803,29 @@ footer p{font-size:12px;color:var(--gray2)}
 </div>
 
 <section class="cta-section" aria-labelledby="cta-title">
-  <h2 id="cta-title">Like what<br/>you see?</h2>
-  <p>Let's talk about what we can build together.</p>
-  <div class="cta-buttons">
-    <a href="mailto:dikshyabc01@gmail.com" class="btn-primary" onclick="showToast(event)">Get In Touch</a>
-    <a href="/Portfolio/work" target="_top" class="btn-outline">View All Work</a>
+  <div class="cta-inner">
+    <div class="cta-head">
+      <span class="cta-eyebrow">Next step</span>
+      <h2 id="cta-title">Want the full story?</h2>
+    </div>
+    <div class="cta-body">
+      <p>The outcome is only half of it. The trade-offs, the rejected directions, and the decisions behind this project are where the real work lives. I&rsquo;m happy to walk you through them.</p>
+      <div class="cta-actions">
+        <a href="mailto:dikshyabc01@gmail.com" class="btn-primary" onclick="showToast(event)">Let&rsquo;s connect</a>
+        <a href="work" target="_top" class="cta-link">View all work <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
   </div>
 </section>
 </main>
 
 <footer role="contentinfo">
-  <a class="footer-logo" href="/Portfolio/home" target="_top">DIKSHYA</a>
-  <p>© 2026 · UI/UX Designer · Kathmandu, Nepal</p>
-  <a href="/Portfolio/work" target="_top" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
+  <a class="footer-logo" href="home" target="_top">Dikshya BC</a>
+  <p>© 2026 · UI/UX Designer</p>
+  <a href="work" target="_top" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--gray)'">← All Work</a>
 </footer>
 
 <script>
-const cursor=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
-(function anim(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim)})();
 window.addEventListener('scroll',()=>{const p=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;document.getElementById('progress').style.width=p+'%';},{passive:true});
 const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('revealed')})},{threshold:.07});
 document.querySelectorAll('.tldr-bar,.pain-item,.research-card,.sh-card,.decision-item,.flow-card,.metric-item,.reflection-card').forEach(el=>obs.observe(el));

@@ -8,7 +8,7 @@ function BandFooter() {
         <div className="fb-top">
           <span className="fb-status">
             <span className="status-dot" aria-hidden="true" />
-            Open to full-time roles
+            Open to work
           </span>
         </div>
 

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <!-- FigJam logo — green diamond/star shape -->
+  <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5Z" fill="#A25DDC" opacity=".85"/>
+  <path d="M12 4L13.5 9L18 12L13.5 15L12 20L10.5 15L6 12L10.5 9Z" fill="#F24E1E" opacity=".7"/>
+  <!-- Inner highlight -->
+  <path d="M12 6L13 10L16 12L13 14L12 18L11 14L8 12L11 10Z" fill="#0AC763" opacity=".6"/>
+</svg>

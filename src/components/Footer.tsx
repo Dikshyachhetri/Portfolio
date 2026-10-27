@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom'
-import { EMAIL, GMAIL_COMPOSE_URL, LINKEDIN_URL, WHATSAPP_URL } from '../lib/links'
+import { EMAIL, GMAIL_COMPOSE_URL, INSTAGRAM_URL, LINKEDIN_URL, WHATSAPP_URL, YOUTUBE_URL } from '../lib/links'
 
 function BandFooter() {
   return (
@@ -8,7 +8,7 @@ function BandFooter() {
         <div className="fb-top">
           <span className="fb-status">
             <span className="status-dot" aria-hidden="true" />
-            Available for select work
+            Open to work
           </span>
         </div>
 
@@ -19,15 +19,17 @@ function BandFooter() {
 
           <div className="fb-side">
             <p className="fb-sub">
-              I&rsquo;m open to full-time product design roles and select freelance
-              projects. If you&rsquo;re building something complex, I&rsquo;d love to
-              hear about it.
+              I&rsquo;m looking for full-time product design roles and open to
+              select freelance projects. If you&rsquo;re building something complex,
+              I&rsquo;d love to hear about it.
             </p>
             <a className="fb-email" href={`mailto:${EMAIL}`}>
               {EMAIL}
             </a>
             <div className="fb-socials">
               <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer">YouTube</a>
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">WhatsApp</a>
               <a href={GMAIL_COMPOSE_URL} target="_blank" rel="noopener noreferrer">Mail</a>
             </div>

@@ -12,6 +12,7 @@
    side. Hero fills the first fold. */
 .hero {
   box-sizing: border-box;
+  position: relative;
   min-height: 100vh;
   min-height: 100svh;
   max-width: 1280px;
@@ -21,11 +22,130 @@
   align-items: center;
 }
 .hero-grid {
+  position: relative;
+  z-index: 1;
   width: 100%;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   align-content: center;
 }
+
+/* ---------- blurred background leaves ---------- */
+.hero-leaf {
+  position: absolute;
+  z-index: 0;
+  aspect-ratio: 1;
+  line-height: 0;
+  pointer-events: none;
+  color: #8AA31C;
+  transform: rotate(var(--rot, 0deg));
+  animation: hero-leaf-drift 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+.hero-leaf svg { display: block; width: 100%; height: 100% }
+.hero-leaf svg path { fill: currentColor }
+
+/* large, soft glow - upper right */
+.hero-leaf--a {
+  top: 2%;
+  right: -3%;
+  width: 480px;
+  opacity: .30;
+  filter: blur(56px);
+  --rot: 18deg;
+  animation-duration: 24s;
+}
+/* the clearest leaf - lower left */
+.hero-leaf--b {
+  bottom: 3%;
+  left: -4%;
+  width: 290px;
+  opacity: .32;
+  filter: blur(13px);
+  --rot: -26deg;
+  animation-duration: 18s;
+  animation-direction: alternate-reverse;
+}
+/* faint mid-right echo */
+.hero-leaf--c {
+  top: 44%;
+  right: 21%;
+  width: 200px;
+  opacity: .26;
+  filter: blur(24px);
+  --rot: 42deg;
+  animation-duration: 27s;
+}
+
+@keyframes hero-leaf-drift {
+  from { transform: translate3d(0, 0, 0) rotate(var(--rot)) }
+  to   { transform: translate3d(0, -28px, 0) rotate(calc(var(--rot) + 11deg)) }
+}
+
+/* ---------- skill grid ---------- */
+.hero-skills {
+  --skill-tile: 64px; /* keep in sync with TILE in HomePage.tsx */
+  --skill-life: 7000ms; /* overridden per tile from LIFE_MS in HomePage.tsx */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.hero-skill {
+  position: absolute;
+  width: var(--skill-tile);
+  height: var(--skill-tile);
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(251, 250, 244, .94);
+  box-shadow: 0 14px 30px -18px rgba(47, 61, 10, .45);
+  opacity: 0;
+  animation: hero-skill-cycle var(--skill-life) ease-in-out both;
+  will-change: transform, opacity;
+}
+.hero-skill img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* translate is applied outside the scale, so x/y stay in unscaled tile units */
+  transform: translate(var(--skill-x, 0), var(--skill-y, 0)) scale(var(--skill-scale, 1));
+}
+.hero-skill-badge {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 16px;
+  height: 16px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--paper);
+  box-shadow: 0 0 0 2px rgba(251, 250, 244, .95), 0 2px 6px rgba(47, 61, 10, .3);
+}
+.hero-skill-badge--ai { background: var(--olive-deep) }
+.hero-skill-badge--make { background: var(--rust) }
+.hero-skill-badge svg { width: 9px; height: 9px; display: block }
+
+/* one full life: a slow bloom in, a beat of stillness, then a slow dissolve */
+@keyframes hero-skill-cycle {
+  0%   { opacity: 0; transform: scale(.88) }
+  30%  { opacity: 1; transform: scale(1) }
+  70%  { opacity: 1; transform: scale(1) }
+  100% { opacity: 0; transform: scale(.94) }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-skills { display: none }
+}
+.hero-grid > .eyebrow { justify-self: start }
 .hero-title {
   margin-top: 24px;
   font-size: clamp(40px, 6.2vw, 88px);
@@ -129,9 +249,13 @@
   }
   .hero-title { max-width: 22ch }
   .hero-lede { max-width: 64ch }
+  .hero-skills { display: none }
 }
 @media (max-width: 900px) {
   .hero { padding: calc(var(--nav-h) + 56px) 24px 72px; min-height: 0 }
+  .hero-leaf--a { width: 340px; opacity: .34 }
+  .hero-leaf--b { width: 200px; opacity: .2 }
+  .hero-leaf--c { display: none }
   .section { padding: 72px 24px }
   .section-last { padding-bottom: 96px }
   .section-head { flex-direction: column; align-items: flex-start; gap: 20px }

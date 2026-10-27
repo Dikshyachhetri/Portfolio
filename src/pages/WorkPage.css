@@ -84,7 +84,7 @@
   box-shadow: 0 26px 50px -24px rgba(47, 61, 10, 0.34);
 }
 
-/* media — portrait poster, 5:7 to match source art */
+/* media - portrait poster, 5:7 to match source art */
 .project-media {
   position: relative;
   aspect-ratio: 5 / 7;

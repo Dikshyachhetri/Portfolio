@@ -13,9 +13,9 @@ export default function ContactPage() {
             Let&rsquo;s work <em>together.</em>
           </h1>
           <p className="contact-lede">
-            I&rsquo;m open to full-time product design roles and select freelance
-            projects. Tell me what you&rsquo;re building and I&rsquo;ll reply within
-            two working days.
+            I&rsquo;m looking for full-time product design roles and open to select
+            freelance projects. Tell me what you&rsquo;re building and I&rsquo;ll reply
+            within two working days.
           </p>
         </div>
 

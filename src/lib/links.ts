@@ -7,6 +7,10 @@ export const EMAIL = 'dikshyabc01@gmail.com'
 
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/dikshya-chhetri/'
 
+export const INSTAGRAM_URL = 'https://www.instagram.com/pana.by.d/'
+
+export const YOUTUBE_URL = 'https://www.youtube.com/@panabyd'
+
 /** wa.me needs the number in international format, digits only. */
 export const WHATSAPP_URL = 'https://wa.me/9779868168977'
 

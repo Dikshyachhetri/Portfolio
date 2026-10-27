@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <!-- Uizard logo — stylized 'U' with AI gradient colors -->
+  <path d="M4 20V6C4 4.895 4.895 4 6 4H8C9.105 4 10 4.895 10 6V14C10 15.657 11.343 17 13 17C14.657 17 16 15.657 16 14V6C16 4.895 16.895 4 18 4H20C21.105 4 22 4.895 22 6V14C22 18.418 18.418 22 14 22C9.582 22 6 18.418 6 14" stroke="url(#uizard-grad)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <defs>
+    <linearGradient id="uizard-grad" x1="4" y1="4" x2="22" y2="22">
+      <stop offset="0%" stop-color="#4B73FF"/>
+      <stop offset="50%" stop-color="#FF66F4"/>
+      <stop offset="100%" stop-color="#FF7EB0"/>
+    </linearGradient>
+  </defs>
+</svg>

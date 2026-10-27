@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Passion Projects · Dikshya</title>
-<meta name="description" content="Freelance projects and visual experiments by Dikshya: digital and graphic design, mockups, social media content, logo design, branding and video editing."/>
+<meta name="description" content="Freelance projects and visual experiments by Dikshya: digital and graphic design, illustration, poster design, mockups, social media content, logo design, branding and video editing."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
@@ -36,40 +36,45 @@ body{font-family:'DM Sans',sans-serif;background-color:var(--bg);background-imag
 .page-tags{display:flex;gap:8px;flex-wrap:wrap}
 .page-tag{font-size:11px;color:var(--gray2);border:1px solid var(--border);padding:5px 14px;border-radius:14px}
 
-/* MASONRY GALLERY */
-.gallery-wrap{max-width:1320px;margin:0 auto;padding:64px 48px 100px}
-.gallery-grid{column-count:2;column-gap:24px}
-@media(min-width:1100px){.gallery-grid{column-count:2}}
-@media(max-width:700px){.gallery-grid{column-count:1}}
+/* SHOT GRID - Dribbble-style tiles, no card wrapper */
+.gallery-wrap{max-width:1280px;margin:0 auto;padding:56px 48px 88px}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 28px}
+.shot{display:flex;flex-direction:column;margin:0;padding:0}
+.shot img{width:100%;aspect-ratio:4/3;object-fit:contain;display:block;border-radius:10px;background:var(--bg2);transition:transform var(--dur-mid) var(--ease),box-shadow var(--dur-mid) var(--ease)}
+.shot:hover img{transform:translateY(-4px);box-shadow:0 18px 34px -20px rgba(47,61,10,.45)}
+.shot figcaption{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 8px;margin-top:auto;padding:12px 2px 0;font-family:'Playfair Display',Georgia,serif;font-size:16px;font-weight:500;line-height:1.4;color:var(--white)}
+.shot figcaption em{font-family:'DM Sans',sans-serif;font-style:normal;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray2)}
+.shot a{color:inherit;text-decoration:none}
+.shot figcaption a:hover{color:var(--orange)}
+@media(max-width:1000px){.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.gallery-grid{grid-template-columns:1fr}}
 
-.gallery-card{
-  break-inside:avoid;margin-bottom:24px;
-  background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;
-  opacity:0;transform:translateY(24px);
-  transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease),border-color var(--dur-mid),transform var(--dur-mid) var(--ease);
+/* ---------- PANA BY D ---------- */
+.pana-wrap{max-width:1280px;margin:0 auto;padding:0 48px 88px}
+.pana-head{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;padding:56px 0 32px;border-top:1px solid var(--border)}
+.pana-eyebrow{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray2);margin-bottom:12px}
+.pana-head h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(32px,4.4vw,56px);font-weight:400;letter-spacing:-.02em;line-height:1.05;color:var(--white);margin:0 0 12px}
+.pana-head h2 em{font-style:italic}
+.pana-sub{max-width:560px;font-size:15px;line-height:1.75;color:var(--gray);font-weight:300}
+.pana-metrics{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:18px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray2)}
+.pana-metrics strong{font-family:'Playfair Display',Georgia,serif;font-size:18px;font-weight:500;letter-spacing:-.01em;text-transform:none;color:var(--white);margin-right:6px}
+.pana-links{display:flex;flex-wrap:wrap;gap:10px}
+.pana-links a{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);text-decoration:none;border:1px solid var(--border2);border-radius:999px;padding:10px 18px;white-space:nowrap;transition:background .2s,color .2s,border-color .2s}
+.pana-links a:hover{background:var(--orange);color:#fff;border-color:var(--orange)}
+.pana-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
+.pana-shot{display:flex;flex-direction:column;margin:0}
+.pana-shot img,.pana-shot video{width:100%;aspect-ratio:9/16;object-fit:cover;display:block;border-radius:10px;background:var(--bg2);transition:transform var(--dur-mid) var(--ease),box-shadow var(--dur-mid) var(--ease)}
+.pana-shot:hover img,.pana-shot:hover video{transform:translateY(-4px);box-shadow:0 18px 34px -20px rgba(47,61,10,.45)}
+.pana-shot figcaption{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 8px;margin-top:auto;padding:12px 2px 0;font-family:'Playfair Display',Georgia,serif;font-size:16px;font-weight:500;line-height:1.4;color:var(--white)}
+.pana-shot figcaption em{font-family:'DM Sans',sans-serif;font-style:normal;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray2)}
+.pana-shot figcaption a{color:inherit;text-decoration:none}
+.pana-shot figcaption a:hover{color:var(--orange)}
+@media(max-width:900px){
+  .pana-wrap{padding:0 24px 64px}
+  .pana-head{flex-direction:column;align-items:flex-start;gap:20px;padding:44px 0 28px}
+  .pana-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
 }
-.gallery-card.revealed{opacity:1;transform:translateY(0)}
-.gallery-card:hover{border-color:rgba(251,191,36,.35);transform:translateY(-3px)}
-.gallery-card:nth-child(1){transition-delay:0ms}
-.gallery-card:nth-child(2){transition-delay:60ms}
-.gallery-card:nth-child(3){transition-delay:120ms}
-.gallery-card:nth-child(4){transition-delay:180ms}
-.gallery-card:nth-child(5){transition-delay:240ms}
-.gallery-card:nth-child(6){transition-delay:300ms}
-.gallery-card:nth-child(7){transition-delay:360ms}
-.gallery-card:nth-child(8){transition-delay:420ms}
-
-/* gallery images */
-.gv{width:100%;display:block}
-.gallery-card img.gv{width:100%;height:auto;display:block;object-fit:contain;background:var(--bg2);border-radius:0}
-.gv-dark{background:#111}
-.gv-pad{padding:28px}
-
-.gallery-caption{padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.gallery-title{font-size:14px;font-weight:500;color:var(--white);line-height:1.4}
-.gallery-title em{font-style:normal;font-weight:300;color:var(--gray2);font-size:12px;margin-left:6px}
-.gallery-cta{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--orange);border:1px solid var(--orange);padding:5px 12px;border-radius:14px;text-decoration:none;white-space:nowrap;transition:background var(--dur-fast),color var(--dur-fast)}
-.gallery-cta:hover{background:var(--orange);color:#fff}
+@media(max-width:520px){.pana-grid{grid-template-columns:1fr}}
 
 /* CTA + FOOTER */
 .more-cta{padding:64px 48px;text-align:center;border-top:1px solid var(--border)}
@@ -87,7 +92,7 @@ footer p{font-size:12px;color:var(--gray2)}
 .back-link{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color var(--dur-fast)}
 .back-link:hover{color:var(--orange)}
 
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.gallery-card,.page-header{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.shot,.page-header{opacity:1;transform:none}}
 @media(max-width:900px){
   .page-header{padding:100px 24px 40px}
   .gallery-wrap{padding:40px 24px 80px}
@@ -118,14 +123,6 @@ footer p{font-size:12px;color:var(--gray2)}
 .page-tags{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray2)}
 .page-tag{display:inline;border:0;border-radius:0;padding:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray2)}
 .page-tag + .page-tag::before{content:'·';margin:0 9px;color:var(--gray3)}
-.gallery-wrap{max-width:1280px;padding:56px 48px 88px}
-.gallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px;column-count:auto}
-.gallery-card{margin:0;border-radius:0;background:var(--bg2);border:1px solid var(--border);opacity:1;transform:none;transition:border-color .2s}
-.gallery-card:hover{transform:none;border-color:var(--border2)}
-.gallery-card img.gv{width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;padding:22px;background:var(--bg2);border-radius:0}
-.gallery-caption{padding:15px 2px;border-top:1px solid var(--border);background:transparent}
-.gallery-title{font-family:'Playfair Display',Georgia,serif;font-size:17px;font-weight:500;color:var(--white)}
-.gallery-title em{font-family:'DM Sans',sans-serif;font-style:normal;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray2);margin-left:8px}
 .more-cta{padding:72px 48px;text-align:left;max-width:1280px;margin:0 auto;border-top:1px solid var(--border)}
 .more-cta h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(32px,4.4vw,56px);font-weight:400;letter-spacing:-.02em;margin-bottom:12px}
 .more-cta p{max-width:520px;margin-bottom:28px}
@@ -136,7 +133,6 @@ footer{padding:28px 48px;background:transparent}
 @media(max-width:800px){
   .page-header{padding:64px 24px 40px}
   .gallery-wrap{padding:40px 24px 64px}
-  .gallery-grid{grid-template-columns:1fr;gap:28px}
   .more-cta{padding:56px 24px}
   footer{padding:24px;flex-direction:column;align-items:flex-start;gap:10px}
 }
@@ -153,11 +149,13 @@ footer{padding:28px 48px;background:transparent}
 <header class="page-header">
   <div class="breadcrumb"><a href="home" target="_top">Home</a><span>→</span><a href="work" target="_top">Work</a><span>→</span><span>Passion Projects</span></div>
   <h1>Passion projects.</h1>
-  <p class="sub">A curated archive of personal and freelance work made outside client briefs: branding, mockups, illustration, video, and social campaigns. The work I do to keep the craft sharp.</p>
+  <p class="sub">A curated archive of personal, freelance and client work: branding, mockups, illustration, video, and social campaigns. The work I do to keep the craft sharp.</p>
   <div class="page-tags">
     <span class="page-tag">Digital Design</span>
     <span class="page-tag">Video Editing</span>
     <span class="page-tag">Graphic Design</span>
+    <span class="page-tag">Illustration</span>
+    <span class="page-tag">Poster Design</span>
     <span class="page-tag">Mockups</span>
     <span class="page-tag">Social Media Content</span>
     <span class="page-tag">Logo Design</span>
@@ -168,76 +166,147 @@ footer{padding:28px 48px;background:transparent}
 <div class="gallery-wrap">
   <div class="gallery-grid" role="list" aria-label="Passion project gallery">
 
-    <!-- Frozen Savouries  social media / standees -->
-    <article class="gallery-card" role="listitem">
-      <img src="passion-project/Column 1 - first-image.png" alt="Frozen Savouries social media design" class="gv" loading="lazy"/>
-      <div class="gallery-caption">
-        <span class="gallery-title">Frozen Savouries <em>· Mockup</em></span>
-      </div>
-    </article>
+    <!-- FaltecX logo & branding -->
+    <figure class="shot" role="listitem">
+      <a href="https://faltecx.com.au/" target="_blank" rel="noopener noreferrer">
+        <img src="passion-project/faltecx-branding.png" alt="FaltecX logo and brand identity on the website" loading="lazy"/>
+      </a>
+      <figcaption>
+        <a href="https://faltecx.com.au/" target="_blank" rel="noopener noreferrer">FaltecX</a>
+        <em>· Logo &amp; branding</em>
+      </figcaption>
+    </figure>
+
+    <!-- Frozen Savouries - roll-up banners / brand collateral -->
+    <figure class="shot" role="listitem">
+      <img src="passion-project/Column 1 - first-image.png" alt="Frozen Savouries roll-up banner and brand collateral" loading="lazy"/>
+      <figcaption>Frozen Savouries <em>· Roll-up banners</em></figcaption>
+    </figure>
 
     <!-- Apple Vision Pro mockup -->
-    <article class="gallery-card" role="listitem">
-      <img src="passion-project/Column 2 - first-image.png" alt="Apple Vision Pro mockup" class="gv" loading="lazy"/>
-      <div class="gallery-caption">
-        <span class="gallery-title">Apple Vision Pro <em>· Mockup</em></span>
-      </div>
-    </article>
+    <figure class="shot" role="listitem">
+      <img src="passion-project/Column 2 - first-image.png" alt="Apple Vision Pro mockup" loading="lazy"/>
+      <figcaption>Apple Vision Pro <em>· Mockup</em></figcaption>
+    </figure>
 
     <!-- Bento Design  iPhone -->
-    <article class="gallery-card" role="listitem">
-      <img src="passion-project/Column 1 - second-image.png" alt="Bento Design iPhone mockup" class="gv" loading="lazy"/>
-      <div class="gallery-caption">
-        <span class="gallery-title">Bento Design <em>· Mockup</em></span>
-      </div>
-    </article>
+    <figure class="shot" role="listitem">
+      <img src="passion-project/Column 1 - second-image.png" alt="Bento Design iPhone mockup" loading="lazy"/>
+      <figcaption>Bento Design <em>· Mockup</em></figcaption>
+    </figure>
 
     <!-- Special Menu  Kanpai food poster -->
-    <article class="gallery-card" role="listitem">
-      <img src="passion-project/Column 2 - second-image.png" alt="Special Menu Kanpai mockup" class="gv" loading="lazy"/>
-      <div class="gallery-caption">
-        <span class="gallery-title">Special Menu <em>· Mockup</em></span>
-      </div>
-    </article>
+    <figure class="shot" role="listitem">
+      <img src="passion-project/Column 2 - second-image.png" alt="Special Menu Kanpai mockup" loading="lazy"/>
+      <figcaption>Special Menu <em>· Mockup</em></figcaption>
+    </figure>
 
-    <!-- Web Banner Flash Sale -->
-    <article class="gallery-card" role="listitem">
-      <img src="passion-project/Column 1 - third-image.png" alt="Web Banner Flash Sale mockup" class="gv" loading="lazy"/>
-      <div class="gallery-caption">
-        <span class="gallery-title">Web Banner Flash Sale <em>· Mockup</em></span>
-      </div>
-    </article>
+    <!-- Flash sale web banner - mockup -->
+    <figure class="shot" role="listitem">
+      <img src="passion-project/Column 1 - third-image.png" alt="Flash sale web banner mockup" loading="lazy"/>
+      <figcaption>Flash Sale Banner <em>· Mockup</em></figcaption>
+    </figure>
 
     <!-- 3D Icons -->
-    <article class="gallery-card" role="listitem">
-      <img src="passion-project/Column 2 - third-image.png" alt="3D Icons mockup" class="gv" loading="lazy"/>
-      <div class="gallery-caption">
-        <span class="gallery-title">3D Icons <em>· Mockup</em></span>
-      </div>
-    </article>
+    <figure class="shot" role="listitem">
+      <img src="passion-project/Column 2 - third-image.png" alt="3D Icons mockup" loading="lazy"/>
+      <figcaption>3D Icons <em>· Mockup</em></figcaption>
+    </figure>
 
     <!-- Login Page UI -->
-    <article class="gallery-card" role="listitem">
-      <img src="passion-project/Column 1 - fourth-image.png" alt="Login Page UI mockup" class="gv" loading="lazy"/>
-      <div class="gallery-caption">
-        <span class="gallery-title">Login Page <em>· Mockup</em></span>
-      </div>
-    </article>
+    <figure class="shot" role="listitem">
+      <img src="passion-project/Column 1 - fourth-image.png" alt="Login Page UI mockup" loading="lazy"/>
+      <figcaption>Login Page <em>· Mockup</em></figcaption>
+    </figure>
 
     <!-- Frosted Glass Icons -->
-    <article class="gallery-card" role="listitem">
-      <img src="passion-project/Column 2 - fourth-image.png" alt="Frosted Glass Icons mockup" class="gv" loading="lazy"/>
-      <div class="gallery-caption">
-        <span class="gallery-title">Frosted Glass Icons <em>· Mockup</em></span>
-      </div>
-    </article>
+    <figure class="shot" role="listitem">
+      <img src="passion-project/Column 2 - fourth-image.png" alt="Frosted Glass Icons mockup" loading="lazy"/>
+      <figcaption>Frosted Glass Icons <em>· Mockup</em></figcaption>
+    </figure>
+
+    <!-- Mount Fuji travel poster -->
+    <figure class="shot" role="listitem">
+      <img src="passion-project/mount-fuji-poster.jpg" alt="Travel Mount Fuji poster design" loading="lazy"/>
+      <figcaption>Mount Fuji <em>· Poster design</em></figcaption>
+    </figure>
+
+    <!-- Croissant illustration process -->
+    <figure class="shot" role="listitem">
+      <img src="passion-project/croissant-illustration.jpg" alt="Nine-step croissant digital illustration process" loading="lazy"/>
+      <figcaption>Croissant <em>· Digital illustration</em></figcaption>
+    </figure>
+
+    <!-- Frozen Savouries - butter chicken social post -->
+    <figure class="shot" role="listitem">
+      <img src="passion-project/frozen-savouries-butter-chicken.jpg" alt="Frozen Savouries butter chicken social media poster" loading="lazy"/>
+      <figcaption>Frozen Savouries <em>· Butter Chicken social</em></figcaption>
+    </figure>
 
   </div>
 </div>
 
+<!-- ========== PANA BY D ========== -->
+<section class="pana-wrap" aria-labelledby="pana-title">
+  <header class="pana-head">
+    <div class="pana-copy">
+      <p class="pana-eyebrow">Creative practice</p>
+      <h2 id="pana-title">Pana <em>by D</em>.</h2>
+      <p class="pana-sub">Pana by D started as a personal place to experiment outside of client work: small Procreate studies, colour tests and pattern exercises, shared with no plan beyond learning in public. Those experiments slowly found a community, and the practice is still growing in the same spirit: curious, imperfect and still learning.</p>
+      <p class="pana-metrics">
+        <span><strong>~9.5K</strong> Instagram</span>
+        <span><strong>1M+</strong> views on videos</span>
+        <span><strong>199K+</strong> YouTube views</span>
+      </p>
+    </div>
+    <nav class="pana-links" aria-label="Pana by D social links">
+      <a href="https://www.instagram.com/pana.by.d/" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a>
+      <a href="https://www.youtube.com/@panabyd" target="_blank" rel="noopener noreferrer">YouTube <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <div class="pana-grid">
+    <figure class="pana-shot">
+      <video muted loop playsinline preload="metadata" poster="passion-project/pana/simple-pattern-art-poster.jpg" aria-label="Simple Pattern Art reel">
+        <source src="passion-project/pana/simple-pattern-art.mp4" type="video/mp4"/>
+      </video>
+      <figcaption>
+        <a href="https://www.instagram.com/reel/DWTs2H2gWAx/" target="_blank" rel="noopener noreferrer">Simple Pattern Art</a>
+        <em>· Reel</em>
+      </figcaption>
+    </figure>
+    <figure class="pana-shot">
+      <video muted loop playsinline preload="metadata" poster="passion-project/pana/procreate-day-6-poster.jpg" aria-label="Learning Procreate Day 6 reel">
+        <source src="passion-project/pana/procreate-day-6.mp4" type="video/mp4"/>
+      </video>
+      <figcaption>
+        <a href="https://www.instagram.com/reel/DV_DUclTZdz/" target="_blank" rel="noopener noreferrer">Learning Procreate: Day 6</a>
+        <em>· Reel</em>
+      </figcaption>
+    </figure>
+    <figure class="pana-shot">
+      <video muted loop playsinline preload="metadata" poster="passion-project/pana/procreate-day-9-poster.jpg" aria-label="Learning Procreate Day 9 reel">
+        <source src="passion-project/pana/procreate-day-9.mp4" type="video/mp4"/>
+      </video>
+      <figcaption>
+        <a href="https://www.instagram.com/reel/DWGxy1yTmRa/" target="_blank" rel="noopener noreferrer">Learning Procreate: Day 9</a>
+        <em>· Reel</em>
+      </figcaption>
+    </figure>
+    <figure class="pana-shot">
+      <video muted loop playsinline preload="metadata" poster="passion-project/pana/powerpuff-girls-poster.jpg" aria-label="Powerpuff Girls fan art reel">
+        <source src="passion-project/pana/powerpuff-girls.mp4" type="video/mp4"/>
+      </video>
+      <figcaption>
+        <a href="https://www.instagram.com/reel/DbikAlshIqA/" target="_blank" rel="noopener noreferrer">Powerpuff Girls</a>
+        <em>· Fan art</em>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
 <div class="more-cta">
   <h2>More where that came from.</h2>
-  <p>This is a small slice of the personal work. Happy to share the rest, or talk about a project.</p>
+  <p>This is a small slice of the archive. Happy to share the rest, or talk about a project.</p>
   <a href="mailto:dikshyabc01@gmail.com" class="btn-primary" onclick="showToast(event)">Get In Touch</a>
 </div>
 </main>
@@ -250,8 +319,23 @@ footer{padding:28px 48px;background:transparent}
 
 <script>
 
-const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('revealed')})},{threshold:.06});
-document.querySelectorAll('.gallery-card').forEach(el=>obs.observe(el));
+
+document.querySelectorAll('.pana-shot').forEach(card => {
+  const video = card.querySelector('video');
+  if (!video) return;
+  const play = () => { video.play().catch(() => {}) };
+  const reset = () => { video.pause(); video.currentTime = 0; video.load() };
+  card.addEventListener('mouseenter', play);
+  card.addEventListener('mouseleave', reset);
+  card.addEventListener('focusin', play);
+  card.addEventListener('focusout', reset);
+  card.addEventListener('click', e => {
+    if (e.target.closest('a')) return;
+    if (window.matchMedia('(hover: hover)').matches) return;
+    if (video.paused) play(); else reset();
+  });
+});
+
 
 function showToast(e){e.preventDefault();navigator.clipboard.writeText('dikshyabc01@gmail.com').catch(()=>{});const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
 </script>
